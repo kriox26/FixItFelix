@@ -22,7 +22,7 @@ El mantenimiento del codigo del proyecto se va a manejar aca.
 	> 2. **TAREAS/EN PROCESO**: La idea es que cada uno tenga una sola tarjeta asignada a la vez(es decir que no tendrian que haber mas de 3 tarjetas en la lista `EN PROCESO`), y que no empiezen a hacer otra hasta que terminen la actual(es decir hasta que no se mueva a **TERMINADO**).  
 	> 3. **REFACTORIZAR**: A veces antes de agregar una nueva(y opcional) funcionalidad es preferible refactorizar y reordenar el codigo previo, por eso se pone `REFACTORIZAR` como prioridad sobre `SUGERENCIAS`  
 	> 4. **SUGERENCIAS**: Una vez que todo lo **_urgente_** este terminado, podemos implementar lo que sea que este en esta lista.  
-  ***
+	***
 * #### Git/Github
   El workflow de `Git` se va a basar en el uso de `ramas o branches`. El proceso seria algo asi(mas abajo estan las especifaciones de cada rama):
 

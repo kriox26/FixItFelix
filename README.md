@@ -44,6 +44,48 @@ El mantenimiento del codigo del proyecto se va a manejar aca.
 ### Como tener el repo localmente
 Todavia no hay que clonar este repositorio, lo ideal seria que una vez que nos digan que es lo que tenemos que implementar, creamos el proyecto(probablemente usando eclipse dentro de la carpeta workspace) y luego dentro de la carpeta del proyecto creado se hace un **git clone https://github.com/kriox26/taller-2** y estamos listos :thumbsup:.
 
+### Informacion y comandos de git utiles
+Git distingue los archivos segun sus estados.
+* **_Tracked files_**: son aquellos archivos que estan agregados al repositorio, es decir a los que les hicieron _git add_
+* **_Untracked files_**: opuesto al anterior, es decir todos aquellos archivos que git no esta siguiendo
+* **_Staged files_**: estos son todos los archivos que van a ser 'commiteados', es decir los archivos que van dentro del proximo _git commit_
+* **_Unstaged files_**: estos son todos los archivos que fueron modificados, eliminados o renombrados y que todavia no se agregaron para commitear, es decir que si hacen un _git commit_ estos archivos **NO VAN A FORMAR PARTE DEL COMMIT**
+
+Los comandos que mas vamos a utilizar van a ser:  
+> **git add _nombre-o-nombres-de-los-archivos_**: agrega los archivos especificados a **_Staged files_**. Por ejemplo si yo hice un cambio a un archivo que se llama `luca` y otro que se llama `jorge` los puedo agregar haciendo alguna de las siguientes:
+> * git add luca    -     git add jorge
+> * git add luca jorge
+> * git add -A  es equivalente a git add . (con el punto incluido, esto lo que hace es agregar TODO, incluyendo archivos que no estan siendo seguidos)  
+>
+> **git commit -m "mensaje del commit"**: crea un commit con el mensaje y archivos(aquellos que estaban en **_Staged files_**) correspondientes. Por ejemplo, luego de hacer el _git add_ a los archivos luca y jorge, hariamos lo siguiente(tener en cuenta que el tamaño de los mensajes tiene un limite):
+> * git commit -m "agrego los archivos luca y jorge(tiburon)"
+>
+> **git pull**: Este comando trae todos los cambios que estan en el repositorio remoto y no estan en el repositorio local. **PRESTAR CUIDADO ATENCION A LA RAMA EN LA QUE ESTAN**.
+>
+> **git push**: Hace lo opuesto a pull, lleva todos los commits(es decir cambios) hechos localmente que no estan el repositorio remoto. Hacer los push cuando hayan terminado unicamente(o cuando alguien necesite el trabajo que hicieron hasta ahora).
+>
+> **git checkout _rama_**: Esto lo que hace es chequear la _rama_ especificada. Por ejemplos si estamos en la rama _develop_ y queremos probar la funcionalidad del juego en version estable(la cual estaria en la rama _master_), hariamos lo siguiente:
+> * git checkout master
+> hacer todo lo que quieran aca
+> * git checkout develop    # Para volver a develop y seguir desarrollando ahi
+>
+> **git checkout -b _nombre-de-rama_**: Esto lo que hace es crear una rama con nombre _nombre-de-rama_ y cambiar luego chequear esa rama, es decir los deja listos para empezar a trabajar en la rama definida. Por ejemplo, supongamos que quiero empezar a trabajar en la rama _jorge-ataca-como-tiburo_, lo que haria es:
+> * git checkout -b jorge-ataca-como-tiburon  # Esto me mueve a esa rama
+> hacer lo que sea
+> * git checkout develop # Para volver a la rama develop o si se quiere ir a otra rama se puede cambiar el nombre develop por el nombre de la rama que se quiera
+>
+> **git merge**: Esto se hace cuando se quiere mergear una rama con otra. Por ejemplo, si yo me pongo a trabajar en la rama _luca-y-josi_ hago lo que tengo que hacer ahi y luego quiero integrar esa rama con develop haria lo siguiente:
+> * git checkout develop # para asegurarme que estoy en develop
+> * git checkout -b luca-y-josi # Para crear la rama
+> hacer todo el trabajo que se quiera hacer en la rama
+> * git checkout develop # Para volver a la rama develop
+> * git merge luca-y-josi # Para integrar los cambios que hice en luca-y-josi a develop  
+
+A medida que surge la necesidad de nuevos comandos los voy a ir agregando, dejo links a cheatsheets y libros buenos:
+[ProGit - Un libro muy bueno recomendado por github](https://git-scm.com/book/en/v2)
+[Cheatsheet de comandos para git](http://www.git-tower.com/blog/git-cheat-sheet/)
+
+
 ### Extra
 Cualquier otra cosa que se necesite ir agregando se pone aca abajo, por ejemplo cuando nos digan que juego implementar, podemos agregar aca las reglas del juego, links utiles, imagenes del juego actual o lo que sea.
 Happy coding (? :smiley:

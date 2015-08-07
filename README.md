@@ -27,8 +27,7 @@ El mantenimiento del codigo del proyecto se va a manejar aca.
   El workflow de `Git` se va a basar en el uso de `ramas o branches`. El proceso seria algo asi(mas abajo estan las especifaciones de cada rama):
 
   > Se trabaja principalmente en rama **DEVELOP**, en caso de empezar a trabajar en algo relativamente grande, se crea una nueva rama con: **git checkout -b _nombre-de-rama_** y se trabaja ahi, una vez terminado se hace: **git checkout develop** y luego **git merge _nombre-de-rama_**. En caso de que esten solucionando algun _bug_ o algo por el estilo, no hace falta crear una nueva rama, simplemente lo hacen en **DEVELOP**.  
-  **ES FUNDAMENTAL QUE LOS COMMITS SEAN CHICOS(POCAS EDICIONES) Y QUE LOS MENSAJES SEAN DESCRIPTIVOS**
-
+  **ES FUNDAMENTAL QUE LOS COMMITS SEAN CHICOS(POCAS EDICIONES) Y QUE LOS MENSAJES SEAN DESCRIPTIVOS**  
   ***
 
   ##### Descripcion de ramas

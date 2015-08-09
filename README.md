@@ -46,9 +46,9 @@ Todavia no hay que clonar este repositorio, lo ideal seria que una vez que nos d
 
 ### Informacion y comandos de git utiles
 Git distingue los archivos segun sus estados.
-* **_Tracked files_**: son aquellos archivos que estan agregados al repositorio, es decir a los que les hicieron _git add_
+* **_Tracked files_**: son aquellos archivos que estan agregados al repositorio, es decir a los que les hicieron _git add_ en algun momento. A estos archivos se los refiere como: integrados al **HEAD**
 * **_Untracked files_**: opuesto al anterior, es decir todos aquellos archivos que git no esta siguiendo
-* **_Staged files_**: estos son todos los archivos que van a ser 'commiteados', es decir los archivos que van dentro del proximo _git commit_
+* **_Staged files_**: estos son todos los archivos que van a ser 'commiteados', es decir los archivos que van dentro del proximo _git commit_(osea a los les hicieron _git add_)
 * **_Unstaged files_**: estos son todos los archivos que fueron modificados, eliminados o renombrados y que todavia no se agregaron para commitear, es decir que si hacen un _git commit_ estos archivos **NO VAN A FORMAR PARTE DEL COMMIT**
 
 Los comandos que mas vamos a utilizar van a ser:  

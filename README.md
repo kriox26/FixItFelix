@@ -42,7 +42,15 @@ El mantenimiento del codigo del proyecto se va a manejar aca.
   
   
 ### Como tener el repo localmente
-Todavia no hay que clonar este repositorio, lo ideal seria que una vez que nos digan que es lo que tenemos que implementar, creamos el proyecto(probablemente usando eclipse dentro de la carpeta workspace) y luego dentro de la carpeta del proyecto creado se hace un **git clone https://github.com/kriox26/taller-2** y estamos listos :thumbsup:.
+Para tener el repo localmente, abran eclipse y vayan a: `File > Import > Git > Projects From git > Clone URI` y ahi tienen que completar con lo siguiente:
+```
+URI: https://github.com/kriox26/FixItFelix.git
+Host: github.com
+Repository path: kriox26/FixItFelix.git
+User: PONGA SU NOMBER DE USUARIO DE GITHUB
+Password: Y EL PASSWORD DE GITHUB
+```
+Click `Next`, si les aparece un `Branch selection` elijan **master** y den a `finish`.
 
 ### Informacion y comandos de git utiles
 Git distingue los archivos segun sus estados.

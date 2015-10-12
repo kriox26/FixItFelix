@@ -23,7 +23,7 @@ public class Niceland {
 	private void setIniciado (){
 		
 	}
-	public void activar() {
+	public void activar() { //
 		
 	}
 	

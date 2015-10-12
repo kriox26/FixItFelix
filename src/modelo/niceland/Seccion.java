@@ -4,8 +4,9 @@ public class Seccion {
 	private String nombre;
 	private boolean techo;
 	private boolean piso;
+	private Ventana[] ventanas = new Ventana[5];
 	
-	public void iniciar(){ //Debe recibir un entero...
+	public void iniciar(int num){ //Debe recibir un entero...
 	}
 	
 	public boolean todoArreglado(){ //Para saber si se puede pasar de sección.

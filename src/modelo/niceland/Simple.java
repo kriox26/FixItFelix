@@ -1,7 +1,7 @@
 package modelo.niceland;
 
 public class Simple extends Ventana {
-	private Panel[] paneles = new Panel[0];
+	private Panel[] paneles = new Panel[2];
 	private boolean tarta = false;
 
 	public boolean getTarta(){

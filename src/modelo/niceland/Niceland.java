@@ -3,7 +3,7 @@ package modelo.niceland;
 public class Niceland {
 	private Seccion[] secciones;
 	
-	public void Niceland(){
+	public Niceland(){
 		
 	}
 	

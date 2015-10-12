@@ -11,6 +11,10 @@ public class Panel {
 		this.estado = estado;
 	}
 
+	protected void arreglar(){
+		this.setEstado(this.getEstado().arreglar());
+	}
+
 
 	/*
 	 * Si this.estado es una instancia de Roto, se devuelve true

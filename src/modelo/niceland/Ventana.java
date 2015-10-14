@@ -38,7 +38,7 @@ public class Ventana {
 	/*
 	 * Esto va a devolver true si la ventana a la
 	 * que se esta llamando es puerta o semicircular.
-	 * En caso de que sea irrompible, se va a acceder
+	 * En caso de que sea irrompible o simple, se va a acceder
 	 * al metodo de la clase correspondiente
 	 * @return boolean
 	 */
@@ -46,6 +46,9 @@ public class Ventana {
 		return true;
 	}
     
+    /*
+     * Setea cada panel de la ventana, con un estado aleatorio
+     */
     protected void setearPaneles(int cantidad){
         for (int i = 0; i < cantidad; i++) {
             this.paneles[i] = new Panel(numeroRandom(0, 2));
@@ -53,8 +56,21 @@ public class Ventana {
     }
     
     /*
+     * Devuelve true solo si todos los paneles estan completamente sanos
+     * @return boolean
+     */
+    protected boolean estaSana(){
+        for (int i = 0; i < paneles.length; i++) {
+            if (!paneles[i].estaSano()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    /*
      * Devuelve un numero random entre min y max inclusive
-     * @return in
+     * @return int
      */
     private int numeroRandom(int min, int max) {
         Random rand = new Random();

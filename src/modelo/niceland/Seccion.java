@@ -23,8 +23,13 @@ public class Seccion {
         }
 	}
 	
-	public boolean todoArreglado(){ //Para saber si se puede pasar de secci�n.
-		return false;
+	public boolean todoArreglado(){
+        for (int i = 0; i < 5; i++) {
+            if(!ventanas[i].estaSana()){
+                return false;
+            }
+        }
+        return true;
 	}
 	
 	public String getTipo() {

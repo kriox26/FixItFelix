@@ -51,7 +51,7 @@ public class Panel {
 		}
 	}
     
-    private boolean estaSano(){
+    protected boolean estaSano(){
         if (this.getEstado() instanceof Sano) {
             return true;
         }else{

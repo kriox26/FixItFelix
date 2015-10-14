@@ -4,12 +4,11 @@ public class Niceland {
 	private Seccion[] secciones;
 	
 	public Niceland(int niveles){
-		for (int i = 0; i < niveles; i = i + 3) {
-            // Parametros: tipo = "Inferior", piso = true, techo = false
-		    secciones[i] = new Seccion("Inferior", true, false);
+        secciones[i] = new Seccion("Inferior", true, false);
+		for (int i = 1; i < niveles - 1; i++) {
             secciones[i + 1] = new Seccion("Media", false, false);
-            secciones[i + 2] = new Seccion("Superior", false, true);
 		}
+        secciones[i + 1] = new Seccion("Superior", false, true);
 	}
 	
 	private void resetear() { // Resetear edificio ? 

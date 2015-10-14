@@ -1,6 +1,7 @@
 package modelo.niceland;
 
 public class Ventana {
+    protected Panel[] paneles;
 	/*
 	 * Esto va a devolver true si la ventana a la
 	 * que se esta llamando es simple o semicircular.

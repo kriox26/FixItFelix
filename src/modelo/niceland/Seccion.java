@@ -10,16 +10,16 @@ public class Seccion {
         this.tipo = tipo;
         this.piso = piso;
         this.techo = techo;
-        // llamamos a iniciar para setear el tipo de cada ventana
+        this.iniciar(tipo);
     }
     
-	private void iniciar(int num){ //Debe recibir un entero... PORQUE?????
-        for (int i = 0; i < 5; i++) {
-            /* Esto no tiene que ser siempre una ventana, tiene que variar entre
-             * Irrompible y Simple. Y en el caso de ser el primero de todo, tiene
-             * que tener una puerta, si es el segundo una semicircular.
-             */
-            ventanas[i] = new Ventana();
+	private void iniciar(String tipo){
+        setearVentanas();
+        switch (tipo) {
+            case "Inferior": this.ventanasPiso();
+                             break;
+            case "Superior": this.ventanasSuperior();
+                             break;
         }
 	}
 	
@@ -48,4 +48,26 @@ public class Seccion {
 	public void setPiso(boolean piso) {
 		this.piso = piso;
 	}
+    
+    private void setearVentanas(){
+        for (int i = 0; i < 5; i++) {
+            int random = (int )(Math.random() * 50 + 1);
+            if (random % 2 == 0) {
+                // TODO: random para maceta y moldura
+                this.ventanas[i] = new Simple(false, false, false);
+            }else{
+                // TODO: Random para abierta o cerrada
+                this.ventanas[i] = new Irrompible(false);
+            }
+        }
+    }
+    
+    // En el primero de todos 
+    private void ventanasPiso(){
+        this.ventanas[2] = new Puerta();
+    }
+    
+    private void ventanasSuperior(){
+        this.ventanas[2] = new Semicircular();
+    }
 }

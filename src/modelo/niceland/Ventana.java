@@ -1,4 +1,5 @@
 package modelo.niceland;
+import modelo.direcciones.*;
 
 public class Ventana {
     protected Panel[] paneles;
@@ -20,10 +21,15 @@ public class Ventana {
      * La cantidad de golpes depende de la cantidad de paneles, por ende
      * cada subclase de Ventana hace un Override donde solo arregla si
      * no supero la cantidad maxima de golpes, y luego llama a este metodo.
+     * NOTE: Este metodo puede llegar a cambiar, dependiendo de como vayamos a
+     * hacer la implementacion grafica, por ahora lo dejamos asi para que al menos
+     * functione
      */
     protected void arreglarPanel(){
         if ((this.getMartillazosRecibidos() % 2 == 0) && (this.getMartillazosRecibidos() != 0)) {
-            paneles[(this.getMartillazosRecibidos()/2) - 1].arreglar();
+            if(paneles[(this.getMartillazosRecibidos()/2) - 1].arreglar()){
+                paneles[(this.getMartillazosRecibidos()/2) - 1].arreglar();
+            }
         }
         this.setMartillazosRecibidos(this.getMartillazosRecibidos()+ 1);
     }
@@ -35,7 +41,7 @@ public class Ventana {
 	 * al metodo de la clase correspondiente
 	 * @return boolean
 	 */
-	protected boolean pasarHabilitado(){
+	protected boolean pasarHabilitado(Direccion direccion){
 		return true;
 	}
 }

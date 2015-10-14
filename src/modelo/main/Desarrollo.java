@@ -1,8 +1,10 @@
 package modelo.main;
+import modelo.personajes.*;
 
 public class Desarrollo {
     private int nivel;
     private int puntos;
+    public Personaje[] personajes;
     
     public Desarrollo(int nivel, int puntos){
         this.nivel = nivel;

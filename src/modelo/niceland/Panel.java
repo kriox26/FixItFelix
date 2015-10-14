@@ -3,8 +3,15 @@ package modelo.niceland;
 public class Panel {
 	private Estado estado;
 
-    public Panel(Estado estado){
-        this.estado = estado;
+    public Panel(int estado){
+        switch (estado) {
+            case 0: this.estado = new Sano();
+                    break;
+            case 1: this.estado = new MedioRoto();
+                    break;
+            case 2: this.estado = new Roto();
+                    break;
+        }
     }
 
 	public Estado getEstado(){

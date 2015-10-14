@@ -6,7 +6,7 @@ public class Niceland {
 	public Niceland(int niveles){
         secciones[i] = new Seccion("Inferior", true, false);
 		for (int i = 1; i < niveles - 1; i++) {
-            secciones[i + 1] = new Seccion("Media", false, false);
+            secciones[i] = new Seccion("Media", false, false);
 		}
         secciones[i + 1] = new Seccion("Superior", false, true);
 	}

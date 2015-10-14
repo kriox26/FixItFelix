@@ -1,11 +1,32 @@
 package modelo.niceland;
+import modelo.direcciones.*;
 
 public class Simple extends Ventana {
 	private boolean tarta = false;
+    private boolean maceta;
+    private boolean moldura;
 
-    public Simple(boolean tarta){
+    public Simple(boolean tarta, boolean maceta, boolean moldura){
         this.tarta = tarta;
+        this.maceta = maceta;
+        this.moldura = moldura;
         this.paneles = new Panel[2];
+    }
+
+    public boolean getMaceta(){
+        return this.maceta;
+    }
+    
+    public void setMaceta(boolean maceta){
+        this.maceta = maceta;
+    }
+    
+    public boolean getMoldura(){
+        return this.moldura;
+    }
+    
+    public void setMoldura(boolean moldura){
+        this.moldura = moldura;
     }
 
 	public boolean getTarta(){
@@ -15,6 +36,29 @@ public class Simple extends Ventana {
 	public void setTarta(boolean tarta){
 		this.tarta = tarta;
 	}
+    
+    /*
+     * @Override
+     */
+    protected boolean pasarHabilitado(Direccion direccion){
+        if (direccion instanceof Arriba) {
+            if (this.getMoldura()) {
+                return false;
+            }else{
+                return true;
+            }
+        }else{
+            if(direccion instanceof Abajo){
+                if (this.getMaceta()) {
+                    return false;
+                }else{
+                    return true;
+                }
+            }else{
+            	return true;
+            }
+        }
+    }
     
     /*
      * Las ventanas simples tiene 2 paneles, entonces tenemos

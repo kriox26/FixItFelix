@@ -16,7 +16,7 @@ public class Ventana {
     
     /*
      * Los paneles se arreglan solo cada dos golpes, por ende
-     * si estoy en el golpe numero 2 tengo que arreglar el primero
+     * si estoy en el golpe numero 2 tengo que arreglar el primer
      * el cual esta en la posicion 0, entonces: 2/1 - 1 = 0.
      * Caso golpes = 4: 4/2 - 1 = 1.
      * La cantidad de golpes depende de la cantidad de paneles, por ende

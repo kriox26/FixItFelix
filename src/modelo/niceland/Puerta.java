@@ -4,7 +4,7 @@ public class Puerta extends Ventana {
     
     public Puerta(){
         this.paneles = new Panel[4];
-        super.setearPaneles(4);
+        this.setearPaneles(4);
     }
     
     /*

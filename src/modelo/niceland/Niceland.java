@@ -10,7 +10,7 @@ public class Niceland {
         if (totalMedios == 1) {
             secciones[1] = new Seccion("Medio", false, false);
         }else{
-            for (int i = 1; i < totalFilas ; i++) {
+            for (int i = 1; i < totalMedios ; i++) {
                 secciones[i] = new Seccion("Medio", false, false);
             }
         }

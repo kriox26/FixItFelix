@@ -1,8 +1,6 @@
 package modelo.niceland;
 
 public class Ventana {
-
-
 	/*
 	 * Esto va a devolver true si la ventana a la
 	 * que se esta llamando es simple o semicircular.

@@ -6,6 +6,7 @@ public class Irrompible extends Ventana {
     public Irrompible(boolean abierta){
         this.abierta = abierta;
         this.paneles = new Panel[2];
+        super.setearPaneles(2);
     }
 
 	public boolean getAbierta(){

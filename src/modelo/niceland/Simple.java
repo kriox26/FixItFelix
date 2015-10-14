@@ -1,6 +1,5 @@
 package modelo.niceland;
 import modelo.direcciones.*;
-import java.util.Random;
 
 public class Simple extends Ventana {
 	private boolean tarta = false;
@@ -12,7 +11,7 @@ public class Simple extends Ventana {
         this.maceta = maceta;
         this.moldura = moldura;
         this.paneles = new Panel[2];
-        this.setearPaneles();
+        this.setearPaneles(2);
     }
 
     public boolean getMaceta(){
@@ -84,19 +83,4 @@ public class Simple extends Ventana {
     /*
      * Genera los paneles de la ventana simple, su estado es aleatorio
      */
-    private void setearPaneles(){
-        for (int i = 0; i < 2; i++) {
-            this.paneles[i] = new Panel(numeroRandom(0, 3));
-        }
-    }
-    
-    /*
-     * Devuelve un numero random entre min y max inclusive
-     * @return in
-     */
-    private int numeroRandom(int min, int max) {
-        Random rand = new Random();
-        int randomNum = rand.nextInt((max - min) + 1) + min;
-        return randomNum;
-    }
 }

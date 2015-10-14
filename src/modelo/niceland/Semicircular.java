@@ -4,6 +4,7 @@ public class Semicircular extends Ventana {
     
     public Semicircular(){
         this.paneles = new Panel[8];
+        super.setearPaneles(8);
     }
     
     /*

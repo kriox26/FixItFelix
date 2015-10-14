@@ -1,5 +1,6 @@
 package modelo.niceland;
 import modelo.direcciones.*;
+import java.util.Random;
 
 public class Ventana {
     protected Panel[] paneles;
@@ -44,4 +45,20 @@ public class Ventana {
 	protected boolean pasarHabilitado(Direccion direccion){
 		return true;
 	}
+    
+    protected void setearPaneles(int cantidad){
+        for (int i = 0; i < cantidad; i++) {
+            this.paneles[i] = new Panel(numeroRandom(0, 2));
+        }
+    }
+    
+    /*
+     * Devuelve un numero random entre min y max inclusive
+     * @return in
+     */
+    private int numeroRandom(int min, int max) {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+        return randomNum;
+    }
 }

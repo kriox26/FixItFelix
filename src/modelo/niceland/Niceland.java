@@ -25,15 +25,15 @@ public class Niceland {
 		
 	}
 	
-	private boolean getIniciado() {
+	private boolean getIniciado() {//....
 		
 		return false;
 	}
 	
-	private void setIniciado (){
+	private void setIniciado (){//....
 		
 	}
-	public void activar() { //
+	public void activar() { //Esto no sé para qué es..
 		
 	}
 	

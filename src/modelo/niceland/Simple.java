@@ -12,8 +12,12 @@ public class Simple extends Ventana {
 		this.tarta = tarta;
 	}
 
+    /*
+     * Devuelve true solo si el panel de abajo esta Roto y si
+     * no hay una tarta actualmente
+     * @return boolean
+     */
 	protected boolean sePuedePonerTarta(){
-		// Devuelve "true" si paneles[0] es una instancia de Roto, caso contrario devuelve false
-		return paneles[0].estaRoto();
+		return paneles[0].estaRoto() && !tarta;
 	}
 }

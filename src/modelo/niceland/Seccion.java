@@ -9,7 +9,7 @@ public class Seccion {
 	public void iniciar(int num){ //Debe recibir un entero...
 	}
 	
-	public boolean todoArreglado(){ //Para saber si se puede pasar de sección.
+	public boolean todoArreglado(){ //Para saber si se puede pasar de secciï¿½n.
 		return false;
 	}
 	

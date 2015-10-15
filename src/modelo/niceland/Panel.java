@@ -31,7 +31,7 @@ public class Panel {
      */
 	protected boolean arreglar(){
         if (!this.estaSano()) {
-            this.getEstado().arreglar();
+            this.getEstado().arreglar(); //este arreglar() es de la clase Estado
             return true;
         }else{
             return false;

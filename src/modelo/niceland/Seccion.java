@@ -13,16 +13,22 @@ public class Seccion {
         this.iniciar(tipo);
     }
     
+    /*
+     * Crea las 3 filas de ventanas. En caso de ser la seccion inferior
+     * agrega la puerta y la ventana semicircular en las posiciones correspondientes
+     */
 	private void iniciar(String tipo){
         setearVentanas();
         switch (tipo) {
             case "Inferior": this.ventanasPiso();
                              break;
-            case "Superior": this.ventanasSuperior();
-                             break;
         }
 	}
 	
+    /*
+     * Chequea que todas las ventanas estan completamente sanas
+     * @return boolean
+     */
 	public boolean todoArreglado(){
         for (int j = 0; j < 3; j++){ 
         	for (int i = 0; i < 5; i++) {
@@ -56,6 +62,10 @@ public class Seccion {
 		this.piso = piso;
 	}
     
+    /*
+     * Setea los tipos de las ventanas de  cada fila, random si es par es Simple
+     * si es impar es irrompible
+     */
     private void setearVentanas(){
         for (int j = 0; j <3; j++){
         	for (int i = 0; i < 5; i++) {
@@ -71,12 +81,8 @@ public class Seccion {
         }
     }
     
-    // En el primero de todos 
     private void ventanasPiso(){
-        this.ventanas[0][2] = new Puerta(); //Estaía en planta baja.
-    }
-    
-    private void ventanasSuperior(){
-        this.ventanas[1][2] = new Semicircular(); //Estaría en el primer Piso.
+        this.ventanas[0][2] = new Puerta();
+        this.ventanas[1][2] = new Semicircular();
     }
 }

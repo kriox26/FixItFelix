@@ -33,7 +33,7 @@ public class Niceland {
 	private void setIniciado (){//....
 		
 	}
-	public void activar() { //Esto no sé para qué es..
+	public void activar() { //Esto no sï¿½ para quï¿½ es..
 		
 	}
 	

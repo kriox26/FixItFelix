@@ -37,7 +37,7 @@ public class Niceland {
      * @return Ventana : Ventana en la que esta parado felix
      */
     public Ventana rastrear(Posicion posicion){
-        return secciones[this.getSeccionActual()].ventanas[fila][columna];
+        return secciones[this.getSeccionActual()].getVentanas()[posicion.getFila()][posicion.getColumna()];
     }
     
     

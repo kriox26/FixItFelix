@@ -70,6 +70,10 @@ public class Seccion {
 		this.piso = piso;
 	}
     
+    public Ventana[][] getVentanas(){
+        return this.ventanas;
+    }
+    
     /*
      * Setea los tipos de las ventanas de  cada fila, random si es par es Simple
      * si es impar es irrompible

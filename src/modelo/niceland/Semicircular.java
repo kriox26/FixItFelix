@@ -11,7 +11,7 @@ public class Semicircular extends Ventana {
      * Las ventanas semicirculares tiene 8 paneles, entonces tenemos
      * que seguir arreglando hasta llegar a 8*2 = 16 martillazos
      */
-    protected void arreglarPanel(){
+    public void arreglarPanel(){
         if (this.getMartillazosRecibidos() <= 16) {
         	super.arreglarPanel();
         }

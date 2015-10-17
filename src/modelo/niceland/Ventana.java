@@ -26,7 +26,7 @@ public class Ventana {
      * hacer la implementacion grafica, por ahora lo dejamos asi para que al menos
      * funcione
      */
-    protected void arreglarPanel(){
+    public void arreglarPanel(){
         if ((this.getMartillazosRecibidos() % 2 == 0) && (this.getMartillazosRecibidos() != 0)) {
             if(paneles[(this.getMartillazosRecibidos()/2) - 1].arreglar()){
                 paneles[(this.getMartillazosRecibidos()/2) - 1].arreglar();

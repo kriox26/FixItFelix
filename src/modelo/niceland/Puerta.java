@@ -11,7 +11,7 @@ public class Puerta extends Ventana {
     * Las puertas tiene 4 paneles, entonces tenemos
     * que seguir arreglando hasta llegar a 4*2 = 8 martillazos
     */
-    protected void arreglarPanel(){
+    public void arreglarPanel(){
         if (this.getMartillazosRecibidos() <= 8) {
             super.arreglarPanel();
         }

@@ -21,11 +21,7 @@ public class Felix {
 	}
 	
 	public boolean estaInmune () {
-		if (this.getInmunidad() == true) {
-			return true;
-		}
-		else 
-			return false;
+        return this.getInmunidad() ? true : false;
 	}
 	
 	public void activarInmunidad () {
@@ -54,6 +50,6 @@ public class Felix {
 	
 	public void comerTarta () {  // Debe ejecutarse si en Felix.posicion hay un sabroso pastel
 		this.activarInmunidad();
-		// Hacer desaparecer la tarta de donde está
+		// Hacer desaparecer la tarta de donde estï¿½
 	}
 }

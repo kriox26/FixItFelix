@@ -2,8 +2,8 @@ package modelo.direcciones;
 
 public class Direccion {
 	
-	private int horizontal;
-	private int vertical;
+	private static final int horizontal = 0;
+	private static final int vertical = 0;
 	
 	public int getHorizontal () {
 		return this.horizontal;
@@ -13,11 +13,4 @@ public class Direccion {
 		return this.vertical;
 	}
 	
-	public void setVertical (int variable) {
-		this.vertical = variable;
-	}
-	
-	public void setHorizontal (int variable) {
-		this.horizontal = variable;
-	}
 }

@@ -1,6 +1,6 @@
 package modelo.direcciones;
 
 public class Abajo extends Direccion {
-	private static final int Horizontal = 0;
-	private static final int Vertical = -1;
+	private static final int horizontal = 0;
+	private static final int vertical = -1;
 }

@@ -7,6 +7,11 @@ public class Personaje {
 	private String nombre;
 	private Posicion posicion;
 	
+	public Personaje(String nombre, Posicion posicion){
+		this.nombre = nombre;
+        this.posicion = posicion;
+	}
+
 	public String getNombre (){
 		return this.nombre;
 	}

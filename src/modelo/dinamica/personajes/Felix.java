@@ -1,9 +1,16 @@
 package modelo.dinamica.personajes;
+import modelo.dinamica.Posicion;
 
-public class Felix {
+public class Felix extends Personaje{
 	private int vida;
 	private boolean inmunidad;
 	
+    public Felix(String nombre, int vida, boolean inmunidad, Posicion posicion){
+    	super(nombre, posicion);
+        this.vida = vida;
+        this.inmunidad = inmunidad;
+    }
+    
 	public int getVida(){
 		return this.vida;
 	}

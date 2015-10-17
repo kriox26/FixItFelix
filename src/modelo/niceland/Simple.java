@@ -6,6 +6,12 @@ public class Simple extends Ventana {
     private boolean maceta;
     private boolean moldura;
 
+    /*
+     * Constructor de la ventana simple
+     * @param tarta : Tarta puesta por un nicelander
+     * @param maceta : Obstaculo inferior puesto de manera random
+     * @param moldura : Obstaculo superior puesto de manera random 
+     */
     public Simple(boolean tarta, boolean maceta, boolean moldura){
         this.tarta = tarta;
         this.maceta = maceta;
@@ -74,13 +80,9 @@ public class Simple extends Ventana {
     /*
      * Devuelve true solo si el panel de abajo esta Roto y si
      * no hay una tarta actualmente
-     * @return boolean
+     * @return boolean True si el nicelander puede poner una tarta
      */
 	protected boolean sePuedePonerTarta(){
 		return paneles[0].estaRoto() && !tarta;
 	}
-    
-    /*
-     * Genera los paneles de la ventana simple, su estado es aleatorio
-     */
 }

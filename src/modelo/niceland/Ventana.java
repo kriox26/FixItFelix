@@ -40,6 +40,7 @@ public class Ventana {
 	 * que se esta llamando es puerta o semicircular.
 	 * En caso de que sea irrompible o simple, se va a acceder
 	 * al metodo de la clase correspondiente
+     * @params direccion La direccion adonde se esta queriendo mover
 	 * @return boolean
 	 */
 	protected boolean pasarHabilitado(Direccion direccion){
@@ -48,8 +49,10 @@ public class Ventana {
     
     /*
      * Setea cada panel de la ventana, con un estado aleatorio
+     * @params cantidad : Cantidad de paneles que tiene que setear
      */
     protected void setearPaneles(int cantidad){
+        paneles = new Panel[cantidad];
         for (int i = 0; i < cantidad; i++) {
             this.paneles[i] = new Panel(numeroRandom(0, 2));
         }
@@ -57,7 +60,7 @@ public class Ventana {
     
     /*
      * Devuelve true solo si todos los paneles estan completamente sanos
-     * @return boolean
+     * @return boolean Devuelve true si la ventana entera esta sana
      */
     protected boolean estaSana(){
         for (int i = 0; i < paneles.length; i++) {
@@ -70,6 +73,8 @@ public class Ventana {
     
     /*
      * Devuelve un numero random entre min y max inclusive
+     * @param min Rango inicial
+     * @param max Rango maximo
      * @return int
      */
     private int numeroRandom(int min, int max) {

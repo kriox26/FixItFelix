@@ -1,5 +1,6 @@
 package modelo.main;
-import modelo.personajes.*;
+
+import modelo.dinamica.personajes.*;
 
 public class Desarrollo {
     private int nivel;

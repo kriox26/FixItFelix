@@ -1,5 +1,6 @@
 package modelo.dinamica.personajes;
 import modelo.dinamica.Posicion;
+import modelo.niceland.*;
 
 public class Felix extends Personaje{
 	private int vida;
@@ -59,4 +60,8 @@ public class Felix extends Personaje{
 		this.activarInmunidad();
 		// Hacer desaparecer la tarta de donde est�
 	}
+    
+    public void martillar(Ventana ventana){
+        ventana.arreglarPanel();
+    }
 }

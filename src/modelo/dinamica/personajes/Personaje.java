@@ -32,6 +32,4 @@ public class Personaje {
 	public void mover (Direccion direction){
 		this.setPosicion(this.getPosicion().modificar(direction));
 	}
-	
-	
 }

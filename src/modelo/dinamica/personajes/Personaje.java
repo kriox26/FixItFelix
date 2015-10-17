@@ -1,6 +1,7 @@
 package modelo.dinamica.personajes;
 
 import modelo.dinamica.*;
+import modelo.direcciones.*;
 
 public class Personaje {
 	
@@ -24,8 +25,12 @@ public class Personaje {
 		this.nombre = name;
 	}
 	
-	public void setPosicion (Posicion posicion){
-		this.posicion = posicion;
+	public void setPosicion (Posicion position){
+		this.posicion = position;
+	}
+	
+	public void mover (Direccion direction){
+		this.setPosicion(this.getPosicion().modificar(direction));
 	}
 	
 	

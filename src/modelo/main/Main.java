@@ -4,6 +4,7 @@ import modelo.niceland.*;
 public class Main {
     private boolean jugando;
     public Desarrollo dvp;
+    public Niceland niceland;
 
     public Main(boolean jugando){
         this.jugando = jugando;
@@ -16,20 +17,25 @@ public class Main {
     public void setJugando(boolean jugando){
         this.jugando = jugando;
     }
+    
+    public Desarrollo getDvp(){
+        return this.dvp;
+    }
+    
+    public Niceland getNiceland(){
+        return this.niceland;
+    }
 
     public void jugar(){
         this.inicializar(); // Para inicializar todo(niceland TODO= personajes)
     }
 
-    // TODO: implementar todas las funciones
     private void inicializar(){
         // Inicializamos el edificio Niceland, params: nivel = 1
         // Se crean todas las secciones, ventanas, paneles, estados
-        niceland = new Niceland(1);
+        this.niceland = new Niceland(1);
         // this.dvp = new Desarrollo(0, 0); // con nivel actual = 0, puntos = 0
         // Cuando se inicializa la clase Desarrollo, se inicializan los personajes tambien
         this.dvp = new Desarrollo(0, 0);
-				// Habria que inicializar a los personajes, seria ideal que con llamar al new desarrollo
-				// se cree todo
     }
 }

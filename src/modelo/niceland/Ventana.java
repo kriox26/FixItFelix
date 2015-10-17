@@ -16,7 +16,7 @@ public class Ventana {
     
     /*
      * Los paneles se arreglan solo cada dos golpes, por ende
-     * si estoy en el golpe numero 2 tengo que arreglar el primer
+     * si estoy en el golpe numero 2 tengo que arreglar el primero
      * el cual esta en la posicion 0, entonces: 2/1 - 1 = 0.
      * Caso golpes = 4: 4/2 - 1 = 1.
      * La cantidad de golpes depende de la cantidad de paneles, por ende
@@ -24,7 +24,7 @@ public class Ventana {
      * no supero la cantidad maxima de golpes, y luego llama a este metodo.
      * NOTE: Este metodo puede llegar a cambiar, dependiendo de como vayamos a
      * hacer la implementacion grafica, por ahora lo dejamos asi para que al menos
-     * functione
+     * funcione
      */
     protected void arreglarPanel(){
         if ((this.getMartillazosRecibidos() % 2 == 0) && (this.getMartillazosRecibidos() != 0)) {
@@ -40,6 +40,7 @@ public class Ventana {
 	 * que se esta llamando es puerta o semicircular.
 	 * En caso de que sea irrompible o simple, se va a acceder
 	 * al metodo de la clase correspondiente
+     * @params direccion La direccion adonde se esta queriendo mover
 	 * @return boolean
 	 */
 	protected boolean pasarHabilitado(Direccion direccion){
@@ -48,8 +49,10 @@ public class Ventana {
     
     /*
      * Setea cada panel de la ventana, con un estado aleatorio
+     * @params cantidad : Cantidad de paneles que tiene que setear
      */
     protected void setearPaneles(int cantidad){
+        paneles = new Panel[cantidad];
         for (int i = 0; i < cantidad; i++) {
             this.paneles[i] = new Panel(numeroRandom(0, 2));
         }
@@ -57,7 +60,7 @@ public class Ventana {
     
     /*
      * Devuelve true solo si todos los paneles estan completamente sanos
-     * @return boolean
+     * @return boolean Devuelve true si la ventana entera esta sana
      */
     protected boolean estaSana(){
         for (int i = 0; i < paneles.length; i++) {
@@ -70,9 +73,11 @@ public class Ventana {
     
     /*
      * Devuelve un numero random entre min y max inclusive
+     * @param min Rango inicial
+     * @param max Rango maximo
      * @return int
      */
-    private int numeroRandom(int min, int max) {
+    protected int numeroRandom(int min, int max) {
         Random rand = new Random();
         int randomNum = rand.nextInt((max - min) + 1) + min;
         return randomNum;

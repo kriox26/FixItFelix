@@ -3,38 +3,20 @@ package modelo.niceland;
 public class Niceland {
 	private Seccion[] secciones;
 	
+    /*
+     * Constructor, recibe un entero que indica los niveles del juego, lo cual
+     * tambien indica la cantidad de secciones que va a haber. Si el juego es de
+     * dos niveles, la cantidad de secciones va a ser: 2 * 3 = 6. Si es un solo
+     * hay solo 3 secciones(Inferior, Media, Superior).
+     * @params int niveles: Niveles del juego
+     */
 	public Niceland(int niveles){
-        // TODO: Refactorizar el metodo!
+        int total_secciones = niveles * 3;
+        secciones = new Seccion[total_secciones];
         secciones[0] = new Seccion("Inferior", true, false);
-        int totalMedios = (3 * niveles) - 2;
-        if (totalMedios == 1) {
-            secciones[1] = new Seccion("Medio", false, false);
-        }else{
-            for (int i = 1; i < totalMedios ; i++) {
-                secciones[i] = new Seccion("Medio", false, false);
-            }
+        secciones[total_secciones - 1] = new Seccion("Superior", false, true);
+        for (int i = 1; i < total_secciones; i++) {
+            secciones[i] = new Seccion("Media", false, false);
         }
-        secciones[(niveles * 3) - 1] = new Seccion("Superior", false, true);
 	}
-	
-	private void resetear() { // Resetear edificio ? 
-		
-	}
-
-	private void iniciar() { //Inicia el juego ? 
-		
-	}
-	
-	private boolean getIniciado() {
-		
-		return false;
-	}
-	
-	private void setIniciado (){
-		
-	}
-	public void activar() { //
-		
-	}
-	
 }

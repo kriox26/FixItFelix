@@ -1,39 +1,21 @@
 package modelo.niceland;
 import modelo.direcciones.*;
+import modelo.obstaculos.*;
 
 public class Simple extends Ventana {
 	private boolean tarta = false;
-    private boolean maceta;
-    private boolean moldura;
-
+    private Obstaculo obstaculo;
+    
     /*
      * Constructor de la ventana simple
      * @param tarta : Tarta puesta por un nicelander
-     * @param maceta : Obstaculo inferior puesto de manera random
-     * @param moldura : Obstaculo superior puesto de manera random 
+     * @param obstaculo : Puede ser maceta, moldura o nada
      */
-    public Simple(boolean tarta, boolean maceta, boolean moldura){
+    public Simple(boolean tarta){
         this.tarta = tarta;
-        this.maceta = maceta;
-        this.moldura = moldura;
+        this.setearObstaculo();
         this.paneles = new Panel[2];
         this.setearPaneles(2);
-    }
-
-    public boolean getMaceta(){
-        return this.maceta;
-    }
-    
-    public void setMaceta(boolean maceta){
-        this.maceta = maceta;
-    }
-    
-    public boolean getMoldura(){
-        return this.moldura;
-    }
-    
-    public void setMoldura(boolean moldura){
-        this.moldura = moldura;
     }
 
 	public boolean getTarta(){
@@ -48,23 +30,7 @@ public class Simple extends Ventana {
      * @Override
      */
     protected boolean pasarHabilitado(Direccion direccion){
-        if (direccion instanceof Arriba) {
-            if (this.getMoldura()) {
-                return false;
-            }else{
-                return true;
-            }
-        }else{
-            if(direccion instanceof Abajo){
-                if (this.getMaceta()) {
-                    return false;
-                }else{
-                    return true;
-                }
-            }else{
-            	return true;
-            }
-        }
+        return this.obstaculo.puedoPasar(direccion);
     }
     
     /*
@@ -85,4 +51,21 @@ public class Simple extends Ventana {
 	protected boolean sePuedePonerTarta(){
 		return paneles[0].estaRoto() && !tarta;
 	}
+    
+    /*
+     * Vetanas simples puede tener un solo obstaculo a la vez, este metodo setea
+     * a que sea Maceta, Moldura u Obstaculo. Si es Obstaculo entonces pasarHabilitado()
+     * va a devolver siempre true sin importar la direccion.
+     */
+    private void setearObstaculo(){
+        int random = this.numeroRandom(0, 3);
+        switch (random) {
+            case 0: this.obstaculo = new Maceta();
+                    break;
+            case 1: this.obstaculo = new Moldura();
+                    break;
+            default:this.obstaculo = new Obstaculo();
+                    break;
+        }
+    }
 }

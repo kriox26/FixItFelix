@@ -24,7 +24,7 @@ public class Ventana {
      * no supero la cantidad maxima de golpes, y luego llama a este metodo.
      * NOTE: Este metodo puede llegar a cambiar, dependiendo de como vayamos a
      * hacer la implementacion grafica, por ahora lo dejamos asi para que al menos
-     * functione
+     * funcione
      */
     protected void arreglarPanel(){
         if ((this.getMartillazosRecibidos() % 2 == 0) && (this.getMartillazosRecibidos() != 0)) {
@@ -77,7 +77,7 @@ public class Ventana {
      * @param max Rango maximo
      * @return int
      */
-    private int numeroRandom(int min, int max) {
+    protected int numeroRandom(int min, int max) {
         Random rand = new Random();
         int randomNum = rand.nextInt((max - min) + 1) + min;
         return randomNum;

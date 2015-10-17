@@ -79,11 +79,9 @@ public class Seccion {
         	for (int i = 0; i < 5; i++) {
         		int random = (int )(Math.random() * 50 + 1);
         		if (random % 2 == 0) {
-        			// TODO: random para maceta y moldura
-        			this.ventanas[j][i] = new Simple(false, false, false);
+        			this.ventanas[j][i] = new Simple(false);
         		}else{
-        			// TODO: Random para abierta o cerrada
-        			this.ventanas[j][i] = new Irrompible(false);
+        			this.ventanas[j][i] = new Irrompible();
         		}
         	}
         }

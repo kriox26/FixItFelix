@@ -10,7 +10,7 @@ import modelo.dinamica.Posicion;
  *
  * @author  Santiago Marrone
  * @version 1.0
- * @see modelo.dinamica.Posicion
+ * @see modelo.dinamica.direcciones
  *
  */
 

@@ -17,7 +17,7 @@ public class Objeto extends Dinamico {
 		this.existe = variable;
 	}
 	
-	private void unidireccionar (Direccion direccion) {
+	public void unidireccionar (Direccion direccion) {
 		while (this.getExiste() == true) {
 			this.mover (direccion);
 		}

@@ -34,9 +34,11 @@ public class Ralph extends Personaje {
 	}
 
 	public void tirarLadrillos () {
-		this.setLadrillos(this.getLadrillos() - cuantosTira);
-		for (int i=0; i<= cuantosTira; i++) {
-			// ladrillo.caerDesde(this.getPosicion());
+		if (this.hayLadrillos()) {
+			this.setLadrillos(this.getLadrillos() - cuantosTira);
+			for (int i=0; i<= cuantosTira; i++) {
+				// ladrillo.caerDesde(this.getPosicion());
+			}
 		}
 	}
 	
@@ -70,14 +72,14 @@ public class Ralph extends Personaje {
 		}
 	}
 	
-	/* public void movimientoTotal () { // There's a fucking issue with the direction task
+	public void movimientoTotal () { 
 		if (this.alBorde()) {
 			if (this.alBordeIzquierdo()){
-				this.movimientoParcial(derecha);
+				this.movimientoParcial(Direccion.DERECHA);
 			}
 			else {
-				this.movimientoParcial(izquierda);
+				this.movimientoParcial(Direccion.IZQUIERDA);
 			}
 		}
-	} */
+	}
 }

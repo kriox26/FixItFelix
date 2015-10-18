@@ -1,7 +1,7 @@
 package modelo.niceland;
 
 import modelo.direcciones.*;
-import java.util.Random;
+import modelo.util.RandomAcotado;
 
 public class Ventana {
     protected Panel[] paneles;
@@ -55,7 +55,8 @@ public class Ventana {
     protected void setearPaneles(int cantidad){
         paneles = new Panel[cantidad];
         for (int i = 0; i < cantidad; i++) {
-            this.paneles[i] = new Panel(numeroRandom(0, 2));
+        	RandomAcotado nuevoRandom = new RandomAcotado (0,2);
+            this.paneles[i] = new Panel(nuevoRandom.getValor());
         }
     }
 
@@ -78,9 +79,5 @@ public class Ventana {
      * @param max Rango maximo
      * @return int
      */
-    protected int numeroRandom(int min, int max) {
-        Random rand = new Random();
-        int randomNum = rand.nextInt((max - min) + 1) + min;
-        return randomNum;
-    }
+   
 }

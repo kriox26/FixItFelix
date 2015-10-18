@@ -1,6 +1,7 @@
 package modelo.niceland;
 import modelo.obstaculos.*;
 import modelo.direcciones.*;
+import modelo.util.RandomAcotado;
 
 public class Irrompible extends Ventana {
     private Obstaculo obstaculo;
@@ -26,9 +27,9 @@ public class Irrompible extends Ventana {
      */
     private void setearObstaculo(){
         int hay_persiana = (int )(Math.random() * 50 + 1);
-        int rnd = this.numeroRandom(0,1);
+        RandomAcotado rnd = new RandomAcotado (0,1);
         if (hay_persiana % 2 == 0) {
-        		switch (rnd) {
+        		switch (rnd.getValor()) {
         		case 0: this.obstaculo = new Persiana (Direccion.IZQUIERDA);
         			break;
         		case 1: this.obstaculo = new Persiana (Direccion.DERECHA);

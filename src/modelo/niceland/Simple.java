@@ -1,6 +1,7 @@
 package modelo.niceland;
 import modelo.direcciones.*;
 import modelo.obstaculos.*;
+import modelo.util.RandomAcotado;
 
 public class Simple extends Ventana {
 	private boolean tarta = false;
@@ -58,8 +59,8 @@ public class Simple extends Ventana {
      * va a devolver siempre true sin importar la direccion.
      */
     private void setearObstaculo(){
-        int random = this.numeroRandom(0, 3);
-        switch (random) {
+        RandomAcotado random = new RandomAcotado(0,3);
+        switch (random.getValor()) {
             case 0: this.obstaculo = new Maceta();
                     break;
             case 1: this.obstaculo = new Moldura();

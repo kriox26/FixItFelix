@@ -53,7 +53,7 @@ public class Ralph extends Personaje {
 	}
 	
 	private boolean alBordeIzquierdo () {
-		if (this.getPosicion().getColumna() == 1) {
+		if (this.getPosicion().getColumna() == 0) {
 			return true;
 		}
 		else 
@@ -61,7 +61,7 @@ public class Ralph extends Personaje {
 	}
 	
 	private boolean alBordeDerecho () {
-		if (this.getPosicion().getColumna() == 5) {
+		if (this.getPosicion().getColumna() == 4) {
 			return true;
 		}
 		else 

@@ -12,8 +12,10 @@ public class Semicircular extends Ventana {
      * que seguir arreglando hasta llegar a 8*2 = 16 martillazos
      */
     public void arreglarPanel(){
-        if (this.getMartillazosRecibidos() <= 16) {
+        if (this.getMartillazosRecibidos() < 16) {
         	super.arreglarPanel();
+        }else{
+            System.out.println("Esta ventana ya esta arreglada.");
         }
     }
 }

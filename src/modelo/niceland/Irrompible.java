@@ -39,4 +39,7 @@ public class Irrompible extends Ventana {
             this.obstaculo = new Obstaculo(Direccion.NULA);
         }
     }
+    public void arreglarPanel(){
+        System.out.println("Esta ventana ya esta arreglada.");
+    }
 }

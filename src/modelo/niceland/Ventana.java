@@ -1,19 +1,20 @@
 package modelo.niceland;
+
 import modelo.direcciones.*;
 import java.util.Random;
 
 public class Ventana {
     protected Panel[] paneles;
     private int martillazos_recibidos;
-    
+
     public int getMartillazosRecibidos(){
         return this.martillazos_recibidos;
     }
-    
+
     public void setMartillazosRecibidos(int martillazos_recibidos){
         this.martillazos_recibidos = martillazos_recibidos;
     }
-    
+
     /*
      * Los paneles se arreglan solo cada dos golpes, por ende
      * si estoy en el golpe numero 2 tengo que arreglar el primero
@@ -34,7 +35,7 @@ public class Ventana {
         }
         this.setMartillazosRecibidos(this.getMartillazosRecibidos()+ 1);
     }
-    
+
 	/*
 	 * Esto va a devolver true si la ventana a la
 	 * que se esta llamando es puerta o semicircular.
@@ -46,7 +47,7 @@ public class Ventana {
 	protected boolean pasarHabilitado(Direccion direccion){
 		return true;
 	}
-    
+
     /*
      * Setea cada panel de la ventana, con un estado aleatorio
      * @params cantidad : Cantidad de paneles que tiene que setear
@@ -57,12 +58,12 @@ public class Ventana {
             this.paneles[i] = new Panel(numeroRandom(0, 2));
         }
     }
-    
+
     /*
      * Devuelve true solo si todos los paneles estan completamente sanos
      * @return boolean Devuelve true si la ventana entera esta sana
      */
-    protected boolean estaSana(){
+    public boolean estaSana(){
         for (int i = 0; i < paneles.length; i++) {
             if (!paneles[i].estaSano()) {
                 return false;
@@ -70,7 +71,7 @@ public class Ventana {
         }
         return true;
     }
-    
+
     /*
      * Devuelve un numero random entre min y max inclusive
      * @param min Rango inicial

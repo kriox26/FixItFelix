@@ -19,17 +19,14 @@ public class TestMain {
         while (ralph.hayLadrillos()) {
             ralph.tirarLadrillos();
             Ventana ventana = juego.getNiceland().getVentana(felix.getPosicion());
-            if (ventana.estaSana())
-            	System.out.println("La ventana esta Sana");
-            else 	
-            	System.out.println("Felix tiene que arreglarla");
+            System.out.println("La posicion de la ventana es: "+felix.getPosicion().getFila()+felix.getPosicion().getColumna());
             if (!ventana.estaSana()) {
                // Si la ventana no esta sana felix tiene que dar 4 martillazos
                 for (int i = 0; i < 4; i++) {
                     felix.martillar(ventana);
                 }
-                System.out.println("La ventana recibio: " + ventana.getMartillazosRecibidos() + " martillazos");
-            }else{
+            }   
+         //   }else{
             	if((felix.getPosicion().getColumna() != 4) && (felix.getPosicion().getFila() % 2 == 0)){
             		mover_a(felix, Direccion.DERECHA);
             	}
@@ -42,10 +39,10 @@ public class TestMain {
           		}
             }
             if (gameOver(felix, ralph)) {
-            	break;
+      //      	break;
             }
         }
-	}
+	//}
     
     public static void mover_a(Felix felix, Direccion dir){
         // Hacemos el recorrido de felix

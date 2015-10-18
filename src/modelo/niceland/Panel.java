@@ -52,7 +52,11 @@ public class Panel {
 	}
     
     protected boolean estaSano(){
-        System.out.println("El panel esta: " + this.estado.to_string());
-        return (this.estado instanceof Sano);
+        //System.out.println("El panel esta: " + this.estado.to_string());
+        if (this.estado instanceof Sano){
+        	return true;
+        }else{
+        	return false;
+        }
     }
 }

@@ -67,6 +67,7 @@ public class Ventana {
     public boolean estaSana(){
         for (int i = 0; i < paneles.length; i++) {
             if (!paneles[i].estaSano()) {
+            	System.out.println("El panel "+i+" "+paneles[i].getEstado().to_string());
                 return false;
             }
         }

@@ -1,7 +1,11 @@
 package modelo.dinamica.personajes;
 
+import modelo.direcciones.Direccion;
 import modelo.dinamica.Posicion;
-import modelo.niceland.*;
+import modelo.niceland.Ventana;
+import modelo.niceland.Simple;
+import modelo.niceland.Irrompible;
+import modelo.niceland.Puerta;
 
 public class Felix extends Personaje{
 	private int vida;
@@ -69,6 +73,12 @@ public class Felix extends Personaje{
 	public void martillar (Ventana ventana) {
 		if (ventana.estaSana()) {
 			this.reparar(ventana);
+            System.out.println("Felix da un martillazo");
 		}
 	}
+    
+    public void mover(Direccion direccion){
+        super.mover(direccion);
+        System.out.println("Felix se mueve " + direccion.getHorizontal() + " en el ejex X y " + direccion.getVertical() + " en el eje Y");
+    }
 }

@@ -8,7 +8,7 @@ public class Ralph extends Personaje {
 	private int ladrillos;
 	private static final int cuantosTira = 1;
 	private static final int kl = 5; // Constante de ladrillos por nivel
-	private boolean fijo; // Si está en una sección haciendo sus maldades. O sea, no está cambiando de sección
+	private boolean fijo; // Si estï¿½ en una secciï¿½n haciendo sus maldades. O sea, no estï¿½ cambiando de secciï¿½n
 
   public Ralph(String nombre, int ladrillos, Posicion posicion){
   	super(nombre, posicion);
@@ -30,7 +30,7 @@ public class Ralph extends Personaje {
 		this.ladrillos = cantidad;
 	}
 
-	private boolean hayLadrillos () {
+	public boolean hayLadrillos () {
 		if (this.getLadrillos() >= cuantosTira) {
 			return true;
 		}
@@ -47,6 +47,7 @@ public class Ralph extends Personaje {
 			this.setLadrillos(this.getLadrillos() - cuantosTira);
 			for (int i=0; i<= cuantosTira; i++) {
 				// ladrillo.caerDesde(this.getPosicion());
+                System.out.println("Ralph tira un ladrillo desde: (Seccion: " + this.getPosicion().getSeccion() + ", Fila: " + this.getPosicion().getFila() + ", Columna: " + this.getPosicion().getColumna() + ") ");
 			}
 		}
 	}
@@ -76,8 +77,8 @@ public class Ralph extends Personaje {
 	}
 	
 	private boolean ganasDeAtacar () {
-		// Debería relacionarse el nivel actual con las ganas de atacar del malvado Ralph
-		// Podría hacerse pasando el nivel como parámetro y jugando con él
+		// Deberï¿½a relacionarse el nivel actual con las ganas de atacar del malvado Ralph
+		// Podrï¿½a hacerse pasando el nivel como parï¿½metro y jugando con ï¿½l
 		// Se implementa para testing en modo nivel 1
 		RandomAcotado rnd = new RandomAcotado (1,8);
 		if (rnd.getValor() == 1){
@@ -113,4 +114,9 @@ public class Ralph extends Personaje {
 			this.movimientoTotalLateral();
 		}
 	}
+    
+    public void mover(Direccion direccion){
+        super.mover(direccion);
+        System.out.println("Ralph se mueve " + direccion.getHorizontal() + " en el ejex X y " + direccion.getVertical() + " en el eje Y");
+    }
 }

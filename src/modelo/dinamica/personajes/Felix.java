@@ -1,4 +1,5 @@
 package modelo.dinamica.personajes;
+
 import modelo.dinamica.Posicion;
 import modelo.niceland.*;
 
@@ -61,12 +62,12 @@ public class Felix extends Personaje{
 		// Hacer desaparecer la tarta de donde est�
 	}
 
-  private void reparar (Ventana ventana){
+	private void reparar (Ventana ventana){
       ventana.arreglarPanel();
-  }
+	}
 
 	public void martillar (Ventana ventana) {
-		if ventana.estaSana(){
+		if (ventana.estaSana()) {
 			this.reparar(ventana);
 		}
 	}

@@ -96,12 +96,12 @@ public class Felix extends Personaje{
 	public void martillar (Ventana ventana) {
 		if (!ventana.estaSana()) {
 			this.reparar(ventana);
-      System.out.println("Felix da un martillazo");
+			System.out.println("Felix da un martillazo");
 		}
 	}
 
   public void mover(Direccion direccion){
       super.mover(direccion);
-      System.out.println("Felix se mueve " + direccion.getHorizontal() + " en el ejex X y " + direccion.getVertical() + " en el eje Y");
+      System.out.println("Felix se mueve "+direccion.getHorizontal()+" en el ejex X y "+direccion.getVertical()+" en el eje Y");
     }
 }

@@ -6,7 +6,7 @@ import modelo.util.RandomAcotado;
 public class Ventana {
     protected Panel[] paneles;
     private int martillazos_recibidos;
-
+    
     public int getMartillazosRecibidos(){
         return this.martillazos_recibidos;
     }

@@ -10,7 +10,7 @@ public class Maceta extends Obstaculo {
      * @return boolean Devuelve true si se puede pasar, false caso contrario
      */
     public boolean puedoPasar(Direccion direccion){
-        return !(direccion instanceof Abajo);
+        return !(direccion == Direccion.ABAJO);
     }
 
 }

@@ -10,7 +10,7 @@ public class Moldura extends Obstaculo {
      * @return boolean Devuelve true si se puede pasar, false caso contrario
      */
     public boolean puedoPasar(Direccion direccion){
-        return !(direccion instanceof Arriba);
+        return !(direccion == Direccion.ARRIBA);
     }
 
 }

@@ -1,6 +1,5 @@
 package modelo.main;
 import modelo.dinamica.personajes.*;
-import modelo.niceland.*;
 import modelo.direcciones.*;
 
 public class TestMain {
@@ -10,14 +9,9 @@ public class TestMain {
 		juego.jugar();
         // Seteamos ambos personajes creados
         Felix felix = juego.dvp.getFelix();
-        Ralph ralph = juego.dvp.getRalph();
-        Izquierda izquierda = new Izquierda();
-        Derecha derecha = new Derecha();
-        Abajo abajo = new Abajo();
-        Arriba arriba = new Arriba();
-        
+        Ralph ralph = juego.dvp.getRalph(); // Santi no borró esta línea porque supone se usará más adelante
         while (true) {
-            felix.mover(derecha);
+            felix.mover(Direccion.DERECHA);
             for (int i = 0; i < 4; i++) {
                 felix.martillar(juego.getNiceland().getVentana(felix.getPosicion()));
             }

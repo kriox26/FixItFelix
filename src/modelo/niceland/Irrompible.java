@@ -26,19 +26,16 @@ public class Irrompible extends Ventana {
      */
     private void setearObstaculo(){
         int hay_persiana = (int )(Math.random() * 50 + 1);
-        int para_donde_va = this.numeroRandom(0,1);
+        int rnd = this.numeroRandom(0,1);
         if (hay_persiana % 2 == 0) {
-        	Direccion dir = new Direccion();
-            switch (para_donde_va) {
-                case 0: dir = new Izquierda();
-                        break;
-                case 1: dir = new Derecha();
-                		break;
-            }
-            this.obstaculo = new Persiana(dir);
+        		switch (rnd) {
+        		case 0: this.obstaculo = new Persiana (Direccion.IZQUIERDA);
+        			break;
+        		case 1: this.obstaculo = new Persiana (Direccion.DERECHA);
+        			break;
+        		}
         }else{
-        	Direccion aux = new Direccion();
-            this.obstaculo = new Obstaculo(aux);
+            this.obstaculo = new Obstaculo(Direccion.NULA);
         }
     }
 }

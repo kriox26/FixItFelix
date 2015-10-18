@@ -5,7 +5,7 @@ public class Obstaculo {
     protected Direccion direccion_que_bloquea;
 
     public Obstaculo(){
-        this.direccion_que_bloquea = new Direccion();
+        this.direccion_que_bloquea = Direccion.NULA;
     }
     
     public Obstaculo(Direccion direccion){

@@ -42,4 +42,8 @@ public class Posicion {
 		this.setFila(this.getFila() + direction.getHorizontal());
 		return this;
 	}
+    
+    public boolean equal_to(Posicion posicion){
+        return (this.getFila() == posicion.getFila() && this.getColumna() == posicion.getColumna() && this.getSeccion() == posicion.getSeccion());
+    }
 }

@@ -76,10 +76,11 @@ public class Felix extends Personaje{
 		// Vuelve a empezar de la misma pantalla... WTF?
 	}
 
-	public void comerTarta () {  // Debe ejecutarse si en Felix.posicion hay un sabroso pastel
+	public void comerTarta () {
+		// Debe recibir la ventana de la tarta como parámetro para quitar la tarta
+		// Debe ejecutarse si en Felix.posicion hay un sabroso pastel
 		this.activarInmunidad();
-		// Hacer desaparecer la tarta de donde est�
-	}
+	} // Completar para version 2.0
 
 	private void reparar (Ventana ventana){
       ventana.arreglarPanel();

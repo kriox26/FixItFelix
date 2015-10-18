@@ -68,29 +68,6 @@ public class Ralph extends Personaje {
 		}
 	}
 	
-	private boolean alBordeIzquierdo () {
-		if (this.getPosicion().getColumna() == 0) {
-			return true;
-		}
-		else 
-			return false;
-	}
-	
-	private boolean alBordeDerecho () {
-		if (this.getPosicion().getColumna() == 4) {
-			return true;
-		}
-		else 
-			return false;
-	}
-	
-	private boolean alBorde () {
-		if (this.alBordeDerecho() || this.alBordeIzquierdo()) {
-			return true;
-		}
-		else 
-			return false;
-	}
 	
 	private boolean ganasDeAtacar () {
 		// Deber�a relacionarse el nivel actual con las ganas de atacar del malvado Ralph

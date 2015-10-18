@@ -7,6 +7,21 @@ import modelo.niceland.Simple;
 import modelo.niceland.Irrompible;
 import modelo.niceland.Puerta;
 
+/**
+ * La clase Felix representa al protagonista del juego.
+ * Debe poder moverse por toda la sección actual arreglando ventanas
+ * cuando lo desee y comiendo pasteles cuando se tope con ellos.
+ *
+ * En la versión 1.0 de cara al testing, no se implementa la cuestión
+ * de los pasteles ni la propiedad de recomenzar (reaparecer en
+ * misma pantalla) que más tarde se añadirá.
+ *
+ * @author  Santiago Marrone w Matias Pan's collab.
+ * @version 1.0
+ * @see modelo.niceland.Ventana
+ *
+ */
+
 public class Felix extends Personaje{
 	private int vida;
 	private boolean inmunidad;
@@ -70,15 +85,23 @@ public class Felix extends Personaje{
       ventana.arreglarPanel();
 	}
 
+	/**
+	 * Felix puede ejecutar martillar cuantas veces quiera pero sólo
+	 * si la ventana está rota será reparada (lógico, ¿no?).
+	 *
+	 * @param     ventana  es la ventana de la posicion donde se encuentra Felix con su información
+	 * @see modelo.dinamica.personajes.Felix#reparar
+	 */
+
 	public void martillar (Ventana ventana) {
 		if (!ventana.estaSana()) {
 			this.reparar(ventana);
-            System.out.println("Felix da un martillazo");
+      System.out.println("Felix da un martillazo");
 		}
 	}
-    
-    public void mover(Direccion direccion){
-        super.mover(direccion);
-        System.out.println("Felix se mueve " + direccion.getHorizontal() + " en el ejex X y " + direccion.getVertical() + " en el eje Y");
+
+  public void mover(Direccion direccion){
+      super.mover(direccion);
+      System.out.println("Felix se mueve " + direccion.getHorizontal() + " en el ejex X y " + direccion.getVertical() + " en el eje Y");
     }
 }

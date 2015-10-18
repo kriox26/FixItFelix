@@ -39,8 +39,10 @@ public class Simple extends Ventana {
      * que seguir arreglando hasta llegar a 2*2 = 4 martillazos
      */
     public void arreglarPanel(){
-        if (this.getMartillazosRecibidos() <= 4) {
+        if (this.getMartillazosRecibidos() < 4) {
         	super.arreglarPanel();
+        }else{
+            System.out.println("Esta ventana ya se arreglo");
         }
     }
 

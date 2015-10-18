@@ -31,7 +31,7 @@ public class Panel {
      */
 	protected boolean arreglar(){
         if (!this.estaSano()) {
-            this.getEstado().arreglar(); //este arreglar() es de la clase Estado
+            this.setEstado(this.getEstado().arreglar()); //este arreglar() es de la clase Estado
             return true;
         }else{
             return false;
@@ -52,10 +52,7 @@ public class Panel {
 	}
     
     protected boolean estaSano(){
-        if (this.getEstado() instanceof Sano) {
-            return true;
-        }else{
-            return false;
-        }
+        System.out.println("El panel esta: " + this.estado.to_string());
+        return (this.estado instanceof Sano);
     }
 }

@@ -10,4 +10,8 @@ public class Estado {
 	protected Estado arreglar(){
 		return this;
 	}
+    
+    public String to_string(){
+        return "estado";
+    }
 }

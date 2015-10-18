@@ -8,7 +8,7 @@ public class Personaje extends Dinamico {
 	
 	public Personaje(String nombre, Posicion posicion){
 		this.setNombre(nombre);
-        this.setPosicion(posicion);
+        super.setPosicion(posicion);
 	}
 
 	public String getNombre (){

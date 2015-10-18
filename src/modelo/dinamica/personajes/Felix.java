@@ -50,7 +50,7 @@ public class Felix extends Personaje{
 			this.desactivarInmunidad();
 		}
 		this.setVida (this.getVida()-1);
-		this.recomenzar();
+        System.out.println("Un ladrillo lo golpea a Felix, le quedan " + this.getVida() + " vidas.");
 	}
 
 	public void golpeadoPorPaloma (){
@@ -71,7 +71,7 @@ public class Felix extends Personaje{
 	}
 
 	public void martillar (Ventana ventana) {
-		if (ventana.estaSana()) {
+		if (!ventana.estaSana()) {
 			this.reparar(ventana);
             System.out.println("Felix da un martillazo");
 		}

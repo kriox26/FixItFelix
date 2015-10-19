@@ -65,8 +65,8 @@ public class Ventana {
      * @return boolean Devuelve true si la ventana entera esta sana
      */
     public boolean estaSana(){
-        for (int i = 0; i < paneles.length; i++) {
-            if (!this.paneles[i].estaSano()) {
+        for (int i = 0; i < this.getPaneles().length; i++) {
+            if (!this.getPaneles()[i].estaSano()) {
             	System.out.println("El panel "+i+" "+paneles[i].getEstado().to_string());
                 return false;
             }
@@ -74,11 +74,7 @@ public class Ventana {
         return true;
     }
 
-    /*
-     * Devuelve un numero random entre min y max inclusive
-     * @param min Rango inicial
-     * @param max Rango maximo
-     * @return int
-     */
-   
+    public Panel[] getPaneles(){
+    	return this.paneles;
+    }
 }

@@ -20,7 +20,7 @@ public class TestMain {
             ralph.tirarLadrillos();
             Ventana ventana = juego.getNiceland().getVentana(felix.getPosicion());
             System.out.println("La posicion de la ventana es: "+felix.getPosicion().getFila()+felix.getPosicion().getColumna());
-            if (!ventana.estaSana()) {
+            if (!ventana.estaSana() && !(ventana instanceof Irrompible)) {
                // Si la ventana no esta sana felix tiene que dar 4 martillazos
                 for (int i = 0; i < 4; i++) {
                     felix.martillar(ventana);

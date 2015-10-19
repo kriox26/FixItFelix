@@ -46,6 +46,6 @@ public class Desarrollo {
         Posicion pos_felix = new Posicion(0, 2, 0);
         Posicion pos_ralph = new Posicion(0, 2, 1);
         this.felix = new Felix("Felix", 3, false, pos_felix);
-        this.ralph = new Ralph("Ralph", 15, pos_ralph);
+        this.ralph = new Ralph("Ralph", 100, pos_ralph);
     }
 }

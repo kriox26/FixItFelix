@@ -53,8 +53,6 @@ public class Ladrillo extends Objeto {
         if (this.getPosicion().getFila() > 0) {
             super.mover(Direccion.ABAJO);
             System.out.println("El ladrillo cae, su posicion es: (Seccion: " + this.getPosicion().getSeccion() + ", Fila: " + this.getPosicion().getFila() + ", Columna: " + this.getPosicion().getColumna() + ")");
-        }else{
-            System.out.println("El ladrillo ya llego a la posicion 0.");
         }
     }
 }

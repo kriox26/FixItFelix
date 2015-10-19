@@ -65,7 +65,8 @@ public class Felix extends Personaje{
 			this.desactivarInmunidad();
 		}
 		this.setVida (this.getVida()-1);
-        System.out.println("Un ladrillo lo golpea a Felix, le quedan " + this.getVida() + " vidas.");
+        System.out.println("UN LADRILLO LO GOLPEA A FELIX, LE QUEDAN " + this.getVida() + " VIDAS.");
+        System.out.println();
 	}
 
 	public void golpeadoPorPaloma (){

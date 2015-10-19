@@ -60,10 +60,9 @@ public class Ralph extends Personaje {
 			this.setLadrillos(this.getLadrillos() - cuantosTira);
 			for (int i=0; i< cuantosTira; i++) {
                 this.getLadrillosLanzados()[this.getTotalLadrillosLanzados()] = new Ladrillo(this.getPosicion());
-                this.getLadrillosLanzados()[this.getTotalLadrillosLanzados()].caer();
-                System.out.println("EL LADRILLO QUE CREO ESTA EN EL INDEX: " + (this.getTotalLadrillosLanzados()));
-                this.setTotalLadrillosLanzados(this.getTotalLadrillosLanzados() + 1);
                 System.out.println("Ralph tira un ladrillo desde: (Seccion: " + this.getPosicion().getSeccion() + ", Fila: " + this.getPosicion().getFila() + ", Columna: " + this.getPosicion().getColumna() + ") ");
+                this.getLadrillosLanzados()[this.getTotalLadrillosLanzados()].caer();
+                this.setTotalLadrillosLanzados(this.getTotalLadrillosLanzados() + 1);
 			}
 		}
 	}

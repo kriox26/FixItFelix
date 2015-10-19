@@ -48,9 +48,11 @@ public class TestMain {
     
     public static boolean gameOver(Felix felix, Ralph ralph){
         Ladrillo[] ladrillos = ralph.getLadrillosLanzados();
+        System.out.println("Entro");
         for (int i = 0; i < ralph.getTotalLadrillosLanzados(); i++) {
             Ladrillo ladrillo = ladrillos[i];
             if (ladrillo.getPosicion().equal_to(felix.getPosicion())) {
+                System.out.println("Entro");
                 felix.golpeadoPorLadrillo();
             }
             if (felix.getVida() == 0) {

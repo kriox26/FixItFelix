@@ -8,7 +8,7 @@ import modelo.dinamica.objetos.*;
 public class Ralph extends Personaje {
 	private int ladrillos;
     private int total_ladrillos_lanzados;
-	private static final int cuantosTira = 1;
+	private static final int cuantosTira = 3;
 	private static final int kl = 5; // Constante de ladrillos por nivel
 	private Ladrillo[] ladrillos_lanzados;
 	private boolean fijo; // Si est� en una secci�n haciendo sus maldades. O sea, no est� cambiando de secci�n
@@ -63,6 +63,7 @@ public class Ralph extends Personaje {
                 System.out.println("Ralph tira un ladrillo desde: (Seccion: " + this.getPosicion().getSeccion() + ", Fila: " + this.getPosicion().getFila() + ", Columna: " + this.getPosicion().getColumna() + ") ");
                 this.getLadrillosLanzados()[this.getTotalLadrillosLanzados()].caer();
                 this.setTotalLadrillosLanzados(this.getTotalLadrillosLanzados() + 1);
+                System.out.println();
 			}
 		}
 	}
@@ -108,8 +109,10 @@ public class Ralph extends Personaje {
 	}
     
     public void mover(Direccion direccion){
-        super.mover(direccion);
-        System.out.println("Ralph se mueve " + direccion.getHorizontal() + " en el ejex X y " + direccion.getVertical() + " en el eje Y");
+        if (!((direccion == Direccion.DERECHA && this.getPosicion().getFila() == 4) || (direccion == Direccion.IZQUIERDA && this.getPosicion().getFila() == 0))) {
+            super.mover(direccion);
+            System.out.println("Ralph se mueve " + direccion.getHorizontal() + " en el ejex X y " + direccion.getVertical() + " en el eje Y");
+        }
     }
 
 	public Ladrillo[] getLadrillosLanzados() {

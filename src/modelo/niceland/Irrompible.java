@@ -8,6 +8,7 @@ public class Irrompible extends Ventana {
 
     public Irrompible(){
         this.setearObstaculo();
+        super.setearPaneles(2);
     }
 
 	/*

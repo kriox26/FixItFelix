@@ -2,13 +2,22 @@ package modelo.dinamica;
 
 import modelo.direcciones.Direccion;
 
+/**
+ * Dinamico es cualquier objeto o personaje.
+ * Dincamico representa entidades con movilidad.
+ *
+ * @author  Santiago Marrone
+ * @version 1.0
+ * @see     modelo.dinamica.Posicion
+ */
+
 public class Dinamico {
 	private Posicion posicion;
-	
+
 	public Posicion getPosicion (){
 		return this.posicion;
 	}
-	
+
 	public void setPosicion (Posicion position){
 		this.posicion = position;
 	}

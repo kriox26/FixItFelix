@@ -26,27 +26,24 @@ public class TestMain {
                     felix.martillar(ventana);
                 }
             }   
-         //   }else{
-            	if((felix.getPosicion().getColumna() != 4) && (felix.getPosicion().getFila() % 2 == 0)){
-            		mover_a(felix, Direccion.DERECHA);
-            	}
-          		else{
-          			if ((felix.getPosicion().getColumna() != 0) && (felix.getPosicion().getFila() % 2 == 1)){
-          				mover_a(felix, Direccion.IZQUIERDA);
-          			}else{
-          				mover_a(felix, Direccion.ARRIBA);
-          			}
-          		}
-            }
-            if (gameOver(felix, ralph)) {
-      //      	break;
-            }
+            mover_a(felix);
+            if (gameOver(felix, ralph)) 
+            	break;
         }
-	//}
+    }
+
     
-    public static void mover_a(Felix felix, Direccion dir){
+    public static void mover_a(Felix felix){
         // Hacemos el recorrido de felix
-        felix.mover(dir);
+    	if((felix.getPosicion().getColumna() != 4) && (felix.getPosicion().getFila() % 2 == 0)){
+    		felix.mover(Direccion.DERECHA);
+        }else{
+      		if ((felix.getPosicion().getColumna() != 0) && (felix.getPosicion().getFila() % 2 == 1)){
+      			felix.mover(Direccion.IZQUIERDA);
+      		}else{
+      			felix.mover(Direccion.ARRIBA);
+      		}
+      	}
     }
     
     public static boolean gameOver(Felix felix, Ralph ralph){

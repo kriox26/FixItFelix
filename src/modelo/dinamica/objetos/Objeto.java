@@ -29,7 +29,7 @@ public class Objeto extends Dinamico {
 
 	public void unidireccionar (Direccion direccion) {
 		while (this.getExiste() == true) {
-			this.mover (direccion);
+			this.mover(direccion);
 		}
 	}
 

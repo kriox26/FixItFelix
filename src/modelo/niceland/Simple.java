@@ -73,6 +73,8 @@ public class Simple extends Ventana {
     }
 
 	public void ponerTarta () {
-		this.setTarta(true);
+		if (this.getTarta()==false){ // Evita superposición de tartas
+			this.setTarta(true);
+		}
 	}
 }

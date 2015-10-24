@@ -40,7 +40,7 @@ public class Nicelander {
 		this.apareciendo = false;
 	}
 
-	public void servirTarta (Ventana window) {
+	public void servirTarta (Simple window) {
 		if (window.sePuedePonerTarta()) {
 			window.ponerTarta();
 		}

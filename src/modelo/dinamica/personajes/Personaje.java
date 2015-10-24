@@ -84,6 +84,8 @@ public class Personaje extends Dinamico {
 					ok=false;
 				}
 				break;
+			case NULA :
+				ok=true;
 		}
 		return ok;
 	}

@@ -3,9 +3,7 @@ package modelo.dinamica.personajes;
 import modelo.direcciones.Direccion;
 import modelo.dinamica.Posicion;
 import modelo.niceland.Ventana;
-import modelo.niceland.Simple;
-import modelo.niceland.Irrompible;
-import modelo.niceland.Puerta;
+
 
 /**
  * La clase Felix representa al protagonista del juego.

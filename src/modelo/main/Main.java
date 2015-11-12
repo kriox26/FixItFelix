@@ -11,6 +11,11 @@ import modelo.dinamica.objetos.Objeto;
 import modelo.dinamica.personajes.*;
 import modelo.niceland.*;
 
+/*
+ * Clase que administra el desarrollo y contiene toda la logica del juego.
+ * Todas las interacciones del usuario con el juego se dan a traves de esta clase.
+ * @author Matias Pan
+ */
 public class Main {
     private boolean jugando;
     public Desarrollo dvp;

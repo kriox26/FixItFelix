@@ -3,6 +3,13 @@ import modelo.dinamica.Posicion;
 
 import modelo.dinamica.personajes.*;
 
+/*
+ * Encargada de guardar el desarrollo actual del juego, incluyendo estado de personajes,
+ * puntos acumulados, y nivel actual.
+ * Esta clase es administrada desde Main.
+ * @author Matias Pan
+ * @see modelo.main.Main
+ */
 public class Desarrollo {
     private int nivel;
     private int puntos;
@@ -40,7 +47,7 @@ public class Desarrollo {
     }
     
     /*
-     * Crea a ralph y a felix con las posiciones por default, en la seccion
+     * Crea a ralph y a felix con las posiciones por default en la seccion
      * inicial del juego.
      */
     private void setearPersonajes(){

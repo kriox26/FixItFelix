@@ -4,6 +4,15 @@ import modelo.util.RandomAcotado;
 import modelo.niceland.*;
 import modelo.dinamica.*;
 
+/**
+ * Representa al personaje responsable de aparecer en ciertas ventanas simples
+ * con el panel roto y dejar tarta para felix. Debe aparecer de manera aleatoria
+ * y dejar un pastel.
+ *
+ * @author  Santiago Marrone w Matias Pan's collab.
+ * @see modelo.niceland.Ventana
+ *
+ */
 public class Nicelander extends Objeto{
 	private boolean tieneTarta;
 	private boolean apareciendo;

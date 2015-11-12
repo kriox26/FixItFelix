@@ -3,6 +3,11 @@ package modelo.dinamica.personajes;
 import modelo.dinamica.*;
 import modelo.direcciones.Direccion;
 
+/*
+ * Representa los personajes del juego, tales como Felix y Ralph. Se implementa
+ * en esta clase los metodos y propiedades en comun de esos personajes.
+ * @see modelo.dinamica.Dinamico
+ */
 public class Personaje extends Dinamico {
 	
 	private String nombre;
@@ -21,76 +26,79 @@ public class Personaje extends Dinamico {
 		this.nombre = name;
 	}
 	
+    /*
+     * Chequea si el personaje actual esta posicionado al borde izquierdo de la
+     * fila actual
+     * @return boolean: True si esta posicionado al borde izquierdo, false caso contrario
+     */
 	public boolean alBordeIzquierdo () {
-		if (this.getPosicion().getColumna() == 0) {
-			return true;
-		}
-		else 
-			return false;
+        return this.getPosicion().getColumna() == 0 ? true : false;
 	}
 	
+    /*
+     * Chequea si el personaje actual esta posicionado al borde derecho de la
+     * fila actual
+     * @return boolean: True si esta posicionado al borde derecho, false caso contrario
+     */
 	public boolean alBordeDerecho () {
-		if (this.getPosicion().getColumna() == 4) {
-			return true;
-		}
-		else 
-			return false;
+        return this.getPosicion().getColumna() == 4 ? true : false;
 	}
 	
+    /*
+     * Chequea si el personaje actual esta posicionado al borde inferior de la
+     * seccion actual
+     * @return boolean: True si esta posicionado al borde inferior, false caso contrario
+     */
 	public boolean alBordeInferior () {
-		if (this.getPosicion().getFila() == 0) {
-			return true;
-		}
-		else 
-			return false;
+        return this.getPosicion().getFila() == 0 ? true : false;
 	}
 	
+    /*
+     * Chequea si el personaje actual esta posicionado al borde superior de la
+     * seccion actual
+     * @return boolean: True si esta posicionado al borde superior, false caso contrario
+     */
 	public boolean alBordeSuperior () {
-		if (this.getPosicion().getFila() == 3) {
-			return true;
-		}
-		else 
-			return false;
+        return this.getPosicion().getFila() == 3 ? true : false;
 	}
 	
+    /*
+     * Chequea si el personaje actual esta posicionado en algun borde.
+     * @return boolean: True si esta posicionado en algun borde, false caso contrario
+     */
 	public boolean alBorde () {
-		if (this.alBordeDerecho() || this.alBordeIzquierdo() || this.alBordeInferior() || this. alBordeSuperior()) {
-			return true;
-		}
-		else 
-			return false;
+        return (this.alBordeDerecho() || this.alBordeIzquierdo() || this.alBordeInferior() || this.alBordeSuperior()) ? true : false;
 	}
 	
+    /*
+     * Cheques si el personaje actual puede moverse en la direccion especificada.
+     * @params Direccion direction: Direccion en la que se lo quiere mover
+     * @return boolean: True si se puede mover, false caso contrario
+     */
 	private boolean puedeMoverse (Direccion direction) {
-		boolean ok = true;
 		switch (direction) {
 			case ARRIBA : 
-				if (this.alBordeSuperior()) {
-					ok=false;
-				}
-				break;
+				if (this.alBordeSuperior())
+                    return false;
 			case ABAJO : 
-				if (this.alBordeInferior()) {
-					ok=false;
-				}
-				break;
+				if (this.alBordeInferior())
+                    return false;
 			case IZQUIERDA : 
-				if (this.alBordeIzquierdo()) {
-					ok=false;
-				}
-				break;
+				if (this.alBordeIzquierdo())
+                    return false;
 			case DERECHA : 
-				if (this.alBordeDerecho()) {
-					ok=false;
-				}
-				break;
-			case NULA :
-				ok=true;
+				if (this.alBordeDerecho())
+					return false;
+            case NULA : return true;
 		}
-		return ok;
+        return true;
 	}
 	
-	@Override
+    /*
+     * Se mueve en la direccion especificada siempre y cuando sea posible.
+     * @params Direccion direction: Direccion en la que se lo quiere mover al personaje
+     * @Override
+     */
 	public void mover (Direccion direction){
 		if (this.puedeMoverse(direction)) {
 			this.setPosicion(this.getPosicion().modificar(direction));

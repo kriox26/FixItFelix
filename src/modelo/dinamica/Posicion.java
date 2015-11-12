@@ -2,6 +2,11 @@ package modelo.dinamica;
 
 import modelo.direcciones.*;
 
+/*
+ * Representa la posicion de los Objetos y Personajes, relativa al edificio Niceland.
+ * La posicion tiene una fila, columna y seccion que corresponden a las partes
+ * del edificio en la que estoy ubicado.
+ */
 public class Posicion {
 	private int fila;
 	private int columna;
@@ -41,6 +46,11 @@ public class Posicion {
         return this.seccion;
     }
 	
+    /*
+     * Encargado de modificar la posicion actual acorde a la direccion enviada.
+     * @params Direccion direccion: Direccion a utilizar para actualizar posicion
+     * @return Posicion: devuelve la instancia actual modificada, NO CAMBIAR ESTO.
+     */
 	public Posicion modificar (Direccion direccion) {
         int actualizarColumna = this.getColumna() + direccion.getHorizontal();
         int actualizarFila = this.getFila() + direccion.getVertical();
@@ -48,12 +58,14 @@ public class Posicion {
             this.setColumna(actualizarColumna);
             this.setFila(actualizarFila);
         }
-        /* Devuelve this por la manera en la que se utiliza el metodo en la clase
-         * Dinamico, se llama a this.setPositicion(modificar), entonces se necesita
-         * devolver this. */
 		 return this;
 	}
     
+    /*
+     * Utilizado para comparar la posicion actual con la enviada.
+     * @params Posicion posicion: Posicion con la que se la quiere comparar
+     * @return boolean: Devuelve true si son iguales, false caso contrario
+     */
     public boolean equal_to(Posicion posicion){
         return (this.getFila() == posicion.getFila() && this.getColumna() == posicion.getColumna() && this.getSeccion() == posicion.getSeccion());
     }

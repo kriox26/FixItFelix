@@ -15,7 +15,6 @@ import modelo.niceland.Ventana;
  * misma pantalla) que más tarde se añadirá.
  *
  * @author  Santiago Marrone w Matias Pan's collab.
- * @version 1.0
  * @see modelo.niceland.Ventana
  *
  */

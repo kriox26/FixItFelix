@@ -12,7 +12,6 @@ import modelo.dinamica.objetos.*;
  * de su ira que incrementa nivel a nivel.
  *
  * @author  Santiago Marrone
- * @version 1.0
  * @see modelo.dinamica.personajes.Personaje
  * @see modelo.dinamica.Dinamico
  */
@@ -67,30 +66,17 @@ public class Ralph extends Personaje {
 		this.setLadrillos(nivel * kl);
 	}
 
+    /*
+     * Tira la cantidad de ladrillos especificada por la variable cuantosTira.
+     */
 	public void tirarLadrillos () {
 		if (this.hayLadrillos()) {
 			this.setLadrillos(this.getLadrillos() - cuantosTira);
 			for (int i=0; i< cuantosTira; i++) {
                 this.getLadrillosLanzados()[this.getTotalLadrillosLanzados()] = new Ladrillo(this.getPosicion());
-                System.out.println("Ralph tira un ladrillo desde: (Seccion: " + this.getPosicion().getSeccion() + ", Fila: " + this.getPosicion().getFila() + ", Columna: " + this.getPosicion().getColumna() + ") ");
                 this.getLadrillosLanzados()[this.getTotalLadrillosLanzados()].caer();
                 this.setTotalLadrillosLanzados(this.getTotalLadrillosLanzados() + 1);
-                System.out.println();
 			}
-		}
-	}
-
-
-	private boolean ganasDeAtacar () {
-		// Deber�a relacionarse el nivel actual con las ganas de atacar del malvado Ralph
-		// Podr�a hacerse pasando el nivel como par�metro y jugando con �l
-		// Se implementa para testing en modo nivel 1
-		RandomAcotado rnd = new RandomAcotado (1,8);
-		if (rnd.getValor() == 1){
-			return true;
-		}
-		else {
-			return false;
 		}
 	}
 
@@ -120,11 +106,12 @@ public class Ralph extends Personaje {
 		}
 	}
 
+    /*
+     * Mueve a ralph en la direccion especificada.
+     * @params Direccion direction: Direccion en la que se lo quiere mover
+     */
     public void mover(Direccion direccion){
-        if (!((direccion == Direccion.DERECHA && this.getPosicion().getFila() == 4) || (direccion == Direccion.IZQUIERDA && this.getPosicion().getFila() == 0))) {
-            super.mover(direccion);
-            System.out.println("Ralph se mueve " + direccion.getHorizontal() + " en el ejex X y " + direccion.getVertical() + " en el eje Y");
-        }
+        super.mover(direccion);
     }
 
 	public Ladrillo[] getLadrillosLanzados() {

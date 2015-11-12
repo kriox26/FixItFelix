@@ -1,9 +1,9 @@
-package modelo.dinamica.personajes;
+package modelo.dinamica.objetos;
 
 import modelo.niceland.*;
 import modelo.dinamica.*;
 
-public class Nicelander {
+public class Nicelander extends Objeto{
 	private boolean tieneTarta;
 	private boolean apareciendo;
 	private Posicion posicion;

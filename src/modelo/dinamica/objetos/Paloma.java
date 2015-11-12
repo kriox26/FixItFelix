@@ -3,6 +3,10 @@ package modelo.dinamica.objetos;
 import modelo.direcciones.Direccion;
 import modelo.dinamica.Posicion;
 
+/*
+ * Representa la paloma que aparece de manera random, desplazandose desde un extremo
+ * hacia al otro y desapareciendo.
+ */
 public class Paloma extends Objeto{
     private Direccion direccion;
     

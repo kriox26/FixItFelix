@@ -9,11 +9,8 @@ import modelo.dinamica.Posicion;
  * Por el caracter de nuestro modelado UML se incluiría también la clase Paloma, pero no está contemplada en el test. Más adelante será añadida.
  *
  * @author  Santiago Marrone
- * @version 1.0
  * @see modelo.dinamica.Posicion
- *
  */
-
 public class Objeto extends Dinamico {
 	private boolean existe;
 	private double velocidad;
@@ -56,7 +53,6 @@ public class Objeto extends Dinamico {
 	 *
 	 * @param     nivel  para mesurar incremento de velocidad (dificultad).
 	 */
-
 	public void actualizarVelocidad (int nivel) {
 		this.setVelocidad(nivel * kv);
 	}

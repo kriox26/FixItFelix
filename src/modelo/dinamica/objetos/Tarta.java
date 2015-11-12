@@ -1,5 +1,9 @@
 package modelo.dinamica.objetos;
 
+/*
+ * Representa la tarta que se posicion por un nicelander en ventanas cuyo
+ * panel inferior esta Roto.
+ */
 public class Tarta extends Objeto {
     private boolean devorada;
     

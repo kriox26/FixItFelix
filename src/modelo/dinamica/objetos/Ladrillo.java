@@ -9,12 +9,8 @@ import modelo.dinamica.Posicion;
  * movimiento posible es en sentido vertical hacia abajo.
  *
  * @author  Santiago Marrone
- * @version 1.0
  * @see modelo.dinamica.direcciones
- *
  */
-
-
 public class Ladrillo extends Objeto {
 
 	private static final double kv = 9.58; // Constante de variación de velocidad

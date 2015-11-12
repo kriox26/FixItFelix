@@ -1,6 +1,13 @@
 package modelo.obstaculos;
 import modelo.direcciones.*;
 
+/*
+ * Representa un obstaculo generico que no bloquea nada. Esta clase es usada por
+ * el resto de los obstaculos, donde direccion_que_bloquea es la variable que
+ * especifica hacia donde bloquea el obstaculo actual.
+ * @author Matias Pan
+ * @see modelo.obstaculos.Obstaculo
+ */
 public class Obstaculo {
     protected Direccion direccion_que_bloquea;
 

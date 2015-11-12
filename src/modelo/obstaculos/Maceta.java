@@ -1,6 +1,12 @@
 package modelo.obstaculos;
 import modelo.direcciones.*;
 
+/*
+ * Representa al obstaculo que puede aparecer de manera random en ventanas simples.
+ * Este obstaculo bloquea a Felix, no le permite moverse hacia abajo estando en la ventana.
+ * @author Matias Pan
+ * @see modelo.obstaculos.Obstaculo
+ */
 public class Maceta extends Obstaculo {
     
     /*

@@ -1,6 +1,12 @@
 package modelo.obstaculos;
 import modelo.direcciones.*;
 
+/*
+ * Representa al obstaculo que puede aparecer de manera random en ventanas irrompibles.
+ * Este obstaculo bloquea a Felix, no le permite moverse hacia algun costado.
+ * @author Matias Pan
+ * @see modelo.obstaculos.Obstaculo
+ */
 public class Persiana extends Obstaculo {
 
     public Persiana(Direccion direccion){

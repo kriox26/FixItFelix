@@ -81,7 +81,6 @@ public class Main {
         this.inicializar(nivel);
         while (!gameOver()) {
             jugarUnTurno();
-            actualizarObjetos();
         }
     }
 

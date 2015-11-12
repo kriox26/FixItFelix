@@ -1,5 +1,11 @@
 package modelo.niceland;
 
+/**
+ * Representa el estado de rotura de cada panel.
+ *
+ * @author  Matias Pan
+ * @see modelo.niceland.Panel
+ */
 public class Estado {
 
 	/*

@@ -3,6 +3,15 @@ package modelo.niceland;
 import modelo.direcciones.*;
 import modelo.util.RandomAcotado;
 
+/**
+ * Representa la estructura basica de las ventanas compuestas
+ * en el edificio de Niceland. Esta ventana administra el arreglo de los paneles
+ * e indica si estaba hablitado pasar acorde a los obstaculos que se tiene alrededor. 
+ *
+ * @author  Matias Pan
+ * @see modelo.niceland.Niceland
+ * @see modelo.niceland.Panel
+ */
 public class Ventana {
     protected Panel[] paneles;
     private int martillazos_recibidos;

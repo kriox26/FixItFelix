@@ -3,6 +3,18 @@ import modelo.direcciones.*;
 import modelo.obstaculos.*;
 import modelo.util.RandomAcotado;
 
+/**
+ * Representa un tipo de ventana denominada Simple. Las carecteristicas
+ * de esta ventana son:
+ *              - 2 paneles que se pueden romper y reparar
+ *              - Posibilidad de tener una tarta
+ *              - Tener un obstaculo a la vez, pueden ser: Maceta, Moldura.
+ *
+ * @author  Matias Pan
+ * @see modelo.niceland.Ventana
+ * @see modelo.niceland.obstaculos
+ * @see modelo.niceland.Panel
+ */
 public class Simple extends Ventana {
 	private boolean tarta = false;
     private Obstaculo obstaculo;
@@ -10,7 +22,6 @@ public class Simple extends Ventana {
     /*
      * Constructor de la ventana simple
      * @param tarta : Tarta puesta por un nicelander
-     * @param obstaculo : Puede ser maceta, moldura o nada
      */
     public Simple(boolean tarta){
         this.tarta = tarta;
@@ -73,7 +84,7 @@ public class Simple extends Ventana {
     }
 
 	public void ponerTarta () {
-		if (this.getTarta()==false){ // Evita superposición de tartas
+		if (this.getTarta()==false){ // Evita superposiciï¿½n de tartas
 			this.setTarta(true);
 		}
 	}

@@ -1,5 +1,19 @@
 package modelo.niceland;
 
+/**
+ * Representa las secciones del edificio, pueden ser de 3 tipos, las cuales tienen
+ * distintas caracteristicas. Son:
+ *                      - Inferior: La seccion inicial en la que Felix empieza a jugar,
+                                    esta seccion contiene una puerta y una ventana semicircular.
+ *                      - Media: Seccion en la que todas las ventanas pueden ser simples
+                                 o irrompibles.
+ *                      - Superior: Ultima seccion del edificio, si felix pasa esta
+                                    seccion, gana el nivel.
+ *
+ * @author Matias Pan
+ * @author Jorge Stranieri
+ * @see modelo.niceland.Niceland
+ */
 public class Seccion {
 	private String tipo;
 	private boolean techo;
@@ -9,9 +23,9 @@ public class Seccion {
     /*
      * Inicializamos una seccion del tipo "tipo", y especificamos si es techo o piso
      * o nada
-     * @param tipo : Define el tipo de la seccion, "Inferior", "Media", "Superior"
-     * @param piso : Atributo especifico a cada seccion, true para "Inferior", false caso contrario
-     * @param techo : Atributo especifico a cada seccion, true para "Superior", false caso contrario
+     * @param String tipo : Define el tipo de la seccion, "Inferior", "Media", "Superior"
+     * @param boolean piso : Atributo especifico a cada seccion, true para "Inferior", false caso contrario
+     * @param boolean techo : Atributo especifico a cada seccion, true para "Superior", false caso contrario
      */
     public Seccion(String tipo, boolean piso, boolean techo){
         this.tipo = tipo;
@@ -23,7 +37,7 @@ public class Seccion {
     /*
      * Crea las 3 filas de ventanas. En caso de ser la seccion inferior
      * agrega la puerta y la ventana semicircular en las posiciones correspondientes
-     * @param tipo : Para crear ventanas especiales a cada tipo de seccion
+     * @param String tipo : Para crear ventanas especiales a cada tipo de seccion
      */
 	private void iniciar(String tipo){
         setearVentanas();

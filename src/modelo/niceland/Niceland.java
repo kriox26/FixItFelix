@@ -1,6 +1,14 @@
 package modelo.niceland;
 import modelo.dinamica.Posicion;
 
+/**
+ * Representa el edificio Niceland del juego, a traves del cual
+ * todos los personajes y objetos se mueven. Este contiene secciones con distintas
+ * caracteristicas(tipos de ventanas principalmente).
+ *
+ * @author Matias Pan
+ * @author Jorge Stranieri
+ */
 public class Niceland {
 	private Seccion[] secciones;
 	

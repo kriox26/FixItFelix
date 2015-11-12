@@ -1,5 +1,17 @@
 package modelo.niceland;
 
+/**
+ * Representa los paneles que las ventanas contienen. Cada panel tiene asignado
+ * un Estado, el cual puede ser 1 de tres distintos valores:
+ *                  - Sano, no se debe arreglar
+ *                  - MedioRoto, se debe arreglar
+ *                  - Roto, se debe arreglar
+ * Los paneles van pasando de estado a medida que reciben martillazos.
+ *
+ * @author  Matias Pan
+ * @see modelo.niceland.Ventana
+ * @see modelo.niceland.Estado
+ */
 public class Panel {
 	private Estado estado;
 

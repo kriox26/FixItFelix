@@ -1,5 +1,15 @@
 package modelo.niceland;
 
+/**
+ * Representa un tipo de ventana denominada Semicircular. Las carecteristicas
+ * de esta ventana son:
+ *              - 8 paneles los cuales se pueden romper y arreglar(en orden)
+ *              - Esta ventana no puede tener obstaculos
+ *
+ * @author  Matias Pan
+ * @see modelo.niceland.Ventana
+ * @see modelo.niceland.Panel
+ */
 public class Semicircular extends Ventana {
     
     public Semicircular(){

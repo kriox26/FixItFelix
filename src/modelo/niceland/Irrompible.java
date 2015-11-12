@@ -3,6 +3,17 @@ import modelo.obstaculos.*;
 import modelo.direcciones.*;
 import modelo.util.RandomAcotado;
 
+/**
+ * Representa un tipo de ventana denominada Irrompible. Las carecteristicas
+ * de esta ventana son:
+ *              - 2 paneles los cuales son irrompibles
+ *              - Estar abierta(con las persianas hacia algun lado) o cerrada.
+ *
+ * @author  Matias Pan
+ * @see modelo.niceland.Ventana
+ * @see modelo.niceland.Persiana
+ * @see modelo.niceland.Panel
+ */
 public class Irrompible extends Ventana {
     private Obstaculo obstaculo;
 

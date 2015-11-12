@@ -49,10 +49,17 @@ public class Ladrillo extends Objeto {
         }
     }
     
-    public void caer(){
+    private void caer(){
         if (this.getPosicion().getFila() > 0) {
             super.mover(Direccion.ABAJO);
-            System.out.println("El ladrillo cae, su posicion es: (Seccion: " + this.getPosicion().getSeccion() + ", Fila: " + this.getPosicion().getFila() + ", Columna: " + this.getPosicion().getColumna() + ")");
         }
+    }
+    
+    /*
+     * Metodo utilizado para actualizar la posicion del ladrillo. Lo tiene heredado
+     * de la clase Objeto.
+     */
+    public void actualizar(){
+        caer();
     }
 }

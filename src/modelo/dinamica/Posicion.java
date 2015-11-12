@@ -41,10 +41,17 @@ public class Posicion {
         return this.seccion;
     }
 	
-	public Posicion modificar (Direccion direction) {
-		this.setColumna(this.getColumna() + direction.getHorizontal());
-		this.setFila(this.getFila() + direction.getVertical());
-		return this;
+	public Posicion modificar (Direccion direccion) {
+        int actualizarColumna = this.getColumna() + direccion.getHorizontal();
+        int actualizarFila = this.getFila() + direccion.getVertical();
+        if (actualizarColumna < 5 && actualizarColumna >= 0 && actualizarFila < 3 && actualizarFila >= 0) {
+            this.setColumna(actualizarColumna);
+            this.setFila(actualizarFila);
+        }
+        /* Devuelve this por la manera en la que se utiliza el metodo en la clase
+         * Dinamico, se llama a this.setPositicion(modificar), entonces se necesita
+         * devolver this. */
+		 return this;
 	}
     
     public boolean equal_to(Posicion posicion){

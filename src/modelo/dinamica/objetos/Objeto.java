@@ -60,5 +60,8 @@ public class Objeto extends Dinamico {
 	public void actualizarVelocidad (int nivel) {
 		this.setVelocidad(nivel * kv);
 	}
+    
+    public void actualizar(){
+    }
 
 }

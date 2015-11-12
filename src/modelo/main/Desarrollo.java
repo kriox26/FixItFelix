@@ -40,7 +40,8 @@ public class Desarrollo {
     }
     
     /*
-     * Crea a ralph y a felix
+     * Crea a ralph y a felix con las posiciones por default, en la seccion
+     * inicial del juego.
      */
     private void setearPersonajes(){
         Posicion pos_felix = new Posicion(0, 2, 0);

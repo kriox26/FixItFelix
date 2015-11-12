@@ -56,19 +56,10 @@ public class Panel {
 	 * @return boolean
 	 */
 	protected boolean estaRoto(){
-		if(this.getEstado() instanceof Roto){
-			return true;
-		} else {
-			return false;
-		}
+		return this.getEstado() instanceof Roto ? true : false;
 	}
     
     protected boolean estaSano(){
-        //System.out.println("El panel esta: " + this.estado.to_string());
-        if (this.estado instanceof Sano){
-        	return true;
-        }else{
-        	return false;
-        }
+		return this.getEstado() instanceof Sano ? true : false;
     }
 }

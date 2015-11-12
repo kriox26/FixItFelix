@@ -52,6 +52,5 @@ public class Irrompible extends Ventana {
         }
     }
     public void arreglarPanel(){
-        System.out.println("Esta ventana ya esta arreglada.");
     }
 }

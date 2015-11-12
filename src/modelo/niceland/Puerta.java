@@ -24,8 +24,6 @@ public class Puerta extends Ventana {
     public void arreglarPanel(){
         if (this.getMartillazosRecibidos() <= 8) {
             super.arreglarPanel();
-        }else{
-            System.out.println("Esta ventana ya esta arreglada.");
         }
     }
 

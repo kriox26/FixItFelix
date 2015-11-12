@@ -24,8 +24,6 @@ public class Semicircular extends Ventana {
     public void arreglarPanel(){
         if (this.getMartillazosRecibidos() < 16) {
         	super.arreglarPanel();
-        }else{
-            System.out.println("Esta ventana ya esta arreglada.");
         }
     }
 }

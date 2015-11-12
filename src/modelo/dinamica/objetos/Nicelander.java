@@ -59,7 +59,7 @@ public class Nicelander extends Objeto{
     public void actualizar(){
         if (!this.getApareciendo()) {
             RandomAcotado rand = new RandomAcotado(0,1);
-            switch (rand.getvalor()) {
+            switch (rand.getValor()) {
                 case 0: this.setApareciendo(true);
                         break;
                 default: break;

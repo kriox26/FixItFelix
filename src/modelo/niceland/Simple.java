@@ -52,8 +52,6 @@ public class Simple extends Ventana {
     public void arreglarPanel(){
         if (this.getMartillazosRecibidos() < 4) {
         	super.arreglarPanel();
-        }else{
-            System.out.println("Esta ventana ya se arreglo");
         }
     }
 

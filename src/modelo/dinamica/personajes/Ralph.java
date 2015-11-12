@@ -5,6 +5,18 @@ import modelo.direcciones.*;
 import modelo.util.RandomAcotado;
 import modelo.dinamica.objetos.*;
 
+/**
+ * La clase Ralph representa al villano del juego.
+ * Debe poder moverse horizontalmente por toda la fila
+ * asignada desde la que lanzará ladrillos dependiendo
+ * de su ira que incrementa nivel a nivel.
+ *
+ * @author  Santiago Marrone
+ * @version 1.0
+ * @see modelo.dinamica.personajes.Personaje
+ * @see modelo.dinamica.Dinamico
+ */
+
 public class Ralph extends Personaje {
 	private int ladrillos;
     private int total_ladrillos_lanzados;
@@ -23,7 +35,7 @@ public class Ralph extends Personaje {
   	public boolean getFijo() {
   		return this.fijo;
   	}
-  	
+
   	public void setFijo(boolean variable) {
   		this.fijo= variable;
   	}
@@ -34,11 +46,11 @@ public class Ralph extends Personaje {
 	public void setLadrillos (int cantidad) {
 		this.ladrillos = cantidad;
 	}
-    
+
     public void setTotalLadrillosLanzados(int cantidad){
         this.total_ladrillos_lanzados = cantidad;
     }
-    
+
     public int getTotalLadrillosLanzados(){
         return this.total_ladrillos_lanzados;
     }
@@ -50,7 +62,7 @@ public class Ralph extends Personaje {
 		else
 			return false;
 	}
-	
+
 	public void actualizarLadrillos (int nivel) {
 		this.setLadrillos(nivel * kl);
 	}
@@ -67,8 +79,8 @@ public class Ralph extends Personaje {
 			}
 		}
 	}
-	
-	
+
+
 	private boolean ganasDeAtacar () {
 		// Deber�a relacionarse el nivel actual con las ganas de atacar del malvado Ralph
 		// Podr�a hacerse pasando el nivel como par�metro y jugando con �l
@@ -81,7 +93,7 @@ public class Ralph extends Personaje {
 			return false;
 		}
 	}
-	
+
 	private void movimientoParcialLateral (Direccion direction) {
 		while (!this.alBorde()) {
 			this.mover(direction);
@@ -90,8 +102,8 @@ public class Ralph extends Personaje {
 			}
 		}
 	}
-	
-	private void movimientoTotalLateral () { 
+
+	private void movimientoTotalLateral () {
 		if (this.alBorde()) {
 			if (this.alBordeIzquierdo()){
 				this.movimientoParcialLateral(Direccion.DERECHA);
@@ -101,13 +113,13 @@ public class Ralph extends Personaje {
 			}
 		}
 	}
-	
+
 	public void enUnaSeccion () {
 		while (this.getFijo()){
 			this.movimientoTotalLateral();
 		}
 	}
-    
+
     public void mover(Direccion direccion){
         if (!((direccion == Direccion.DERECHA && this.getPosicion().getFila() == 4) || (direccion == Direccion.IZQUIERDA && this.getPosicion().getFila() == 0))) {
             super.mover(direccion);

@@ -6,7 +6,7 @@ import modelo.util.RandomAcotado;
 public class Simple extends Ventana {
 	private boolean tarta = false;
     private Obstaculo obstaculo;
-    
+
     /*
      * Constructor de la ventana simple
      * @param tarta : Tarta puesta por un nicelander
@@ -19,21 +19,21 @@ public class Simple extends Ventana {
         this.setearPaneles(2);
     }
 
-	public boolean getTarta(){
+	private boolean getTarta(){
 		return this.tarta;
 	}
 
-	public void setTarta(boolean tarta){
+	private void setTarta(boolean tarta){
 		this.tarta = tarta;
 	}
-    
+
     /*
      * @Override
      */
     protected boolean pasarHabilitado(Direccion direccion){
         return this.obstaculo.puedoPasar(direccion);
     }
-    
+
     /*
      * Las ventanas simples tiene 2 paneles, entonces tenemos
      * que seguir arreglando hasta llegar a 2*2 = 4 martillazos
@@ -51,10 +51,10 @@ public class Simple extends Ventana {
      * no hay una tarta actualmente
      * @return boolean True si el nicelander puede poner una tarta
      */
-	protected boolean sePuedePonerTarta(){
+	public boolean sePuedePonerTarta(){
 		return paneles[0].estaRoto() && !tarta;
 	}
-    
+
     /*
      * Vetanas simples puede tener un solo obstaculo a la vez, este metodo setea
      * a que sea Maceta, Moldura u Obstaculo. Si es Obstaculo entonces pasarHabilitado()
@@ -71,4 +71,10 @@ public class Simple extends Ventana {
                     break;
         }
     }
+
+	public void ponerTarta () {
+		if (this.getTarta()==false){ // Evita superposición de tartas
+			this.setTarta(true);
+		}
+	}
 }

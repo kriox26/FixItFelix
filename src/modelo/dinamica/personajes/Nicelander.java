@@ -3,7 +3,7 @@ package modelo.dinamica.personajes;
 import modelo.niceland.*;
 import modelo.dinamica.*;
 
-public class Nicelander { /*
+public class Nicelander {
 	private boolean tieneTarta;
 	private boolean apareciendo;
 	private Posicion posicion;
@@ -40,11 +40,9 @@ public class Nicelander { /*
 		this.apareciendo = false;
 	}
 
-	private boolean tartaOK () {
-		return true;
+	public void servirTarta (Simple window) {
+		if (window.sePuedePonerTarta()) {
+			window.ponerTarta();
+		}
 	}
-
-	public void ponerTarta () {
-		
-	} */
 }

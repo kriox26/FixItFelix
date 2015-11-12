@@ -1,5 +1,6 @@
 package modelo.dinamica.objetos;
 
+import modelo.util.RandomAcotado;
 import modelo.niceland.*;
 import modelo.dinamica.*;
 
@@ -45,4 +46,15 @@ public class Nicelander extends Objeto{
 			window.ponerTarta();
 		}
 	}
+    
+    public void actualizar(){
+        if (!this.getApareciendo()) {
+            RandomAcotado rand = new RandomAcotado(0,1);
+            switch (rand.getvalor()) {
+                case 0: this.setApareciendo(true);
+                        break;
+                default: break;
+            }
+        }
+    }
 }

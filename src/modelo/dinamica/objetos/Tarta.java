@@ -12,7 +12,7 @@ public class Tarta extends Objeto {
     }
     
     public void setDevorada(boolean devorada){
-        this.devorada = devorada
+        this.devorada = devorada;
     }
     
 }

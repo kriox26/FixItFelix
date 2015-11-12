@@ -4,8 +4,10 @@ package modelo.main;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /* Imports de clases relacionadas al proyecto */
 import modelo.dinamica.Dinamico;
+import modelo.dinamica.objetos.Objeto;
 import modelo.dinamica.personajes.*;
 import modelo.niceland.*;
 
@@ -13,7 +15,7 @@ public class Main {
     private boolean jugando;
     public Desarrollo dvp;
     public Niceland niceland;
-    private List<Dinamico> collecionDeObjetos = new ArrayList<Dinamico>();
+    private List<Objeto> collecionDeObjetos = new ArrayList<Objeto>();
 
     public Main(boolean jugando, int nivel){
         this.jugando = jugando;
@@ -43,8 +45,25 @@ public class Main {
         actualizarObjetos(); // Actualiza la collecion de objectos lanzados
     }
     
+    /*
+     * Se actualiza la collecion de objetos que se mantiene, esta coleccion tiene
+     * los ladrillos lanzados, tartas, palomas y nicelanders. Ralph y felix se
+     * actualizan por separado, ya que dependen directamente de la interaccion
+     * del jugador con el juego.
+     */
     private void actualizarObjetos(){
-        
+        for (Objeto obj: collecionDeObjetos) {
+            obj.actualizar();
+        }
+    }
+    
+    /*
+     * Se ejecuta despues de jugar el turno y actualizar los objetos. Se fija que
+     * Felix aun tenga vidas, y que todavia no haya llegado al fin del edificio.
+     * @return boolean: True si el juego termino, false caso contrario
+     */
+    private boolean gameOver(){
+        return false;
     }
 
     /*

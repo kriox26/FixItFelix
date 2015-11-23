@@ -43,6 +43,7 @@ public class MainMenu extends JFrame{
 
 		highscores.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
+				setVisible(false);
 				TopScores tps = new TopScores();
 			}
 		});

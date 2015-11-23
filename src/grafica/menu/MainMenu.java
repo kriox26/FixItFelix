@@ -9,7 +9,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class MainMenu extends JFrame{
-	private String imgName = "MainMenu.png";
+	private String imgPath = "src/grafica/imagenes/";
+	private String backgroundImage = imgPath + "MainMenu.png";
 	private BufferedImage img;
 	private Button instrucciones, play, highscores; 
 	
@@ -23,22 +24,18 @@ public class MainMenu extends JFrame{
 		highscores = new Button("Highscores");
 		add(highscores); add(play);
 		add(instrucciones);
-		/*Cargo la Imagen de esta forma. Se puede hacer desde entrada salida que
-		 *creo que seria mucho mejor de esa forma, pero por ahora esto.
-		 */
-		URL imgURL = getClass().getClassLoader().getResource(imgName);
-		if (imgURL == null)
-			System.err.println("No se encuentra el archivo"+imgName);
-		else {
-			try{
-				img= ImageIO.read(imgURL);
-			}
-			catch (IOException ex){
-				ex.printStackTrace();
-			}
+
+		try{
+			File image = new File(backgroundImage);
+			img = ImageIO.read(image);
 		}
+		catch (IOException ex){
+			ex.printStackTrace();
+        }
+
+
 		/*EL titulo de la Ventana. Creo que igual deberia tener "Fix It Felix".
-		 *El tamaño de la ventana ó Frame esta justo para la imagen de fondo.
+		 *El tamaï¿½o de la ventana ï¿½ Frame esta justo para la imagen de fondo.
 		 */
 		setTitle("MainMenu");
 		setSize(919,720);

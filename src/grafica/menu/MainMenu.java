@@ -3,7 +3,10 @@ import java.awt.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
 import java.net.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +27,25 @@ public class MainMenu extends JFrame{
 		highscores = new Button("Highscores");
 		add(highscores); add(play);
 		add(instrucciones);
+		/*
+		 * Actualmente, el flow entre ventanas es el siguiente:
+		 * 		- Apreto boton por ejemplo "Instrucciones"
+		 * 		- Se desabilita la visibilidad de la pantalla actual
+		 * 		- Se crea la nueva pantalla y habilita la visibilidad
+		 * Hay que preguntar si hay una mejor manera de hacerlo, por ahi reemplazando contenidos?
+		 */
+		instrucciones.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
+				setVisible(false);
+				Instrucciones inst = new Instrucciones();
+			}
+		});
 
+		highscores.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
+				TopScores tps = new TopScores();
+			}
+		});
 		try{
 			File image = new File(backgroundImage);
 			img = ImageIO.read(image);

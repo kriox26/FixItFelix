@@ -1,4 +1,5 @@
 package grafica.menu;
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -11,22 +12,28 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class MainMenu extends JFrame{
 	private String imgPath = "src/grafica/imagenes/";
 	private String backgroundImage = imgPath + "MainMenu.png";
 	private BufferedImage img;
 	private JButton instrucciones, play, highscores;
-	private ImageIcon playBoton = new ImageIcon("src/Play.png");
-	private ImageIcon highscoresBoton= new ImageIcon("src/HighScores.png");
-	private ImageIcon instruccionesBoton= new ImageIcon("src/Instrucciones.png");
+	private ImageIcon playBoton = new ImageIcon(imgPath + "Play.png");
+	private ImageIcon highscoresBoton= new ImageIcon(imgPath + "HighScores.png");
+	private ImageIcon instruccionesBoton= new ImageIcon(imgPath + "Instrucciones.png");
 	
 	public MainMenu(){
-		/*Menu principal que seria lo pripero que aparece al lanzar la aplicacion.
+		/*Menu principal que seria lo primero que aparece al lanzar la aplicacion.
 		 *Primero Agrego los botones al menu principal.
 		 */
-		setLayout(new FlowLayout(FlowLayout.CENTER, 10, 550));
+        File image = new File(backgroundImage);
+
+		setLayout(new BorderLayout());
+		setContentPane(new JLabel(new ImageIcon(image.getAbsolutePath())));
+		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 550));
 		configurarBotones();
+
 		/*
 		 * Actualmente, el flow entre ventanas es el siguiente:
 		 * 		- Apreto boton por ejemplo "Instrucciones"
@@ -43,16 +50,10 @@ public class MainMenu extends JFrame{
 
 		highscores.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
+				setVisible(false);
 				TopScores tps = new TopScores();
 			}
 		});
-		try{
-			File image = new File(backgroundImage);
-			img = ImageIO.read(image);
-		}
-		catch (IOException ex){
-			ex.printStackTrace();
-        }
 
 
 		/*EL titulo de la Ventana. Creo que igual deberia tener "Fix It Felix".
@@ -61,13 +62,8 @@ public class MainMenu extends JFrame{
 		setTitle("MainMenu");
 		setSize(919,720);
 		setVisible(true);
-		dibujar();
 	}
 	
-	public void dibujar (){
-		Graphics gr = img.getGraphics();
-		this.getGraphics().drawImage(img, 0, 0, null);
-	}
 	private void configurarBotones(){
 		instrucciones = new JButton();
 		play = new JButton();
@@ -78,15 +74,10 @@ public class MainMenu extends JFrame{
 		highscores.setBorder(null);
 		play.setBorder(null);
 		instrucciones.setBorder(null);
-		add(highscores); add(play);
-		add(instrucciones);
+		add(highscores, BorderLayout.EAST); add(play, BorderLayout.CENTER);
+		add(instrucciones, BorderLayout.WEST);
 	}
 	
-	@Override
-	public void paint(Graphics g) {
-		super.paintComponents(g);
-		dibujar();
-	}
 	public static void main (String[] args){
 		MainMenu pruea = new MainMenu();
 	}

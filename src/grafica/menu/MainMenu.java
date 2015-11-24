@@ -1,32 +1,32 @@
 package grafica.menu;
-import java.awt.*;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import java.net.*;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 public class MainMenu extends JFrame{
 	private String imgPath = "src/grafica/imagenes/";
 	private String backgroundImage = imgPath + "MainMenu.png";
 	private BufferedImage img;
-	private Button instrucciones, play, highscores; 
+	private JButton instrucciones, play, highscores;
+	private ImageIcon playBoton = new ImageIcon("src/Play.png");
+	private ImageIcon highscoresBoton= new ImageIcon("src/HighScores.png");
+	private ImageIcon instruccionesBoton= new ImageIcon("src/Instrucciones.png");
 	
 	public MainMenu(){
 		/*Menu principal que seria lo pripero que aparece al lanzar la aplicacion.
 		 *Primero Agrego los botones al menu principal.
 		 */
-		setLayout(new FlowLayout(FlowLayout.CENTER, 100, 550));
-		instrucciones = new Button("Instrucciones");
-		play = new Button("Play");
-		highscores = new Button("Highscores");
-		add(highscores); add(play);
-		add(instrucciones);
+		setLayout(new FlowLayout(FlowLayout.CENTER, 10, 550));
+		configurarBotones();
 		/*
 		 * Actualmente, el flow entre ventanas es el siguiente:
 		 * 		- Apreto boton por ejemplo "Instrucciones"
@@ -67,6 +67,19 @@ public class MainMenu extends JFrame{
 	public void dibujar (){
 		Graphics gr = img.getGraphics();
 		this.getGraphics().drawImage(img, 0, 0, null);
+	}
+	private void configurarBotones(){
+		instrucciones = new JButton();
+		play = new JButton();
+		highscores = new JButton();
+		play.setIcon(playBoton);
+		highscores.setIcon(highscoresBoton);
+		instrucciones.setIcon(instruccionesBoton);
+		highscores.setBorder(null);
+		play.setBorder(null);
+		instrucciones.setBorder(null);
+		add(highscores); add(play);
+		add(instrucciones);
 	}
 	
 	@Override

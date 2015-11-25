@@ -1,14 +1,10 @@
 package grafica.menu;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,7 +13,6 @@ import javax.swing.JLabel;
 public class MainMenu extends JFrame{
 	private String imgPath = "src/grafica/imagenes/";
 	private String backgroundImage = imgPath + "MainMenu.png";
-	private BufferedImage img;
 	private JButton instrucciones, play, highscores;
 	private ImageIcon playBoton = new ImageIcon(imgPath + "Play.png");
 	private ImageIcon highscoresBoton= new ImageIcon(imgPath + "HighScores.png");

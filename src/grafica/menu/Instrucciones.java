@@ -20,7 +20,6 @@ public class Instrucciones extends JFrame{
 
 	public Instrucciones(){
 		setLayout(new BorderLayout());
-//		setLayout(new FlowLayout(FlowLayout.CENTER, 100, 550));
 
         File image = new File(backgroundImage);
 
@@ -40,7 +39,6 @@ public class Instrucciones extends JFrame{
 			}
 		});
 
-//		setLayout(new FlowLayout(FlowLayout.CENTER, 100, 550));
 		setTitle("Instrucciones de Juego");
 		setSize(919, 720);
 		setVisible(true);

@@ -6,9 +6,7 @@ package modelo.direcciones;
  * un tipo enumerativo que contenga derecha, izquierda, arriba, abajo
  * y nulidad de dirección por si acaso.
  *
- *
- * @author  Santiago Marrone
- * @version 1.0
+ * * @version 1.0
  * Para comprender el sentido de los parámetros:
  * @see modelo.dinamica.Dinamico#mover
  *

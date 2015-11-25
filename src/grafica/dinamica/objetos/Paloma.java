@@ -3,10 +3,11 @@ package grafica.dinamica.objetos;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.Timer;
-import modelo.direcciones;
 
 import javax.imageio.ImageIO;
+import javax.swing.Timer;
+
+import modelo.direcciones.Direccion;
 
 public class Paloma extends GameObj{
   private String imgPath = "src/grafica/imagenes/pajaro";

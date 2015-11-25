@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
-
 import modelo.direcciones.Direccion;
 
 public class Paloma extends GameObj{

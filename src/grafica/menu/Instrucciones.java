@@ -15,7 +15,7 @@ public class Instrucciones extends JFrame{
 	private JButton goBack;
 	private String imgPath = "src/grafica/imagenes/";
 	private String backgroundImage = imgPath + "guia.jpg";
-	private ImageIcon goBackIcon = new ImageIcon(imgPath + "back_arrow_blue.png");
+	private ImageIcon goBackIcon = new ImageIcon("src/grafica/imagenes/Menu.png");
 
 
 	public Instrucciones(){
@@ -26,7 +26,7 @@ public class Instrucciones extends JFrame{
 
 		setContentPane(new JLabel(new ImageIcon(image.getAbsolutePath())));
 
-		setLayout(new FlowLayout(FlowLayout.CENTER, 0, 10));
+		setLayout(new FlowLayout(FlowLayout.LEFT, 20, 620));
 
 		goBack = new JButton();
 		goBack.setIcon(goBackIcon);

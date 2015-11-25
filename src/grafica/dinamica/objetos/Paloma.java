@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 
 public class Paloma extends GameObj{
   private String imgPath = "src/grafica/imagenes/pajaro";
-	private static BufferedImage izqAA, izqAB, derAA, derAB;
+	private BufferedImage izqAA, izqAB, derAA, derAB;
   // izq o der indican dirección de vuelo
   // AA: ala alta + AB: ala baja
   private int DELAY = 2;

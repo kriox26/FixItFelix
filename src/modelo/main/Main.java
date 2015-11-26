@@ -22,7 +22,7 @@ public class Main {
     public Niceland niceland;
     private List<Objeto> collecionDeObjetos = new ArrayList<Objeto>();
 
-    public Main(boolean jugando, int nivel){
+    public Main(boolean jugando){
         this.jugando = jugando;
     }
 
@@ -77,7 +77,9 @@ public class Main {
      * ralph tirando ladrillos, etc.
      * @params int nivel: El nivel elegido para el juego actual.
      */
-    public void jugar(int nivel){
+    public void jugar(){
+    	int nivel = 1;
+    	this.jugando=true;
         this.inicializar(nivel);
         while (!gameOver()) {
             jugarUnTurno();

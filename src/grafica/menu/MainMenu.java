@@ -3,8 +3,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -49,6 +49,13 @@ public class MainMenu extends JFrame{
 				TopScores tps = new TopScores();
 			}
 		});
+		
+		play.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
+				setVisible(false);
+				Play jugar = new Play(); //En esta instancia se crearia el juego y se empezaria a jugar.
+			}
+		});
 
 
 		/*EL titulo de la Ventana. Creo que igual deberia tener "Fix It Felix".
@@ -73,9 +80,9 @@ public class MainMenu extends JFrame{
 		add(instrucciones, BorderLayout.WEST);
 	}
 	
-	public static void main (String[] args){
-		MainMenu pruea = new MainMenu();
-	}
+	//public static void main (String[] args){
+	//	MainMenu pruea = new MainMenu();
+	//}
 	
 
 }

@@ -9,6 +9,10 @@ import modelo.dinamica.Posicion;
 public class Grua extends Objeto {
     private Direccion direccion;
 
+    public Grua (Posicion position) {
+      this.setPosicion(position);
+    }
+
     public Direccion getDireccion(){
         return this.direccion;
     }

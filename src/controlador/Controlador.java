@@ -1,15 +1,15 @@
 package controlador;
 
-import model.Modelo;
+import modelo.main.Main;
 import view.Grafica;
 
 public class Controlador {
 	private Grafica view;
-	private Modelo model;
+	private Main model;
 	
 	public Controlador(){}
 	
-	public Controlador(Grafica view, Modelo model){
+	public Controlador(Grafica view, Main model){
 		this.view=view;
 		this.model=model;
 	}
@@ -21,7 +21,7 @@ public class Controlador {
 	 */
 	public static void main (String[] args){
 		Controlador Ctrl = new Controlador();
-		Ctrl.model = new Modelo();
+		Ctrl.model = new Main(false);
 		Ctrl.view = new Grafica();
 	}
 }

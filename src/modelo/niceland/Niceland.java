@@ -24,11 +24,9 @@ public class Niceland {
         secciones = new Seccion[total_secciones];
         secciones[0] = new Seccion("Inferior", true, false);
         secciones[total_secciones - 1] = new Seccion("Superior", false, true);
-<<<<<<< Updated upstream
-        for (int i = 1; i < (total_secciones - 1); i++) {
-=======
+
         for (int i = 1; i < (total_secciones -1); i++) {
->>>>>>> Stashed changes
+
             secciones[i] = new Seccion("Media", false, false);
         }
 	}

@@ -24,7 +24,7 @@ public class Controlador {
 		this.model= model;
 
 		// Cargamos los eventos de la vista MainMenu
-		view.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter());
+		MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter());
 	}
 
 	public Grafica getView(){
@@ -93,8 +93,9 @@ public class Controlador {
 	}
 	class ManejaTopScoresAdapter extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){
-			view.turnOff();
+			MENU.turnOff();
 			view = new TopScores();
+			view.addBackMenu(new VolverAMenu());
 		}
 	}
 

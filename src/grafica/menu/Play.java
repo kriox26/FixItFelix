@@ -23,7 +23,6 @@ public class Play extends Grafica {
 	public Play(Main main){
 		File imgFondo = new File(backgroundImage);
 		JLabel fondo = new JLabel(new ImageIcon(imgFondo.getAbsolutePath()));
-		JButton goBack = new JButton("menu");
 		add(goBack);
 		setContentPane(fondo);
 		setSize(919, 720);

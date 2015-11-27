@@ -48,24 +48,12 @@ public class MainMenu extends JFrame {
 		play.setBorder(null);
 		instrucciones.setBorder(null);
 		add(highscores, BorderLayout.EAST); add(play, BorderLayout.CENTER);
-		add(instrucciones, BorderLayout.WEST);
-	
-	
-	//public static void main (String[] args){
-	//	MainMenu pruea = new MainMenu();
-	//}
-	instrucciones.addMouseListener(new MouseAdapter(){
-		public void mouseClicked(MouseEvent arg0){
-			setVisible(false);
-			Instrucciones in = new Instrucciones();
-		}
-	});
-	
-		
+		add(instrucciones, BorderLayout.WEST);		
 	}
-	public void addMouseEvents(MouseAdapter mouseAdap, MouseAdapter mouseAdap2){
+	public void addMouseEvents(MouseAdapter mouseAdap, MouseAdapter mouseAdap2, MouseAdapter mouseAdap3){
 		play.addMouseListener(mouseAdap);
 		highscores.addMouseListener(mouseAdap2);
+		instrucciones.addMouseListener(mouseAdap3);
 	}
 
 	public void turnOn(){

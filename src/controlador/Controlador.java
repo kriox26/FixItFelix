@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import grafica.menu.Grafica;
+import grafica.menu.Instrucciones;
 import grafica.menu.MainMenu;
 import grafica.menu.Play;
 import grafica.menu.TopScores;
@@ -24,7 +25,7 @@ public class Controlador {
 		this.model= model;
 
 		// Cargamos los eventos de la vista MainMenu
-		MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter());
+		MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(), new ManejaInstrucciones());
 	}
 
 	public Grafica getView(){
@@ -95,6 +96,13 @@ public class Controlador {
 		public void mouseClicked(MouseEvent e){
 			MENU.turnOff();
 			view = new TopScores();
+			view.addBackMenu(new VolverAMenu());
+		}
+	}
+	class ManejaInstrucciones extends MouseAdapter{
+		public void mouseClicked(MouseEvent e){
+			MENU.turnOff();
+			view = new Instrucciones();
 			view.addBackMenu(new VolverAMenu());
 		}
 	}

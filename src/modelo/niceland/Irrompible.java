@@ -9,7 +9,6 @@ import modelo.util.RandomAcotado;
  *              - 2 paneles los cuales son irrompibles
  *              - Estar abierta(con las persianas hacia algun lado) o cerrada.
  *
- * @author  Matias Pan
  * @see modelo.niceland.Ventana
  * @see modelo.niceland.Persiana
  * @see modelo.niceland.Panel
@@ -30,7 +29,7 @@ public class Irrompible extends Ventana {
 	protected boolean pasarHabilitado(Direccion direccion){
         return this.obstaculo.puedoPasar(direccion);
 	}
-    
+
     /*
      * Setea de manera random las persianas, los casos son los siguientes:
      *      hay_persiana es par y para_donde_va = 0 -> Persiana que traba la izquierda

@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 import modelo.util.RandomAcotado;
 
 public class Nicelander extendes GGO {
-  private BufferedImage standing;
+  private BufferedImage standing, appearing;
   private int tipo;
   private static Integer min = 1;
   private static Integer max = 5;
@@ -32,6 +32,8 @@ public class Nicelander extendes GGO {
   public void uploadImages(){
     try {
         if (standing == null) {
-            aloneRunL1 = this.up("n-" + this.getTipo().toString() + "-standing.png");
+            standing = this.up("n-" + this.getTipo().toString() + "-standing.png");
+            appearing = this.up(("n-" + this.getTipo().toString() + "-appearing.png"))
+
         }
 }

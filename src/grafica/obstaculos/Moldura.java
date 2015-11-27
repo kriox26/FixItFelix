@@ -3,26 +3,25 @@ package grafica.obstaculos;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import modelo.direcciones;
+import javax.imageio.ImageIO;
 import grafica.dinamica.GGO;
 
 
-import javax.imageio.ImageIO;
+public class Moldura extends GGO {
+  private BufferedImage imagen;
 
-public class Maceta extends GGO {;
-	private BufferedImage imagen;
-
-  public Maceta(int xParam, int yParam) {
-    this.setX(xParam);
-    this.setY(yParam);
+  public Moldura (int posX, int posY) {
+    this.setX(posX);
+    this.setY(posY);
     this.setIP("src/grafica/imagenes/obstaculos/");
-    this.uploadImage
+    this.uploadImage();
   }
 
-  private void uploadImage () {
+  public uploadImage () {
     try {
       if (imagen == null) {
-          imagen = this.up("macetero.png"));
+          imagen = this.up("slice22_22.png"));
+      }
     } catch (IOException e) {
       System.out.println("Internal Error:" + e.getMessage());
     }

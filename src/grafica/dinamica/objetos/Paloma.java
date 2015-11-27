@@ -17,7 +17,7 @@ public class Paloma extends GGO {
     private int DELAY = 2;
     private Timer timer;
 
-    public Paloma(double altura, Direccion direccion) {
+    public Paloma(int altura, Direccion direccion) {
         this.timer = new Timer(DELAY, this);
         this.timer.start();
         this.setIP("src/grafica/imagenes/pajaro/");

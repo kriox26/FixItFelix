@@ -20,7 +20,7 @@ public class Ladrillo extends GGO {
     initPaloma();
   }
 
-  private void initLadrillo(double paramHorizontal, int seccion) {
+  private void initLadrillo(int paramHorizontal, int seccion) {
     this.timer = new Timer(DELAY, this);
     this.timer.start();
     this.setIP("src/grafica/imagenes/rocas/")

@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import grafica.dinamica.GGO;
+
 
 public class Ralph extends GGO {
   private BufferedImage hitOnWay1, hitOnWay2, leftHitFly, rightHitFly, standing, leftHit, rightHit, leftHitM, rightHitM,rightWalkingA, rightWalkingB, leftWalking;
@@ -21,7 +23,7 @@ public class Ralph extends GGO {
    *
    */
 
-  public Ralph (double xParam, double yParam) {
+  public Ralph (int xParam, int yParam) {
     this.setX(xParam);
     this.setY(yParam);
     this.setIP("src/grafica/imagenes/ralph/");

@@ -14,7 +14,7 @@ public class Tarta extends GGO {
   // AA: ala alta + AB: ala baja
   private Timer timer;
 
-  public Tarta (double x, double y) {
+  public Tarta (int x, int y) {
     this.timer = new Timer(DELAY, this);
     this.timer.start();
     this.setIP("src/grafica/imagenes/pastel/");

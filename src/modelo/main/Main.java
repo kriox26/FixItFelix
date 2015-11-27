@@ -25,7 +25,7 @@ public class Main {
 
     public Main(boolean jugando, int nivel){
         this.jugando = jugando;
-		this.nivel = nivel
+		this.nivel = nivel;
     }
 
     public boolean getJugando(){

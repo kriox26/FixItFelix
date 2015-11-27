@@ -1,20 +1,15 @@
 package controlador;
 
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
-
-import modelo.direcciones.Direccion;
-
-import grafica.menu.*;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
+import grafica.menu.Grafica;
+import grafica.menu.MainMenu;
+import grafica.menu.Play;
+import modelo.direcciones.Direccion;
 import modelo.main.Main;
 
 public class Controlador {
@@ -25,7 +20,7 @@ public class Controlador {
 
 	public Controlador(Grafica view, Main model){
 		this.view = view;
-		this.model=model;
+		this.model= model;
 
 		// Cargamos los eventos de la vista MainMenu
 		view.addMouseEvents(new ManejaPlayAdapter());
@@ -55,16 +50,27 @@ public class Controlador {
 
 	class ManejaEventosTeclado extends KeyAdapter{
 		public void keyPressed(KeyEvent e){
-			int ckey = e.getKeyCode();
 			int movek = e.getKeyCode();
 			//Point P = Posicion de Imagen de Felix a usar creo
-			if (movek == 38){		//Arriba
+			switch(movek){
+			case KeyEvent.VK_UP:		//Arriba
 				model.getDvp().getFelix().mover(Direccion.ARRIBA);
 				//P.setLocation(new Point((int) p.getX()),new Point((int) p.getY()+10);
-			}
-			if (movek == 40){		//Abajo
+				break;
+			case KeyEvent.VK_DOWN:		//Abajo
 					model.getDvp().getFelix().mover(Direccion.ABAJO);
 					//P.setLocation(new Point((int) p.getX()),new Point((int) p.getY()-10);
+					break;
+			case KeyEvent.VK_LEFT: //Izquierda
+				model.getDvp().getFelix().mover(Direccion.IZQUIERDA);
+				//P.setLocation(new Point((int) p.getX()-10),new Point((int) p.getY());
+				break;
+			case KeyEvent.VK_RIGHT: //Derecha
+				model.getDvp().getFelix().mover(Direccion.DERECHA);
+				//P.setLocation(new Point((int) p.getX()+10),new Point((int) p.getY());
+				break;
+			default: 
+				break;
 			}
 		}
 	}

@@ -20,6 +20,9 @@ public class TopScores extends Grafica {
         File image = new File(backgroundImage);
 		setContentPane(new JLabel(new ImageIcon(image.getAbsolutePath())));
 		setLayout(new FlowLayout(FlowLayout.LEFT, 20, 620));
+		goBack.setIcon(goBackIcon);
+		goBack.setBorder(null);
+		goBack.setContentAreaFilled(false);
 		add(goBack);
 		setTitle("Top Scores");
 		setSize(919, 720);

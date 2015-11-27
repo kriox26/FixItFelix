@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class Grafica extends JFrame {
-	protected JButton goBack = new JButton("menu");
+	protected JButton goBack = new JButton();
 
 	public void addMouseEvents(MouseAdapter e){
 		

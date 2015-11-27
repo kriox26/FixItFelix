@@ -2,6 +2,7 @@ package grafica.menu;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 
 import javax.swing.ImageIcon;
@@ -48,12 +49,20 @@ public class MainMenu extends JFrame {
 		instrucciones.setBorder(null);
 		add(highscores, BorderLayout.EAST); add(play, BorderLayout.CENTER);
 		add(instrucciones, BorderLayout.WEST);
-	}
+	
 	
 	//public static void main (String[] args){
 	//	MainMenu pruea = new MainMenu();
 	//}
+	instrucciones.addMouseListener(new MouseAdapter(){
+		public void mouseClicked(MouseEvent arg0){
+			setVisible(false);
+			Instrucciones in = new Instrucciones();
+		}
+	});
 	
+		
+	}
 	public void addMouseEvents(MouseAdapter mouseAdap, MouseAdapter mouseAdap2){
 		play.addMouseListener(mouseAdap);
 		highscores.addMouseListener(mouseAdap2);

@@ -30,6 +30,7 @@ public class Instrucciones extends JFrame{
 		goBack = new JButton();
 		goBack.setIcon(goBackIcon);
 		goBack.setBorder(null);
+		goBack.setContentAreaFilled(false);
 		add(goBack);
 
 		goBack.addMouseListener(new MouseAdapter(){

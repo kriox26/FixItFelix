@@ -34,7 +34,7 @@ public class Play extends Grafica {
 		setLayout(new FlowLayout());
 		add(goBack);
 //		setContentPane(fondo);
-		setSize(919, 720);
+		setSize(800, 1028);
 		setVisible(true);
 		cargarNiceland();
 		try{
@@ -49,8 +49,8 @@ public class Play extends Grafica {
 	}
 
 	public void cargarNiceland(){
-		BufferedImage img = secciones.get("edificio_150_seccion1.png");
-		this.getGraphics().drawImage(img, horEdificio, verEdificio, null);
+		BufferedImage img = secciones.get("edificio_150_copy.png");
+		this.getGraphics().drawImage(img, horEdificio, 0, null);
 	}
 
 	public void paintComponents(Graphics g){

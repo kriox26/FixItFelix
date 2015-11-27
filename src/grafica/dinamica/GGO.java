@@ -4,11 +4,11 @@ public class GGO {
   private double x, y;
   private String imgPath;
 
-  public void setX (double xParam){
+  public void setX (int xParam){
     this.x = xParam;
   }
 
-  public void setY (double yParam){
+  public void setY (int yParam){
     this.y= yParam;
   }
 

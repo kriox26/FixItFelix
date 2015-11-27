@@ -5,27 +5,22 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.Timer;
 import modelo.direcciones;
-
+import grafica.dinamica.GGO;
 import javax.imageio.ImageIO;
 
-public class Tarta extends GameObj{
+public class Tarta extends GGO {
   private String imgPath = "src/grafica/imagenes/pastel/";
 	private BufferedImage tar1, tar2;
   // izq o der indican dirección de vuelo
   // AA: ala alta + AB: ala baja
   private Timer timer;
-  private double x, y;
 
-  public Tarta() {
-    initTarta();
-  }
-
-  private void initTarta(double x, double y) {
+  public Tarta (double x, double y) {
     this.timer = new Timer(DELAY, this);
     this.timer.start();
     this.uploadImages();
-    this.x = x;
-    this.y = y;
+    this.setX(x);
+    this.setY(y);
   }
 
   private void uploadImages () {

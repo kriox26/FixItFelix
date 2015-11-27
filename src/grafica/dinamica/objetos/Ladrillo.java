@@ -5,16 +5,17 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.Timer;
 import modelo.direcciones;
+import grafica.dinamica.GGO;
+
 
 import javax.imageio.ImageIO;
 
-public class Ladrillo extends GameObj{
+public class Ladrillo extends GGO {
   private String imgPath = "src/grafica/imagenes/rocas/";
 	private BufferedImage ladri1, ladri2;
   // izq o der indican dirección de vuelo
   // AA: ala alta + AB: ala baja
   private Timer timer;
-  private double x, y;
 
   public Ladrillo() {
     initPaloma();
@@ -24,8 +25,8 @@ public class Ladrillo extends GameObj{
     this.timer = new Timer(DELAY, this);
     this.timer.start();
     this.uploadImages();
-    this.x = paramHorizontal;
-    this.y = // calculado a partir de int seccion
+    this.setX(paramHorizontal);
+    this.setY(¡!)// calculado a partir de int seccion
   }
 
   private void uploadImages () {

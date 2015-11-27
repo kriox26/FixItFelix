@@ -7,33 +7,30 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 import modelo.direcciones.Direccion;
+import grafica.dinamica.GGO;
 
-public class Paloma extends GameObj{
+
+public class Paloma extends GGO {
     private String imgPath = "src/grafica/imagenes/pajaro";
     private BufferedImage izqAA, izqAB, derAA, derAB;
     // izq o der indican dirección de vuelo
     // AA: ala alta + AB: ala baja
     private int DELAY = 2;
     private Timer timer;
-    private double x, y;
-    
+
     public Paloma(double altura, Direccion direccion) {
-        
         this.timer = new Timer(DELAY, this);
         this.timer.start();
         this.uploadImages();
-        this.y=altura;
+        this.setY(altura);
         if (direccion == Direccion.IZQUIERDA) {
-            this.x = 4;
+            this.setX(¡!); // Comienza desde la derecha
         }
         else {
-            this.x=0;
+            this.setX(0); // Comienza desde la izquierda
         }
     }
-    
-    private void initPaloma(double altura, Direccion direccion) {
-    }
-    
+
     private void uploadImages () {
         try {
             if (izqAA == null) {
@@ -52,7 +49,7 @@ public class Paloma extends GameObj{
             System.out.println("Internal Error:" + e.getMessage());
         }
     }
-    
+
     /* Ejemplo de movimiento + visibilidad de misil que deberia adaptarse
     public void move () {
     x += MISSILE_SPEED;

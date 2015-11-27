@@ -5,28 +5,13 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import modelo.direcciones.Direccion;
+import grafica.dinamica.GGO;
 
-public class Grua extends GameObj{
+public class Grua extends GGO {
     private String imgPath = "src/grafica/imagenes/grua";
     private BufferedImage gruaHaciaI, gruaHaciaD; // I: izquierda D: derecha
-    private double x, y;
     private Direccion direccion;
 
-    private void setX (double xParam){
-      this.x = xParam;
-    }
-
-    private void setY (double yParam){
-      this.y= yParam;
-    }
-
-    private double getX () {
-      return this.x;
-    }
-
-    private double getY () {
-      return this.y;
-    }
 
     private void setDireccion (Direccion dir) {
       this.direccion = dir;

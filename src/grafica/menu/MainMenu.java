@@ -54,8 +54,9 @@ public class MainMenu extends JFrame {
 	//	MainMenu pruea = new MainMenu();
 	//}
 	
-	public void addMouseEvents(MouseAdapter mouseAdap){
+	public void addMouseEvents(MouseAdapter mouseAdap, MouseAdapter mouseAdap2){
 		play.addMouseListener(mouseAdap);
+		highscores.addMouseListener(mouseAdap2);
 	}
 
 	public void turnOn(){

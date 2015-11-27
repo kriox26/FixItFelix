@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import grafica.menu.Grafica;
 import grafica.menu.MainMenu;
 import grafica.menu.Play;
+import grafica.menu.TopScores;
 import modelo.direcciones.Direccion;
 import modelo.main.Main;
 
@@ -23,7 +24,7 @@ public class Controlador {
 		this.model= model;
 
 		// Cargamos los eventos de la vista MainMenu
-		MENU.addMouseEvents(new ManejaPlayAdapter());
+		view.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter());
 	}
 
 	public Grafica getView(){
@@ -88,6 +89,12 @@ public class Controlador {
 		public void mouseClicked(MouseEvent e){
 			view.turnOff();
 			MENU.turnOn();
+		}
+	}
+	class ManejaTopScoresAdapter extends MouseAdapter{
+		public void mouseClicked(MouseEvent e){
+			view.turnOff();
+			view = new TopScores();
 		}
 	}
 

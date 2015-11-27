@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Ralph extends GGO {
-  private BufferedImage standing, leftHit, rightHit, leftHitM, rightHitM,rightWalkingA, rightWalkingB, leftWalking;
+  private BufferedImage hitOnWay1, hitOnWay2, leftHitFly, rightHitFly, standing, leftHit, rightHit, leftHitM, rightHitM,rightWalkingA, rightWalkingB, leftWalking;
 
   public Ralph (double xParam, double yParam) {
     this.setX(xParam);
@@ -41,6 +41,19 @@ public class Ralph extends GGO {
           if (rightHitM == null) {
               rightHitM = this.up("u_rightHit_mid.png");
           }
+          if (leftHitFly == null) {
+              leftHitFly = this.up("u_leftHit_fly.png");
+          }
+          if (rightHitFly == null) {
+              rightHitFly = this.up("u_rightHit_fly.png");
+          }
+          if (hitOnWay1 == null) {
+              hitOnWay1 = this.up("u_hitOnWay_1.png");
+          }
+          if (hitOnWay2 == null) {
+              hitOnWay2 = this.up("u_hitOnWay_2.png");
+          }
+
       } catch (IOException e) {
           System.out.println("Internal Error:" + e.getMessage());
       }

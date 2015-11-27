@@ -1,9 +1,12 @@
 package grafica.menu;
 
+import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
+import java.awt.event.MouseAdapter;
 import java.io.File;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import modelo.main.Main;
@@ -20,8 +23,11 @@ public class Play extends Grafica {
 	public Play(Main main){
 		File imgFondo = new File(backgroundImage);
 		JLabel fondo = new JLabel(new ImageIcon(imgFondo.getAbsolutePath()));
+		JButton goBack = new JButton("menu");
+		add(goBack);
 		setContentPane(fondo);
 		setSize(919, 720);
+		cargarNiceland();
 		setVisible(true);
 	}
 
@@ -30,7 +36,12 @@ public class Play extends Grafica {
 		this.addKeyListener(keyadapter);
 	}
 
-	public JLabel getFondo(){
-		return this.fondo;
+	public void cargarNiceland(){
+//		this.getGraphics().drawImage(imgs.get("seccion1"), 20, 0, null);
 	}
+
+	public void paint(Graphics g){
+		super.paintComponents(g);
+	}
+
 }

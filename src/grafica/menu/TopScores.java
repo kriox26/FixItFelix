@@ -20,25 +20,9 @@ public class TopScores extends JFrame{
 
 	public TopScores(){
 		setLayout(new BorderLayout());
-
         File image = new File(backgroundImage);
-
 		setContentPane(new JLabel(new ImageIcon(image.getAbsolutePath())));
-
 		setLayout(new FlowLayout(FlowLayout.LEFT, 20, 620));
-
-		goBack = new JButton();
-		goBack.setIcon(goBackIcon);
-		goBack.setBorder(null);
-		add(goBack);
-
-		goBack.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent arg0){
-				setVisible(false);
-				MainMenu mn = new MainMenu();
-			}
-		});
-
 		add(goBack);
 		setTitle("Top Scores");
 		setSize(919, 720);

@@ -6,9 +6,10 @@ import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class MainMenu extends Grafica {
+public class MainMenu extends JFrame {
 	private String imgPath = "src/grafica/imagenes/";
 	private String backgroundImage = imgPath + "MainMenu.png";
 	private JButton instrucciones, play, highscores;
@@ -55,6 +56,14 @@ public class MainMenu extends Grafica {
 	
 	public void addMouseEvents(MouseAdapter mouseAdap){
 		play.addMouseListener(mouseAdap);
+	}
+
+	public void turnOn(){
+		setVisible(true);
+	}
+
+	public void turnOff(){
+		setVisible(false);
 	}
 
 }

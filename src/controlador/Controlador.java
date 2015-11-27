@@ -15,15 +15,15 @@ import modelo.main.Main;
 public class Controlador {
 	private Grafica view;
 	private Main model;
+	private static MainMenu MENU = new MainMenu();
 	
 	public Controlador(){}
 
-	public Controlador(Grafica view, Main model){
-		this.view = view;
+	public Controlador(Main model){
 		this.model= model;
 
 		// Cargamos los eventos de la vista MainMenu
-		view.addMouseEvents(new ManejaPlayAdapter());
+		MENU.addMouseEvents(new ManejaPlayAdapter());
 	}
 
 	public Grafica getView(){
@@ -45,7 +45,7 @@ public class Controlador {
 	 * que se puede relacionar de muchas formas y no se como empezar.
 	 */
 	public static void main (String[] args){
-		Controlador ctrl = new Controlador(new MainMenu(), new Main(false, 0));
+		Controlador ctrl = new Controlador(new Main(false, 0));
 	}
 
 	class ManejaEventosTeclado extends KeyAdapter{
@@ -77,9 +77,17 @@ public class Controlador {
 
 	class ManejaPlayAdapter extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){
-			view.turnOff();
+			MENU.turnOff();
 			view = new Play(model);
 			view.addKeyboardEvents(new ManejaEventosTeclado());
+			view.addBackMenu(new VolverAMenu());
+		}
+	}
+
+	class VolverAMenu extends MouseAdapter{
+		public void mouseClicked(MouseEvent e){
+			view.turnOff();
+			MENU.turnOn();
 		}
 	}
 

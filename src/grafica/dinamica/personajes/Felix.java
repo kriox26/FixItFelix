@@ -11,7 +11,7 @@ public class Felix extends GGO {
   public Felix (double xParam, double yParam) {
     this.setX(xParam);
     this.setY(yParam);
-    this.setIP("src/grafica/imagenes/Felix/");
+    this.setIP("src/grafica/imagenes/felix/");
     this.uploadImages();
   }
 

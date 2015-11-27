@@ -11,7 +11,7 @@ public class Ralph extends GGO {
   public Ralph (double xParam, double yParam) {
     this.setX(xParam);
     this.setY(yParam);
-    this.setIP("src/grafica/imagenes/Ralph/");
+    this.setIP("src/grafica/imagenes/ralph/");
     this.uploadImages();
   }
 

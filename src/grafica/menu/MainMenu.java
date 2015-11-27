@@ -2,15 +2,13 @@ package grafica.menu;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class MainMenu extends JFrame{
+public class MainMenu extends Grafica {
 	private String imgPath = "src/grafica/imagenes/";
 	private String backgroundImage = imgPath + "MainMenu.png";
 	private JButton instrucciones, play, highscores;
@@ -28,35 +26,6 @@ public class MainMenu extends JFrame{
 		setContentPane(new JLabel(new ImageIcon(image.getAbsolutePath())));
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 550));
 		configurarBotones();
-
-		/*
-		 * Actualmente, el flow entre ventanas es el siguiente:
-		 * 		- Apreto boton por ejemplo "Instrucciones"
-		 * 		- Se desabilita la visibilidad de la pantalla actual
-		 * 		- Se crea la nueva pantalla y habilita la visibilidad
-		 * Hay que preguntar si hay una mejor manera de hacerlo, por ahi reemplazando contenidos?
-		 */
-		instrucciones.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent arg0){
-				setVisible(false);
-				Instrucciones inst = new Instrucciones();
-			}
-		});
-
-		highscores.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent arg0){
-				setVisible(false);
-				TopScores tps = new TopScores();
-			}
-		});
-		
-		play.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent arg0){
-				setVisible(false);
-				Play jugar = new Play(); //En esta instancia se crearia el juego y se empezaria a jugar.
-			}
-		});
-
 
 		/*EL titulo de la Ventana. Creo que igual deberia tener "Fix It Felix".
 		 *El tama�o de la ventana � Frame esta justo para la imagen de fondo.
@@ -84,5 +53,8 @@ public class MainMenu extends JFrame{
 	//	MainMenu pruea = new MainMenu();
 	//}
 	
+	public void addMouseEvents(MouseAdapter mouseAdap){
+		play.addMouseListener(mouseAdap);
+	}
 
 }

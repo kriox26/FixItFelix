@@ -8,9 +8,9 @@ import modelo.direcciones.Direccion;
 import grafica.dinamica.GGO;
 
 public class Grua extends GGO {
-    private String imgPath = "src/grafica/imagenes/grua";
     private BufferedImage gruaHaciaI, gruaHaciaD; // I: izquierda D: derecha
     private Direccion direccion;
+
 
 
     private void setDireccion (Direccion dir) {
@@ -26,6 +26,7 @@ public class Grua extends GGO {
     }
 
     private void initGrua(double hParam, Direccion direccion) {
+      this.setIP("src/grafica/imagenes/grua/");
       this.uploadImages();
       this.setY(0); // La  grua siempre en el piso
       this.setX(hParam);
@@ -35,13 +36,15 @@ public class Grua extends GGO {
     private void uploadImages () {
         try {
             if (gruaHaciaI == null) {
-                gruaHaciaI = ImageIO.read(new File(imgPath + "¡!")); // Falta convertir a .png la imagen de la grua
+                gruaHaciaI = this.up("¡!")); // Falta convertir a .png la imagen de la grua
             }
             if (gruaHaciaD == null) {
-                gruaHaciaD = ImageIO.read(new File(imgPath + "¡!")); // Falta convertir a .png la imagen de la grua
+                gruaHaciaD = this.up("¡!")); // Falta convertir a .png la imagen de la grua
             }
         } catch (IOException e) {
             System.out.println("Internal Error:" + e.getMessage());
         }
     }
+
+
 }

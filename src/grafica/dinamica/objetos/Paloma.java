@@ -11,7 +11,6 @@ import grafica.dinamica.GGO;
 
 
 public class Paloma extends GGO {
-    private String imgPath = "src/grafica/imagenes/pajaro";
     private BufferedImage izqAA, izqAB, derAA, derAB;
     // izq o der indican dirección de vuelo
     // AA: ala alta + AB: ala baja
@@ -21,6 +20,7 @@ public class Paloma extends GGO {
     public Paloma(double altura, Direccion direccion) {
         this.timer = new Timer(DELAY, this);
         this.timer.start();
+        this.setIP("src/grafica/imagenes/pajaro/");
         this.uploadImages();
         this.setY(altura);
         if (direccion == Direccion.IZQUIERDA) {
@@ -34,16 +34,16 @@ public class Paloma extends GGO {
     private void uploadImages () {
         try {
             if (izqAA == null) {
-                izqAA = ImageIO.read(new File(imgPath + "slice41_41.png"));
+                izqAA = this.up("slice41_41.png"));
             }
             if (izqAB == null) {
-                izqAB = ImageIO.read(new File(imgPath + "slice61_61.png"));
+                izqAB = this.up("slice61_61.png"));
             }
             if (derAA == null) {
-                derAA = ImageIO.read(new File (imgPath + "slice08_08.png"));
+                derAA = this.up("slice08_08.png"));
             }
             if (derAB == null) {
-                derAB = ImageIO.read(new File(imgPath + "slice09_09.png"));
+                derAB = this.up("slice09_09.png"));
             }
         } catch (IOException e) {
             System.out.println("Internal Error:" + e.getMessage());

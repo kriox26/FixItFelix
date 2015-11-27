@@ -27,4 +27,8 @@ public class GGO {
   public void setIP (String ip) {
     this.imgPath = ip;
   }
+  
+  public BufferedImage up (String str) {
+    return ImageIO.read(new File(imgPath + str));
+  }
 }

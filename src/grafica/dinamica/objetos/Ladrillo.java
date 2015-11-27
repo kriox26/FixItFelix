@@ -32,10 +32,10 @@ public class Ladrillo extends GGO {
   private void uploadImages () {
     try {
       if (ladri1 == null) {
-          ladri1 = ImageIO.read(new File(imgPath + "slice11_11.png"));
+          ladri1 = this.up("slice11_11.png"));
       }
       if (ladri2 == null) {
-        ladri2 = ImageIO.read(new File(imgPath + "slice10_10.png"));
+        ladri2 = this.up("slice10_10.png"));
       }
     } catch (IOException e) {
       System.out.println("Internal Error:" + e.getMessage());

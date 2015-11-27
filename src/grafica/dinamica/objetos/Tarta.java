@@ -26,10 +26,10 @@ public class Tarta extends GGO {
   private void uploadImages () {
     try {
       if (tar1 == null) {
-          tar1 = ImageIO.read(new File(imgPath + "slice12_12.png"));
+          tar1 = this.up("slice12_12.png"));
       }
       if (tar1 == null) {
-        tar2 = ImageIO.read(new File(imgPath + "slice13_13.png"));
+        tar2 = this.up("slice13_13.png"));
       }
     } catch (IOException e) {
       System.out.println("Internal Error:" + e.getMessage());

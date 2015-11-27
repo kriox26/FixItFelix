@@ -1,5 +1,11 @@
 package grafica.dinamica;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 public class GGO {
   private double x, y;
   private String imgPath;
@@ -28,7 +34,7 @@ public class GGO {
     this.imgPath = ip;
   }
   
-  public BufferedImage up (String str) {
+  public BufferedImage up (String str) throws IOException {
     return ImageIO.read(new File(imgPath + str));
   }
 }

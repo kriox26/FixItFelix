@@ -8,6 +8,19 @@ import javax.imageio.ImageIO;
 public class Ralph extends GGO {
   private BufferedImage hitOnWay1, hitOnWay2, leftHitFly, rightHitFly, standing, leftHit, rightHit, leftHitM, rightHitM,rightWalkingA, rightWalkingB, leftWalking;
 
+  /*
+   * Para cada situacion hay un par de imagenes asignado.
+   * Las dos imagenes deben alternar entre si en la situacion asignada.
+   *
+   * hitOnWay1 & hitOnWay2 - se mueve por el edificio entre secciones rompiendo ventanas
+   * leftHitFly & rightHitFly - le pega al piso haciendo caer ladrillos con tanta furia que despega los pies del piso
+   * leftHitM & rightHitM - le pega al piso con pocas ganas
+   * leftHit & rightHit - le pega al piso haciendo caer ladrillos normalmente
+   * rightWalkingA & rightWalkingB - camina hacia la derecha
+   * standing - cuando Ralph esta parado
+   *
+   */
+
   public Ralph (double xParam, double yParam) {
     this.setX(xParam);
     this.setY(yParam);

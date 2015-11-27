@@ -19,6 +19,8 @@ public class Play extends Grafica {
 	private String imgPath = "src/grafica/niceland/";
 	private String backgroundImage = imgPath + "FondoNiceland.jpg";
 	private JLabel fondo;
+	private static final int horEdificio= 250;
+	private static final int verEdificio= 120;
 	private Map<String, BufferedImage> secciones = new TreeMap<String, BufferedImage>();
 
 	/*
@@ -42,15 +44,13 @@ public class Play extends Grafica {
 		}
 	}
 
-
 	public void addKeyboardEvents(KeyAdapter keyadapter){
 		this.addKeyListener(keyadapter);
 	}
 
 	public void cargarNiceland(){
 		BufferedImage img = secciones.get("edificio_150_seccion1.png");
-		System.out.println("Graphics:" + this.getGraphics());
-		this.getGraphics().drawImage(img, 20, 0, null);
+		this.getGraphics().drawImage(img, horEdificio, verEdificio, null);
 	}
 
 	public void paintComponents(Graphics g){
@@ -64,7 +64,6 @@ public class Play extends Grafica {
 		for(File img : filesList){
 			try {
 				BufferedImage imagen = ImageIO.read(img);
-				System.out.println("El nombre es:" + img.getName());
 				this.secciones.put(img.getName(), imagen);
 			} catch(IOException e){
 				e.printStackTrace();

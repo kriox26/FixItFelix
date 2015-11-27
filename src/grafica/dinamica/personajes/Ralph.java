@@ -9,7 +9,7 @@ public class Ralph extends GGO {
   private BufferedImage hitOnWay1, hitOnWay2, leftHitFly, rightHitFly, standing, leftHit, rightHit, leftHitM, rightHitM,rightWalkingA, rightWalkingB, leftWalking;
 
   /*
-   * Para cada situacion hay un par de imagenes asignado.
+   * Para cada situacion de movimiento hay un par de imagenes asignado.
    * Las dos imagenes deben alternar entre si en la situacion asignada.
    *
    * hitOnWay1 & hitOnWay2 - se mueve por el edificio entre secciones rompiendo ventanas

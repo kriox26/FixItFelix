@@ -1,5 +1,6 @@
 package grafica.menu;
 
+import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 
@@ -24,5 +25,10 @@ public class Grafica extends JFrame {
 	public void turnOff(){
 		setVisible(false);
 	}
+
+	public void paintComponents(Graphics g){
+		super.paintComponents(g);
+	}
+
 
 }

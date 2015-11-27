@@ -1,5 +1,6 @@
 package grafica.menu;
 
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.image.BufferedImage;
@@ -28,11 +29,17 @@ public class Play extends Grafica {
 		cargarImagenes();
 		File imgFondo = new File(backgroundImage);
 		JLabel fondo = new JLabel(new ImageIcon(imgFondo.getAbsolutePath()));
+		setLayout(new FlowLayout());
 		add(goBack);
-		setContentPane(fondo);
+//		setContentPane(fondo);
 		setSize(919, 720);
-		cargarNiceland();
 		setVisible(true);
+		cargarNiceland();
+		try{
+		Thread.sleep(20000);
+		} catch(InterruptedException e){
+			
+		}
 	}
 
 
@@ -42,8 +49,8 @@ public class Play extends Grafica {
 
 	public void cargarNiceland(){
 		BufferedImage img = imgs.get("edificio_150_seccion1.png");
-		System.out.println("Imagen: " + img);
-		this.getGraphics().drawImage(imgs.get("edificio_150_seccion1.png"), 20, 0, null);
+		System.out.println("Graphics:" + this.getGraphics());
+		this.getGraphics().drawImage(img, 20, 0, null);
 	}
 
 	public void paintComponents(Graphics g){

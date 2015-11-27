@@ -13,7 +13,7 @@ import modelo.direcciones.Direccion;
 import modelo.main.Main;
 
 public class Controlador {
-	private Grafica view = new MainMenu();
+	private Grafica view;
 	private Main model;
 	
 	public Controlador(){}

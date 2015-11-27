@@ -9,7 +9,6 @@ import grafica.dinamica.GGO;
 import javax.imageio.ImageIO;
 
 public class Tarta extends GGO {
-  private String imgPath = "src/grafica/imagenes/pastel/";
 	private BufferedImage tar1, tar2;
   // izq o der indican dirección de vuelo
   // AA: ala alta + AB: ala baja
@@ -18,6 +17,7 @@ public class Tarta extends GGO {
   public Tarta (double x, double y) {
     this.timer = new Timer(DELAY, this);
     this.timer.start();
+    this.setIP("src/grafica/imagenes/pastel/");
     this.uploadImages();
     this.setX(x);
     this.setY(y);
@@ -26,10 +26,10 @@ public class Tarta extends GGO {
   private void uploadImages () {
     try {
       if (tar1 == null) {
-          tar1 = ImageIO.read(new File(imgPath + "slice12_12.png"));
+          tar1 = this.up("slice12_12.png"));
       }
       if (tar1 == null) {
-        tar2 = ImageIO.read(new File(imgPath + "slice13_13.png"));
+        tar2 = this.up("slice13_13.png"));
       }
     } catch (IOException e) {
       System.out.println("Internal Error:" + e.getMessage());

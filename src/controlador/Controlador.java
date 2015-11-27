@@ -1,5 +1,10 @@
 package controlador;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
+
+import modelo.direcciones.Direccion;
 import modelo.main.Main;
 import view.Grafica;
 
@@ -21,7 +26,27 @@ public class Controlador {
 	 */
 	public static void main (String[] args){
 		Controlador Ctrl = new Controlador();
-		Ctrl.model = new Main(false);
+		Ctrl.model = new Main(false, 1);
 		Ctrl.view = new Grafica();
+	}
+	
+	class moverListener implements KeyListener {
+		
+		public void keyPressed (KeyEvent e){
+			int movek = e.getKeyCode();
+			//Point P = Posicion de Imagen de Felix a usar creo
+			if (movek == 38){		//Arriba
+				model.getDvp().getFelix().mover(Direccion.ARRIBA);
+				//P.setLocation(new Point((int) p.getX()),new Point((int) p.getY()+10);
+			}
+			if (movek == 40){		//Abajo
+					model.getDvp().getFelix().mover(Direccion.ABAJO);
+					//P.setLocation(new Point((int) p.getX()),new Point((int) p.getY()-10);
+			}
+			
+		}
+	}
+	class playListener implements MouseListener {
+		int p = view
 	}
 }

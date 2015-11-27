@@ -7,4 +7,6 @@ public class Grafica {
 	public Grafica(){
 		new MainMenu();
 	}
+	
+	}
 }

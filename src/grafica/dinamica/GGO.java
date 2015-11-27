@@ -2,20 +2,22 @@ package grafica.dinamica;
 
 public class GGO {
   private double x, y;
+  private String imgPath;
 
-  private void setX (double xParam){
+  public void setX (double xParam){
     this.x = xParam;
   }
 
-  private void setY (double yParam){
+  public void setY (double yParam){
     this.y= yParam;
   }
 
-  private double getX () {
+  public double getX () {
     return this.x;
   }
 
-  private double getY () {
+  public double getY () {
     return this.y;
   }
+
 }

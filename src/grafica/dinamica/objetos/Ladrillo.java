@@ -11,7 +11,6 @@ import grafica.dinamica.GGO;
 import javax.imageio.ImageIO;
 
 public class Ladrillo extends GGO {
-  private String imgPath = "src/grafica/imagenes/rocas/";
 	private BufferedImage ladri1, ladri2;
   // izq o der indican dirección de vuelo
   // AA: ala alta + AB: ala baja
@@ -24,6 +23,7 @@ public class Ladrillo extends GGO {
   private void initLadrillo(double paramHorizontal, int seccion) {
     this.timer = new Timer(DELAY, this);
     this.timer.start();
+    this.setIP("src/grafica/imagenes/rocas/")
     this.uploadImages();
     this.setX(paramHorizontal);
     this.setY(¡!)// calculado a partir de int seccion

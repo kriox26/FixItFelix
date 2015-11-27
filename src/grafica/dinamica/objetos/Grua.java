@@ -8,9 +8,9 @@ import modelo.direcciones.Direccion;
 import grafica.dinamica.GGO;
 
 public class Grua extends GGO {
-    private String imgPath = "src/grafica/imagenes/grua";
     private BufferedImage gruaHaciaI, gruaHaciaD; // I: izquierda D: derecha
     private Direccion direccion;
+
 
 
     private void setDireccion (Direccion dir) {
@@ -26,6 +26,7 @@ public class Grua extends GGO {
     }
 
     private void initGrua(double hParam, Direccion direccion) {
+      this.setIP("src/grafica/imagenes/grua/");
       this.uploadImages();
       this.setY(0); // La  grua siempre en el piso
       this.setX(hParam);
@@ -44,4 +45,6 @@ public class Grua extends GGO {
             System.out.println("Internal Error:" + e.getMessage());
         }
     }
+
+
 }

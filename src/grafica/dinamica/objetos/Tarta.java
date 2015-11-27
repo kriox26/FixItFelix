@@ -9,7 +9,6 @@ import grafica.dinamica.GGO;
 import javax.imageio.ImageIO;
 
 public class Tarta extends GGO {
-  private String imgPath = "src/grafica/imagenes/pastel/";
 	private BufferedImage tar1, tar2;
   // izq o der indican dirección de vuelo
   // AA: ala alta + AB: ala baja
@@ -18,6 +17,7 @@ public class Tarta extends GGO {
   public Tarta (double x, double y) {
     this.timer = new Timer(DELAY, this);
     this.timer.start();
+    this.setIP("src/grafica/imagenes/pastel/");
     this.uploadImages();
     this.setX(x);
     this.setY(y);

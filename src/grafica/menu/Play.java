@@ -10,7 +10,7 @@ import modelo.main.Main;
 
 public class Play extends Grafica {
 	private String imgPath = "src/grafica/niceland/";
-	private String backgroundImage = imgPath + "FondoNiceland.png";
+	private String backgroundImage = imgPath + "FondoNiceland.jpg";
 	private JLabel fondo;
 
 	/*
@@ -20,12 +20,14 @@ public class Play extends Grafica {
 	public Play(Main main){
 		File imgFondo = new File(backgroundImage);
 		JLabel fondo = new JLabel(new ImageIcon(imgFondo.getAbsolutePath()));
+		setContentPane(fondo);
+		setSize(919, 720);
 		setVisible(true);
 	}
 
 
 	public void addKeyboardEvents(KeyAdapter keyadapter){
-		this.getFondo().addKeyListener(keyadapter);
+		this.addKeyListener(keyadapter);
 	}
 
 	public JLabel getFondo(){

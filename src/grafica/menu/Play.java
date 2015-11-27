@@ -19,14 +19,14 @@ public class Play extends Grafica {
 	private String imgPath = "src/grafica/niceland/";
 	private String backgroundImage = imgPath + "FondoNiceland.jpg";
 	private JLabel fondo;
-	private Map<String, BufferedImage> imgs = new TreeMap<String, BufferedImage>();
+	private Map<String, BufferedImage> secciones = new TreeMap<String, BufferedImage>();
 
 	/*
 	 * Se crean todas las imagenes de Niceland, ventanas con obstaculos
 	 * todo.
 	 */
 	public Play(Main main){
-		cargarImagenes();
+		cargarSecciones();
 		File imgFondo = new File(backgroundImage);
 		JLabel fondo = new JLabel(new ImageIcon(imgFondo.getAbsolutePath()));
 		setLayout(new FlowLayout());
@@ -36,7 +36,7 @@ public class Play extends Grafica {
 		setVisible(true);
 		cargarNiceland();
 		try{
-		Thread.sleep(20000);
+			Thread.sleep(20000);
 		} catch(InterruptedException e){
 			
 		}
@@ -48,7 +48,7 @@ public class Play extends Grafica {
 	}
 
 	public void cargarNiceland(){
-		BufferedImage img = imgs.get("edificio_150_seccion1.png");
+		BufferedImage img = secciones.get("edificio_150_seccion1.png");
 		System.out.println("Graphics:" + this.getGraphics());
 		this.getGraphics().drawImage(img, 20, 0, null);
 	}
@@ -57,7 +57,7 @@ public class Play extends Grafica {
 		super.paintComponents(g);
 	}
 
-	private void cargarImagenes(){
+	private void cargarSecciones(){
 		File folder = new File("src/grafica/imagenes/edificio/");
 		File[] filesList = folder.listFiles();
 
@@ -65,7 +65,7 @@ public class Play extends Grafica {
 			try {
 				BufferedImage imagen = ImageIO.read(img);
 				System.out.println("El nombre es:" + img.getName());
-				this.imgs.put(img.getName(), imagen);
+				this.secciones.put(img.getName(), imagen);
 			} catch(IOException e){
 				e.printStackTrace();
 			}

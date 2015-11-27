@@ -53,8 +53,9 @@ public class MainMenu extends Grafica {
 	//	MainMenu pruea = new MainMenu();
 	//}
 	
-	public void addMouseEvents(MouseAdapter mouseAdap){
+	public void addMouseEvents(MouseAdapter mouseAdap, MouseAdapter mouseAdap2){
 		play.addMouseListener(mouseAdap);
+		highscores.addMouseListener(mouseAdap2);
 	}
 
 }

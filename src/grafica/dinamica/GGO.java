@@ -20,4 +20,11 @@ public class GGO {
     return this.y;
   }
 
+  public String getIP () {
+    return this.imgPath;
+  }
+
+  public void setIP (String ip) {
+    this.imgPath = ip;
+  }
 }

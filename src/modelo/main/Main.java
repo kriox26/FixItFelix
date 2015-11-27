@@ -20,10 +20,12 @@ public class Main {
     private boolean jugando;
     public Desarrollo dvp;
     public Niceland niceland;
+	private int nivel;
     private List<Objeto> collecionDeObjetos = new ArrayList<Objeto>();
 
-    public Main(boolean jugando){
+    public Main(boolean jugando, int nivel){
         this.jugando = jugando;
+		this.nivel = nivel
     }
 
     public boolean getJugando(){
@@ -78,9 +80,8 @@ public class Main {
      * @params int nivel: El nivel elegido para el juego actual.
      */
     public void jugar(){
-    	int nivel = 1;
     	this.jugando=true;
-        this.inicializar(nivel);
+        this.inicializar();
         while (!gameOver()) {
             jugarUnTurno();
         }
@@ -94,8 +95,12 @@ public class Main {
      * @params int nivel: Indica el nivel actual del juego, las secciones dependen
      * de el.
      */
-    private void inicializar(int nivel){
-        this.niceland = new Niceland(nivel);
+    private void inicializar(){
+        this.niceland = new Niceland(this.getNivel());
         this.dvp = new Desarrollo(0, 0);
     }
+
+	public int getNivel(){
+		return this.nivel;
+	}
 }

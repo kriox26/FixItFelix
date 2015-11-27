@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import modelo.util.RandomAcotado;
+import grafica.dinamica.GGO;
+
 
 public class Nicelander extendes GGO {
   private BufferedImage standing, appearing;
@@ -13,7 +15,7 @@ public class Nicelander extendes GGO {
   private static Integer max = 5;
 
 
-  public Nicelander (double x, double y) {
+  public Nicelander (int x, int y) {
     this.setX(xParam);
     this.setY(yParam);
     this.set

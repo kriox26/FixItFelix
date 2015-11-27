@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import grafica.dinamica.GGO;
+
 
 public class Felix extends GGO {
   private BufferedImage aloneRunL1, aloneRunL2, aloneRunR1, aloneRunR2, basicStanding, cakeLStanding, cakeRStanding, happyStanding;
@@ -20,7 +22,7 @@ public class Felix extends GGO {
    * cakeRStanding - con tarta a su derecha (R de right)
    */
 
-  public Felix (double xParam, double yParam) {
+  public Felix (int xParam, int yParam) {
     this.setX(xParam);
     this.setY(yParam);
     this.setIP("src/grafica/imagenes/felix/");

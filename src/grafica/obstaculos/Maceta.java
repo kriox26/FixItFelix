@@ -4,13 +4,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import modelo.direcciones;
+import grafica.dinamica.GGO;
+
 
 import javax.imageio.ImageIO;
 
 public class Maceta extends GGO {;
 	private BufferedImage imagen;
 
-  public Maceta(double xParam, double yParam) {
+  public Maceta(int xParam, int yParam) {
     this.setX(xParam);
     this.setY(yParam);
     this.setIP("src/grafica/imagenes/obstaculos/");

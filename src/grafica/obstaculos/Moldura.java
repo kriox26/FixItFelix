@@ -4,11 +4,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import grafica.dinamica.GGO;
+
 
 public class Moldura extends GGO {
   private BufferedImage imagen;
 
-  public Moldura (double posX, double posY) {
+  public Moldura (int posX, int posY) {
     this.setX(posX);
     this.setY(posY);
     this.setIP("src/grafica/imagenes/obstaculos/");

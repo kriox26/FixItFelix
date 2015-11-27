@@ -21,11 +21,11 @@ public class Grua extends GGO {
       return this.direccion;
     }
 
-    public Grua(double hParam, Direccion direccion) { // hParam: parametro de ubicacion horizontal
+    public Grua(int hParam, Direccion direccion) { // hParam: parametro de ubicacion horizontal
         this.initGrua(hParam, direccion)
     }
 
-    private void initGrua(double hParam, Direccion direccion) {
+    private void initGrua(int hParam, Direccion direccion) {
       this.setIP("src/grafica/imagenes/grua/");
       this.uploadImages();
       this.setY(0); // La  grua siempre en el piso

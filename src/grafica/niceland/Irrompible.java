@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import grafica.dinamica.GGO;
+
 
 public class Irrompible extends GGO {
   private BufferedImage cerrada, izqAbierta, derAbierta, fullAbierta;
@@ -16,7 +18,7 @@ public class Irrompible extends GGO {
   *
   */
 
-  public Irrompible (double posX, double posY) {
+  public Irrompible (int posX, int posY) {
     this.setX(posX);
     this.setY(posY);
     this.setIP("src/grafica/imagenes/ventanas_y_panel/");

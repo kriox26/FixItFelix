@@ -4,11 +4,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import grafica.dinamica.GGO;
+
 
 public class Pasto extends GGO {
   private BufferedImage imagen;
 
-  public Pasto (double posX, double posY) {
+  public Pasto (int posX, int posY) {
     this.setX(posX);
     this.setY(posY);
     this.setIP("src/grafica/imagenes/");

@@ -8,6 +8,18 @@ import javax.imageio.ImageIO;
 public class Felix extends GGO {
   private BufferedImage aloneRunL1, aloneRunL2, aloneRunR1, aloneRunR2, basicStanding, cakeLStanding, cakeRStanding, happyStanding;
 
+  /*
+   * Para cada situacion de movimiento hay un par de imagenes asignado.
+   * Las dos imagenes deben alternar entre si en la situacion asignada.
+   *
+   * aloneRunL1 & aloneRunL2 - corre hacia la izquierda (L de left) sin martillo (guardado)
+   * aloneRunR1 & aloneRunR2 - corre hacia la derecha (R de right) sin martillo (guardado)
+   * basicStanding - parado normalmente sin martillo
+   * happyStanding - parado feliz con el martillo reluciente
+   * cakeLStanding - con tarta a su izquierda (L de left)
+   * cakeRStanding - con tarta a su derecha (R de right)
+   */
+
   public Felix (double xParam, double yParam) {
     this.setX(xParam);
     this.setY(yParam);

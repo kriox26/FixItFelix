@@ -6,7 +6,20 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Ralph extends GGO {
-  private BufferedImage standing, leftHit, rightHit, leftHitM, rightHitM,rightWalkingA, rightWalkingB, leftWalking;
+  private BufferedImage hitOnWay1, hitOnWay2, leftHitFly, rightHitFly, standing, leftHit, rightHit, leftHitM, rightHitM,rightWalkingA, rightWalkingB, leftWalking;
+
+  /*
+   * Para cada situacion de movimiento hay un par de imagenes asignado.
+   * Las dos imagenes deben alternar entre si en la situacion asignada.
+   *
+   * hitOnWay1 & hitOnWay2 - se mueve por el edificio entre secciones rompiendo ventanas
+   * leftHitFly & rightHitFly - le pega al piso haciendo caer ladrillos con tanta furia que despega los pies del piso
+   * leftHitM & rightHitM - le pega al piso con pocas ganas
+   * leftHit & rightHit - le pega al piso haciendo caer ladrillos normalmente
+   * rightWalkingA & rightWalkingB - camina hacia la derecha
+   * standing - cuando Ralph esta parado
+   *
+   */
 
   public Ralph (double xParam, double yParam) {
     this.setX(xParam);
@@ -41,6 +54,19 @@ public class Ralph extends GGO {
           if (rightHitM == null) {
               rightHitM = this.up("u_rightHit_mid.png");
           }
+          if (leftHitFly == null) {
+              leftHitFly = this.up("u_leftHit_fly.png");
+          }
+          if (rightHitFly == null) {
+              rightHitFly = this.up("u_rightHit_fly.png");
+          }
+          if (hitOnWay1 == null) {
+              hitOnWay1 = this.up("u_hitOnWay_1.png");
+          }
+          if (hitOnWay2 == null) {
+              hitOnWay2 = this.up("u_hitOnWay_2.png");
+          }
+
       } catch (IOException e) {
           System.out.println("Internal Error:" + e.getMessage());
       }

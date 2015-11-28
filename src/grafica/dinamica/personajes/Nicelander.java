@@ -34,7 +34,7 @@ public class Nicelander extends GGO {
 		try {
 			if (standing == null) {
 				standing = this.up("n-" + this.getTipo() + "-standing.png");
-				appearing = this.up(("n-" + this.getTipo() + "-appearing.png"));
+				appearing = this.up(("n-" + this.getTipo() + "-appearing.png");
 			}
 		} catch(IOException e){
 

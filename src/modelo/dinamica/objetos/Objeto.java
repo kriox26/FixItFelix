@@ -14,6 +14,15 @@ import modelo.dinamica.Posicion;
 public class Objeto extends Dinamico {
 	private double velocidad;
 	private static final double kv = 1;
+	private boolean existe;
+
+	public void setExiste (boolean tof) {
+		this.existe = tof;
+	}
+
+	public boolean getExiste() {
+		return this.existe;
+	}
 
 	public void unidireccionar (Direccion direccion) {
 		while (this.getExiste() == true) {

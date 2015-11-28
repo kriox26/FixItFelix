@@ -36,10 +36,10 @@ public class Grua extends GGO {
     private void uploadImages () {
         try {
             if (gruaHaciaI == null) {
-                gruaHaciaI = this.up("¡!")); // Falta convertir a .png la imagen de la grua
+                gruaHaciaI = this.up("¡!"); // Falta convertir a .png la imagen de la grua
             }
             if (gruaHaciaD == null) {
-                gruaHaciaD = this.up("¡!")); // Falta convertir a .png la imagen de la grua
+                gruaHaciaD = this.up("¡!"); // Falta convertir a .png la imagen de la grua
             }
         } catch (IOException e) {
             System.out.println("Internal Error:" + e.getMessage());

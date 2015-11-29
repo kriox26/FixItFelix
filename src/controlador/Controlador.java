@@ -6,6 +6,11 @@ import grafica.menu.Instrucciones;
 import grafica.menu.MainMenu;
 import grafica.menu.Play;
 import grafica.menu.TopScores;
+import grafica.niceland.IrrompibleView;
+import grafica.niceland.PuertaView;
+import grafica.niceland.SemiCircularView;
+import grafica.niceland.SimpleView;
+import grafica.niceland.VentanaView;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -21,12 +26,19 @@ import javax.imageio.ImageIO;
 
 import modelo.direcciones.Direccion;
 import modelo.main.Main;
+import modelo.niceland.Irrompible;
+import modelo.niceland.Niceland;
+import modelo.niceland.Puerta;
+import modelo.niceland.Semicircular;
+import modelo.niceland.Simple;
+import modelo.niceland.Ventana;
 
 public class Controlador {
 	private Grafica view;
 	private Main model;
 	private static MainMenu MENU = new MainMenu();
 	private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
+    private VentanaView[][] edificio;
 
 	private void cargarImagenes(){
 		File carpeta = new File("src/grafica/imagenes/");
@@ -51,12 +63,83 @@ public class Controlador {
 	
 	public Controlador(){}
 
-	public Controlador(Main model){
+	public Controlador(Main model, int nivel){
 		this.model= model;
+		cargarImagenes();
+        edificio = new VentanaView[nivel * 3][5];
+        crearEdificio(nivel);
 
 		// Cargamos los eventos de la vista MainMenu
 		MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(), new ManejaInstrucciones());
 	}
+    
+    private void crearEdificio(int nivel){
+        int x = 0;
+        int y = 0;
+        Niceland building = model.getNiceland();
+        for (int i = 0; i < nivel * 3 ; i++) {
+            Ventana[][] ventanas = building.getSecciones()[i].getVentanas();
+            for (int k = 0; k < 3; k++) {
+                for (int j = 0; j < 5; j++) {
+                    Ventana act = ventanas[k + i][j];
+                    if(act instanceof Irrompible)
+                        edificio[k + i][j] = generarViewIrrompible(act, x, y);
+                    else if(act instanceof Simple)
+                        edificio[k + i][j] = generarViewSimple(act, x, y);
+                    else if(act instanceof Puerta)
+                        edificio[k + i][j] = generarViewPuerta(act, x, y);
+                    else if(act instanceof Semicircular)
+                        edificio[k + i][j] = generarViewSemiCircular(act, x, y);
+                }
+            }
+        }
+    }
+    
+    public IrrompibleView generarViewIrrompible(Ventana ven, int x, int y){
+        switch (ven.getObstaculo().getDireccion()) {
+            case DERECHA: return new IrrompibleView(imagenes.get("irrompible_derecha.png"), x, y);
+            
+            case IZQUIERDA: return new IrrompibleView(imagenes.get("irrompible_izquierda.png"), x, y);
+            
+            default: return new IrrompibleView(imagenes.get("irrompible_cerrada.png"), x, y);
+        }
+    }
+    
+    public SimpleView generarViewSimple(Ventana ven, int x, int y){
+        SimpleView act = new SimpleView();
+        switch (ven.estadoTotal()) {
+            case 0: act = new SimpleView(imagenes.get("simple.png"), x, y);// Esta arreglada
+                    break;
+            case 1: act = new SimpleView(imagenes.get("media_rota_abajo.png"), x, y); // La ventana esta media rota abajo
+                    break;
+            case 2: act = new SimpleView(imagenes.get("media_rota_ambos.png"), x, y); // La ventana esta media rota en ambos
+                    break;
+            case 3: act = new SimpleView(imagenes.get("media_rota_arriba.png"), x, y);// La ventana media rota arriba
+                    break;
+            case 4: act = new SimpleView(imagenes.get("rota_arriba.png"), x, y);// La ventana esta rota arriba nada mas
+                    break;
+            case 5: act = new SimpleView(imagenes.get("rota_abajo.png"), x, y);// La ventana esta rota abajo nada mas
+                    break;
+            case 6: act = new SimpleView(imagenes.get("rota_ambos.png"), x, y);// La ventana esta completamente rota
+                    break;
+        }
+        switch (ven.getTipoObstaculo()) {
+            case "moldura": // Agregar imagen de moldura
+                            break;
+            case "maceta": // Agregar imagen de maceta
+                           break;
+            default: break; // nada
+        }
+        return act;
+    }
+    
+    public PuertaView generarViewPuerta(Ventana ven, int x, int y){
+        return new PuertaView(); // Falta implementar
+    }
+    
+    public SemiCircularView generarViewSemiCircular(Ventana ven, int x, int y){
+        return new SemiCircularView(); // Falta implementar
+    }
 
 	public Grafica getView(){
 		return this.view;
@@ -77,7 +160,7 @@ public class Controlador {
 	 * que se puede relacionar de muchas formas y no se como empezar.
 	 */
 	public static void main (String[] args){
-		Controlador ctrl = new Controlador(new Main(false, 0));
+		Controlador ctrl = new Controlador(new Main(false, 0), 1);
 	}
 
 	class ManejaEventosTeclado extends KeyAdapter{
@@ -110,7 +193,7 @@ public class Controlador {
 	class ManejaPlayAdapter extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){
 			MENU.turnOff();
-			view = new Play(model);
+			view = new Play(model, edificio);
 			view.addKeyboardEvents(new ManejaEventosTeclado());
 			view.addBackMenu(new VolverAMenu());
 		}

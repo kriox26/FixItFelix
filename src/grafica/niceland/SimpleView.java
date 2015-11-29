@@ -8,4 +8,6 @@ public class SimpleView extends VentanaView {
 		super(imagenActual, offsetX, offsetY);
 	}
 
+	public SimpleView(){}
+
 }

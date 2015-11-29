@@ -1,5 +1,7 @@
 package grafica.menu;
 
+import grafica.niceland.VentanaView;
+
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
@@ -22,13 +24,13 @@ public class Play extends Grafica {
 	private static final int horEdificio= 250;
 	private static final int verEdificio= 120;
 	private Map<String, BufferedImage> secciones = new TreeMap<String, BufferedImage>();
-	private Map<String, BufferedImage> ventanas = new TreeMap<String, BufferedImage>();
+	private BufferedImage[][] ventanas = new BufferedImage[5][3];
 
 	/*
 	 * Se crean todas las imagenes de Niceland, ventanas con obstaculos
 	 * todo.
 	 */
-	public Play(Main main){
+	public Play(Main main, VentanaView[][] building){
 		cargarEdificio();
 		File imgFondo = new File(backgroundImage);
 		JLabel fondo = new JLabel(new ImageIcon(imgFondo.getAbsolutePath()));
@@ -37,7 +39,7 @@ public class Play extends Grafica {
 //		setContentPane(fondo);
 		setSize(800, 1028);
 		setVisible(true);
-		cargarNiceland();
+		cargarNiceland(building);
 		try{
 			Thread.sleep(20000);
 		} catch(InterruptedException e){
@@ -49,9 +51,16 @@ public class Play extends Grafica {
 		this.addKeyListener(keyadapter);
 	}
 
-	public void cargarNiceland(){
+	public void cargarNiceland(VentanaView[][] building){
+        // Dibujar secciones primero
 		BufferedImage img = secciones.get("edificio_150_copy.png");
 		this.getGraphics().drawImage(img, horEdificio, 0, null);
+        // Despues dibujamos ventanas sobre las secciones
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 5; j++) {
+                this.getGraphics().drawImage(building[i][j].getImagenActual(), building[i][j].getOffsetX(), building[i][j].getOffsetY(), null);
+            }
+        }
 	}
 
 	public void paintComponents(Graphics g){
@@ -63,9 +72,10 @@ public class Play extends Grafica {
 		File[] filesList = folder.listFiles();
 		cargarImagenes(this.secciones, filesList);
 
-		folder = new File("src/grafica/imagenes/ventanas_y_panel");
-		filesList = folder.listFiles();
-		cargarImagenes(this.ventanas, filesList);
+		cargarVentanas();
+//		folder = new File("src/grafica/imagenes/ventanas_y_panel");
+//		filesList = folder.listFiles();
+//		cargarImagenes(this.ventanas, filesList);
 	}
 
 	private void cargarImagenes(Map<String, BufferedImage> imagenes, File[] filesList){
@@ -77,6 +87,10 @@ public class Play extends Grafica {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	private void cargarVentanas(){
+		
 	}
 
 }

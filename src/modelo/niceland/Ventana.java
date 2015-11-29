@@ -1,6 +1,7 @@
 package modelo.niceland;
 
-import modelo.direcciones.*;
+import modelo.direcciones.Direccion;
+import modelo.obstaculos.Obstaculo;
 import modelo.util.RandomAcotado;
 
 /**
@@ -15,6 +16,7 @@ import modelo.util.RandomAcotado;
 public class Ventana {
     protected Panel[] paneles;
     private int martillazos_recibidos;
+    private Obstaculo obstaculo;
     
     public int getMartillazosRecibidos(){
         return this.martillazos_recibidos;
@@ -84,5 +86,17 @@ public class Ventana {
 
     public Panel[] getPaneles(){
     	return this.paneles;
+    }
+
+    public int estadoTotal(){
+    	return 0;
+    }
+
+    public Obstaculo getObstaculo(){
+    	return this.obstaculo;
+    }
+
+    public String getTipoObstaculo(){
+    	return "";
     }
 }

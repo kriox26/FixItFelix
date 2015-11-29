@@ -12,6 +12,8 @@ public class VentanaView {
 		this.offsetY= offsetY;
 	}
 
+	public VentanaView(){}
+
 	public BufferedImage getImagenActual(){
 		return this.imagenActual;
 	}
@@ -20,7 +22,7 @@ public class VentanaView {
 		return this.offsetX;
 	}
 
-	public int getOffsety(){
+	public int getOffsetY(){
 		return this.offsetY;
 	}
 

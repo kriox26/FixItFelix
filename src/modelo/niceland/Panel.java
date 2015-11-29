@@ -64,7 +64,7 @@ public class Panel {
     }
     
     public boolean estaMedioRoto(){
-        return this.getEstado() intanceof MedioRoto ? true : false;
+        return this.getEstado() instanceof MedioRoto ? true : false;
     }
     
 }

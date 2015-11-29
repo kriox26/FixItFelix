@@ -1,16 +1,24 @@
 package controlador;
 
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import grafica.menu.Grafica;
 import grafica.menu.Instrucciones;
 import grafica.menu.MainMenu;
 import grafica.menu.Play;
 import grafica.menu.TopScores;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.TreeMap;
+
+import javax.imageio.ImageIO;
+
 import modelo.direcciones.Direccion;
 import modelo.main.Main;
 
@@ -18,6 +26,28 @@ public class Controlador {
 	private Grafica view;
 	private Main model;
 	private static MainMenu MENU = new MainMenu();
+	private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
+
+	private void cargarImagenes(){
+		File carpeta = new File("src/grafica/imagenes/");
+		File[] lista = carpeta.listFiles();
+		cargaRecursiva(lista);
+	}
+
+	private void cargaRecursiva(File[] lista){
+		for(File act : lista){
+			if(act.isDirectory()){
+				cargaRecursiva(act.listFiles());
+			}else{
+				try{
+					BufferedImage imagen = ImageIO.read(act);
+					imagenes.put(act.getName(), imagen);
+				}catch(IOException e){
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	
 	public Controlador(){}
 
@@ -85,6 +115,7 @@ public class Controlador {
 			view.addBackMenu(new VolverAMenu());
 		}
 	}
+
 
 	class VolverAMenu extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){

@@ -8,22 +8,22 @@ import grafica.dinamica.GGO;
 
 
 public class Moldura extends GGO {
-  private BufferedImage imagen;
+	private BufferedImage imagen;
 
-  public Moldura (int posX, int posY) {
-    this.setX(posX);
-    this.setY(posY);
-    this.setIP("src/grafica/imagenes/obstaculos/");
-    this.uploadImage();
-  }
+	public Moldura (int posX, int posY) {
+		this.setX(posX);
+		this.setY(posY);
+		this.setIP("src/grafica/imagenes/obstaculos/");
+		this.uploadImage();
+	}
 
-  public uploadImage () {
-    try {
-      if (imagen == null) {
-          imagen = this.up("slice22_22.png"));
-      }
-    } catch (IOException e) {
-      System.out.println("Internal Error:" + e.getMessage());
-    }
-  }
+	public void uploadImage () {
+		try {
+			if (imagen == null) {
+				imagen = this.up("slice22_22.png");
+			}
+		} catch (IOException e) {
+			System.out.println("Internal Error:" + e.getMessage());
+		}
+	}
 }

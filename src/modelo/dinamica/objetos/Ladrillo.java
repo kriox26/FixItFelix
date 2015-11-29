@@ -33,7 +33,6 @@ public class Ladrillo extends Objeto {
 	 * @param     position	desde dónde es lanzado el ladrillo (provisto por Ralph)
 	 */
 	public void caerDesde (Posicion position) {
-		this.aparecer(position); // Crearlo
 		this.unidireccionar(Direccion.ABAJO); // Unidireccionarlo hacia abajo (en niveles Pro podr�a alterarse la gravedad)
 	}
     

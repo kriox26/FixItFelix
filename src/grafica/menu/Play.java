@@ -22,13 +22,14 @@ public class Play extends Grafica {
 	private static final int horEdificio= 250;
 	private static final int verEdificio= 120;
 	private Map<String, BufferedImage> secciones = new TreeMap<String, BufferedImage>();
+	private Map<String, BufferedImage> ventanas = new TreeMap<String, BufferedImage>();
 
 	/*
 	 * Se crean todas las imagenes de Niceland, ventanas con obstaculos
 	 * todo.
 	 */
 	public Play(Main main){
-		cargarSecciones();
+		cargarEdificio();
 		File imgFondo = new File(backgroundImage);
 		JLabel fondo = new JLabel(new ImageIcon(imgFondo.getAbsolutePath()));
 		setLayout(new FlowLayout());
@@ -57,15 +58,22 @@ public class Play extends Grafica {
 		super.paintComponents(g);
 	}
 
-	private void cargarSecciones(){
+	private void cargarEdificio(){
 		File folder = new File("src/grafica/imagenes/edificio/");
 		File[] filesList = folder.listFiles();
+		cargarImagenes(this.secciones, filesList);
 
+		folder = new File("src/grafica/imagenes/ventanas_y_panel");
+		filesList = folder.listFiles();
+		cargarImagenes(this.ventanas, filesList);
+	}
+
+	private void cargarImagenes(Map<String, BufferedImage> imagenes, File[] filesList){
 		for(File img : filesList){
-			try {
+			try{
 				BufferedImage imagen = ImageIO.read(img);
-				this.secciones.put(img.getName(), imagen);
-			} catch(IOException e){
+				imagenes.put(img.getName(), imagen);
+			}catch(IOException e){
 				e.printStackTrace();
 			}
 		}

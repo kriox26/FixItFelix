@@ -1,10 +1,6 @@
 package grafica.dinamica;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class GGO {
     private BufferedImage imagenActual;
@@ -15,4 +11,28 @@ public class GGO {
         this.offsetX = offsetX;
         this.offsetY = offsetY;
     }
+
+	public BufferedImage getImagenActual() {
+		return imagenActual;
+	}
+
+	public void setImagenActual(BufferedImage imagenActual) {
+		this.imagenActual = imagenActual;
+	}
+
+	public int getOffsetX() {
+		return offsetX;
+	}
+
+	public void setOffsetX(int offsetX) {
+		this.offsetX = offsetX;
+	}
+
+	public int getOffsetY() {
+		return offsetY;
+	}
+
+	public void setOffsetY(int offsetY) {
+		this.offsetY = offsetY;
+	}
 }

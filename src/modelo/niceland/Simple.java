@@ -18,6 +18,7 @@ import modelo.util.RandomAcotado;
 public class Simple extends Ventana {
 	private boolean tarta = false;
     private Obstaculo obstaculo;
+    private String tipoObstaculo;
 
     /*
      * Constructor de la ventana simple
@@ -73,10 +74,13 @@ public class Simple extends Ventana {
         RandomAcotado random = new RandomAcotado(0,3);
         switch (random.getValor()) {
             case 0: this.obstaculo = new Maceta();
+            		this.tipoObstaculo = "maceta";
                     break;
             case 1: this.obstaculo = new Moldura();
+            		this.tipoObstaculo = "moldura";
                     break;
             default:this.obstaculo = new Obstaculo();
+            		this.tipoObstaculo = "vacio";
                     break;
         }
     }
@@ -86,4 +90,36 @@ public class Simple extends Ventana {
 			this.setTarta(true);
 		}
 	}
+    
+    public String getTipoObstaculo(){
+    	return this.tipoObstaculo;
+    }
+    
+    /*
+     * Devuelve un int indicando el estado total de la ventana. Los casos son:
+     *          int = 0     -> La ventana esta completamente sana
+     *          int = 1     -> La ventana esta media rota abajo
+     *          int = 2     -> La ventana esta media rota en ambos paneles
+     *          int = 3     -> La ventana media rota arriba
+     *          int = 4     -> La ventana esta rota arriba nada mas
+     *          int = 5     -> La ventana esta rota abajo nada mas
+     *          int = 6     -> La ventana esta completamente rota
+     */
+    public int estadoTotal(){
+        if(this.estaSana())
+            return 0;
+        if(this.getPaneles()[0].estaMedioRoto() && this.getPaneles()[1].estaSano())
+            return 1;
+        if(this.getPaneles()[0].estaMedioRoto() && this.getPaneles()[1].estaMedioRoto())
+            return 2;
+        if(this.getPaneles()[0].estaSano() && this.getPaneles()[1].estaMedioRoto())
+            return 3;
+        if(this.getPaneles()[0].estaSano() && this.getPaneles()[1].estaRoto())
+            return 4;
+        if(this.getPaneles()[0].estaRoto() && this.getPaneles()[1].estaSano())
+            return 5;
+        if(this.estaSana())
+            return 6;
+        return 7;
+    }
 }

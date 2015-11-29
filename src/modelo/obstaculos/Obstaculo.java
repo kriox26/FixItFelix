@@ -28,5 +28,9 @@ public class Obstaculo {
     public boolean puedoPasar(Direccion direccion){
         return true;
     }
+    
+    public Direccion getDireccion(){
+        return this.direccion_que_bloquea;
+    }
 
 }

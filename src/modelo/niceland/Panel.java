@@ -55,11 +55,16 @@ public class Panel {
 	 * caso contrario se devuelve false
 	 * @return boolean
 	 */
-	protected boolean estaRoto(){
+	public boolean estaRoto(){
 		return this.getEstado() instanceof Roto ? true : false;
 	}
     
-    protected boolean estaSano(){
+    public boolean estaSano(){
 		return this.getEstado() instanceof Sano ? true : false;
     }
+    
+    public boolean estaMedioRoto(){
+        return this.getEstado() intanceof MedioRoto ? true : false;
+    }
+    
 }

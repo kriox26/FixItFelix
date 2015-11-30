@@ -23,7 +23,7 @@ public class Play extends Grafica {
 	private JLabel fondo;
 	private static final int horEdificio= 250;
 	private static final int verEdificio= 120;
-    private static final int horVentanas = horEdificio + 34;
+    private static final int horVentanas = horEdificio + 4;
 	private static final int offsetYVentanas = 68;
 	private static final int offsetXVentanas = 30;
 	private Map<String, BufferedImage> secciones = new TreeMap<String, BufferedImage>();

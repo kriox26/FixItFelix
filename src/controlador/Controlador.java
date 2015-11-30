@@ -76,23 +76,24 @@ public class Controlador {
         
         private void crearEdificio(int nivel){
             Niceland building = this.model.getNiceland();
-//            for (int i = 0; i < nivel * 3 ; i++) {
-            int i =0;
+            int n = 0;
+            for (int i = 0; i < nivel * 3 ; i++) {
                 Ventana[][] ventanas = building.getSecciones()[i].getVentanas();
                 for (int k = 0; k < 3; k++) {
                     for (int j = 0; j < 5; j++) {
                         Ventana act = ventanas[k][j];
                         if(act instanceof Irrompible)
-                        	edificio[k + i][j] = generarViewIrrompible(act, j + 1, k + 1);
+                            edificio[n][j] = generarViewIrrompible(act, j + 1, k + 1);
                         else if(act instanceof Simple)
-                        	edificio[k + i][j] = generarViewSimple(act, j + 1, k + 1);
+                            edificio[n][j] = generarViewSimple(act, j + 1, k + 1);
                         else if(act instanceof Puerta)
-                        	edificio[k + i][j] = generarViewPuerta(act, j + 1, k + 1);
+                            edificio[n][j] = generarViewPuerta(act, j + 1, k + 1);
                         else if(act instanceof Semicircular)
-                        	edificio[k + i][j] = generarViewSemiCircular(act, j + 1, k + 1);
+                            edificio[n][j] = generarViewSemiCircular(act, j + 1, k + 1);
                     }
+                    n++;
                 }
-//            }
+            }
         }
         
         public IrrompibleView generarViewIrrompible(Ventana ven, int x, int y){

@@ -52,7 +52,6 @@ public class Puerta extends Ventana {
     * 12 - dañados todos los paneles salvo el de abajo a la derecha
     * 13- EXC / ERR
     */
-
     public int estadoTotal() {
       if (this.getAbierta() == true) {
         return 1;
@@ -102,8 +101,7 @@ public class Puerta extends Ventana {
      * 2 - panel superior izquierdo
      * 3 - panel superior derecho
      */
-
-    private panelMR (int n) { // MR: medio roto // Aclaracioón: en la puerta no hay paneles rotos del todo
+    private boolean panelMR (int n) { // MR: medio roto // Aclaracioón: en la puerta no hay paneles rotos del todo
       if (this.getPaneles()[n].estaMedioRoto()) {
         return true;
       }

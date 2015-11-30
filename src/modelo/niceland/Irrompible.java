@@ -14,11 +14,22 @@ import modelo.util.RandomAcotado;
  * @see modelo.niceland.Panel
  */
 public class Irrompible extends Ventana {
-    private Obstaculo obstaculo;
 
     public Irrompible(){
         this.setearObstaculo();
-        super.setearPaneles(2);
+        this.setearPaneles(2);
+    }
+
+    /*
+     * Setea cada panel de la ventana, con un estado aleatorio
+     * @params cantidad : Cantidad de paneles que tiene que setear
+     */
+    @Override
+    protected void setearPaneles(int cantidad){
+        paneles = new Panel[cantidad];
+        for (int i = 0; i < cantidad; i++) {
+            this.paneles[i] = new Panel(0); // Crea paneles sanos
+        }
     }
 
 	/*
@@ -41,9 +52,9 @@ public class Irrompible extends Ventana {
         RandomAcotado rnd = new RandomAcotado (0,1);
         if (hay_persiana % 2 == 0) {
         		switch (rnd.getValor()) {
-        		case 0: this.obstaculo = new Persiana (Direccion.IZQUIERDA);
+        		case 0: this.obstaculo = new Persiana(Direccion.IZQUIERDA);
         			break;
-        		case 1: this.obstaculo = new Persiana (Direccion.DERECHA);
+        		case 1: this.obstaculo = new Persiana(Direccion.DERECHA);
         			break;
         		}
         }else{

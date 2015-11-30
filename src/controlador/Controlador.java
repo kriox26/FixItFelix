@@ -46,9 +46,10 @@ public class Controlador {
         
         public Controlador(Main model, int nivel){
             this.model= model;
+           	System.out.println("Que onda: " + this.model);
             cargarImagenes();
-            edificio = new VentanaView[nivel * 3][5];
-            //   crearEdificio(nivel);
+            edificio = new VentanaView[(nivel * 3) * 3][5];
+            crearEdificio(nivel);
             MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(), 
             new ManejaInstrucciones(), new ManejaConfiguracion());
         }
@@ -77,26 +78,27 @@ public class Controlador {
         private void crearEdificio(int nivel){
             int x = 0;
             int y = 0;
-            Niceland building = model.getNiceland();
+            Niceland building = this.model.getNiceland();
             for (int i = 0; i < nivel * 3 ; i++) {
                 Ventana[][] ventanas = building.getSecciones()[i].getVentanas();
                 for (int k = 0; k < 3; k++) {
                     for (int j = 0; j < 5; j++) {
-                        Ventana act = ventanas[k + i][j];
+                        Ventana act = ventanas[k][j];
                         if(act instanceof Irrompible)
-                        edificio[k + i][j] = generarViewIrrompible(act, x, y);
+                        	edificio[k + i][j] = generarViewIrrompible(act, x, y);
                         else if(act instanceof Simple)
-                        edificio[k + i][j] = generarViewSimple(act, x, y);
+                        	edificio[k + i][j] = generarViewSimple(act, x, y);
                         else if(act instanceof Puerta)
-                        edificio[k + i][j] = generarViewPuerta(act, x, y);
+                        	edificio[k + i][j] = generarViewPuerta(act, x, y);
                         else if(act instanceof Semicircular)
-                        edificio[k + i][j] = generarViewSemiCircular(act, x, y);
+                        	edificio[k + i][j] = generarViewSemiCircular(act, x, y);
                     }
                 }
             }
         }
         
         public IrrompibleView generarViewIrrompible(Ventana ven, int x, int y){
+        	System.out.println("OBstaaculo irrompible: " + ven);
             switch (ven.getObstaculo().getDireccion()) {
                 case DERECHA: return new IrrompibleView(imagenes.get("irrompible_derecha.png"), x, y);
                 
@@ -163,6 +165,7 @@ public class Controlador {
                 break;
                 case 12: act = new PuertaView(imagenes.get("puerta-rota-salvoDD.png"), x, y);
                 break;
+                default: act = new PuertaView(imagenes.get("puerta-sana.png"), x, y);
             }
             return act;
         }
@@ -190,7 +193,7 @@ public class Controlador {
         * que se puede relacionar de muchas formas y no se como empezar.
         */
         public static void main (String[] args){
-            Controlador ctrl = new Controlador(new Main(false, 0), 1);
+            Controlador ctrl = new Controlador(new Main(false, 1), 1);
         }
         
         class ManejaEventosTeclado extends KeyAdapter{

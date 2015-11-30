@@ -76,8 +76,6 @@ public class Controlador {
         }
         
         private void crearEdificio(int nivel){
-            int x = 0;
-            int y = 0;
             Niceland building = this.model.getNiceland();
             for (int i = 0; i < nivel * 3 ; i++) {
                 Ventana[][] ventanas = building.getSecciones()[i].getVentanas();
@@ -85,20 +83,19 @@ public class Controlador {
                     for (int j = 0; j < 5; j++) {
                         Ventana act = ventanas[k][j];
                         if(act instanceof Irrompible)
-                        	edificio[k + i][j] = generarViewIrrompible(act, x, y);
+                        	edificio[k + i][j] = generarViewIrrompible(act, j, k + 1);
                         else if(act instanceof Simple)
-                        	edificio[k + i][j] = generarViewSimple(act, x, y);
+                        	edificio[k + i][j] = generarViewSimple(act, j, k + 1);
                         else if(act instanceof Puerta)
-                        	edificio[k + i][j] = generarViewPuerta(act, x, y);
+                        	edificio[k + i][j] = generarViewPuerta(act, j, k + 1);
                         else if(act instanceof Semicircular)
-                        	edificio[k + i][j] = generarViewSemiCircular(act, x, y);
+                        	edificio[k + i][j] = generarViewSemiCircular(act, j, k + 1);
                     }
                 }
             }
         }
         
         public IrrompibleView generarViewIrrompible(Ventana ven, int x, int y){
-        	System.out.println("OBstaaculo irrompible: " + ven);
             switch (ven.getObstaculo().getDireccion()) {
                 case DERECHA: return new IrrompibleView(imagenes.get("irrompible_derecha.png"), x, y);
                 
@@ -171,7 +168,7 @@ public class Controlador {
         }
         
         public SemiCircularView generarViewSemiCircular(Ventana ven, int x, int y){
-            return new SemiCircularView(); // Falta implementar
+            return new SemiCircularView(imagenes.get("semi-circular.png"), x, y); // Falta implementar
         }
         
         public Grafica getView(){

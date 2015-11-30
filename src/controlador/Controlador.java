@@ -1,6 +1,18 @@
 package controlador;
 
 
+import grafica.menu.Configuracion;
+import grafica.menu.Grafica;
+import grafica.menu.Instrucciones;
+import grafica.menu.MainMenu;
+import grafica.menu.Play;
+import grafica.menu.TopScores;
+import grafica.niceland.IrrompibleView;
+import grafica.niceland.PuertaView;
+import grafica.niceland.SemiCircularView;
+import grafica.niceland.SimpleView;
+import grafica.niceland.VentanaView;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -13,17 +25,6 @@ import java.util.TreeMap;
 
 import javax.imageio.ImageIO;
 
-import grafica.menu.Configuracion;
-import grafica.menu.Grafica;
-import grafica.menu.Instrucciones;
-import grafica.menu.MainMenu;
-import grafica.menu.Play;
-import grafica.menu.TopScores;
-import grafica.niceland.IrrompibleView;
-import grafica.niceland.PuertaView;
-import grafica.niceland.SemiCircularView;
-import grafica.niceland.SimpleView;
-import grafica.niceland.VentanaView;
 import modelo.direcciones.Direccion;
 import modelo.main.Main;
 import modelo.niceland.Irrompible;
@@ -62,7 +63,7 @@ public class Controlador {
             for(File act : lista){
                 if(act.isDirectory()){
                     cargaRecursiva(act.listFiles());
-                }else{
+                }else if(act.getName().endsWith(".png") || act.getName().endsWith(".jpg")){
                     try{
                         BufferedImage imagen = ImageIO.read(act);
                         imagenes.put(act.getName(), imagen);

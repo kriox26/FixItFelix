@@ -46,24 +46,26 @@ public class MainMenu extends JFrame {
 		play.setIcon(playBoton);
 		highscores.setIcon(highscoresBoton);
 		instrucciones.setIcon(instruccionesBoton);
-		config.setIcon(configBoton);
-		highscores.setBorder(null);
-		play.setBorder(null);
-		instrucciones.setBorder(null);
-		config.setBorder(null);
+		config.setIcon(configBoton);		
 		config.setContentAreaFilled(false);
 		config.setBounds(840, 50,50,50);
 		instrucciones.setBounds(50, 550, 261, 51);
 		play.setBounds(320, 550, 261, 51);
 		highscores.setBounds(590, 550, 261, 51);
+		highscores.setBorder(null);
+		play.setBorder(null);
+		config.setBorder(null);
+		instrucciones.setBorder(null);
 		add(highscores); add(play);
 		add(instrucciones);	
 		add(config);
 	}
-	public void addMouseEvents(MouseAdapter mouseAdap, MouseAdapter mouseAdap2, MouseAdapter mouseAdap3){
+	public void addMouseEvents(MouseAdapter mouseAdap, MouseAdapter mouseAdap2, 
+			MouseAdapter mouseAdap3, MouseAdapter mouseAdap4){
 		play.addMouseListener(mouseAdap);
 		highscores.addMouseListener(mouseAdap2);
 		instrucciones.addMouseListener(mouseAdap3);
+		config.addMouseListener(mouseAdap4);
 	}
 
 	public void turnOn(){

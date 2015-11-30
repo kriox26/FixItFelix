@@ -1,17 +1,6 @@
 package controlador;
 
 
-import grafica.menu.Grafica;
-import grafica.menu.Instrucciones;
-import grafica.menu.MainMenu;
-import grafica.menu.Play;
-import grafica.menu.TopScores;
-import grafica.niceland.IrrompibleView;
-import grafica.niceland.PuertaView;
-import grafica.niceland.SemiCircularView;
-import grafica.niceland.SimpleView;
-import grafica.niceland.VentanaView;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -24,6 +13,17 @@ import java.util.TreeMap;
 
 import javax.imageio.ImageIO;
 
+import grafica.menu.Configuracion;
+import grafica.menu.Grafica;
+import grafica.menu.Instrucciones;
+import grafica.menu.MainMenu;
+import grafica.menu.Play;
+import grafica.menu.TopScores;
+import grafica.niceland.IrrompibleView;
+import grafica.niceland.PuertaView;
+import grafica.niceland.SemiCircularView;
+import grafica.niceland.SimpleView;
+import grafica.niceland.VentanaView;
 import modelo.direcciones.Direccion;
 import modelo.main.Main;
 import modelo.niceland.Irrompible;
@@ -39,6 +39,18 @@ public class Controlador {
 	private static MainMenu MENU = new MainMenu();
 	private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
     private VentanaView[][] edificio;
+    
+    
+	public Controlador(){}
+
+	public Controlador(Main model, int nivel){
+		this.model= model;
+		cargarImagenes();
+        edificio = new VentanaView[nivel * 3][5];
+     //   crearEdificio(nivel);
+        MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(), 
+        		new ManejaInstrucciones(), new ManejaConfiguracion());
+	}
 
 	private void cargarImagenes(){
 		File carpeta = new File("src/grafica/imagenes/");
@@ -60,19 +72,7 @@ public class Controlador {
 			}
 		}
 	}
-	
-	public Controlador(){}
-
-	public Controlador(Main model, int nivel){
-		this.model= model;
-		cargarImagenes();
-        edificio = new VentanaView[nivel * 3][5];
-        crearEdificio(nivel);
-
-		// Cargamos los eventos de la vista MainMenu
-		MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(), new ManejaInstrucciones());
-	}
-    
+	    
     private void crearEdificio(int nivel){
         int x = 0;
         int y = 0;
@@ -220,5 +220,11 @@ public class Controlador {
 			view.addBackMenu(new VolverAMenu());
 		}
 	}
-
+	class ManejaConfiguracion extends MouseAdapter{
+		public void mouseClicked(MouseEvent e){
+			view = new Configuracion();
+			view.addBackMenu(new VolverAMenu());
+		}
+	}
+	
 }

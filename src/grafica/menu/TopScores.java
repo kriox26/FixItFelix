@@ -17,7 +17,7 @@ public class TopScores extends Grafica {
 
 	public TopScores(){
 		setLayout(new BorderLayout());
-        File image = new File(backgroundImage);
+		File image = new File(backgroundImage);
 		setContentPane(new JLabel(new ImageIcon(image.getAbsolutePath())));
 		setLayout(new FlowLayout(FlowLayout.LEFT, 20, 620));
 		goBack.setIcon(goBackIcon);

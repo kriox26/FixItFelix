@@ -60,19 +60,19 @@ public class Controlador {
 			}
 		}
 	}
-	
+
 	public Controlador(){}
 
-	public Controlador(Main model, int nivel){
+	public Controlador(Main model, int nivel) {
 		this.model= model;
 		cargarImagenes();
-        edificio = new VentanaView[nivel * 3][5];
-        crearEdificio(nivel);
+    edificio = new VentanaView[nivel * 3][5];
+    crearEdificio(nivel);
 
 		// Cargamos los eventos de la vista MainMenu
 		MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(), new ManejaInstrucciones());
 	}
-    
+
     private void crearEdificio(int nivel){
         int x = 0;
         int y = 0;
@@ -94,17 +94,17 @@ public class Controlador {
             }
         }
     }
-    
+
     public IrrompibleView generarViewIrrompible(Ventana ven, int x, int y){
         switch (ven.getObstaculo().getDireccion()) {
             case DERECHA: return new IrrompibleView(imagenes.get("irrompible_derecha.png"), x, y);
-            
+
             case IZQUIERDA: return new IrrompibleView(imagenes.get("irrompible_izquierda.png"), x, y);
-            
+
             default: return new IrrompibleView(imagenes.get("irrompible_cerrada.png"), x, y);
         }
     }
-    
+
     public SimpleView generarViewSimple(Ventana ven, int x, int y){
         SimpleView act = new SimpleView();
         switch (ven.estadoTotal()) {
@@ -132,11 +132,39 @@ public class Controlador {
         }
         return act;
     }
-    
+
     public PuertaView generarViewPuerta(Ventana ven, int x, int y){
-        return new PuertaView(); // Falta implementar
+        PuertaView act = new PuertaView();
+				switch (ven.estadoTotal()) {
+					case 0: act = new PuertaView(imagenes.get("puerta-sana.png"), x, y);
+									break;
+					case 1: act = new PuertaView(imagenes.get("puerta-abierta.png"), x, y);
+									break;
+					case 2: act = new PuertaView(imagenes.get("puerta-rota-abajo.png"), x, y);
+									break;
+					case 3: act = new PuertaView(imagenes.get("puerta-rota-derecha.png"), x, y);
+									break;
+					case 4: act = new PuertaView(imagenes.get("puerta-rota-salvoUI"), x, y);
+									break;
+					case 5: act = new PuertaView(imagenes.get("puerta-rota-salvoUD.png"), x, y);
+									break;
+					case 6: act = new PuertaView(imagenes.get("puerta-rota-diagD.png"), x, y);
+									break;
+					case 7: act = new PuertaView(imagenes.get("puerta-rota-UI.png"), x, y);
+									break;
+					case 8: act = new PuertaView(imagenes.get("puerta-rota-UD.png"), x, y);
+									break;
+				  case 9: act = new PuertaView(imagenes.get("puerta-rota-DI.png"), x, y);
+									break;
+					case 10: act = new PuertaView(imagenes.get("puerta-rota-DD.png"), x, y);
+									break;
+					case 11: act = new PuertaView(imagenes.get("puerta-rota-salvoDI.png"), x, y);
+									break;
+					case 12: act = new PuertaView(imagenes.get("puerta-rota-salvoDD.png"), x, y);
+									break;
+				}
     }
-    
+
     public SemiCircularView generarViewSemiCircular(Ventana ven, int x, int y){
         return new SemiCircularView(); // Falta implementar
     }
@@ -152,9 +180,9 @@ public class Controlador {
 	public Main getModel(){
 		return this.model;
 	}
-	
+
 	/*Creo que de esta forma se deberia manejar con el Controlador. Cualquier cosa si ven
-	 * que se puede cambiar lo que sea para hacerlo mejor, mporque no se si les va a parecer 
+	 * que se puede cambiar lo que sea para hacerlo mejor, mporque no se si les va a parecer
 	 * un lio de clases, pero bueno jaj. Lo que va a relacionar el modelo con la grafica
 	 * va a ser el Boton Play, que ahi cree la clase, pero no mas que eso por cuestiones
 	 * que se puede relacionar de muchas formas y no se como empezar.
@@ -184,7 +212,7 @@ public class Controlador {
 				model.getDvp().getFelix().mover(Direccion.DERECHA);
 				//P.setLocation(new Point((int) p.getX()+10),new Point((int) p.getY());
 				break;
-			default: 
+			default:
 				break;
 			}
 		}

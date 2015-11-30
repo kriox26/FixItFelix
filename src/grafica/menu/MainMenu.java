@@ -13,10 +13,11 @@ import javax.swing.JLabel;
 public class MainMenu extends JFrame {
 	private String imgPath = "src/grafica/imagenes/";
 	private String backgroundImage = imgPath + "MainMenu.png";
-	private JButton instrucciones, play, highscores;
+	private JButton instrucciones, play, highscores, config;
 	private ImageIcon playBoton = new ImageIcon(imgPath + "Play.png");
 	private ImageIcon highscoresBoton= new ImageIcon(imgPath + "HighScores.png");
 	private ImageIcon instruccionesBoton= new ImageIcon(imgPath + "Instrucciones.png");
+	private ImageIcon configBoton = new ImageIcon(imgPath + "Configuracion3.png");
 	
 	public MainMenu(){
 		/*Menu principal que seria lo primero que aparece al lanzar la aplicacion.
@@ -24,9 +25,9 @@ public class MainMenu extends JFrame {
 		 */
         File image = new File(backgroundImage);
 
-		setLayout(new BorderLayout());
+		//setLayout(new BorderLayout());
 		setContentPane(new JLabel(new ImageIcon(image.getAbsolutePath())));
-		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 550));
+		setLayout(null);
 		configurarBotones();
 
 		/*EL titulo de la Ventana. Creo que igual deberia tener "Fix It Felix".
@@ -41,14 +42,23 @@ public class MainMenu extends JFrame {
 		instrucciones = new JButton();
 		play = new JButton();
 		highscores = new JButton();
+		config = new JButton();
 		play.setIcon(playBoton);
 		highscores.setIcon(highscoresBoton);
 		instrucciones.setIcon(instruccionesBoton);
+		config.setIcon(configBoton);
 		highscores.setBorder(null);
 		play.setBorder(null);
 		instrucciones.setBorder(null);
-		add(highscores, BorderLayout.EAST); add(play, BorderLayout.CENTER);
-		add(instrucciones, BorderLayout.WEST);		
+		config.setBorder(null);
+		config.setContentAreaFilled(false);
+		config.setBounds(840, 50,50,50);
+		instrucciones.setBounds(50, 550, 261, 51);
+		play.setBounds(320, 550, 261, 51);
+		highscores.setBounds(590, 550, 261, 51);
+		add(highscores); add(play);
+		add(instrucciones);	
+		add(config);
 	}
 	public void addMouseEvents(MouseAdapter mouseAdap, MouseAdapter mouseAdap2, MouseAdapter mouseAdap3){
 		play.addMouseListener(mouseAdap);

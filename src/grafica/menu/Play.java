@@ -23,6 +23,7 @@ public class Play extends Grafica {
 	private JLabel fondo;
 	private static final int horEdificio= 250;
 	private static final int verEdificio= 120;
+    private static final int horVentanas = horEdificio + 34;
 	private static final int offsetYVentanas = 68;
 	private static final int offsetXVentanas = 30;
 	private Map<String, BufferedImage> secciones = new TreeMap<String, BufferedImage>();
@@ -61,16 +62,23 @@ public class Play extends Grafica {
 			e.printStackTrace();
 		}
 		this.getGraphics().drawImage(img, horEdificio, verEdificio, null);
-		this.getGraphics().drawImage(building[0][0].getImagenActual(), 34 + horEdificio + building[0][0].getOffsetX()*offsetXVentanas, verEdificio + (340 - offsetYVentanas), null);
-		this.getGraphics().drawImage(building[0][1].getImagenActual(), 34 + horEdificio + (building[0][1].getOffsetX()*offsetXVentanas)+10, verEdificio + (340 - offsetYVentanas), null);
-		this.getGraphics().drawImage(building[0][2].getImagenActual(), 34 + horEdificio + (building[0][2].getOffsetX()*offsetXVentanas)+30, verEdificio + (340 - 97), null);
-		this.getGraphics().drawImage(building[0][3].getImagenActual(), 34 + horEdificio + (building[0][3].getOffsetX()*offsetXVentanas)+80, verEdificio + (340 - offsetYVentanas), null);
-		this.getGraphics().drawImage(building[0][4].getImagenActual(), 34 + horEdificio + (building[0][4].getOffsetX()*offsetXVentanas)+90, verEdificio + (340 - offsetYVentanas), null);
-		this.getGraphics().drawImage(building[1][0].getImagenActual(), 34 + horEdificio + building[1][0].getOffsetX()*offsetXVentanas, verEdificio + (340 - 2*offsetYVentanas - 18), null);
-		this.getGraphics().drawImage(building[1][1].getImagenActual(), 34 + horEdificio + (building[1][1].getOffsetX()*offsetXVentanas)+10, verEdificio + (340 - 2*offsetYVentanas - 18), null);
-		this.getGraphics().drawImage(building[1][2].getImagenActual(), 34 + horEdificio + (building[1][2].getOffsetX()*offsetXVentanas)+30, verEdificio + (340 - 2*offsetYVentanas - 18), null);
-		this.getGraphics().drawImage(building[1][3].getImagenActual(), 34 + horEdificio + (building[1][3].getOffsetX()*offsetXVentanas)+80, verEdificio + (340 - 2*offsetYVentanas - 18), null);
-		this.getGraphics().drawImage(building[1][4].getImagenActual(), 34 + horEdificio + (building[1][4].getOffsetX()*offsetXVentanas)+90, verEdificio + (340 - 2*offsetYVentanas - 18), null);
+		this.getGraphics().drawImage(building[0][0].getImagenActual(), horVentanas + building[0][0].getOffsetX()*offsetXVentanas, verEdificio + (340 - offsetYVentanas), null);
+		this.getGraphics().drawImage(building[0][1].getImagenActual(), horVentanas + (building[0][1].getOffsetX()*offsetXVentanas)+10, verEdificio + (340 - offsetYVentanas), null);
+		this.getGraphics().drawImage(building[0][2].getImagenActual(), horVentanas + (building[0][2].getOffsetX()*offsetXVentanas)+30, verEdificio + (340 - 97), null);
+		this.getGraphics().drawImage(building[0][3].getImagenActual(), horVentanas + (building[0][3].getOffsetX()*offsetXVentanas)+80, verEdificio + (340 - offsetYVentanas), null);
+		this.getGraphics().drawImage(building[0][4].getImagenActual(), horVentanas + (building[0][4].getOffsetX()*offsetXVentanas)+90, verEdificio + (340 - offsetYVentanas), null);
+
+		this.getGraphics().drawImage(building[1][0].getImagenActual(), horVentanas + building[1][0].getOffsetX()*offsetXVentanas, verEdificio + (340 - 2*offsetYVentanas - 18), null);
+		this.getGraphics().drawImage(building[1][1].getImagenActual(), horVentanas + (building[1][1].getOffsetX()*offsetXVentanas)+10, verEdificio + (340 - 2*offsetYVentanas - 18), null);
+		this.getGraphics().drawImage(building[1][2].getImagenActual(), horVentanas + (building[1][2].getOffsetX()*offsetXVentanas)+30, verEdificio + (340 - 2*offsetYVentanas - 18), null);
+		this.getGraphics().drawImage(building[1][3].getImagenActual(), horVentanas + (building[1][3].getOffsetX()*offsetXVentanas)+80, verEdificio + (340 - 2*offsetYVentanas - 18), null);
+		this.getGraphics().drawImage(building[1][4].getImagenActual(), horVentanas + (building[1][4].getOffsetX()*offsetXVentanas)+90, verEdificio + (340 - 2*offsetYVentanas - 18), null);
+
+		this.getGraphics().drawImage(building[2][0].getImagenActual(), horVentanas + building[1][0].getOffsetX()*offsetXVentanas, verEdificio + (340 - 3*offsetYVentanas - 18), null);
+		this.getGraphics().drawImage(building[2][1].getImagenActual(), horVentanas + (building[1][1].getOffsetX()*offsetXVentanas)+10, verEdificio + (340 - 3*offsetYVentanas - 18), null);
+		this.getGraphics().drawImage(building[2][2].getImagenActual(), horVentanas + (building[1][2].getOffsetX()*offsetXVentanas)+30, verEdificio + (340 - 3*offsetYVentanas - 18), null);
+		this.getGraphics().drawImage(building[2][3].getImagenActual(), horVentanas + (building[1][3].getOffsetX()*offsetXVentanas)+80, verEdificio + (340 - 3*offsetYVentanas - 18), null);
+		this.getGraphics().drawImage(building[2][4].getImagenActual(), horVentanas + (building[1][4].getOffsetX()*offsetXVentanas)+90, verEdificio + (340 - 3*offsetYVentanas - 18), null);
         // Despues dibujamos ventanas sobre las secciones
 //        for (int i = 0; i < 3; i++) {
 //            for (int j = 0; j < 5; j++) {

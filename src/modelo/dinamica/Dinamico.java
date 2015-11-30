@@ -6,7 +6,6 @@ import modelo.direcciones.Direccion;
  * Dinamico es cualquier objeto o personaje.
  * Dincamico representa entidades con movilidad.
  *
- * @author  Santiago Marrone
  * @version 1.0
  * @see     modelo.dinamica.Posicion
  */

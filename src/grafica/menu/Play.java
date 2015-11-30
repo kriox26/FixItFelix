@@ -23,7 +23,7 @@ public class Play extends Grafica {
 	private JLabel fondo;
 	private static final int horEdificio= 250;
 	private static final int verEdificio= 120;
-    private static final int horVentanas = horEdificio + 4;
+    private static final int horVentanas = horEdificio + 10;
 	private static final int offsetYVentanas = 68;
 	private static final int offsetXVentanas = 30;
 	private Map<String, BufferedImage> secciones = new TreeMap<String, BufferedImage>();
@@ -80,11 +80,16 @@ public class Play extends Grafica {
 //		this.getGraphics().drawImage(building[2][3].getImagenActual(), horVentanas + (building[1][3].getOffsetX()*offsetXVentanas)+80, verEdificio + (340 - 3*offsetYVentanas - 18), null);
 //		this.getGraphics().drawImage(building[2][4].getImagenActual(), horVentanas + (building[1][4].getOffsetX()*offsetXVentanas)+90, verEdificio + (340 - 3*offsetYVentanas - 18), null);
         // Despues dibujamos ventanas sobre las secciones
+		int actualX = 0;
+		int actualY = 97;
        for (int i = 0; i < 3; i++) {
            for (int j = 0; j < 5; j++) {
-               this.getGraphics().drawImage(building[i][j].getImagenActual(), horVentanas + building[i][j].getOffsetX()*offsetXVentanas + (20*(j+1)), verEdificio + (340 - building[i][j].getOffsetY()), null);
+               this.getGraphics().drawImage(building[i][j].getImagenActual(), horVentanas + actualX + (20*(j+1)), verEdificio + (340 - actualY), null);
                System.out.println("Posicion("+ i + "," + j + ").\nTenemos los offsets: OffsetX= " + building[i][j].getOffsetX() + " y OffsetY= " + building[i][j].getOffsetY() + "\n");
+               actualX += building[i][j].getOffsetX();
            }
+           actualX = 0;
+           actualY += ((i + 1)*56);
        }
         this.getGraphics().drawImage(imagenes.get("a_standing_basic.png"), horVentanas + offsetXVentanas * 4 + 10, verEdificio + (340 - 2*offsetYVentanas - 18), null);
 	}

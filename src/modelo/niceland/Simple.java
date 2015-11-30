@@ -90,11 +90,11 @@ public class Simple extends Ventana {
 			this.setTarta(true);
 		}
 	}
-    
+
     public String getTipoObstaculo(){
     	return this.tipoObstaculo;
     }
-    
+
     /*
      * Devuelve un int indicando el estado total de la ventana. Los casos son:
      *          int = 0     -> La ventana esta completamente sana
@@ -105,6 +105,7 @@ public class Simple extends Ventana {
      *          int = 5     -> La ventana esta rota abajo nada mas
      *          int = 6     -> La ventana esta completamente rota
      */
+
     public int estadoTotal(){
         if(this.estaSana())
             return 0;
@@ -118,7 +119,7 @@ public class Simple extends Ventana {
             return 4;
         if(this.getPaneles()[0].estaRoto() && this.getPaneles()[1].estaSano())
             return 5;
-        if(this.estaSana())
+        if(this.estaRota())
             return 6;
         return 7;
     }

@@ -7,7 +7,7 @@ import modelo.util.RandomAcotado;
 /**
  * Representa la estructura basica de las ventanas compuestas
  * en el edificio de Niceland. Esta ventana administra el arreglo de los paneles
- * e indica si estaba hablitado pasar acorde a los obstaculos que se tiene alrededor. 
+ * e indica si estaba hablitado pasar acorde a los obstaculos que se tiene alrededor.
  *
  * @author  Matias Pan
  * @see modelo.niceland.Niceland
@@ -17,7 +17,7 @@ public class Ventana {
     protected Panel[] paneles;
     private int martillazos_recibidos;
     private Obstaculo obstaculo;
-    
+
     public int getMartillazosRecibidos(){
         return this.martillazos_recibidos;
     }
@@ -78,6 +78,15 @@ public class Ventana {
     public boolean estaSana(){
         for (int i = 0; i < this.getPaneles().length; i++) {
             if (!this.getPaneles()[i].estaSano()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean estaRota(){
+        for (int i = 0; i < this.getPaneles().length; i++) {
+            if (this.getPaneles()[i].estaSano()) {
                 return false;
             }
         }

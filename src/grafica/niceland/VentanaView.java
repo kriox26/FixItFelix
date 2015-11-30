@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 public class VentanaView {
 	private BufferedImage imagenActual;
 	private int offsetX, offsetY;
+    private int inicialY = -10;
+    private int inicialX = 21;
 
 	public VentanaView(BufferedImage imagenActual, int offsetX, int offsetY){
 		this.imagenActual = imagenActual;
@@ -37,5 +39,13 @@ public class VentanaView {
 	public void setOffsetY(int offsetY) {
 		this.offsetY = offsetY;
 	}
+    
+    public int getYinicial(){
+        return this.inicialY;
+    }
+    
+    public int getXinicial(){
+        return this.inicialX;
+    }
 
 }

@@ -26,7 +26,7 @@ public class Play extends Grafica {
     * todo.
     */
     public Play(Main main, VentanaView[][] building, Map<String, BufferedImage> imagenes){
-        setLayout(new FlowLayout());
+        setLayout(new FlowLayout(FlowLayout.LEFT, 0,0));
         add(goBack);
         setSize(800, 600);
         setVisible(true);
@@ -45,7 +45,7 @@ public class Play extends Grafica {
     
     public void cargarNiceland(VentanaView[][] building, Map<String, BufferedImage> imagenes){
         // Dibujar secciones primero
-        File imagen = new File("src/grafica/imagenes/edificio/edificio_150_seccion1.png");
+        File imagen = new File("src/grafica/imagenes/edificio/piso2.png");
         BufferedImage img = null;
         try{
             img = ImageIO.read(imagen);
@@ -55,20 +55,20 @@ public class Play extends Grafica {
         this.getGraphics().drawImage(img, horEdificio, verEdificio, null);
 
         // Despues dibujamos ventanas sobre las secciones
+        int alturaActual = 0;
         int actualX = 0;
-        int actualY = 97;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 3; i < 6; i++) {
             for (int j = 0; j < 5; j++) {
-                this.getGraphics().drawImage(building[i][j].getImagenActual(), horVentanas + actualX + (20*(j+1)), verEdificio + (340 - actualY), null);
-                System.out.println("Posicion("+ i + "," + j + ").\nTenemos los offsets: OffsetX= " + building[i][j].getOffsetX() + " y OffsetY= " + building[i][j].getOffsetY() + "\n");
-                actualX += building[i][j].getOffsetX();
+                this.getGraphics().drawImage(building[i][j].getImagenActual(), 10 + horEdificio + actualX + building[i][j].getXinicial(), verEdificio + (230 - (alturaActual + building[i][j].getYinicial())), null);
+                actualX += 54;
             }
+            // if (i == 2 || i == 5 || i == 8) {
+            //     alturaActual += 90;
+            // }else{
+                alturaActual += 70;
+            // }
             actualX = 0;
-            actualY += 56;
         }
-        this.getGraphics().drawImage(imagenes.get("a_standing_basic.png"), horVentanas + offsetXVentanas * 4 + 10, verEdificio + (340 - 2*offsetYVentanas - 18), null);
-        this.getGraphics().drawImage(imagenes.get("u_leftHit.png"),horVentanas + offsetXVentanas * 4 + 10, verEdificio + (340 - 5*offsetYVentanas + 2), null);
-        this.getGraphics().drawImage(imagenes.get("ladrillo_der.png"), horVentanas + offsetXVentanas * 4 + 10, verEdificio *(340 - 2*offsetYVentanas - 18), null);
     }
     
     public void paintComponents(Graphics g){

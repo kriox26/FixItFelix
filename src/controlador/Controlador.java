@@ -1,6 +1,8 @@
 package controlador;
 
 
+import grafica.dinamica.personajes.FelixView;
+import grafica.dinamica.personajes.RalphView;
 import grafica.menu.Configuracion;
 import grafica.menu.Grafica;
 import grafica.menu.Instrucciones;
@@ -49,6 +51,7 @@ public class Controlador {
             cargarImagenes();
             edificio = new VentanaView[(nivel * 3) * 3][5];
             crearEdificio(nivel);
+            cargarPersonajes();
             MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(), 
             new ManejaInstrucciones(), new ManejaConfiguracion());
         }
@@ -72,6 +75,11 @@ public class Controlador {
                     }
                 }
             }
+        }
+        
+        private void cargarPersonajes(){
+            FelixView fView = new FelixView(imagenes.get("a_standing_basic.png"),0,0);
+            RalphView rView = new RalphView(imagenes.get("u_standing_front.png"),0,0);
         }
         
         private void crearEdificio(int nivel){

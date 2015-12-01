@@ -10,6 +10,10 @@ public class SemiCircularView extends VentanaView {
 		super(imagenActual, offsetX, offsetY);
 	}
 
+	public SemiCircularView(BufferedImage imagenActual){
+		super(imagenActual);
+	}
+
 	public SemiCircularView(){}
         
     public int getYinicial(){

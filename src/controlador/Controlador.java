@@ -27,6 +27,7 @@ import java.util.TreeMap;
 
 import javax.imageio.ImageIO;
 
+import modelo.dinamica.Posicion;
 import modelo.direcciones.Direccion;
 import modelo.main.Main;
 import modelo.niceland.Irrompible;
@@ -51,7 +52,6 @@ public class Controlador {
             cargarImagenes();
             edificio = new VentanaView[(nivel * 3) * 3][5];
             crearEdificio(nivel);
-            cargarPersonajes();
             MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(), 
             new ManejaInstrucciones(), new ManejaConfiguracion());
         }
@@ -78,8 +78,6 @@ public class Controlador {
         }
         
         private void cargarPersonajes(){
-            FelixView fView = new FelixView(imagenes.get("a_standing_basic.png"),0,0);
-            RalphView rView = new RalphView(imagenes.get("u_standing_front.png"),0,0);
         }
         
         private void crearEdificio(int nivel){
@@ -106,30 +104,30 @@ public class Controlador {
         
         public IrrompibleView generarViewIrrompible(Ventana ven, int x, int y){
             switch (ven.getObstaculo().getDireccion()) {
-                case DERECHA: return new IrrompibleView(imagenes.get("irrompible_derecha.png"), 31, y * 68);
+                case DERECHA: return new IrrompibleView(imagenes.get("irrompible_derecha.png"));
                 
-                case IZQUIERDA: return new IrrompibleView(imagenes.get("irrompible_izquierda.png"), 31, y * 68);
+                case IZQUIERDA: return new IrrompibleView(imagenes.get("irrompible_izquierda.png"));
                 
-                default: return new IrrompibleView(imagenes.get("irrompible_cerrada.png"), 31, y * 68);
+                default: return new IrrompibleView(imagenes.get("irrompible_cerrada.png"));
             }
         }
         
         public SimpleView generarViewSimple(Ventana ven, int x, int y){
             SimpleView act = new SimpleView();
             switch (ven.estadoTotal()) {
-                case 0: act = new SimpleView(imagenes.get("simple.png"), 31, y * 68);// Esta arreglada
+                case 0: act = new SimpleView(imagenes.get("simple.png"));// Esta arreglada
                 break;
-                case 1: act = new SimpleView(imagenes.get("media_rota_abajo.png"), 31, y * 68); // La ventana esta media rota abajo
+                case 1: act = new SimpleView(imagenes.get("media_rota_abajo.png")); // La ventana esta media rota abajo
                 break;
-                case 2: act = new SimpleView(imagenes.get("media_rota_ambos.png"), 31, y * 68); // La ventana esta media rota en ambos
+                case 2: act = new SimpleView(imagenes.get("media_rota_ambos.png")); // La ventana esta media rota en ambos
                 break;
-                case 3: act = new SimpleView(imagenes.get("media_rota_arriba.png"), 31, y * 68);// La ventana media rota arriba
+                case 3: act = new SimpleView(imagenes.get("media_rota_arriba.png"));// La ventana media rota arriba
                 break;
-                case 4: act = new SimpleView(imagenes.get("rota_arriba.png"), 31, y * 68);// La ventana esta rota arriba nada mas
+                case 4: act = new SimpleView(imagenes.get("rota_arriba.png"));// La ventana esta rota arriba nada mas
                 break;
-                case 5: act = new SimpleView(imagenes.get("rota_abajo.png"), 31, y * 68);// La ventana esta rota abajo nada mas
+                case 5: act = new SimpleView(imagenes.get("rota_abajo.png"));// La ventana esta rota abajo nada mas
                 break;
-                case 6: act = new SimpleView(imagenes.get("rota_ambos.png"), 31, y * 68);// La ventana esta completamente rota
+                case 6: act = new SimpleView(imagenes.get("rota_ambos.png"));// La ventana esta completamente rota
                 break;
             }
             switch (ven.getTipoObstaculo()) {
@@ -145,40 +143,40 @@ public class Controlador {
         public PuertaView generarViewPuerta(Ventana ven, int x, int y){
             PuertaView act = new PuertaView();
             switch (ven.estadoTotal()) {
-                case 0: act = new PuertaView(imagenes.get("puerta-sana.png"), 55, 97);
+                case 0: act = new PuertaView(imagenes.get("puerta-sana.png"));
                 break;
-                case 1: act = new PuertaView(imagenes.get("puerta-abierta.png"), 55, 97);
+                case 1: act = new PuertaView(imagenes.get("puerta-abierta.png"));
                 break;
-                case 2: act = new PuertaView(imagenes.get("puerta-rota-abajo.png"), 55, 97);
+                case 2: act = new PuertaView(imagenes.get("puerta-rota-abajo.png"));
                 break;
-                case 3: act = new PuertaView(imagenes.get("puerta-rota-derecha.png"), 55, 97);
+                case 3: act = new PuertaView(imagenes.get("puerta-rota-derecha.png"));
                 break;
-                case 4: act = new PuertaView(imagenes.get("puerta-rota-salvoUI"), 55, 97);
+                case 4: act = new PuertaView(imagenes.get("puerta-rota-salvoUI"));
                 break;
-                case 5: act = new PuertaView(imagenes.get("puerta-rota-salvoUD.png"), 55, 97);
+                case 5: act = new PuertaView(imagenes.get("puerta-rota-salvoUD.png"));
                 break;
-                case 6: act = new PuertaView(imagenes.get("puerta-rota-diagD.png"), 55, 97);
+                case 6: act = new PuertaView(imagenes.get("puerta-rota-diagD.png"));
                 break;
-                case 7: act = new PuertaView(imagenes.get("puerta-rota-UI.png"), 55, 97);
+                case 7: act = new PuertaView(imagenes.get("puerta-rota-UI.png"));
                 break;
-                case 8: act = new PuertaView(imagenes.get("puerta-rota-UD.png"), 55, 97);
+                case 8: act = new PuertaView(imagenes.get("puerta-rota-UD.png"));
                 break;
-                case 9: act = new PuertaView(imagenes.get("puerta-rota-DI.png"), 55, 97);
+                case 9: act = new PuertaView(imagenes.get("puerta-rota-DI.png"));
                 break;
-                case 10: act = new PuertaView(imagenes.get("puerta-rota-DD.png"), 55, 97);
+                case 10: act = new PuertaView(imagenes.get("puerta-rota-DD.png"));
                 break;
-                case 11: act = new PuertaView(imagenes.get("puerta-rota-salvoDI.png"), 55, 97);
+                case 11: act = new PuertaView(imagenes.get("puerta-rota-salvoDI.png"));
                 break;
-                case 12: act = new PuertaView(imagenes.get("puerta-rota-salvoDD.png"), 55, 97);
+                case 12: act = new PuertaView(imagenes.get("puerta-rota-salvoDD.png"));
                 break;
-                default: act = new PuertaView(imagenes.get("puerta-sana.png"), 55, 97);
+                default: act = new PuertaView(imagenes.get("puerta-sana.png"));
                 break;
             }
             return act;
         }
         
         public SemiCircularView generarViewSemiCircular(Ventana ven, int x, int y){
-            return new SemiCircularView(imagenes.get("semi-circular.png"), 55, 97+56); // Falta implementar
+            return new SemiCircularView(imagenes.get("semi-circular.png")); // Falta implementar
         }
         
         public Grafica getView(){
@@ -233,7 +231,12 @@ public class Controlador {
         class ManejaPlayAdapter extends MouseAdapter{
             public void mouseClicked(MouseEvent e){
                 MENU.turnOff();
-                view = new Play(model, edificio, imagenes);
+                Posicion pos = model.getDvp().getFelix().getPosicion();
+                model.getDvp().getFelix().mover(Direccion.DERECHA);
+                model.getDvp().getFelix().mover(Direccion.DERECHA);
+                FelixView fView = new FelixView(imagenes.get("a_standing_basic.png"),pos.getColumna(),pos.getSeccion()+pos.getFila());
+                RalphView rView = new RalphView(imagenes.get("u_standing_front.png"),0,0);
+                view = new Play(model, edificio, imagenes, fView);
                 view.addKeyboardEvents(new ManejaEventosTeclado());
                 view.addBackMenu(new VolverAMenu());
             }

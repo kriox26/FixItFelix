@@ -9,6 +9,10 @@ public class IrrompibleView extends VentanaView {
 		super(imagenActual, offsetX, offsetY);
 	}
 
+	public IrrompibleView(BufferedImage imagenActual){
+		super(imagenActual);
+	}
+
 	public IrrompibleView(){}
 
 }

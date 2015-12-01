@@ -7,11 +7,17 @@ public class VentanaView {
 	private int offsetX, offsetY;
     private int inicialY = -10;
     private int inicialX = 21;
+    private int ajusteX = 9;
+    private int ajusteY = -3;
 
 	public VentanaView(BufferedImage imagenActual, int offsetX, int offsetY){
 		this.imagenActual = imagenActual;
 		this.offsetX = offsetX;
 		this.offsetY= offsetY;
+	}
+
+	public VentanaView(BufferedImage imagenActual){
+		this.imagenActual = imagenActual;
 	}
 
 	public VentanaView(){}
@@ -48,4 +54,11 @@ public class VentanaView {
         return this.inicialX;
     }
 
+    public int getAjusteX(){
+    	return this.ajusteX;
+    }
+
+    public int getAjusteY(){
+    	return this.ajusteY;
+    }
 }

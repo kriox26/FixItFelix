@@ -1,5 +1,6 @@
 package grafica.menu;
 
+import grafica.dinamica.personajes.FelixView;
 import grafica.niceland.VentanaView;
 
 import java.awt.FlowLayout;
@@ -17,21 +18,18 @@ import modelo.main.Main;
 public class Play extends Grafica {
     private static final int horEdificio= 250;
     private static final int verEdificio= 120;
-    private static final int horVentanas = horEdificio + 10;
-    private static final int offsetYVentanas = 68;
-    private static final int offsetXVentanas = 30;
     
     /*
     * Se crean todas las imagenes de Niceland, ventanas con obstaculos
     * todo.
     */
-    public Play(Main main, VentanaView[][] building, Map<String, BufferedImage> imagenes){
+    public Play(Main main, VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix){
         setLayout(new FlowLayout(FlowLayout.LEFT, 0,0));
         add(goBack);
         setSize(800, 600);
         setVisible(true);
-        this.getGraphics().drawImage(imagenes.get("fondo.png"), 0,0,null);
-        cargarNiceland(building, imagenes);
+        this.getGraphics().drawImage(imagenes.get("grass_background.jpg"), 0,0,null);
+        cargarNiceland(building, imagenes, felix);
         try{
             Thread.sleep(2000000);
         } catch(InterruptedException e){
@@ -42,10 +40,10 @@ public class Play extends Grafica {
     public void addKeyboardEvents(KeyAdapter keyadapter){
         this.addKeyListener(keyadapter);
     }
-    
-    public void cargarNiceland(VentanaView[][] building, Map<String, BufferedImage> imagenes){
+
+    public void cargarNiceland(VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix){
         // Dibujar secciones primero
-        File imagen = new File("src/grafica/imagenes/edificio/piso2.png");
+        File imagen = new File("src/grafica/imagenes/edificio/piso1.png");
         BufferedImage img = null;
         try{
             img = ImageIO.read(imagen);
@@ -57,9 +55,14 @@ public class Play extends Grafica {
         // Despues dibujamos ventanas sobre las secciones
         int alturaActual = 0;
         int actualX = 0;
-        for (int i = 3; i < 6; i++) {
+        for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 5; j++) {
-                this.getGraphics().drawImage(building[i][j].getImagenActual(), 10 + horEdificio + actualX + building[i][j].getXinicial(), verEdificio + (230 - (alturaActual + building[i][j].getYinicial())), null);
+            	int venX = 10 + horEdificio + actualX + building[i][j].getXinicial();
+            	int venY = verEdificio + (230 - (alturaActual + building[i][j].getYinicial()));
+                this.getGraphics().drawImage(building[i][j].getImagenActual(), venX, venY, null);
+            	if(felix.getOffsetX() == j && felix.getOffsetY() == i){
+            		this.getGraphics().drawImage(felix.getImagenActual(), venX + building[i][j].getAjusteX(), venY + building[i][j].getAjusteY(), null);
+            	}
                 actualX += 54;
             }
             // if (i == 2 || i == 5 || i == 8) {

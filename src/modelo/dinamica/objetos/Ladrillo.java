@@ -12,8 +12,8 @@ import modelo.dinamica.Posicion;
  * @see modelo.dinamica.direcciones
  */
 public class Ladrillo extends Objeto {
-
-	private static final double kv = 9.58; // Constante de variación de velocidad
+    private int velocidad = 3;
+    private int vaCayendo = 30;
 
 			public Ladrillo(){
 					Posicion posicion = new Posicion();
@@ -45,8 +45,9 @@ public class Ladrillo extends Objeto {
     }
     
     private void caer(){
-        if (this.getPosicion().getFila() > 0) {
-            super.mover(Direccion.ABAJO);
+        if (this.vaCayendo > 0) {
+            vaCayendo -= velocidad;
+            this.getPosicion().setFila(vaCayendo / 10);
         }
     }
     

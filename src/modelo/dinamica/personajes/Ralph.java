@@ -1,9 +1,9 @@
 package modelo.dinamica.personajes;
 
 import modelo.dinamica.Posicion;
-import modelo.direcciones.*;
+import modelo.dinamica.objetos.Ladrillo;
+import modelo.direcciones.Direccion;
 import modelo.util.RandomAcotado;
-import modelo.dinamica.objetos.*;
 
 /**
  * La clase Ralph representa al villano del juego.
@@ -87,6 +87,14 @@ public class Ralph extends Personaje {
 			}
 		}
 	}
+    
+    public Ladrillo tirarLadrillo(){
+        if (this.hayLadrillos()) {
+            this.setLadrillos(this.getLadrillos() - 1);
+            return new Ladrillo(this.getPosicion());
+        }
+        return null;
+    }
 
 	private void movimientoParcialLateral (Direccion direction) {
 		while (!this.alBorde()) {
@@ -118,8 +126,19 @@ public class Ralph extends Personaje {
      * Mueve a ralph en la direccion especificada.
      * @params Direccion direction: Direccion en la que se lo quiere mover
      */
-    public void mover(Direccion direccion){
-        super.mover(direccion);
+    public void mover(){
+        RandomAcotado rnd = new RandomAcotado(0,1);
+        switch (rnd.getValor()) {
+            case 0: 
+                if(!this.alBordeDerecho())
+                    this.setPosicion(this.getPosicion().modificar(Direccion.DERECHA));
+                break;
+            case 1:
+                if(!this.alBordeIzquierdo())
+                    this.setPosicion(this.getPosicion().modificar(Direccion.IZQUIERDA));
+                break;
+            default: break;
+        }
     }
 
 	public Ladrillo[] getLadrillosLanzados() {

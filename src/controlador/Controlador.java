@@ -2,7 +2,9 @@ package controlador;
 
 
 import excepciones.InvalidMoveException;
+import grafica.dinamica.objetos.LadrilloView;
 import grafica.dinamica.personajes.FelixView;
+import grafica.dinamica.personajes.RalphView;
 import grafica.menu.Configuracion;
 import grafica.menu.Grafica;
 import grafica.menu.Instrucciones;
@@ -24,6 +26,8 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,6 +48,8 @@ import modelo.niceland.Ventana;
 public class Controlador extends TimerTask{
     private Grafica view;
     private FelixView fView;
+    private RalphView rView;
+    private List<LadrilloView> ladrillos = new ArrayList<LadrilloView>();
     private Main model;
     private static MainMenu MENU = new MainMenu();
     private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
@@ -52,11 +58,27 @@ public class Controlador extends TimerTask{
     public void run(){
     	if(!this.model.gameOver()){
         	this.model.jugarUnTurno();
+            ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 30));
+            actualizarLadrillos();
+        	actualizarPersonajes();
         	this.crearEdificio(this.model.getDvp().getNivel());
-        	this.view.cargarNiceland(edificio, imagenes, fView);
+        	this.view.cargarNiceland(edificio, imagenes, fView, rView);
+            this.view.graficarLadrillos(ladrillos);
     	}else{
     		this.cancel();
     	}
+    }
+    
+    private void actualizarLadrillos(){
+        for(LadrilloView ladrillo : ladrillos){
+            ladrillo.actualizar();
+            if(ladrillo.getOffsetY() == 0)
+            	ladrillo = null;
+        }
+    }
+
+    private void actualizarPersonajes(){
+    	rView.setOffsetX(this.model.getDvp().getRalph().getPosicion().getColumna());
     }
     
     
@@ -64,6 +86,7 @@ public class Controlador extends TimerTask{
     }
     
     public Controlador(Main model, int nivel){
+    	this.rView = new RalphView(imagenes.get("u_standing_fury_2.png"), 0, 0);
         this.model= model;
         cargarImagenes();
         edificio = new VentanaView[(nivel * 3) * 3][5];
@@ -254,6 +277,7 @@ public class Controlador extends TimerTask{
         public void mouseClicked(MouseEvent e){
             MENU.turnOff();
             fView = new FelixView(imagenes.get("a_standing_basic.png"), 2, 0);
+//            ctrlLadrillos = new ControladorLadrillo(imagenes);
             cargarView();
             view.addKeyboardEvents(new ManejaEventosTeclado());
 //            view.addBackMenu(new VolverAMenu());
@@ -268,7 +292,8 @@ public class Controlador extends TimerTask{
     }
 
     public void cargarView(){
-    	view = new Play(this, edificio, imagenes, fView);
+    	view = new Play(this, edificio, imagenes, fView, rView);
+//    	this.ctrlLadrillos.setGameWindow(view);
     }
     
     

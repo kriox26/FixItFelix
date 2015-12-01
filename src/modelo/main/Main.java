@@ -21,7 +21,7 @@ public class Main {
     public Desarrollo dvp;
     public Niceland niceland;
 	private int nivel;
-    private List<Objeto> collecionDeObjetos = new ArrayList<Objeto>();
+    private List<Objeto> coleccionDeObjetos = new ArrayList<Objeto>();
 
     public Main(boolean jugando, int nivel){
         this.jugando = jugando;
@@ -50,6 +50,8 @@ public class Main {
      * tanto estaticos como dinamicos.
      */
     public void jugarUnTurno(){
+        this.getDvp().getRalph().mover();
+        coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo());
         actualizarObjetos(); // Actualiza la collecion de objectos lanzados
     }
     
@@ -60,8 +62,10 @@ public class Main {
      * del jugador con el juego.
      */
     private void actualizarObjetos(){
-        for (Objeto obj: collecionDeObjetos) {
-            obj.actualizar();
+        for (Objeto obj: coleccionDeObjetos) {
+        	if(obj != null){
+        		obj.actualizar();
+        	}
         }
     }
     

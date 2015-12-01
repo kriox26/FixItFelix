@@ -104,7 +104,6 @@ public class Simple extends Ventana {
      *          int = 5     -> La ventana esta rota abajo nada mas
      *          int = 6     -> La ventana esta completamente rota
      */
-
     public int estadoTotal(){
         if(this.estaSana())
             return 0;

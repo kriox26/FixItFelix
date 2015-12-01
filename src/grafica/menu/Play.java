@@ -1,12 +1,15 @@
 package grafica.menu;
 
+import grafica.dinamica.objetos.LadrilloView;
 import grafica.dinamica.personajes.FelixView;
+import grafica.dinamica.personajes.RalphView;
 import grafica.niceland.VentanaView;
 
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.image.BufferedImage;
+import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 
@@ -20,7 +23,7 @@ public class Play extends Grafica {
     * Se crean todas las imagenes de Niceland, ventanas con obstaculos
     * todo.
     */
-    public Play(Controlador ctrl, VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix){
+    public Play(Controlador ctrl, VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix, RalphView rView){
         setLayout(new FlowLayout());
 //        add(goBack);
         setSize(800, 600);
@@ -30,12 +33,18 @@ public class Play extends Grafica {
     	Timer timer = new Timer("Turnos");
     	timer.schedule(ctrl, 0, 100);
     }
+
+    public void graficarLadrillos(List<LadrilloView> ladrillos){
+        for(LadrilloView ladrillo : ladrillos){
+            this.getGraphics().drawImage(ladrillo.getImagenActual(), horEdificio + (54 * ladrillo.getOffsetX() + 40), verEdificio + (230 - 4*ladrillo.getOffsetY() - 20), null);
+        }
+    }
     
     public void addKeyboardEvents(KeyAdapter keyadapter){
         this.addKeyListener(keyadapter);
     }
 
-    public void cargarNiceland(VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix){
+    public void cargarNiceland(VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix, RalphView rView){
         this.getGraphics().drawImage(imagenes.get("piso2.png"), horEdificio, verEdificio, null);
 //        this.getGraphics().drawImage(imagenes.get("piso2.png"), horEdificio, verEdificio - 330, null);
         // Despues dibujamos ventanas sobre las secciones
@@ -62,7 +71,7 @@ public class Play extends Grafica {
             }
             actualX = 0;
         }
-        this.getGraphics().drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + 115, verEdificio + (230 - alturaActual - 40), null);
+        this.getGraphics().drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + (54 * rView.getOffsetX() + 1), verEdificio + (230 - alturaActual + 55), null);
     }
     
     public void paintComponents(Graphics g){

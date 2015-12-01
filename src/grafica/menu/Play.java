@@ -57,11 +57,15 @@ public class Play extends Grafica {
         int actualX = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 5; j++) {
-            	int venX = 10 + horEdificio + actualX + building[i][j].getXinicial();
-            	int venY = verEdificio + (230 - (alturaActual + building[i][j].getYinicial()));
-                this.getGraphics().drawImage(building[i][j].getImagenActual(), venX, venY, null);
+            	VentanaView act = building[i][j];
+            	int venX = 10 + horEdificio + actualX + act.getXinicial();
+            	int venY = verEdificio + (230 - (alturaActual + act.getYinicial()));
+                this.getGraphics().drawImage(act.getImagenActual(), venX, venY, null);
+                if(act.tieneObstaculo()){
+                	this.getGraphics().drawImage(act.getObstaculoView().getImagenActual(), venX + act.getObstaculoView().getOffsetX(), venY + act.getObstaculoView().getOffsetY(), null);
+                }
             	if(felix.getOffsetX() == j && felix.getOffsetY() == i){
-            		this.getGraphics().drawImage(felix.getImagenActual(), venX + building[i][j].getAjusteX(), venY + building[i][j].getAjusteY(), null);
+            		this.getGraphics().drawImage(felix.getImagenActual(), venX + act.getAjusteX(), venY + act.getAjusteY(), null);
             	}
                 actualX += 54;
             }

@@ -6,7 +6,9 @@ import java.awt.image.BufferedImage;
 
 
 public class MolduraView extends GGO {
-	public MolduraView(BufferedImage imagenActual, int offsetX, int offsetY) {
-		super(imagenActual, offsetX, offsetY);
+
+	public MolduraView(BufferedImage imagenActual) {
+		super(imagenActual, -1, 0);
 	}
+
 }

@@ -14,6 +14,8 @@ import grafica.niceland.PuertaView;
 import grafica.niceland.SemiCircularView;
 import grafica.niceland.SimpleView;
 import grafica.niceland.VentanaView;
+import grafica.obstaculos.MacetaView;
+import grafica.obstaculos.MolduraView;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -131,9 +133,9 @@ public class Controlador {
                 break;
             }
             switch (ven.getTipoObstaculo()) {
-                case "moldura": // Agregar imagen de moldura
+                case "moldura": act.setObstaculoView(new MolduraView(imagenes.get("moldura.png"))); // Falta calcular el offset x e Y
                 break;
-                case "maceta": // Agregar imagen de maceta
+                case "maceta": act.setObstaculoView(new MacetaView(imagenes.get("macetero.png"))); // Falta calcular el offset x e y
                 break;
                 default: break; // nada
             }

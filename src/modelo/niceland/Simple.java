@@ -17,7 +17,6 @@ import modelo.util.RandomAcotado;
  */
 public class Simple extends Ventana {
 	private boolean tarta = false;
-    private Obstaculo obstaculo;
     private String tipoObstaculo;
 
     /*

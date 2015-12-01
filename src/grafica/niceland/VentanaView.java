@@ -1,8 +1,11 @@
 package grafica.niceland;
 
+import grafica.dinamica.GGO;
+
 import java.awt.image.BufferedImage;
 
 public class VentanaView {
+	private GGO obstaculo;
 	private BufferedImage imagenActual;
 	private int offsetX, offsetY;
     private int inicialY = -10;
@@ -60,5 +63,16 @@ public class VentanaView {
 
     public int getAjusteY(){
     	return this.ajusteY;
+    }
+    
+    public void setObstaculoView(GGO obs){
+    }
+
+    public GGO getObstaculoView(){
+    	return this.obstaculo;
+    }
+
+    public boolean tieneObstaculo(){
+    	return this.obstaculo != null;
     }
 }

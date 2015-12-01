@@ -110,7 +110,7 @@ public class Personaje extends Dinamico {
 		if (this.puedeMoverse(direction) && ventana.pasarHabilitado(direction)) {
             super.mover(direction);
 		} else{
-            throw new InvalidMoveException("Movimiento invalido!");
+            throw new InvalidMoveException("Movimiento invalido! Desde " + this.getPosicion().to_string() + " quiere moverse hacia " + direction.toString());
         }
 	}
 }

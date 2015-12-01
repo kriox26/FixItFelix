@@ -1,5 +1,7 @@
 package modelo.niceland;
 
+import modelo.util.RandomAcotado;
+
 /**
  * Representa las secciones del edificio, pueden ser de 3 tipos, las cuales tienen
  * distintas caracteristicas. Son:
@@ -89,18 +91,20 @@ public class Seccion {
     }
     
     /*
-     * Setea los tipos de las ventanas de  cada fila, random si es par es Simple
+     * Setea los tipos de las ventanas de  cada fila, hay mas posibilidades que sea
+     * simple que irrompible, solo para hacer el juego un poco mas interesante.
      * si es impar es irrompible
      */
     private void setearVentanas(){
         for (int j = 0; j <3; j++){
         	for (int i = 0; i < 5; i++) {
-        		int random = (int )(Math.random() * 50 + 1);
-        		if (random % 2 == 0) {
-        			this.ventanas[j][i] = new Simple(false);
-        		}else{
-        			this.ventanas[j][i] = new Irrompible();
-        		}
+                RandomAcotado rnd = new RandomAcotado(0,3);
+                switch (rnd.getValor()) {
+                    case 3: this.ventanas[j][i] = new Irrompible();
+                    		break;
+                    default: this.ventanas[j][i] = new Simple(false);
+                    		 break;
+                }
         	}
         }
     }

@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class PuertaView extends VentanaView {
     private int inicialY = 0;
-    private int inicialX = 7;
+    private int inicialX = 9;
     private int ajusteY = 45;
     private int ajusteX = 14;
 

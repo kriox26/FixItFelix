@@ -88,7 +88,7 @@ public class Felix extends Personaje{
         this.reparar(ventana);
     }
     
-    public void mover(Direccion direccion){
-        super.mover(direccion);
+    public void mover(Direccion direccion, Ventana ventana){
+        super.mover(direccion, ventana);
     }
 }

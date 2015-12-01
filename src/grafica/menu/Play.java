@@ -7,13 +7,10 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Map;
+import java.util.Timer;
 
-import javax.imageio.ImageIO;
-
-import modelo.main.Main;
+import controlador.Controlador;
 
 public class Play extends Grafica {
     private static final int horEdificio= 250;
@@ -23,18 +20,15 @@ public class Play extends Grafica {
     * Se crean todas las imagenes de Niceland, ventanas con obstaculos
     * todo.
     */
-    public Play(Main main, VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix){
-        setLayout(new FlowLayout(FlowLayout.LEFT, 0,0));
-        add(goBack);
+    public Play(Controlador ctrl, VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix){
+        setLayout(new FlowLayout());
+//        add(goBack);
         setSize(800, 600);
+        setResizable(false);
         setVisible(true);
         this.getGraphics().drawImage(imagenes.get("grass_background.jpg"), 0,0,null);
-        cargarNiceland(building, imagenes, felix);
-        try{
-            Thread.sleep(2000000);
-        } catch(InterruptedException e){
-            
-        }
+    	Timer timer = new Timer("Turnos");
+    	timer.schedule(ctrl, 0, 100);
     }
     
     public void addKeyboardEvents(KeyAdapter keyadapter){
@@ -42,20 +36,12 @@ public class Play extends Grafica {
     }
 
     public void cargarNiceland(VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix){
-        // Dibujar secciones primero
-        File imagen = new File("src/grafica/imagenes/edificio/piso1.png");
-        BufferedImage img = null;
-        try{
-            img = ImageIO.read(imagen);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        this.getGraphics().drawImage(img, horEdificio, verEdificio, null);
-
+        this.getGraphics().drawImage(imagenes.get("piso2.png"), horEdificio, verEdificio, null);
+//        this.getGraphics().drawImage(imagenes.get("piso2.png"), horEdificio, verEdificio - 330, null);
         // Despues dibujamos ventanas sobre las secciones
         int alturaActual = 0;
         int actualX = 0;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 5; j++) {
             	VentanaView act = building[i][j];
             	int venX = 10 + horEdificio + actualX + act.getXinicial();
@@ -69,13 +55,14 @@ public class Play extends Grafica {
             	}
                 actualX += 54;
             }
-            // if (i == 2 || i == 5 || i == 8) {
-            //     alturaActual += 90;
-            // }else{
+            if (i == 2 || i == 5 || i == 8) {
+            	alturaActual += 90;
+            }else{
                 alturaActual += 70;
-            // }
+            }
             actualX = 0;
         }
+        this.getGraphics().drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + 115, verEdificio + (230 - alturaActual - 40), null);
     }
     
     public void paintComponents(Graphics g){

@@ -70,7 +70,7 @@ public class Main {
      * Felix aun tenga vidas, y que todavia no haya llegado al fin del edificio.
      * @return boolean: True si el juego termino, false caso contrario
      */
-    private boolean gameOver(){
+    public boolean gameOver(){
         return false;
     }
 

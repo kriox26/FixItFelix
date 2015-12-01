@@ -41,6 +41,7 @@ import modelo.niceland.Ventana;
 
 public class Controlador {
     private Grafica view;
+    private FelixView fView;
     private Main model;
     private static MainMenu MENU = new MainMenu();
     private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
@@ -85,7 +86,7 @@ public class Controlador {
         private void crearEdificio(int nivel){
             Niceland building = this.model.getNiceland();
             int n = 0;
-            for (int i = 0; i < nivel * 3 ; i++) {
+            for (int i = 0; i < (nivel * 3) ; i++) {
                 Ventana[][] ventanas = building.getSecciones()[i].getVentanas();
                 for (int k = 0; k < 3; k++) {
                     for (int j = 0; j < 5; j++) {
@@ -206,27 +207,25 @@ public class Controlador {
         class ManejaEventosTeclado extends KeyAdapter{
             public void keyPressed(KeyEvent e){
                 int movek = e.getKeyCode();
-                //Point P = Posicion de Imagen de Felix a usar creo
+                Posicion pos = model.getDvp().getFelix().getPosicion();
                 switch(movek){
                     case KeyEvent.VK_UP:		//Arriba
                     model.getDvp().getFelix().mover(Direccion.ARRIBA);
-                    //P.setLocation(new Point((int) p.getX()),new Point((int) p.getY()+10);
                     break;
                     case KeyEvent.VK_DOWN:		//Abajo
                     model.getDvp().getFelix().mover(Direccion.ABAJO);
-                    //P.setLocation(new Point((int) p.getX()),new Point((int) p.getY()-10);
                     break;
                     case KeyEvent.VK_LEFT: //Izquierda
                     model.getDvp().getFelix().mover(Direccion.IZQUIERDA);
-                    //P.setLocation(new Point((int) p.getX()-10),new Point((int) p.getY());
                     break;
                     case KeyEvent.VK_RIGHT: //Derecha
                     model.getDvp().getFelix().mover(Direccion.DERECHA);
-                    //P.setLocation(new Point((int) p.getX()+10),new Point((int) p.getY());
                     break;
                     default:
                     break;
                 }
+                fView.setOffsetX(pos.getColumna());
+                fView.setOffsetY(pos.getFila() + pos.getSeccion());
             }
         }
         
@@ -240,7 +239,7 @@ public class Controlador {
                 }catch(InvalidMoveException exc){
                     System.out.println(exc.getMessage());
                 }
-                FelixView fView = new FelixView(imagenes.get("a_standing_basic.png"),pos.getColumna(),pos.getSeccion()+pos.getFila());
+                fView = new FelixView(imagenes.get("a_standing_basic.png"),pos.getColumna(),pos.getSeccion()+pos.getFila());
                 view = new Play(model, edificio, imagenes, fView);
                 view.addKeyboardEvents(new ManejaEventosTeclado());
                 view.addBackMenu(new VolverAMenu());

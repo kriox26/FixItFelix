@@ -4,6 +4,7 @@ import modelo.dinamica.Dinamico;
 import modelo.dinamica.Posicion;
 import modelo.direcciones.Direccion;
 import modelo.niceland.Ventana;
+import excepciones.InvalidMoveException;
 
 /*
  * Representa los personajes del juego, tales como Felix y Ralph. Se implementa
@@ -101,9 +102,11 @@ public class Personaje extends Dinamico {
      * @params Direccion direction: Direccion en la que se lo quiere mover al personaje
      * @Override
      */
-	public void mover (Direccion direction, Ventana ventana){
+	public void mover (Direccion direction, Ventana ventana) throws InvalidMoveException{
 		if (this.puedeMoverse(direction) && ventana.pasarHabilitado(direction)) {
             super.mover(direction);
-		}
+		} else{
+            throw new InvalidMoveException("Movimiento invalido!");
+        }
 	}
 }

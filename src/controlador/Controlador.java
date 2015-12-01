@@ -1,8 +1,8 @@
 package controlador;
 
 
+import excepciones.InvalidMoveException;
 import grafica.dinamica.personajes.FelixView;
-import grafica.dinamica.personajes.RalphView;
 import grafica.menu.Configuracion;
 import grafica.menu.Grafica;
 import grafica.menu.Instrucciones;
@@ -232,8 +232,12 @@ public class Controlador {
             public void mouseClicked(MouseEvent e){
                 MENU.turnOff();
                 Posicion pos = model.getDvp().getFelix().getPosicion();
-                model.getDvp().getFelix().mover(Direccion.DERECHA, model.getNiceland().getVentana(pos, Direccion.DERECHA));
-                model.getDvp().getFelix().mover(Direccion.DERECHA, model.getNiceland().getVentana(pos, Direccion.DERECHA));
+                try{
+                    model.getDvp().getFelix().mover(Direccion.DERECHA, model.getNiceland().getVentana(pos, Direccion.DERECHA));
+                    model.getDvp().getFelix().mover(Direccion.DERECHA, model.getNiceland().getVentana(pos, Direccion.DERECHA));
+                }catch(InvalidMoveException exc){
+                    System.out.println(exc.getMessage());
+                }
                 FelixView fView = new FelixView(imagenes.get("a_standing_basic.png"),pos.getColumna(),pos.getSeccion()+pos.getFila());
                 view = new Play(model, edificio, imagenes, fView);
                 view.addKeyboardEvents(new ManejaEventosTeclado());

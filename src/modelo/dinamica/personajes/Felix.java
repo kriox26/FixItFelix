@@ -1,8 +1,9 @@
 package modelo.dinamica.personajes;
 
-import modelo.direcciones.Direccion;
 import modelo.dinamica.Posicion;
+import modelo.direcciones.Direccion;
 import modelo.niceland.Ventana;
+import excepciones.InvalidMoveException;
 
 
 /**
@@ -88,7 +89,7 @@ public class Felix extends Personaje{
         this.reparar(ventana);
     }
     
-    public void mover(Direccion direccion, Ventana ventana){
+    public void mover(Direccion direccion, Ventana ventana) throws InvalidMoveException{
         super.mover(direccion, ventana);
     }
 }

@@ -83,15 +83,19 @@ public class Personaje extends Dinamico {
 			case ARRIBA : 
 				if (this.alBordeSuperior())
                     return false;
+				break;
 			case ABAJO : 
 				if (this.alBordeInferior())
                     return false;
+				break;
 			case IZQUIERDA : 
 				if (this.alBordeIzquierdo())
                     return false;
+				break;
 			case DERECHA : 
 				if (this.alBordeDerecho())
 					return false;
+				break;
             case NULA : return true;
 		}
         return true;

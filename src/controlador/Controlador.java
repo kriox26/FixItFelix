@@ -1,6 +1,7 @@
 package controlador;
 
 
+import excepciones.InvalidMoveException;
 import grafica.dinamica.personajes.FelixView;
 import grafica.menu.Configuracion;
 import grafica.menu.Grafica;
@@ -53,6 +54,8 @@ public class Controlador extends TimerTask{
         	this.model.jugarUnTurno();
         	this.crearEdificio(this.model.getDvp().getNivel());
         	this.view.cargarNiceland(edificio, imagenes, fView);
+    	}else{
+    		this.cancel();
     	}
     }
     
@@ -218,25 +221,29 @@ public class Controlador extends TimerTask{
         public void keyPressed(KeyEvent e){
             int movek = e.getKeyCode();
             Posicion pos = model.getDvp().getFelix().getPosicion();
-            switch(movek){
-                case KeyEvent.VK_UP:		//Arriba
-                	model.getDvp().getFelix().mover(Direccion.ARRIBA);
-                	fView.setImagenActual(imagenes.get("a_standing_basic.png"));
-                	break;
-                case KeyEvent.VK_DOWN:		//Abajo
-                	model.getDvp().getFelix().mover(Direccion.ABAJO);
-                	fView.setImagenActual(imagenes.get("a_standing_basic.png"));
-                	break;
-                case KeyEvent.VK_LEFT: //Izquierda
-                	model.getDvp().getFelix().mover(Direccion.IZQUIERDA);
-                	fView.setImagenActual(imagenes.get("a_runNoAxe_left_1.png"));
-                	break;
-                case KeyEvent.VK_RIGHT: //Derecha
-                	model.getDvp().getFelix().mover(Direccion.DERECHA);
-                	fView.setImagenActual(imagenes.get("a_runNoAxe_right_1.png"));
-                	break;
-                default: 
-                	break;
+            try{
+                switch(movek){
+                    case KeyEvent.VK_UP:		//Arriba
+                    	model.getDvp().getFelix().mover(Direccion.ARRIBA, model.getNiceland().getVentana(pos));
+                    	fView.setImagenActual(imagenes.get("a_standing_basic.png"));
+                    	break;
+                    case KeyEvent.VK_DOWN:		//Abajo
+                    	model.getDvp().getFelix().mover(Direccion.ABAJO, model.getNiceland().getVentana(pos));
+                    	fView.setImagenActual(imagenes.get("a_standing_basic.png"));
+                    	break;
+                    case KeyEvent.VK_LEFT: //Izquierda
+                    	model.getDvp().getFelix().mover(Direccion.IZQUIERDA, model.getNiceland().getVentana(pos));
+                    	fView.setImagenActual(imagenes.get("a_runNoAxe_left_1.png"));
+                    	break;
+                    case KeyEvent.VK_RIGHT: //Derecha
+                    	model.getDvp().getFelix().mover(Direccion.DERECHA, model.getNiceland().getVentana(pos));
+                    	fView.setImagenActual(imagenes.get("a_runNoAxe_right_1.png"));
+                    	break;
+                    default: 
+                    	break;
+                }
+            }catch(InvalidMoveException exc){
+            	System.out.println(exc.getMessage());
             }
             fView.setOffsetX(pos.getColumna());
             fView.setOffsetY(pos.getFila() + pos.getSeccion());

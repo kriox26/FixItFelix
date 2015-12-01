@@ -55,7 +55,7 @@ public class Ventana {
      * @params direccion La direccion adonde se esta queriendo mover
 	 * @return boolean
 	 */
-	protected boolean pasarHabilitado(Direccion direccion){
+	public boolean pasarHabilitado(Direccion direccion){
 		return true;
 	}
 

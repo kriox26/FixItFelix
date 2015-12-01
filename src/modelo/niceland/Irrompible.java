@@ -37,7 +37,7 @@ public class Irrompible extends Ventana {
 	 * @return boolean
 	 * @Override
 	 */
-	protected boolean pasarHabilitado(Direccion direccion){
+	public boolean pasarHabilitado(Direccion direccion){
         return this.obstaculo.puedoPasar(direccion);
 	}
 

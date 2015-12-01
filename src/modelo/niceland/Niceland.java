@@ -1,5 +1,6 @@
 package modelo.niceland;
 import modelo.dinamica.Posicion;
+import modelo.direcciones.Direccion;
 
 /**
  * Representa el edificio Niceland del juego, a traves del cual
@@ -37,5 +38,9 @@ public class Niceland {
 
     public Ventana getVentana(Posicion posicion){
         return this.getSecciones()[posicion.getSeccion()].getVentanas()[posicion.getFila()][posicion.getColumna()];
+    }
+    
+    public Ventana getVentana(Posicion posicion, Direccion direccion){
+        return this.getVentana(posicion.modificar(direccion));
     }
 }

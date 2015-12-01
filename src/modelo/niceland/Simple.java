@@ -42,7 +42,7 @@ public class Simple extends Ventana {
     /*
      * @Override
      */
-    protected boolean pasarHabilitado(Direccion direccion){
+    public boolean pasarHabilitado(Direccion direccion){
         return this.obstaculo.puedoPasar(direccion);
     }
 

@@ -232,10 +232,9 @@ public class Controlador {
             public void mouseClicked(MouseEvent e){
                 MENU.turnOff();
                 Posicion pos = model.getDvp().getFelix().getPosicion();
-                model.getDvp().getFelix().mover(Direccion.DERECHA);
-                model.getDvp().getFelix().mover(Direccion.DERECHA);
+                model.getDvp().getFelix().mover(Direccion.DERECHA, model.getNiceland().getVentana(pos, Direccion.DERECHA));
+                model.getDvp().getFelix().mover(Direccion.DERECHA, model.getNiceland().getVentana(pos, Direccion.DERECHA));
                 FelixView fView = new FelixView(imagenes.get("a_standing_basic.png"),pos.getColumna(),pos.getSeccion()+pos.getFila());
-                RalphView rView = new RalphView(imagenes.get("u_standing_front.png"),0,0);
                 view = new Play(model, edificio, imagenes, fView);
                 view.addKeyboardEvents(new ManejaEventosTeclado());
                 view.addBackMenu(new VolverAMenu());

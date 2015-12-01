@@ -41,6 +41,6 @@ public class Niceland {
     }
     
     public Ventana getVentana(Posicion posicion, Direccion direccion){
-        return this.getVentana(posicion.modificar(direccion));
+        return this.getVentana(posicion.posicionHacia(direccion));
     }
 }

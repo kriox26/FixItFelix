@@ -60,6 +60,16 @@ public class Posicion {
         }
 		 return this;
 	}
+    
+    public Posicion posicionHacia(Direccion direccion){
+        int actualizarColumna = this.getColumna() + direccion.getHorizontal();
+        int actualizarFila = this.getFila() + direccion.getVertical();
+        if (actualizarColumna < 5 && actualizarColumna >= 0 && actualizarFila < 3 && actualizarFila >= 0) {
+            return new Posicion(actualizarFila, actualizarColumna, 0);
+        }else{
+            return null;
+        }
+    }
 
     /*
      * Utilizado para comparar la posicion actual con la enviada.

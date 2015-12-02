@@ -1,13 +1,11 @@
 package grafica.menu;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 public class TopScores extends Grafica {
@@ -19,18 +17,21 @@ public class TopScores extends Grafica {
 	private String imgPath = "src/grafica/imagenes/";
 	private String backgroundImage = imgPath + "high_scores.jpg";
 	private ImageIcon goBackIcon = new ImageIcon(imgPath + "Menu.png");
-	private JTable tabla = new JTable();
+	private String[] titulo = {"Nombre","Score"};
+	private Object[][] data = {{"Matias", "123"},{"Jorge","123124"}, {"Santi", "123412"}};
+	//private JTable tabla = new JTable(data,titulo);
 
 
 	public TopScores(){
-		
-		tabla.setFillsViewportHeight(true);
-		setLayout(new BorderLayout());
+		DefaultTableModel dtm = new DefaultTableModel(data, titulo);
+		final JTable tabla = new JTable(dtm);
+		tabla.setBounds(250, 150, 400, 250);
+		setLayout(null);
 		File image = new File(backgroundImage);
 		setContentPane(new JLabel(new ImageIcon(image.getAbsolutePath())));
-		setLayout(new FlowLayout(FlowLayout.LEFT, 20, 620));
 		goBack.setIcon(goBackIcon);
 		goBack.setBorder(null);
+		goBack.setBounds(10, 625, 216, 51);
 		goBack.setContentAreaFilled(false);
 		add(goBack);
 		add(tabla);

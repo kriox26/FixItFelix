@@ -1,6 +1,22 @@
 package controlador;
 
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.TreeMap;
+
+import javax.imageio.ImageIO;
+
 import excepciones.InvalidMoveException;
 import grafica.dinamica.objetos.LadrilloView;
 import grafica.dinamica.personajes.FelixView;
@@ -18,23 +34,6 @@ import grafica.niceland.SimpleView;
 import grafica.niceland.VentanaView;
 import grafica.obstaculos.MacetaView;
 import grafica.obstaculos.MolduraView;
-
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.TreeMap;
-
-import javax.imageio.ImageIO;
-
 import modelo.dinamica.Posicion;
 import modelo.direcciones.Direccion;
 import modelo.main.Main;
@@ -54,10 +53,15 @@ public class Controlador extends TimerTask{
     private static MainMenu MENU = new MainMenu();
     private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
     private VentanaView[][] edificio;
+    private int cont = 0;
     
     public void run(){
     	if(!this.model.gameOver()){
         	this.model.jugarUnTurno();
+        	if (cont % 25 == 0){
+        		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 30));
+        	}
+        	cont++;
             actualizarLadrillos();
         	actualizarPersonajes();
         	this.crearEdificio(this.model.getDvp().getNivel());
@@ -67,6 +71,9 @@ public class Controlador extends TimerTask{
     		this.cancel();
     	}
     }
+    //public void cargaLadrillos(){
+    //	ladrillos.
+    //}
     
     private void actualizarLadrillos(){
         ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 30));
@@ -265,6 +272,10 @@ public class Controlador extends TimerTask{
                     	model.getDvp().getFelix().mover(Direccion.DERECHA, model.getNiceland().getVentana(pos));
                     	fView.setImagenActual(imagenes.get("a_runNoAxe_right_1.png"));
                     	break;
+                    case KeyEvent.VK_SPACE: //Barra espaciadora
+                    	model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
+                    	fView.setImagenActual(imagenes.get("slice111_@.png"));
+                    	System.out.println("Estoy Martillando re loco");
                     default: 
                     	break;
                 }

@@ -14,6 +14,7 @@ import modelo.dinamica.Posicion;
 public class Ladrillo extends Objeto {
     private int velocidad = 3;
     private int vaCayendo = 30;
+    private boolean glpeado = false;
 
 			public Ladrillo(){
 					Posicion posicion = new Posicion();

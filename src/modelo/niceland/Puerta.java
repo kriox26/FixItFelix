@@ -96,6 +96,10 @@ public class Puerta extends Ventana {
       return 13;
     }
 
+    public boolean panelMR(int panel){
+    	return this.getPaneles()[panel].estaMedioRoto() ? true : false;
+    }
+
     /*
      * 0 - panel inferior izquierdo
      * 1 - panel inferior derecho

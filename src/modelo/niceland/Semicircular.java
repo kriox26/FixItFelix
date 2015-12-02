@@ -95,25 +95,25 @@ public class Semicircular extends Ventana {
 
     private boolean estaSanaArriba() {
       if (!this.panelMR(0) && !this.panelMR(1) && !this.panelMR(2) && !this.panelMR(3)) { // Si ningun panel superior esta roto
-          return true
+          return true;
       }
       else {
         return false;
       }
     }
 
-    private boolean estaRotaArriba() { // rota por completo arriba
-      if (this.panelMR(0) && this.panelMR(1) && this.panelMR(2) && this.panelMR(3)) {
-          return true
-      }
-      else {
-        return false;
-      }
-    }
+//    private boolean estaRotaArriba() { // rota por completo arriba
+//      if (this.panelMR(0) && this.panelMR(1) && this.panelMR(2) && this.panelMR(3)) {
+//          return true;
+//      }
+//      else {
+//        return false;
+//      }
+//    }
 
     private boolean estaSanaAbajo() {
       if (!this.panelMR(4) && !this.panelMR(5) && !this.panelMR(6) && !this.panelMR(7)) { // Si ningun panel superior esta roto
-          return true
+          return true;
       }
       else {
         return false;
@@ -122,7 +122,7 @@ public class Semicircular extends Ventana {
 
     private boolean estaRotaAbajo() { // rota rpo completo abajo
       if (this.panelMR(4) && this.panelMR(5) && this.panelMR(6) && this.panelMR(7)) { // Si ningun panel superior esta roto
-          return true
+          return true;
       }
       else {
         return false;

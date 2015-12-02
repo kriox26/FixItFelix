@@ -16,7 +16,11 @@ import java.util.Timer;
 import controlador.Controlador;
 
 public class Play extends Grafica {
-    private static final int horEdificio= 250;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static final int horEdificio= 250;
     private static final int verEdificio= 120;
     
     /*
@@ -36,7 +40,8 @@ public class Play extends Grafica {
 
     public void graficarLadrillos(List<LadrilloView> ladrillos){
         for(LadrilloView ladrillo : ladrillos){
-            this.getGraphics().drawImage(ladrillo.getImagenActual(), horEdificio + (54 * ladrillo.getOffsetX() + 40), verEdificio + (230 - 4*ladrillo.getOffsetY() - 20), null);
+        	System.out.println("Ladrillo esta en: " + (verEdificio + (230 - 4 * ladrillo.getOffsetY() - 20)));
+            this.getGraphics().drawImage(ladrillo.getImagenActual(), 20 + horEdificio + (54 * (ladrillo.getOffsetX() + 1)), verEdificio + (230 - 4*ladrillo.getOffsetY()), null);
         }
     }
     

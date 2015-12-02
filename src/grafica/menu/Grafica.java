@@ -16,6 +16,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class Grafica extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected JButton goBack = new JButton();
 
 	public void cargarNiceland(VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView fView, RalphView rView){

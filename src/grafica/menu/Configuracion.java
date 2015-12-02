@@ -1,15 +1,18 @@
 package grafica.menu;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
-import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class Configuracion extends Grafica{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String imgPath = "src/grafica/imagenes/";
-	private String backgroundImage = imgPath + "high_scores.jpg";
 	private JButton nivel1, nivel2, nivel3;
 	private ImageIcon goBackIcon = new ImageIcon(imgPath + "Menu.png");
 	private ImageIcon nivel1Boton = new ImageIcon(imgPath + "Nivel1.png");
@@ -21,7 +24,7 @@ public class Configuracion extends Grafica{
 		//File image = new File(backgroundImage);
 		setContentPane(new JLabel());
 		this.setLayout(null);
-		this.setBackground(getBackground().BLACK);
+		this.setBackground(Color.BLACK);
 		configurarBotones();
 		goBack.setContentAreaFilled(false);
 		goBack.setBounds(65, 400, 261, 51);

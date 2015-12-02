@@ -48,7 +48,11 @@ public class Ladrillo extends Objeto {
     private void caer(){
         if (this.vaCayendo > 0) {
             vaCayendo -= velocidad;
-            this.getPosicion().setFila(vaCayendo / 10);
+            if (vaCayendo / 10 > 0) {
+                this.getPosicion().setFila(vaCayendo / 10);
+            }
+        }else{
+            this.getPosicion().setFila(0);
         }
     }
     

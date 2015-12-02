@@ -54,7 +54,7 @@ public class Controlador extends TimerTask{
     private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
     private VentanaView[][] edificio;
     private int cont = 0;
-    
+
     public void run(){
     	if(!this.model.gameOver()){
         	this.model.jugarUnTurno();
@@ -70,7 +70,7 @@ public class Controlador extends TimerTask{
     		this.cancel();
     	}
     }
-    
+
     private void actualizarLadrillos(){
         for(LadrilloView ladrillo : ladrillos){
             ladrillo.actualizar();
@@ -78,34 +78,34 @@ public class Controlador extends TimerTask{
             	ladrillo = null;
         }
 //        for(Objeto obj : this.model.getColeccionDeObjetos()){
-//            
+//
 //        }
     }
 
     private void actualizarPersonajes(){
     	rView.setOffsetX(this.model.getDvp().getRalph().getPosicion().getColumna());
     }
-    
-    
+
+
     public Controlador(){
     }
-    
+
     public Controlador(Main model, int nivel){
     	this.rView = new RalphView(imagenes.get("u_standing_fury_2.png"), 0, 0);
         this.model= model;
         cargarImagenes();
         edificio = new VentanaView[(nivel * 3) * 3][5];
         crearEdificio(nivel);
-        MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(), 
+        MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(),
         new ManejaInstrucciones(), new ManejaConfiguracion());
     }
-    
+
     private void cargarImagenes(){
         File carpeta = new File("src/grafica/imagenes/");
         File[] lista = carpeta.listFiles();
         cargaRecursiva(lista);
     }
-    
+
     private void cargaRecursiva(File[] lista){
         for(File act : lista){
             if(act.isDirectory()){
@@ -120,7 +120,7 @@ public class Controlador extends TimerTask{
             }
         }
     }
-    
+
     private void crearEdificio(int nivel){
         Niceland building = this.model.getNiceland();
         int n = 0;
@@ -143,17 +143,17 @@ public class Controlador extends TimerTask{
             }
         }
     }
-    
+
     public IrrompibleView generarViewIrrompible(Ventana ven, int x, int y){
         switch (ven.getObstaculo().getDireccion()) {
             case DERECHA: return new IrrompibleView(imagenes.get("irrompible_derecha.png"));
-            
+
             case IZQUIERDA: return new IrrompibleView(imagenes.get("irrompible_izquierda.png"));
-            
+
             default: return new IrrompibleView(imagenes.get("irrompible_cerrada.png"));
         }
     }
-    
+
     public SimpleView generarViewSimple(Ventana ven, int x, int y){
         SimpleView act = new SimpleView();
         switch (ven.estadoTotal()) {
@@ -183,7 +183,7 @@ public class Controlador extends TimerTask{
         }
         return act;
     }
-    
+
     public PuertaView generarViewPuerta(Ventana ven, int x, int y){
         PuertaView act = new PuertaView();
         switch (ven.estadoTotal()) {
@@ -218,23 +218,50 @@ public class Controlador extends TimerTask{
         }
         return act;
     }
-    
+
     public SemiCircularView generarViewSemiCircular(Ventana ven, int x, int y){
-        return new SemiCircularView(imagenes.get("semi-circular.png")); // Falta implementar
+      SemiCircularView act = new SemiCircularView();
+      switch (ven.estadoTotal()) {
+          case 0: act = new SemiCircularView(imagenes.get("semicir-sana.png"));
+          break;
+          case 1: act = new SemiCircularView(imagenes.get("semicir-dañada-abajo-1.png"));
+          break;
+          case 2: act = new SemiCircularView(imagenes.get("semicir-dañada-abajo-1&2.png"));
+          break;
+          case 3: act = new SemiCircularView(imagenes.get("semicir-dañada-abajo-1&2&3.png"));
+          break;
+          case 4: act = new SemiCircularView(imagenes.get("semicir-dañada-abajo-1&2&3&4.png"));
+          break;
+          case 5: act = new SemiCircularView(imagenes.get("semicir-dañada-arriba-1.png"));
+          break;
+          case 6: act = new SemiCircularView(imagenes.get("semicir-dañada-arriba-1&2.png"));
+          break;
+          case 7: act = new SemiCircularView(imagenes.get("semicir-dañada-arriba-2.png"));
+          break;
+          case 8: act = new SemiCircularView(imagenes.get("semicir-dañada-arriba-2&3.png"));
+          break;
+          case 9: act = new SemiCircularView(imagenes.get("semicir-dañada-arriba-2&4.png"));
+          break;
+          case 10: act = new SemiCircularView(imagenes.get("semicir-dañada-arriba-3.png"));
+          break;
+          case 11: act = new SemiCircularView(imagenes.get("semicir-dañada-arriba-4.png"));
+          break;
+          default: act = new SemiCircularView(imagenes.get("semicir-sana.png"));
+          break;
     }
-    
+
     public Grafica getView(){
         return this.view;
     }
-    
+
     public void setView(Grafica view){
         this.view = view;
     }
-    
+
     public Main getModel(){
         return this.model;
     }
-    
+
     /*Creo que de esta forma se deberia manejar con el Controlador. Cualquier cosa si ven
     * que se puede cambiar lo que sea para hacerlo mejor, mporque no se si les va a parecer
     * un lio de clases, pero bueno jaj. Lo que va a relacionar el modelo con la grafica
@@ -245,7 +272,7 @@ public class Controlador extends TimerTask{
         @SuppressWarnings("unused")
 		Controlador ctrl = new Controlador(new Main(false, 1), 1);
     }
-    
+
     class ManejaEventosTeclado extends KeyAdapter{
         public void keyPressed(KeyEvent e){
             int movek = e.getKeyCode();
@@ -275,7 +302,7 @@ public class Controlador extends TimerTask{
                     	model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
                         edificio[pos.getSeccion() + pos.getFila()][pos.getColumna()] = actualizarVentana(model.getNiceland().getVentana(pos), pos);
                     	fView.setImagenActual(imagenes.get("felix_martillar_izquierda.png"));
-                    default: 
+                    default:
                     	break;
                 }
             }catch(InvalidMoveException exc){
@@ -285,7 +312,7 @@ public class Controlador extends TimerTask{
             fView.setOffsetY(pos.getFila() + pos.getSeccion());
         }
     }
-    
+
     public VentanaView actualizarVentana(Ventana ven, Posicion pos){
         if (ven instanceof Simple) {
             return generarViewSimple(ven, 0, 0);
@@ -298,7 +325,7 @@ public class Controlador extends TimerTask{
         }
        	return edificio[pos.getSeccion()+pos.getFila()][pos.getColumna()];
     }
-    
+
     class ManejaPlayAdapter extends MouseAdapter{
         public void mouseClicked(MouseEvent e){
             MENU.turnOff();
@@ -321,8 +348,8 @@ public class Controlador extends TimerTask{
     	view = new Play(this, edificio, imagenes, fView, rView);
 //    	this.ctrlLadrillos.setGameWindow(view);
     }
-    
-    
+
+
     class VolverAMenu extends MouseAdapter{
         public void mouseClicked(MouseEvent e){
             view.turnOff();
@@ -349,5 +376,5 @@ public class Controlador extends TimerTask{
             view.addBackMenu(new VolverAMenu());
         }
     }
-    
+
 }

@@ -16,7 +16,11 @@ import java.util.Timer;
 import controlador.Controlador;
 
 public class Play extends Grafica {
-    private static final int horEdificio= 250;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static final int horEdificio= 250;
     private static final int verEdificio= 120;
     
     /*

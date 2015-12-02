@@ -14,11 +14,12 @@ import modelo.dinamica.Posicion;
 public class Ladrillo extends Objeto {
     private int velocidad = 1;
     private int vaCayendo = 30;
-    private boolean glpeado = false;
+    private boolean golpeado = false;
 
 			public Ladrillo(){
 					Posicion posicion = new Posicion();
 					super.setPosicion(posicion);
+					this.setGolpeado(false);
 			}
 
 			public Ladrillo(Posicion posicion){
@@ -69,4 +70,12 @@ public class Ladrillo extends Objeto {
     public void actualizar(){
         caer();
     }
+
+	public boolean isGolpeado() {
+		return golpeado;
+	}
+
+	public void setGolpeado(boolean golpeado) {
+		this.golpeado = golpeado;
+	}
 }

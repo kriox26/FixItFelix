@@ -1,8 +1,7 @@
 package modelo.dinamica.objetos;
 
-import modelo.direcciones.*;
 import modelo.dinamica.Dinamico;
-import modelo.dinamica.Posicion;
+import modelo.direcciones.Direccion;
 
 /**
  * La clase Objeto representa a las "cosas" que, por contenerse en el package modelo.dinamica, se mueven durante el juego.

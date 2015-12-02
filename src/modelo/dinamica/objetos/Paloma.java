@@ -1,9 +1,7 @@
 package modelo.dinamica.objetos;
 
-import modelo.direcciones.Direccion;
 import modelo.dinamica.Posicion;
-import modelo.util.RandomAcotado;
-import java.lang.IllegalArgumentException;
+import modelo.direcciones.Direccion;
 
 /*
  * Representa la paloma que aparece de manera random, desplazandose desde un extremo

@@ -248,6 +248,8 @@ public class Controlador extends TimerTask{
           break;
           default: act = new SemiCircularView(imagenes.get("semicir-sana.png"));
           break;
+      }
+      return act;
     }
 
     public Grafica getView(){

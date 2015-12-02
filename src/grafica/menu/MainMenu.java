@@ -1,8 +1,5 @@
 package grafica.menu;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.File;
 
 import javax.swing.ImageIcon;
@@ -11,6 +8,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class MainMenu extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String imgPath = "src/grafica/imagenes/";
 	private String backgroundImage = imgPath + "MainMenu.png";
 	private JButton instrucciones, play, highscores, config;

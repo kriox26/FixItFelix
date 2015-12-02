@@ -75,8 +75,6 @@ public class Main {
         			if (obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion())){
         				this.getDvp().getFelix().golpeadoPorLadrillo();
         			}
-        				
-        			
         		}
         	}
         }
@@ -88,7 +86,7 @@ public class Main {
      * @return boolean: True si el juego termino, false caso contrario
      */
     public boolean gameOver(){
-        return false;
+        return this.getDvp().getFelix().getVida() <= 0 ? true : false;
     }
 
     /*

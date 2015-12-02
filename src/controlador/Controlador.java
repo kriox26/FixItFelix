@@ -64,27 +64,22 @@ public class Controlador extends TimerTask{
         	cont++;
             actualizarLadrillos();
         	actualizarPersonajes();
-        	this.crearEdificio(this.model.getDvp().getNivel());
         	this.view.cargarNiceland(edificio, imagenes, fView, rView);
             this.view.graficarLadrillos(ladrillos);
     	}else{
     		this.cancel();
     	}
     }
-    //public void cargaLadrillos(){
-    //	ladrillos.
-    //}
     
     private void actualizarLadrillos(){
-        ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 30));
         for(LadrilloView ladrillo : ladrillos){
             ladrillo.actualizar();
-            if(ladrillo.getOffsetY() == 0)
+            if(ladrillo.getOffsetY() < 0)
             	ladrillo = null;
         }
-        for(Objeto obj : this.model.getColeccionDeObjetos()){
-            
-        }
+//        for(Objeto obj : this.model.getColeccionDeObjetos()){
+//            
+//        }
     }
 
     private void actualizarPersonajes(){
@@ -126,9 +121,6 @@ public class Controlador extends TimerTask{
         }
     }
     
-    private void cargarPersonajes(){
-    }
-    
     private void crearEdificio(int nivel){
         Niceland building = this.model.getNiceland();
         int n = 0;
@@ -137,14 +129,15 @@ public class Controlador extends TimerTask{
             for (int k = 0; k < 3; k++) {
                 for (int j = 0; j < 5; j++) {
                     Ventana act = ventanas[k][j];
-                    if(act instanceof Irrompible)
-                    edificio[n][j] = generarViewIrrompible(act, j + 1, k + 1);
-                    else if(act instanceof Simple)
-                    edificio[n][j] = generarViewSimple(act, j + 1, k + 1);
-                    else if(act instanceof Puerta)
-                    edificio[n][j] = generarViewPuerta(act, j + 1, k + 1);
-                    else if(act instanceof Semicircular)
-                    edificio[n][j] = generarViewSemiCircular(act, j + 1, k + 1);
+                    if(act instanceof Irrompible){
+                    	edificio[n][j] = generarViewIrrompible(act, j + 1, k + 1);
+                    } else if(act instanceof Simple){
+                    	edificio[n][j] = generarViewSimple(act, j + 1, k + 1);
+                    } else if(act instanceof Puerta){
+                    	edificio[n][j] = generarViewPuerta(act, j + 1, k + 1);
+                    } else if(act instanceof Semicircular){
+                    	edificio[n][j] = generarViewSemiCircular(act, j + 1, k + 1);
+                    }
                 }
                 n++;
             }
@@ -177,6 +170,8 @@ public class Controlador extends TimerTask{
             case 5: act = new SimpleView(imagenes.get("rota_abajo.png"));// La ventana esta rota abajo nada mas
             break;
             case 6: act = new SimpleView(imagenes.get("rota_ambos.png"));// La ventana esta completamente rota
+            break;
+            default: act = new SimpleView(imagenes.get("simple.png"));
             break;
         }
         switch (ven.getTipoObstaculo()) {
@@ -247,7 +242,8 @@ public class Controlador extends TimerTask{
     * que se puede relacionar de muchas formas y no se como empezar.
     */
     public static void main (String[] args){
-        Controlador ctrl = new Controlador(new Main(false, 1), 1);
+        @SuppressWarnings("unused")
+		Controlador ctrl = new Controlador(new Main(false, 1), 1);
     }
     
     class ManejaEventosTeclado extends KeyAdapter{
@@ -274,8 +270,11 @@ public class Controlador extends TimerTask{
                     	break;
                     case KeyEvent.VK_SPACE: //Barra espaciadora
                     	model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
-                    	fView.setImagenActual(imagenes.get("slice111_@.png"));
-                    	System.out.println("Estoy Martillando re loco");
+                    	model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
+                    	model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
+                    	model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
+                        edificio[pos.getSeccion() + pos.getFila()][pos.getColumna()] = actualizarVentana(model.getNiceland().getVentana(pos), pos);
+                    	fView.setImagenActual(imagenes.get("felix_martillar_izquierda.png"));
                     default: 
                     	break;
                 }
@@ -285,6 +284,19 @@ public class Controlador extends TimerTask{
             fView.setOffsetX(pos.getColumna());
             fView.setOffsetY(pos.getFila() + pos.getSeccion());
         }
+    }
+    
+    public VentanaView actualizarVentana(Ventana ven, Posicion pos){
+        if (ven instanceof Simple) {
+            return generarViewSimple(ven, 0, 0);
+        }
+        if(ven instanceof Puerta){
+        	return generarViewPuerta(ven, 0,0);
+        }
+        if(ven instanceof Semicircular){
+        	return generarViewSemiCircular(ven, 0, 0);
+        }
+       	return edificio[pos.getSeccion()+pos.getFila()][pos.getColumna()];
     }
     
     class ManejaPlayAdapter extends MouseAdapter{

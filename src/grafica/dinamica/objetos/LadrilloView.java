@@ -5,7 +5,7 @@ import grafica.dinamica.GGO;
 import java.awt.image.BufferedImage;
 
 public class LadrilloView extends GGO {
-    private int velocidad = 3;
+    private int velocidad = 1;
     
 	public LadrilloView (BufferedImage imagenActual, int offsetX, int offsetY) {
 		super(imagenActual, offsetX, offsetY);

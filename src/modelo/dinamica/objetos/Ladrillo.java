@@ -12,7 +12,7 @@ import modelo.dinamica.Posicion;
  * @see modelo.dinamica.direcciones
  */
 public class Ladrillo extends Objeto {
-    private int velocidad = 3;
+    private int velocidad = 1;
     private int vaCayendo = 30;
     private boolean glpeado = false;
 
@@ -49,6 +49,7 @@ public class Ladrillo extends Objeto {
         if (this.vaCayendo > 0) {
             vaCayendo -= velocidad;
             if (vaCayendo / 10 > 0) {
+                System.out.println("Antes de setFila en caer ladrillo");
                 this.getPosicion().setFila(vaCayendo / 10);
             }
         }else{

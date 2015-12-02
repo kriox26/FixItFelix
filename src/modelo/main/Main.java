@@ -29,6 +29,10 @@ public class Main {
 		inicializar();
     }
 
+    public List<Objeto> getColeccionDeObjetos(){
+        return this.coleccionDeObjetos;
+    }
+
     public boolean getJugando(){
         return this.jugando;
     }

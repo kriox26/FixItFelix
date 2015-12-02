@@ -58,7 +58,6 @@ public class Controlador extends TimerTask{
     public void run(){
     	if(!this.model.gameOver()){
         	this.model.jugarUnTurno();
-            ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 30));
             actualizarLadrillos();
         	actualizarPersonajes();
         	this.crearEdificio(this.model.getDvp().getNivel());
@@ -70,10 +69,14 @@ public class Controlador extends TimerTask{
     }
     
     private void actualizarLadrillos(){
+        ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 30));
         for(LadrilloView ladrillo : ladrillos){
             ladrillo.actualizar();
             if(ladrillo.getOffsetY() == 0)
             	ladrillo = null;
+        }
+        for(Objeto obj : this.model.getColeccionDeObjetos()){
+            
         }
     }
 

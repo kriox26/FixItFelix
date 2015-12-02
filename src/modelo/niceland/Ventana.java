@@ -93,6 +93,19 @@ public class Ventana {
         return true;
     }
 
+
+    // El siguiente método se aplica a la puerta y la ventana semicircular
+    // En estos dos casos no hay paneles rotos del todo
+    // MR stands for 'medio roto'
+
+    public boolean panelMR (int n) {
+      if (this.getPaneles()[n].estaMedioRoto()) {
+        return true;
+      }
+      else
+        return false;
+    }
+
     public Panel[] getPaneles(){
     	return this.paneles;
     }

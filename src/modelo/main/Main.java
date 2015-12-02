@@ -4,12 +4,9 @@ package modelo.main;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/* Imports de clases relacionadas al proyecto */
-import modelo.dinamica.Dinamico;
+import modelo.dinamica.objetos.Ladrillo;
 import modelo.dinamica.objetos.Objeto;
-import modelo.dinamica.personajes.*;
-import modelo.niceland.*;
+import modelo.niceland.Niceland;
 
 /*
  * Clase que administra el desarrollo y contiene toda la logica del juego.
@@ -22,7 +19,8 @@ public class Main {
     public Niceland niceland;
 	private int nivel;
     private List<Objeto> coleccionDeObjetos = new ArrayList<Objeto>();
-
+    private int cont = 0;
+    
     public Main(boolean jugando, int nivel){
         this.jugando = jugando;
 		this.nivel = nivel;
@@ -50,8 +48,12 @@ public class Main {
      * tanto estaticos como dinamicos.
      */
     public void jugarUnTurno(){
+    	if (cont % 25 == 0){
+    		coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo());
+    	}
         this.getDvp().getRalph().mover();
-        coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo());
+        cont++;
+        
         actualizarObjetos(); // Actualiza la collecion de objectos lanzados
     }
     
@@ -65,6 +67,13 @@ public class Main {
         for (Objeto obj: coleccionDeObjetos) {
         	if(obj != null){
         		obj.actualizar();
+        		if (obj instanceof Ladrillo){
+        			if (obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion())){
+        				this.getDvp().getFelix().golpeadoPorLadrillo();
+        			}
+        				
+        			
+        		}
         	}
         }
     }

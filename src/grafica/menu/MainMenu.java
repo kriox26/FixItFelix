@@ -36,6 +36,7 @@ public class MainMenu extends JFrame {
 		setTitle("MainMenu");
 		setSize(919,720);
 		setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
 	private void configurarBotones(){

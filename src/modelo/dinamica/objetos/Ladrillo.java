@@ -27,6 +27,11 @@ public class Ladrillo extends Objeto {
 					super.setPosicion(posicion);
 			}
 
+			public Ladrillo(int s, int f, int c){
+				Posicion p = new Posicion(2,c,s - 1);
+				super.setPosicion(p);
+			}
+
 	/**
 	 * El método caerDesde identifica la caída de un ladrillo: movimiento
 	 * desde una posición dada en sentido vertical, siempre hacia abajo

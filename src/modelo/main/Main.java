@@ -20,6 +20,7 @@ public class Main {
 	private int nivel;
     private List<Objeto> coleccionDeObjetos = new ArrayList<Objeto>();
     private int cont = 0;
+    private int tiro = 0;
     
     public Main(boolean jugando, int nivel){
         this.jugando = jugando;
@@ -54,6 +55,7 @@ public class Main {
     public void jugarUnTurno(){
     	if (cont % 25 == 0){
     		coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo());
+            tiro++;
     	}
         this.getDvp().getRalph().mover();
         cont++;
@@ -72,7 +74,9 @@ public class Main {
         	if(obj != null){
         		obj.actualizar();
         		if (obj instanceof Ladrillo){
+        			System.out.println("Posicion del ladrillo es: " + obj.getPosicion().to_string());
         			if (obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion())){
+        			System.out.println("Posicion de felix es: " + this.getDvp().getFelix().getPosicion().to_string());
         				this.getDvp().getFelix().golpeadoPorLadrillo();
         			}
         		}
@@ -86,6 +90,7 @@ public class Main {
      * @return boolean: True si el juego termino, false caso contrario
      */
     public boolean gameOver(){
+        System.out.println("Tiro: " + tiro);
         return this.getDvp().getFelix().getVida() <= 0 ? true : false;
     }
 

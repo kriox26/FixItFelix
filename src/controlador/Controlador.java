@@ -58,7 +58,7 @@ public class Controlador extends TimerTask{
     public void run(){
     	if(!this.model.gameOver()){
         	this.model.jugarUnTurno();
-        	if (cont % 25 == 0){
+        	if (cont % 50 == 0){
         		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 30));
         	}
         	cont++;

@@ -53,7 +53,7 @@ public class Main {
      * tanto estaticos como dinamicos.
      */
     public void jugarUnTurno(){
-    	if (cont % 25 == 0){
+    	if (cont % 50 == 0){
     		coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo());
             tiro++;
     	}
@@ -78,6 +78,7 @@ public class Main {
         			if (obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion())){
         			System.out.println("Posicion de felix es: " + this.getDvp().getFelix().getPosicion().to_string());
         				this.getDvp().getFelix().golpeadoPorLadrillo();
+                        obj = null;
         			}
         		}
         	}

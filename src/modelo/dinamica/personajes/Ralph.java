@@ -91,6 +91,7 @@ public class Ralph extends Personaje {
     public Ladrillo tirarLadrillo(){
         if (this.hayLadrillos()) {
             this.setLadrillos(this.getLadrillos() - 1);
+            System.out.println("Posicion de ralph: " + this.getPosicion().to_string());
             return new Ladrillo(this.getPosicion().getSeccion(), this.getPosicion().getFila(), this.getPosicion().getColumna() );
         }
         return null;

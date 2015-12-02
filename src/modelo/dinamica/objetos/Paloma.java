@@ -10,6 +10,7 @@ import modelo.direcciones.Direccion;
 
 public class Paloma extends Objeto{
     private Direccion direccion;
+    private int prueba = 1;
 
     /*
      * El constructor de la paloma recibe la posicion desde la que parte.
@@ -17,9 +18,26 @@ public class Paloma extends Objeto{
      * En caso de no poder interpretarlo por haber un error de posicionamiento (la paloma no empieza desde un costado) arroja una excepción de error.
      */
 
+    public Paloma () {
+      Posicion pos = new Posicion ();
+      super.setPosicion(pos);
+      this.setVelocidad(this.getPrueba());
+    }
+
     public Paloma (Posicion pos) {
         this.setPosicion(pos);
         this.setDireccion(this.smartAddress(pos));
+        this.setVelocidad(this.getPrueba());
+    }
+
+    public Paloma (int fila, int columna, int seccion) {
+      Posicion pos = new Posicion (fila, columna, seccion);
+      this.setPosicion(pos);
+      this.setVelocidad(this.getPrueba());
+    }
+
+    private int getPrueba () {
+      return this.prueba;
     }
 
     private Direccion smartAddress (Posicion pos) throws IllegalArgumentException {
@@ -41,10 +59,6 @@ public class Paloma extends Objeto{
     }
 
     public void actualizar(){
-        desplazar();
-    }
-
-    private void desplazar(){
         super.mover(this.getDireccion());
     }
 }

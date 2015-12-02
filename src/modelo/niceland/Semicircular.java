@@ -27,6 +27,7 @@ public class Semicircular extends Ventana {
         	super.arreglarPanel();
         }
     }
+    
    /*
     * 0 - sana
     * 1 - dañada abajo a la izquierda de todo

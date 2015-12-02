@@ -30,7 +30,7 @@ public class Paloma extends Objeto{
         this.setVelocidad(this.getPrueba());
     }
 
-    public Paloma (int fila, int columa, int seccion) {
+    public Paloma (int fila, int columna, int seccion) {
       Posicion pos = new Posicion (fila, columna, seccion);
       this.setPosicion(pos);
       this.setVelocidad(this.getPrueba());

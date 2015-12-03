@@ -23,6 +23,7 @@ import grafica.dinamica.personajes.FelixView;
 import grafica.dinamica.personajes.RalphView;
 import grafica.menu.Configuracion;
 import grafica.menu.Grafica;
+import grafica.menu.InputName;
 import grafica.menu.Instrucciones;
 import grafica.menu.MainMenu;
 import grafica.menu.Play;
@@ -55,6 +56,19 @@ public class Controlador extends TimerTask{
     private VentanaView[][] edificio;
     private int cont = 0;
 
+    public Controlador(){
+    }
+
+    public Controlador(Main model, int nivel){
+    	this.rView = new RalphView(imagenes.get("u_standing_fury_2.png"), 0, 0);
+        this.model= model;
+        cargarImagenes();
+        edificio = new VentanaView[(nivel * 3) * 3][5];
+        crearEdificio(nivel);
+        MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(),
+        new ManejaInstrucciones(), new ManejaConfiguracion());
+    }
+
     public void run(){
     	if(!this.model.gameOver()){
         	this.model.jugarUnTurno();
@@ -77,27 +91,10 @@ public class Controlador extends TimerTask{
             if(ladrillo.getOffsetY() < 0)
             	ladrillo = null;
         }
-//        for(Objeto obj : this.model.getColeccionDeObjetos()){
-//
-//        }
     }
 
     private void actualizarPersonajes(){
     	rView.setOffsetX(this.model.getDvp().getRalph().getPosicion().getColumna());
-    }
-
-
-    public Controlador(){
-    }
-
-    public Controlador(Main model, int nivel){
-    	this.rView = new RalphView(imagenes.get("u_standing_fury_2.png"), 0, 0);
-        this.model= model;
-        cargarImagenes();
-        edificio = new VentanaView[(nivel * 3) * 3][5];
-        crearEdificio(nivel);
-        MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(),
-        new ManejaInstrucciones(), new ManejaConfiguracion());
     }
 
     private void cargarImagenes(){
@@ -263,18 +260,42 @@ public class Controlador extends TimerTask{
     public Main getModel(){
         return this.model;
     }
-
-    /*Creo que de esta forma se deberia manejar con el Controlador. Cualquier cosa si ven
-    * que se puede cambiar lo que sea para hacerlo mejor, mporque no se si les va a parecer
-    * un lio de clases, pero bueno jaj. Lo que va a relacionar el modelo con la grafica
-    * va a ser el Boton Play, que ahi cree la clase, pero no mas que eso por cuestiones
-    * que se puede relacionar de muchas formas y no se como empezar.
-    */
-    public static void main (String[] args){
-        @SuppressWarnings("unused")
-		Controlador ctrl = new Controlador(new Main(false, 1), 1);
+   
+     public VentanaView actualizarVentana(Ventana ven, Posicion pos){
+        if (ven instanceof Simple) {
+            return generarViewSimple(ven, 0, 0);
+        }
+        if(ven instanceof Puerta){
+        	return generarViewPuerta(ven, 0,0);
+        }
+        if(ven instanceof Semicircular){
+        	return generarViewSemiCircular(ven, 0, 0);
+        }
+       	return edificio[pos.getSeccion()+pos.getFila()][pos.getColumna()];
     }
 
+    public void ejecutarTimer(){
+    	System.out.println("Adentro de ejecutartimer");
+    	Timer timer = new Timer("Turnos");
+    	timer.schedule(this, 0, 1);
+    }
+
+    class ManejaPlayAdapter extends MouseAdapter{
+        public void mouseClicked(MouseEvent e){
+            MENU.turnOff();
+            fView = new FelixView(imagenes.get("a_standing_basic.png"), 2, 0);
+//            ctrlLadrillos = new ControladorLadrillo(imagenes);
+            cargarView();
+            view.addKeyboardEvents(new ManejaEventosTeclado());
+//            view.addBackMenu(new VolverAMenu());
+//            ejecutarTimer();
+            if (model.getDvp().getFelix().getVida() == 0){
+            	view.turnOff();
+            	view = new InputName();
+            }
+        }
+    }
+    
     class ManejaEventosTeclado extends KeyAdapter{
         public void keyPressed(KeyEvent e){
             int movek = e.getKeyCode();
@@ -315,42 +336,10 @@ public class Controlador extends TimerTask{
         }
     }
 
-    public VentanaView actualizarVentana(Ventana ven, Posicion pos){
-        if (ven instanceof Simple) {
-            return generarViewSimple(ven, 0, 0);
-        }
-        if(ven instanceof Puerta){
-        	return generarViewPuerta(ven, 0,0);
-        }
-        if(ven instanceof Semicircular){
-        	return generarViewSemiCircular(ven, 0, 0);
-        }
-       	return edificio[pos.getSeccion()+pos.getFila()][pos.getColumna()];
-    }
-
-    class ManejaPlayAdapter extends MouseAdapter{
-        public void mouseClicked(MouseEvent e){
-            MENU.turnOff();
-            fView = new FelixView(imagenes.get("a_standing_basic.png"), 2, 0);
-//            ctrlLadrillos = new ControladorLadrillo(imagenes);
-            cargarView();
-            view.addKeyboardEvents(new ManejaEventosTeclado());
-//            view.addBackMenu(new VolverAMenu());
-//            ejecutarTimer();
-        }
-    }
-
-    public void ejecutarTimer(){
-    	System.out.println("Adentro de ejecutartimer");
-    	Timer timer = new Timer("Turnos");
-    	timer.schedule(this, 0, 1);
-    }
-
     public void cargarView(){
     	view = new Play(this, edificio, imagenes, fView, rView);
 //    	this.ctrlLadrillos.setGameWindow(view);
     }
-
 
     class VolverAMenu extends MouseAdapter{
         public void mouseClicked(MouseEvent e){
@@ -378,5 +367,10 @@ public class Controlador extends TimerTask{
             view.addBackMenu(new VolverAMenu());
         }
     }
-
+    
+    public static void main (String[] args){
+        @SuppressWarnings("unused")
+		Controlador ctrl = new Controlador(new Main(false, 1), 1);
+    }
+     
 }

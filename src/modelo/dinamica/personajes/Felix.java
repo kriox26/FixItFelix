@@ -58,7 +58,8 @@ public class Felix extends Personaje{
         if (this.estaInmune()) {
             this.desactivarInmunidad();
         }
-        this.setVida (this.getVida()-1);
+        this.setVida(this.getVida()-1);
+        System.out.println("Vida de Felix = "+this.getVida());
     }
     
     public void golpeadoPorPaloma (){

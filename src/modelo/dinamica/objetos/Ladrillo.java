@@ -16,22 +16,22 @@ public class Ladrillo extends Objeto {
     private int vaCayendo = 30;
     private boolean golpeado = false;
 
-			public Ladrillo(){
-					Posicion posicion = new Posicion();
-					super.setPosicion(posicion);
-					this.setGolpeado(false);
-			}
+	public Ladrillo(){
+		Posicion posicion = new Posicion();
+		super.setPosicion(posicion);
+		this.setGolpeado(false);
+	}
 
-			public Ladrillo(Posicion posicion){
-					posicion.setSeccion(0);
-					posicion.setFila(2);
-					super.setPosicion(posicion);
-			}
+	public Ladrillo(Posicion posicion){
+		posicion.setSeccion(0);
+		posicion.setFila(2);
+		super.setPosicion(posicion);
+	}
 
-			public Ladrillo(int s, int f, int c){
-				Posicion p = new Posicion(2,c,s - 1);
-				super.setPosicion(p);
-			}
+	public Ladrillo(int s, int f, int c){
+		Posicion p = new Posicion(2,c,s - 1);
+		super.setPosicion(p);
+	}
 
 	/**
 	 * El método caerDesde identifica la caída de un ladrillo: movimiento

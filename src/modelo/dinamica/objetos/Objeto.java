@@ -11,8 +11,8 @@ import modelo.direcciones.Direccion;
  * @see modelo.dinamica.Posicion
  */
 public class Objeto extends Dinamico {
-	private double velocidad;
-	private static final double kv = 1;
+	private int velocidad;
+	private static final int kv = 1;
 	private boolean existe;
 
 	public void setExiste (boolean tof) {
@@ -29,11 +29,11 @@ public class Objeto extends Dinamico {
 		}
 	}
 
-	public double getVelocidad () {
+	public int getVelocidad () {
 		return this.velocidad;
 	}
 
-	public void setVelocidad (double variable) {
+	public void setVelocidad (int variable) {
 		this.velocidad = variable;
 	}
 

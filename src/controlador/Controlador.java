@@ -23,7 +23,7 @@ import grafica.dinamica.personajes.FelixView;
 import grafica.dinamica.personajes.RalphView;
 import grafica.menu.Configuracion;
 import grafica.menu.Grafica;
-import grafica.menu.InputName;
+//import grafica.menu.InputName;
 import grafica.menu.Instrucciones;
 import grafica.menu.MainMenu;
 import grafica.menu.Play;
@@ -73,7 +73,7 @@ public class Controlador extends TimerTask{
     	if(!this.model.gameOver()){
         	this.model.jugarUnTurno();
         	if (cont % 50 == 0){
-        		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 30));
+        		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), this.model.getColeccionDeObjetos().get(this.model.getColeccionDeObjetos().size() - 1).getVelocidad()));
         	}
         	cont++;
             actualizarLadrillos();
@@ -291,7 +291,7 @@ public class Controlador extends TimerTask{
 //            ejecutarTimer();
             if (model.getDvp().getFelix().getVida() == 0){
             	view.turnOff();
-            	view = new InputName();
+//            	view = new InputName();
             }
         }
     }

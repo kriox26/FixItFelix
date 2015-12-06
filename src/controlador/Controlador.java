@@ -23,6 +23,7 @@ import grafica.dinamica.personajes.FelixView;
 import grafica.dinamica.personajes.RalphView;
 import grafica.menu.Configuracion;
 import grafica.menu.Grafica;
+import grafica.menu.InputName;
 //import grafica.menu.InputName;
 import grafica.menu.Instrucciones;
 import grafica.menu.MainMenu;
@@ -82,6 +83,8 @@ public class Controlador extends TimerTask{
             this.view.graficarLadrillos(ladrillos);
     	}else{
     		this.cancel();
+            	view.turnOff();
+            	view = new InputName();
     	}
     }
 
@@ -289,10 +292,7 @@ public class Controlador extends TimerTask{
             view.addKeyboardEvents(new ManejaEventosTeclado());
 //            view.addBackMenu(new VolverAMenu());
 //            ejecutarTimer();
-            if (model.getDvp().getFelix().getVida() == 0){
-            	view.turnOff();
-//            	view = new InputName();
-            }
+
         }
     }
     

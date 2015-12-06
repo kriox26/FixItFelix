@@ -1,11 +1,6 @@
 package grafica.menu;
 
-import grafica.dinamica.objetos.LadrilloView;
-import grafica.dinamica.personajes.FelixView;
-import grafica.dinamica.personajes.RalphView;
-import grafica.niceland.VentanaView;
-
-import java.awt.FlowLayout;
+import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.image.BufferedImage;
@@ -13,22 +8,32 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 
+import javax.swing.JPanel;
+
 import controlador.Controlador;
+import grafica.dinamica.objetos.LadrilloView;
+import grafica.dinamica.personajes.FelixView;
+import grafica.dinamica.personajes.RalphView;
+import grafica.niceland.VentanaView;
 
 public class Play extends Grafica {
 	private static final long serialVersionUID = 1L;
 	private static final int horEdificio= 250;
     private static final int verEdificio= 120;
+    private JPanel panel;
+   
     
     /*
     * Se crean todas las imagenes de Niceland, ventanas con obstaculos
     * todo.
     */
     public Play(Controlador ctrl, VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix, RalphView rView){
-        setLayout(new FlowLayout());
-//        add(goBack);
+    	//panel = new JPanel();
+    	//panel.setSize(800, 600);
+    	//panel.setVisible(false);
+    	Canvas canvas = new Canvas();    	
         setSize(800, 600);
-        setResizable(false);
+        this.setResizable(false);
         setVisible(true);
         this.getGraphics().drawImage(imagenes.get("grass_background.jpg"), 0,0,null);
     	Timer timer = new Timer("Turnos");
@@ -75,7 +80,7 @@ public class Play extends Grafica {
         }
         this.getGraphics().drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + (54 * rView.getOffsetX() + 1), verEdificio + (230 - alturaActual + 55), null);
     }
-    
+        
     public void paintComponents(Graphics g){
         super.paintComponents(g);
     }

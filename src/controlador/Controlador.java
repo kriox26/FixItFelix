@@ -79,6 +79,7 @@ public class Controlador extends TimerTask{
     		}catch(CambiarSeccionException exc){
     			cont = 0;
     			this.view.setSeccionActual(imagenes.get("piso" + (this.model.getDvp().getSeccionActual() + 1) + ".png"));
+    			ladrillos.clear();
     		}
         	actualizarPersonajes();
         	if (cont % 50 == 0){
@@ -299,11 +300,8 @@ public class Controlador extends TimerTask{
         public void mouseClicked(MouseEvent e){
             MENU.turnOff();
             fView = new FelixView(imagenes.get("a_standing_basic.png"), 2, 0);
-//            ctrlLadrillos = new ControladorLadrillo(imagenes);
             cargarView();
             view.addKeyboardEvents(new ManejaEventosTeclado());
-//            view.addBackMenu(new VolverAMenu());
-//            ejecutarTimer();
 
         }
     }
@@ -312,6 +310,7 @@ public class Controlador extends TimerTask{
         public void keyPressed(KeyEvent e){
             int movek = e.getKeyCode();
             Posicion pos = model.getDvp().getFelix().getPosicion();
+            System.out.println("POSICION DE FELIX DENTRO DE LOS EVENTOS DE TECLADO: " + pos.to_string());
             try{
                 switch(movek){
                     case KeyEvent.VK_UP:		//Arriba
@@ -335,7 +334,7 @@ public class Controlador extends TimerTask{
                     	model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
                     	model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
                     	model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
-                        edificio[pos.getSeccion() + pos.getFila()][pos.getColumna()] = actualizarVentana(model.getNiceland().getVentana(pos), pos);
+                        edificio[(pos.getSeccion()*3) + pos.getFila()][pos.getColumna()] = actualizarVentana(model.getNiceland().getVentana(pos), pos);
                     	fView.setImagenActual(imagenes.get("felix_martillar_izquierda.png"));
                     default:
                     	break;
@@ -344,7 +343,7 @@ public class Controlador extends TimerTask{
             	System.out.println(exc.getMessage());
             }
             fView.setOffsetX(pos.getColumna());
-            fView.setOffsetY(pos.getFila() + pos.getSeccion());
+            fView.setOffsetY(pos.getFila() + (pos.getSeccion() * 3));
         }
     }
 

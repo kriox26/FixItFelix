@@ -65,9 +65,11 @@ public class Ladrillo extends Objeto {
             if (movimiento / 10 > 0) {
                 this.getPosicion().setFila(movimiento / 10);
             }
-        }else{
+        }else if(movimiento == -10){
             this.getPosicion().setFila(0);
-            this.movimiento = -1;
+            this.movimiento = -20;
+        }else{
+        	this.movimiento -= velocidad;
         }
     }
 

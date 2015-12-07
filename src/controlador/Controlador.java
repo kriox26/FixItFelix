@@ -89,12 +89,10 @@ public class Controlador extends TimerTask{
     		}
         	actualizarPersonajes();
         	if (cont % 50 == 0){
-        		System.out.println("Agrega un view de ladrillo");
         		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24));
         	}
         	cont++;
             actualizarLadrillos();
-        	System.out.println("Seccion actual: " + this.model.getDvp().getSeccionActual() );
         	this.view.cargarNiceland(edificio, fView, rView, this.model.getDvp().getSeccionActual() * 3 , (this.model.getDvp().getSeccionActual() * 3) + 3 );
             this.view.graficarLadrillos(ladrillos);
     	}else{
@@ -108,7 +106,7 @@ public class Controlador extends TimerTask{
     	int i = 0;
         for(LadrilloView ladrillo : ladrillos){
             ladrillo.actualizar();
-            if(ladrillo.getOffsetY() <= 0){
+            if(ladrillo.getOffsetY() <= -10 || this.model.getColeccionDeObjetos().get(i).getGolpeo()){
             	ladrillos.remove(i);
             }
             i++;

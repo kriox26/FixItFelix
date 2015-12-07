@@ -15,7 +15,7 @@ public class Objeto extends Dinamico {
 	private static final int kv = 1;
 	private boolean existe;
 	private int movimiento;
-    private boolean golpeo;
+    private boolean golpeo = false;
     
     public boolean getGolpeo(){
         return this.golpeo;

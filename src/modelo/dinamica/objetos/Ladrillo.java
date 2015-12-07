@@ -16,14 +16,23 @@ public class Ladrillo extends Objeto {
     private int movimiento = 30;
     private boolean golpeo = false;
 
+    public boolean getGolpeo(){
+        return this.golpeo;
+    }
+    
+    public void setGolpeo(boolean golpeo){
+        this.golpeo = golpeo;
+    }
 	public Ladrillo(){
 		Posicion posicion = new Posicion();
+		this.golpeo = false;
 		super.setPosicion(posicion);
 	}
 
 	public Ladrillo(Posicion posicion){
 		posicion.setSeccion(0);
 		posicion.setFila(2);
+		this.golpeo = false;
 		super.setPosicion(posicion);
 	}
 
@@ -58,7 +67,12 @@ public class Ladrillo extends Objeto {
             }
         }else{
             this.getPosicion().setFila(0);
+            this.movimiento = -1;
         }
+    }
+
+    public int getMovimiento(){
+    	return this.movimiento;
     }
     
     /*

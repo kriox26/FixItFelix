@@ -77,8 +77,7 @@ public class Controlador extends TimerTask{
         	actualizarPersonajes();
         	if (cont % 50 == 0){
         		System.out.println("Agrega un view de ladrillo");
-        		System.out.println(this.model.getColeccionDeObjetos());
-        		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), this.model.getColeccionDeObjetos().get(this.model.getColeccionDeObjetos().size() - 1).getMovimiento()));
+        		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24));
         	}
         	cont++;
             actualizarLadrillos();

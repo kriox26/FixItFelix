@@ -1,8 +1,8 @@
 package modelo.main;
 
 /* Imports de librerias java */
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import modelo.dinamica.objetos.Ladrillo;
 import modelo.dinamica.objetos.Objeto;
@@ -19,7 +19,7 @@ public class Main {
     public Desarrollo dvp;
     public Niceland niceland;
 	private int nivel;
-    private List<Objeto> coleccionDeObjetos = new CopyOnWriteArrayList<Objeto>();
+    private List<Objeto> coleccionDeObjetos = new ArrayList<Objeto>();
     private int cont = 0;
     private int tiro = 0;
     
@@ -78,13 +78,16 @@ public class Main {
         		obj.actualizar();
         		if (obj instanceof Ladrillo){
         			System.out.println("Posicion del ladrillo es: " + obj.getPosicion().to_string());
-        			if (obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion()) && !obj.getGolpeo()){
-        				System.out.println("Posicion de felix es: " + this.getDvp().getFelix().getPosicion().to_string());
-        				this.getDvp().getFelix().golpeadoPorLadrillo();
+        				System.out.println("Movimiento: " + obj.getMovimiento());
+        			if (obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion())){
+        				if(obj.getGolpeo() == false){
+        					System.out.println("Posicion de felix es: " + this.getDvp().getFelix().getPosicion().to_string());
+        					this.getDvp().getFelix().golpeadoPorLadrillo();
+        					obj.setGolpeo(true);
+        					
+        				}
+        			} else if(obj.getMovimiento() < 0){
                         obj.setGolpeo(true);
-                        coleccionDeObjetos.remove(i);
-        			} else if(obj.getMovimiento() <= 0){
-                        coleccionDeObjetos.remove(i);
                     }
         		}
         	}

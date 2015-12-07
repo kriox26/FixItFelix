@@ -57,7 +57,7 @@ public class Desarrollo {
     private void setearPersonajes(){
         Posicion pos_felix = new Posicion(0, 2, 0);
         Posicion pos_ralph = new Posicion(0, 2, 1);
-        this.felix = new Felix("Felix", 4, false, pos_felix);
+        this.felix = new Felix("Felix", 1, false, pos_felix);
         this.ralph = new Ralph("Ralph", 100, pos_ralph);
     }
 }

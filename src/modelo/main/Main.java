@@ -1,8 +1,8 @@
 package modelo.main;
 
 /* Imports de librerias java */
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import modelo.dinamica.objetos.Ladrillo;
 import modelo.dinamica.objetos.Objeto;
@@ -18,7 +18,7 @@ public class Main {
     public Desarrollo dvp;
     public Niceland niceland;
 	private int nivel;
-    private List<Objeto> coleccionDeObjetos = new ArrayList<Objeto>();
+    private List<Objeto> coleccionDeObjetos = new CopyOnWriteArrayList<Objeto>();
     private int cont = 0;
     private int tiro = 0;
     
@@ -54,6 +54,7 @@ public class Main {
      */
     public void jugarUnTurno(){
     	if (cont % 50 == 0){
+   			System.out.println("Agrega ladrillo objeto");
     		coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo());
             tiro++;
     	}
@@ -70,18 +71,23 @@ public class Main {
      * del jugador con el juego.
      */
     private void actualizarObjetos(){
+        int i = 0;
         for (Objeto obj: coleccionDeObjetos) {
         	if(obj != null){
         		obj.actualizar();
         		if (obj instanceof Ladrillo){
         			System.out.println("Posicion del ladrillo es: " + obj.getPosicion().to_string());
-        			if (obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion())){
-        			System.out.println("Posicion de felix es: " + this.getDvp().getFelix().getPosicion().to_string());
+        			if (obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion()) && !obj.getGolpeo()){
+        				System.out.println("Posicion de felix es: " + this.getDvp().getFelix().getPosicion().to_string());
         				this.getDvp().getFelix().golpeadoPorLadrillo();
-                        obj = null;
-        			}
+                        obj.setGolpeo(true);
+                        coleccionDeObjetos.remove(i);
+        			} else if(obj.getMovimiento() <= 0){
+                        coleccionDeObjetos.remove(i);
+                    }
         		}
         	}
+            i++;
         }
     }
     

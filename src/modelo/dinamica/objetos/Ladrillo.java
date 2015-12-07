@@ -13,13 +13,12 @@ import modelo.dinamica.Posicion;
  */
 public class Ladrillo extends Objeto {
     private int velocidad = 1;
-    private int vaCayendo = 30;
-    private boolean golpeado = false;
+    private int movimiento = 30;
+    private boolean golpeo = false;
 
 	public Ladrillo(){
 		Posicion posicion = new Posicion();
 		super.setPosicion(posicion);
-		this.setGolpeado(false);
 	}
 
 	public Ladrillo(Posicion posicion){
@@ -32,7 +31,7 @@ public class Ladrillo extends Objeto {
 		Posicion p = new Posicion(2,c,s - 1);
 		super.setPosicion(p);
 	}
-
+    
 	/**
 	 * El método caerDesde identifica la caída de un ladrillo: movimiento
 	 * desde una posición dada en sentido vertical, siempre hacia abajo
@@ -52,11 +51,10 @@ public class Ladrillo extends Objeto {
     }
     
     private void caer(){
-        if (this.vaCayendo > 0) {
-            vaCayendo -= velocidad;
-            if (vaCayendo / 10 > 0) {
-                System.out.println("Antes de setFila en caer ladrillo");
-                this.getPosicion().setFila(vaCayendo / 10);
+        if (this.movimiento > 0) {
+            movimiento -= velocidad;
+            if (movimiento / 10 > 0) {
+                this.getPosicion().setFila(movimiento / 10);
             }
         }else{
             this.getPosicion().setFila(0);
@@ -70,12 +68,4 @@ public class Ladrillo extends Objeto {
     public void actualizar(){
         caer();
     }
-
-	public boolean isGolpeado() {
-		return golpeado;
-	}
-
-	public void setGolpeado(boolean golpeado) {
-		this.golpeado = golpeado;
-	}
 }

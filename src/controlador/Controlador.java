@@ -1,22 +1,6 @@
 package controlador;
 
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.TreeMap;
-
-import javax.imageio.ImageIO;
-
 import excepciones.InvalidMoveException;
 import grafica.dinamica.objetos.LadrilloView;
 import grafica.dinamica.personajes.FelixView;
@@ -36,6 +20,23 @@ import grafica.niceland.SimpleView;
 import grafica.niceland.VentanaView;
 import grafica.obstaculos.MacetaView;
 import grafica.obstaculos.MolduraView;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.TreeMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import javax.imageio.ImageIO;
+
 import modelo.dinamica.Posicion;
 import modelo.direcciones.Direccion;
 import modelo.main.Main;
@@ -50,7 +51,7 @@ public class Controlador extends TimerTask{
     private Grafica view;
     private FelixView fView;
     private RalphView rView;
-    private List<LadrilloView> ladrillos = new ArrayList<LadrilloView>();
+    private List<LadrilloView> ladrillos = new CopyOnWriteArrayList<LadrilloView>();
     private Main model;
     private static MainMenu MENU = new MainMenu();
     private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
@@ -73,12 +74,14 @@ public class Controlador extends TimerTask{
     public void run(){
     	if(!this.model.gameOver()){
         	this.model.jugarUnTurno();
+        	actualizarPersonajes();
         	if (cont % 50 == 0){
-        		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), this.model.getColeccionDeObjetos().get(this.model.getColeccionDeObjetos().size() - 1).getVelocidad()));
+        		System.out.println("Agrega un view de ladrillo");
+        		System.out.println(this.model.getColeccionDeObjetos());
+        		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), this.model.getColeccionDeObjetos().get(this.model.getColeccionDeObjetos().size() - 1).getMovimiento()));
         	}
         	cont++;
             actualizarLadrillos();
-        	actualizarPersonajes();
         	this.view.cargarNiceland(edificio, imagenes, fView, rView);
             this.view.graficarLadrillos(ladrillos);
     	}else{
@@ -89,10 +92,13 @@ public class Controlador extends TimerTask{
     }
 
     private void actualizarLadrillos(){
+    	int i = 0;
         for(LadrilloView ladrillo : ladrillos){
             ladrillo.actualizar();
-            if(ladrillo.getOffsetY() < 0)
-            	ladrillo = null;
+            if(ladrillo.getOffsetY() <= 0){
+            	ladrillos.remove(i);
+            }
+            i++;
         }
     }
 

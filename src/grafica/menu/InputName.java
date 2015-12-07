@@ -15,12 +15,9 @@ public class InputName extends Grafica {
 
 	public InputName(){
 		setLayout(null);
-		this.setVisible(true);
-		this.setSize(400, 300);
-		this.setLocation(300, 200);
-		this.setContentPane(new JLabel());
+		setContentPane(new JLabel());
 		File Image = new File(backgroundImage);
-		this.setContentPane(new JLabel(new ImageIcon(Image.getAbsolutePath())));
+		setContentPane(new JLabel(new ImageIcon(Image.getAbsolutePath())));
 		input = new JTextField();
 		input.setBounds(0, 0, 200, 75);
 		input.setBackground(Color.BLACK);
@@ -30,5 +27,8 @@ public class InputName extends Grafica {
 		goBack.setBounds(0, 100, 216, 51);
 		add(goBack);
 		add(input);
+		setSize(919, 720);
+		setResizable(false);
+		setVisible(true);
 	}
 }

@@ -23,11 +23,11 @@ public class Semicircular extends Ventana {
      */
 
     public void arreglarPanel(){
-        if (this.getMartillazosRecibidos() < 16) {
+        if (this.getMartillazosRecibidos() <= 16) {
         	super.arreglarPanel();
         }
     }
-    
+
    /*
     * 0 - sana
     * 1 - dañada abajo a la izquierda de todo

@@ -57,6 +57,7 @@ public class Seccion {
         for (int j = 0; j < 3; j++){ 
         	for (int i = 0; i < 5; i++) {
         		if(!ventanas[j][i].estaSana()){
+        			System.out.println("La ventana " + i + " " + j + " no esta sana");
         			return false;
         		}
         	}

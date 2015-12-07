@@ -1,6 +1,7 @@
 package controlador;
 
 
+import excepciones.CambiarSeccionException;
 import excepciones.InvalidMoveException;
 import grafica.dinamica.objetos.LadrilloView;
 import grafica.dinamica.personajes.FelixView;
@@ -73,7 +74,12 @@ public class Controlador extends TimerTask{
 
     public void run(){
     	if(!this.model.gameOver()){
-        	this.model.jugarUnTurno();
+    		try{
+    			this.model.jugarUnTurno();
+    		}catch(CambiarSeccionException exc){
+    			cont = 0;
+    			this.view.setSeccionActual(imagenes.get("piso" + (this.model.getDvp().getSeccionActual() + 1) + ".png"));
+    		}
         	actualizarPersonajes();
         	if (cont % 50 == 0){
         		System.out.println("Agrega un view de ladrillo");
@@ -81,7 +87,8 @@ public class Controlador extends TimerTask{
         	}
         	cont++;
             actualizarLadrillos();
-        	this.view.cargarNiceland(edificio, imagenes, fView, rView);
+        	System.out.println("Seccion actual: " + this.model.getDvp().getSeccionActual() );
+        	this.view.cargarNiceland(edificio, fView, rView, this.model.getDvp().getSeccionActual() * 3 , (this.model.getDvp().getSeccionActual() * 3) + 4 );
             this.view.graficarLadrillos(ladrillos);
     	}else{
     		this.cancel();

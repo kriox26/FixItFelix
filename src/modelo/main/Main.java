@@ -7,6 +7,7 @@ import java.util.List;
 import modelo.dinamica.objetos.Ladrillo;
 import modelo.dinamica.objetos.Objeto;
 import modelo.niceland.Niceland;
+import excepciones.CambiarSeccionException;
 
 /*
  * Clase que administra el desarrollo y contiene toda la logica del juego.
@@ -53,7 +54,13 @@ public class Main {
      * Aca se maneja todo lo que se hace en cada turno, incluyendo personajes
      * tanto estaticos como dinamicos.
      */
-    public void jugarUnTurno(){
+    public void jugarUnTurno() throws CambiarSeccionException {
+    	if(this.getDvp().getSeccionActual() != this.nivel * 3){
+    		if(this.getNiceland().getSecciones()[this.getDvp().getSeccionActual()].todoArreglado()){
+    			avanzarSeccion();
+    			throw new CambiarSeccionException();
+    		}
+    	}
     	if (cont % 50 == 0){
    			System.out.println("Agrega ladrillo objeto");
     		coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo());
@@ -63,6 +70,12 @@ public class Main {
         cont++;
         
         actualizarObjetos(); // Actualiza la collecion de objectos lanzados
+    }
+
+    public void avanzarSeccion(){
+    	coleccionDeObjetos.clear();
+    	this.getDvp().getFelix().getPosicion().setSeccion(this.getDvp().getSeccionActual() + 1);
+    	this.getDvp().getRalph().getPosicion().setSeccion(this.getDvp().getSeccionActual() + 1);
     }
     
     /*
@@ -108,20 +121,6 @@ public class Main {
 			avanzar();
 		}
 		return this.gameOver;
-    }
-
-    /*
-     * Simulacion del juego. Todas las acciones se manejan desde este metodo.
-     * Movimientos de felix y ralph, actualizacion de objetos y estado del juego,
-     * ralph tirando ladrillos, etc.
-     * @params int nivel: El nivel elegido para el juego actual.
-     */
-    public void jugar(){
-    	this.jugando=true;
-        this.inicializar();
-        while (!gameOver()) {
-            jugarUnTurno();
-        }
     }
 
     /*

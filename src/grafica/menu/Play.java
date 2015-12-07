@@ -21,6 +21,8 @@ public class Play extends Grafica {
 	private static final int horEdificio= 250;
     private static final int verEdificio= 120;
     private JPanel panel;
+    private BufferedImage seccionActual;
+    private Map<String, BufferedImage> imagenes;
    
     
     /*
@@ -31,7 +33,9 @@ public class Play extends Grafica {
     	//panel = new JPanel();
     	//panel.setSize(800, 600);
     	//panel.setVisible(false);
-    	Canvas canvas = new Canvas();    	
+    	Canvas canvas = new Canvas();
+    	this.seccionActual = imagenes.get("piso1.png");
+    	this.imagenes = imagenes;
         setSize(800, 600);
         this.setResizable(false);
         setVisible(true);
@@ -51,13 +55,17 @@ public class Play extends Grafica {
         this.addKeyListener(keyadapter);
     }
 
-    public void cargarNiceland(VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix, RalphView rView){
-        this.getGraphics().drawImage(imagenes.get("piso2.png"), horEdificio, verEdificio, null);
+    public void setSeccionActual(BufferedImage img){
+    	this.seccionActual = img;
+    }
+
+    public void cargarNiceland(VentanaView[][] building, FelixView felix, RalphView rView, int desde, int hasta){
+        this.getGraphics().drawImage(this.seccionActual, horEdificio, verEdificio, null);
 //        this.getGraphics().drawImage(imagenes.get("piso2.png"), horEdificio, verEdificio - 330, null);
         // Despues dibujamos ventanas sobre las secciones
         int alturaActual = 0;
         int actualX = 0;
-        for (int i = 0; i < 4; i++) {
+        for (int i = desde; i < hasta; i++) {
             for (int j = 0; j < 5; j++) {
             	VentanaView act = building[i][j];
             	int venX = 10 + horEdificio + actualX + act.getXinicial();

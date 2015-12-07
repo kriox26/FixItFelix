@@ -22,7 +22,7 @@ public class Grafica extends JFrame {
 	private static final long serialVersionUID = 1L;
 	protected JButton goBack = new JButton();
 
-	public void cargarNiceland(VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView fView, RalphView rView){
+	public void cargarNiceland(VentanaView[][] building, FelixView fView, RalphView rView, int desde, int hasta){
 		
 	}
 
@@ -50,5 +50,8 @@ public class Grafica extends JFrame {
 		super.paintComponents(g);
 	}
 
+	public void setSeccionActual(BufferedImage img){
+		
+	}
 
 }

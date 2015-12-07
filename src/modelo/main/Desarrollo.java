@@ -22,6 +22,10 @@ public class Desarrollo {
         this.setearPersonajes();
     }
 
+	public int getSeccionActual(){
+		return this.getFelix().getPosicion().getSeccion();
+	}
+
     public int getNivel(){
         return this.nivel;
     }

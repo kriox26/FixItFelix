@@ -15,6 +15,7 @@ import modelo.niceland.Niceland;
  */
 public class Main {
     private boolean jugando;
+	private boolean gameOver = false;
     public Desarrollo dvp;
     public Niceland niceland;
 	private int nivel;
@@ -98,7 +99,12 @@ public class Main {
      */
     public boolean gameOver(){
         System.out.println("Tiro: " + tiro);
-        return this.getDvp().getFelix().getVida() <= 0 ? true : false;
+		if (this.getDvp().getFelix().getVida() <= 0) {
+			this.gameOver = true;
+		}else if (this.getNiceland().getSecciones()[this.getDvp().getSeccionActual()].todoArreglado()){
+			avanzar();
+		}
+		return this.gameOver;
     }
 
     /*
@@ -130,5 +136,11 @@ public class Main {
 
 	public int getNivel(){
 		return this.nivel;
+	}
+
+	public void avanzar(){
+		if(this.getDvp().getSeccionActual() == this.nivel * 3){
+			this.gameOver = true;
+		}
 	}
 }

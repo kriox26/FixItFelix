@@ -8,6 +8,8 @@ import modelo.dinamica.objetos.Ladrillo;
 import modelo.dinamica.objetos.Objeto;
 import modelo.niceland.Niceland;
 import excepciones.CambiarSeccionException;
+import excepciones.SeccionesException;
+import excepciones.UltimaSeccionException;
 
 /*
  * Clase que administra el desarrollo y contiene toda la logica del juego.
@@ -54,12 +56,15 @@ public class Main {
      * Aca se maneja todo lo que se hace en cada turno, incluyendo personajes
      * tanto estaticos como dinamicos.
      */
-    public void jugarUnTurno() throws CambiarSeccionException {
-    	if(this.getDvp().getSeccionActual() != this.nivel * 3){
+    public void jugarUnTurno() throws SeccionesException {
+    	if(this.getDvp().getSeccionActual() != (this.nivel * 3) - 1){
     		if(this.getNiceland().getSecciones()[this.getDvp().getSeccionActual()].todoArreglado()){
     			avanzarSeccion();
     			throw new CambiarSeccionException();
     		}
+    	} else if(this.getNiceland().getSecciones()[this.getDvp().getSeccionActual()].todoArreglado()){
+    		this.gameOver = true;
+    		throw new UltimaSeccionException();
     	}
     	if (cont % 50 == 0){
    			System.out.println("Agrega ladrillo objeto");

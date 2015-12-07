@@ -3,6 +3,8 @@ package controlador;
 
 import excepciones.CambiarSeccionException;
 import excepciones.InvalidMoveException;
+import excepciones.SeccionesException;
+import excepciones.UltimaSeccionException;
 import grafica.dinamica.objetos.LadrilloView;
 import grafica.dinamica.personajes.FelixView;
 import grafica.dinamica.personajes.RalphView;
@@ -80,6 +82,10 @@ public class Controlador extends TimerTask{
     			cont = 0;
     			this.view.setSeccionActual(imagenes.get("piso" + (this.model.getDvp().getSeccionActual() + 1) + ".png"));
     			ladrillos.clear();
+    		}catch(UltimaSeccionException exc){
+    			return;
+    		}catch(SeccionesException exc){
+    			
     		}
         	actualizarPersonajes();
         	if (cont % 50 == 0){

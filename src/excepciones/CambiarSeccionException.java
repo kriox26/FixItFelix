@@ -1,6 +1,6 @@
 package excepciones;
 
-public class CambiarSeccionException extends Exception {
+public class CambiarSeccionException extends SeccionesException {
 
 	public CambiarSeccionException(){
 		super();

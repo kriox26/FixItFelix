@@ -104,13 +104,18 @@ public class Controlador extends TimerTask{
 
     private void actualizarLadrillos(){
     	int i = 0;
-        for(LadrilloView ladrillo : ladrillos){
-            ladrillo.actualizar();
-            if(ladrillo.getOffsetY() <= -10 || this.model.getColeccionDeObjetos().get(i).getGolpeo()){
-            	ladrillos.remove(i);
-            }
-            i++;
-        }
+    	if(!this.model.getColeccionDeObjetos().isEmpty()){
+    		for(LadrilloView ladrillo : ladrillos){
+        	    ladrillo.actualizar();
+        	    try{
+        	    	if(ladrillo.getOffsetY() <= -10 || this.model.getColeccionDeObjetos().get(i).getGolpeo()){
+        	    		ladrillos.remove(i);
+        	    	}
+        	    }catch(IndexOutOfBoundsException exc){
+        	    }
+        	    i++;
+    		}
+    	}
     }
 
     private void actualizarPersonajes(){

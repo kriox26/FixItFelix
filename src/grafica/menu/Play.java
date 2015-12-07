@@ -46,8 +46,10 @@ public class Play extends Grafica {
 
     public void graficarLadrillos(List<LadrilloView> ladrillos){
         for(LadrilloView ladrillo : ladrillos){
-        	System.out.println("Ladrillo esta en: " + (verEdificio + (230 - 4 * ladrillo.getOffsetY() - 20)));
-            this.getGraphics().drawImage(ladrillo.getImagenActual(), 20 + horEdificio + (54 * (ladrillo.getOffsetX() + 1)), verEdificio + (230 - 4*ladrillo.getOffsetY()), null);
+        	if(!ladrillo.getOculto()){
+        		System.out.println("Ladrillo esta en: " + (verEdificio + (230 - 4 * ladrillo.getOffsetY() - 20)));
+            	this.getGraphics().drawImage(ladrillo.getImagenActual(), 20 + horEdificio + (54 * (ladrillo.getOffsetX() + 1)), verEdificio + (230 - 4*ladrillo.getOffsetY()), null);
+        	}
         }
     }
     

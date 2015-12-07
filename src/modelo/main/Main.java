@@ -93,24 +93,22 @@ public class Main {
     private void actualizarObjetos(){
         int i = 0;
         for (Objeto obj: coleccionDeObjetos) {
-        	if(obj != null){
-        		obj.actualizar();
-        		if (obj instanceof Ladrillo){
-        			System.out.println("Posicion del ladrillo es: " + obj.getPosicion().to_string());
-        				System.out.println("Movimiento: " + obj.getMovimiento());
-        			if (obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion())){
-        				if(obj.getGolpeo() == false){
-        					System.out.println("Posicion de felix es: " + this.getDvp().getFelix().getPosicion().to_string());
-        					this.getDvp().getFelix().golpeadoPorLadrillo();
-        					obj.setGolpeo(true);
-        					
-        				}
-        			} else if(obj.getMovimiento() < 0){
-                        obj.setGolpeo(true);
-                    }
-        		}
-        	}
-            i++;
+			if (obj instanceof Ladrillo){
+				System.out.println("Posicion del ladrillo es: " + obj.getPosicion().to_string());
+				System.out.println("Movimiento: " + obj.getMovimiento());
+				if(!obj.getGolpeo()){
+					obj.actualizar();
+				}
+				if (obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion()) && !obj.getGolpeo()){
+					System.out.println("Posicion de felix es: " + this.getDvp().getFelix().getPosicion().to_string());
+					this.getDvp().getFelix().golpeadoPorLadrillo();
+					obj.setGolpeo(true);
+
+				} else if(obj.getMovimiento() < 0){
+					obj.setGolpeo(true);
+				}
+			}
+			i++;
         }
     }
     

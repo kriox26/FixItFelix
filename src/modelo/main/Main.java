@@ -75,6 +75,7 @@ public class Main {
     public void avanzarSeccion(){
     	coleccionDeObjetos.clear();
     	this.getDvp().getFelix().getPosicion().setSeccion(this.getDvp().getSeccionActual() + 1);
+    	this.getDvp().getFelix().getPosicion().setFila(0);
     	this.getDvp().getRalph().getPosicion().setSeccion(this.getDvp().getSeccionActual() + 1);
     }
     

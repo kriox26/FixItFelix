@@ -86,7 +86,7 @@ public class Play extends Grafica {
             }
             actualX = 0;
         }
-        this.getGraphics().drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + (54 * rView.getOffsetX() + 1), verEdificio + (230 - alturaActual + 55), null);
+        this.getGraphics().drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + (54 * rView.getOffsetX() + 1), verEdificio + (230 - alturaActual - 20), null);
     }
         
     public void paintComponents(Graphics g){

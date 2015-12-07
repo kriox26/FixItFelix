@@ -89,7 +89,7 @@ public class Controlador extends TimerTask{
         	cont++;
             actualizarLadrillos();
         	System.out.println("Seccion actual: " + this.model.getDvp().getSeccionActual() );
-        	this.view.cargarNiceland(edificio, fView, rView, this.model.getDvp().getSeccionActual() * 3 , (this.model.getDvp().getSeccionActual() * 3) + 4 );
+        	this.view.cargarNiceland(edificio, fView, rView, this.model.getDvp().getSeccionActual() * 3 , (this.model.getDvp().getSeccionActual() * 3) + 3 );
             this.view.graficarLadrillos(ladrillos);
     	}else{
     		this.cancel();

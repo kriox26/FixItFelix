@@ -8,6 +8,7 @@ import modelo.dinamica.objetos.Ladrillo;
 import modelo.dinamica.objetos.Objeto;
 import modelo.niceland.Niceland;
 import excepciones.CambiarSeccionException;
+import excepciones.LadrilloInexistenteException;
 import excepciones.SeccionesException;
 import excepciones.UltimaSeccionException;
 
@@ -31,6 +32,19 @@ public class Main {
 		this.nivel = nivel;
 		inicializar();
     }
+
+	public Objeto getLadrilloByIndex(int index) throws LadrilloInexistenteException {
+		for(Objeto ladrillo : coleccionDeObjetos){
+			if((ladrillo instanceof Ladrillo) && ladrillo.getIndex() == index){
+				return ladrillo;
+			}
+		}
+		throw new LadrilloInexistenteException();
+	}
+
+	public int getCont(){
+		return this.cont;
+	}
 
     public List<Objeto> getColeccionDeObjetos(){
         return this.coleccionDeObjetos;
@@ -66,13 +80,13 @@ public class Main {
     		this.gameOver = true;
     		throw new UltimaSeccionException();
     	}
-    	if (cont % 50 == 0){
+    	if (this.cont % 50 == 0){
    			System.out.println("Agrega ladrillo objeto");
-    		coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo());
+    		coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo(this.cont));
             tiro++;
     	}
         this.getDvp().getRalph().mover();
-        cont++;
+        this.cont++;
         
         actualizarObjetos(); // Actualiza la collecion de objectos lanzados
     }

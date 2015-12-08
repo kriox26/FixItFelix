@@ -7,10 +7,16 @@ import java.awt.image.BufferedImage;
 public class LadrilloView extends GGO {
 	private int velocidad = 1;
 	private boolean oculto;
+	private int index;
     
-	public LadrilloView (BufferedImage imagenActual, int offsetX, int offsetY) {
+	public LadrilloView (BufferedImage imagenActual, int offsetX, int offsetY, int index) {
 		super(imagenActual, offsetX, offsetY);
 		this.oculto = false;
+		this.index = index;
+	}
+
+	public int getIndex(){
+		return this.index;
 	}
     
     public void actualizar(){

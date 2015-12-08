@@ -15,6 +15,11 @@ public class Ladrillo extends Objeto {
     private int velocidad = 1;
     private int movimiento = 30;
     private boolean golpeo = false;
+	private int index;
+
+	public int getIndex(){
+		return this.index;
+	}
 
     public boolean getGolpeo(){
         return this.golpeo;
@@ -36,9 +41,10 @@ public class Ladrillo extends Objeto {
 		super.setPosicion(posicion);
 	}
 
-	public Ladrillo(int s, int f, int c){
+	public Ladrillo(int s, int f, int c, int i){
 		Posicion p = new Posicion(2,c,s - 1);
 		super.setPosicion(p);
+		this.index = i;
 	}
     
 	/**

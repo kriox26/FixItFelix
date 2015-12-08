@@ -3,6 +3,7 @@ package controlador;
 
 import excepciones.CambiarSeccionException;
 import excepciones.InvalidMoveException;
+import excepciones.LadrilloInexistenteException;
 import excepciones.SeccionesException;
 import excepciones.UltimaSeccionException;
 import grafica.dinamica.objetos.LadrilloView;
@@ -88,10 +89,9 @@ public class Controlador extends TimerTask{
     			
     		}
         	actualizarPersonajes();
-        	if (cont % 50 == 0){
-        		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24));
+        	if (this.model.getCont() % 50 == 0){
+        		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24, this.model.getCont()));
         	}
-        	cont++;
             actualizarLadrillos();
         	this.view.cargarNiceland(edificio, fView, rView, this.model.getDvp().getSeccionActual() * 3 , (this.model.getDvp().getSeccionActual() * 3) + 3 );
             this.view.graficarLadrillos(ladrillos);
@@ -108,10 +108,10 @@ public class Controlador extends TimerTask{
     		for(LadrilloView ladrillo : ladrillos){
         	    ladrillo.actualizar();
         	    try{
-        	    	if(ladrillo.getOffsetY() <= -10 || this.model.getColeccionDeObjetos().get(i).getGolpeo()){
+        	    	if(ladrillo.getOffsetY() <= -10 || this.model.getLadrilloByIndex(ladrillo.getIndex()).getGolpeo()){
         	    		ladrillos.remove(i);
         	    	}
-        	    }catch(IndexOutOfBoundsException exc){
+        	    }catch(LadrilloInexistenteException exc){
         	    }
         	    i++;
     		}

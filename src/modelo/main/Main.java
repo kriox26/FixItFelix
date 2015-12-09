@@ -113,7 +113,7 @@ public class Main {
 				if(!obj.getGolpeo()){
 					obj.actualizar();
 				}
-				if (obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion()) && !obj.getGolpeo()){
+				if ((obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion())) && (!obj.getGolpeo())){
 					System.out.println("Posicion de felix es: " + this.getDvp().getFelix().getPosicion().to_string());
 					this.getDvp().getFelix().golpeadoPorLadrillo();
 					obj.setGolpeo(true);

@@ -97,12 +97,21 @@ public class Ralph extends Personaje {
 			}
 		}
 	}
+<<<<<<< HEAD
 
     public Ladrillo tirarLadrillo(){
         if (this.hayLadrillos()) {
             this.setLadrillos(this.getLadrillos() - 1);
             System.out.println("Posicion de Ralph: " + this.getPosicion().to_string());
             return new Ladrillo(this.getPosicion().getSeccion(), this.getPosicion().getFila(), this.getPosicion().getColumna() );
+=======
+    
+    public Ladrillo tirarLadrillo(int i){
+        if (this.hayLadrillos()) {
+            this.setLadrillos(this.getLadrillos() - 1);
+            System.out.println("Posicion de ralph: " + this.getPosicion().to_string());
+            return new Ladrillo(this.getPosicion().getSeccion(), this.getPosicion().getFila(), this.getPosicion().getColumna(), i );
+>>>>>>> origin/master
         }
         return null;
     }

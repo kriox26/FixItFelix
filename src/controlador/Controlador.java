@@ -1,30 +1,6 @@
 package controlador;
 
 
-import excepciones.CambiarSeccionException;
-import excepciones.InvalidMoveException;
-import excepciones.SeccionesException;
-import excepciones.UltimaSeccionException;
-import grafica.dinamica.objetos.LadrilloView;
-import grafica.dinamica.objetos.PalomaView;
-import grafica.dinamica.personajes.FelixView;
-import grafica.dinamica.personajes.RalphView;
-import grafica.menu.Configuracion;
-import grafica.menu.Grafica;
-import grafica.menu.InputName;
-//import grafica.menu.InputName;
-import grafica.menu.Instrucciones;
-import grafica.menu.MainMenu;
-import grafica.menu.Play;
-import grafica.menu.TopScores;
-import grafica.niceland.IrrompibleView;
-import grafica.niceland.PuertaView;
-import grafica.niceland.SemiCircularView;
-import grafica.niceland.SimpleView;
-import grafica.niceland.VentanaView;
-import grafica.obstaculos.MacetaView;
-import grafica.obstaculos.MolduraView;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -41,6 +17,31 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.imageio.ImageIO;
 
+import excepciones.CambiarSeccionException;
+import excepciones.InvalidMoveException;
+import excepciones.LadrilloInexistenteException;
+import excepciones.SeccionesException;
+import excepciones.UltimaSeccionException;
+import grafica.dinamica.objetos.LadrilloView;
+import grafica.dinamica.objetos.PalomaView;
+import grafica.dinamica.personajes.FelixView;
+import grafica.dinamica.personajes.RalphView;
+import grafica.menu.Configuracion;
+import grafica.menu.Grafica;
+import grafica.menu.InputName;
+//import grafica.menu.InputName;
+import grafica.menu.Instrucciones;
+import grafica.menu.MainMenu;
+import grafica.menu.Play;
+import grafica.menu.ScoresFile;
+import grafica.menu.TopScores;
+import grafica.niceland.IrrompibleView;
+import grafica.niceland.PuertaView;
+import grafica.niceland.SemiCircularView;
+import grafica.niceland.SimpleView;
+import grafica.niceland.VentanaView;
+import grafica.obstaculos.MacetaView;
+import grafica.obstaculos.MolduraView;
 import modelo.dinamica.Posicion;
 import modelo.direcciones.Direccion;
 import modelo.main.Main;
@@ -61,6 +62,7 @@ public class Controlador extends TimerTask{
     private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
     private VentanaView[][] edificio;
     private int cont = 0;
+    private ScoresFile scores;
 
     public Controlador(){
     }
@@ -89,10 +91,9 @@ public class Controlador extends TimerTask{
 
     		}
         	actualizarPersonajes();
-        	if (cont % 50 == 0){
-        		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24));
+        	if (this.model.getCont() % 50 == 0){
+        		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24, this.model.getCont()));
         	}
-        	cont++;
             actualizarLadrillos();
         	this.view.cargarNiceland(edificio, fView, rView, this.model.getDvp().getSeccionActual() * 3 , (this.model.getDvp().getSeccionActual() * 3) + 3 );
             this.view.graficarLadrillos(ladrillos);
@@ -109,10 +110,10 @@ public class Controlador extends TimerTask{
     		for(LadrilloView ladrillo : ladrillos){
         	    ladrillo.actualizar();
         	    try{
-        	    	if(ladrillo.getOffsetY() <= -10 || this.model.getColeccionDeObjetos().get(i).getGolpeo()){
+        	    	if(ladrillo.getOffsetY() <= -10 || this.model.getLadrilloByIndex(ladrillo.getIndex()).getGolpeo()){
         	    		ladrillos.remove(i);
         	    	}
-        	    }catch(IndexOutOfBoundsException exc){
+        	    }catch(LadrilloInexistenteException exc){
         	    }
         	    i++;
     		}
@@ -324,7 +325,7 @@ public class Controlador extends TimerTask{
 
     class ManejaPlayAdapter extends MouseAdapter{
         public void mouseClicked(MouseEvent e){
-            MENU.turnOff();
+            //MENU.turnOff();
             fView = new FelixView(imagenes.get("a_standing_basic.png"), 2, 0);
             cargarView();
             view.addKeyboardEvents(new ManejaEventosTeclado());
@@ -404,7 +405,22 @@ public class Controlador extends TimerTask{
             view.addBackMenu(new VolverAMenu());
         }
     }
+<<<<<<< HEAD
 
+=======
+    class ManejaInputName extends KeyAdapter{
+    	public void keyPressed (KeyEvent e){
+    		try{
+    			if (e.getKeyCode()== KeyEvent.VK_ENTER){
+    				scores = new ScoresFile();
+    			}
+    		}catch (Exception a){
+    			System.out.println("Error: "+a.getMessage() );
+    		}
+    	}
+    }
+    
+>>>>>>> origin/master
     public static void main (String[] args){
         @SuppressWarnings("unused")
 		Controlador ctrl = new Controlador(new Main(false, 1), 1);

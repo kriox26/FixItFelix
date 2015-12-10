@@ -8,6 +8,7 @@ import modelo.dinamica.objetos.Ladrillo;
 import modelo.dinamica.objetos.Objeto;
 import modelo.niceland.Niceland;
 import excepciones.CambiarSeccionException;
+import excepciones.LadrilloInexistenteException;
 import excepciones.SeccionesException;
 import excepciones.UltimaSeccionException;
 
@@ -30,6 +31,19 @@ public class Main {
 		    this.nivel = nivel;
 		    inicializar();
     }
+
+	public Objeto getLadrilloByIndex(int index) throws LadrilloInexistenteException {
+		for(Objeto ladrillo : coleccionDeObjetos){
+			if((ladrillo instanceof Ladrillo) && ladrillo.getIndex() == index){
+				return ladrillo;
+			}
+		}
+		throw new LadrilloInexistenteException();
+	}
+
+	public int getCont(){
+		return this.cont;
+	}
 
     public List<Objeto> getColeccionDeObjetos(){
         return this.coleccionDeObjetos;
@@ -65,14 +79,19 @@ public class Main {
     		this.gameOver = true;
     		throw new UltimaSeccionException();
     	}
-    	if (cont % 50 == 0){
+    	if (this.cont % 50 == 0){
    			System.out.println("Agrega ladrillo objeto");
-    		coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo());
+    		coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo(this.cont));
             tiro++;
     	}
         this.getDvp().getRalph().mover();
+<<<<<<< HEAD
         cont++;
 
+=======
+        this.cont++;
+        
+>>>>>>> origin/master
         actualizarObjetos(); // Actualiza la collecion de objectos lanzados
     }
 
@@ -98,7 +117,7 @@ public class Main {
 				if(!obj.getGolpeo()){
 					obj.actualizar();
 				}
-				if (obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion()) && !obj.getGolpeo()){
+				if ((obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion())) && (!obj.getGolpeo())){
 					System.out.println("Posicion de felix es: " + this.getDvp().getFelix().getPosicion().to_string());
 					this.getDvp().getFelix().golpeadoPorLadrillo();
 					obj.setGolpeo(true);

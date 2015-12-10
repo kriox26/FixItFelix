@@ -1,8 +1,10 @@
 package grafica.menu;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
+import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +22,7 @@ public class Play extends Grafica {
 	private static final long serialVersionUID = 1L;
 	private static final int horEdificio= 250;
     private static final int verEdificio= 120;
-    private JPanel panel;
+    private JPanel panel = new PanelJuego();
     private BufferedImage seccionActual;
     private Map<String, BufferedImage> imagenes;
    
@@ -30,16 +32,14 @@ public class Play extends Grafica {
     * todo.
     */
     public Play(Controlador ctrl, VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix, RalphView rView){
-    	//panel = new JPanel();
-    	//panel.setSize(800, 600);
-    	//panel.setVisible(false);
-    	Canvas canvas = new Canvas();
+    	//panel.setVisible(true);
+    	this.setResizable(false);
+    	this.setVisible(true);
     	this.seccionActual = imagenes.get("piso1.png");
     	this.imagenes = imagenes;
+    	this.add(panel);
         setSize(800, 600);
-        this.setResizable(false);
-        setVisible(true);
-        this.getGraphics().drawImage(imagenes.get("grass_background.jpg"), 0,0,null);
+        //this.getGraphics().drawImage(imagenes.get("grass_background.jpg"), 0,0,null);
     	Timer timer = new Timer("Turnos");
     	timer.schedule(ctrl, 0, 100);
     }
@@ -48,7 +48,7 @@ public class Play extends Grafica {
         for(LadrilloView ladrillo : ladrillos){
         	if(!ladrillo.getOculto()){
         		System.out.println("Ladrillo esta en: " + (verEdificio + (230 - 4 * ladrillo.getOffsetY() - 20)));
-            	this.getGraphics().drawImage(ladrillo.getImagenActual(), 20 + horEdificio + (54 * (ladrillo.getOffsetX() + 1)), verEdificio + (230 - 4*ladrillo.getOffsetY()), null);
+            	panel.getGraphics().drawImage(ladrillo.getImagenActual(), (-10) + horEdificio + (54 * (ladrillo.getOffsetX() + 1)), verEdificio + (230 - 4*ladrillo.getOffsetY()), null);
         	}
         }
     }
@@ -62,7 +62,7 @@ public class Play extends Grafica {
     }
 
     public void cargarNiceland(VentanaView[][] building, FelixView felix, RalphView rView, int desde, int hasta){
-        this.getGraphics().drawImage(this.seccionActual, horEdificio, verEdificio, null);
+        panel.getGraphics().drawImage(this.seccionActual, horEdificio, verEdificio, null);
 //        this.getGraphics().drawImage(imagenes.get("piso2.png"), horEdificio, verEdificio - 330, null);
         // Despues dibujamos ventanas sobre las secciones
         int alturaActual = 0;
@@ -72,12 +72,12 @@ public class Play extends Grafica {
             	VentanaView act = building[i][j];
             	int venX = 10 + horEdificio + actualX + act.getXinicial();
             	int venY = verEdificio + (230 - (alturaActual + act.getYinicial()));
-                this.getGraphics().drawImage(act.getImagenActual(), venX, venY, null);
+                panel.getGraphics().drawImage(act.getImagenActual(), venX, venY, null);
                 if(act.tieneObstaculo()){
-                	this.getGraphics().drawImage(act.getObstaculoView().getImagenActual(), venX + act.getObstaculoView().getOffsetX(), venY + act.getObstaculoView().getOffsetY(), null);
+                	panel.getGraphics().drawImage(act.getObstaculoView().getImagenActual(), venX + act.getObstaculoView().getOffsetX(), venY + act.getObstaculoView().getOffsetY(), null);
                 }
             	if(felix.getOffsetX() == j && felix.getOffsetY() == i){
-            		this.getGraphics().drawImage(felix.getImagenActual(), venX + act.getAjusteX(), venY + act.getAjusteY(), null);
+            		panel.getGraphics().drawImage(felix.getImagenActual(), venX + act.getAjusteX(), venY + act.getAjusteY(), null);
             	}
                 actualX += 54;
             }
@@ -88,10 +88,11 @@ public class Play extends Grafica {
             }
             actualX = 0;
         }
-        this.getGraphics().drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + (54 * rView.getOffsetX() + 1), verEdificio + (230 - alturaActual - 20), null);
+        panel.getGraphics().drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + (54 * rView.getOffsetX() + 1), verEdificio + (230 - alturaActual - 20), null);
     }
         
-    public void paintComponents(Graphics g){
-        super.paintComponents(g);
-    }
+   // public void paintComponent(Graphics g){
+   // 	this.paintComponent(g);
+   //   }
+    
 }

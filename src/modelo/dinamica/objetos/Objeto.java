@@ -16,7 +16,12 @@ public class Objeto extends Dinamico {
 	private boolean existe;
 	private int movimiento;
     private boolean golpeo = false;
+	private int index;
     
+	public int getIndex(){
+		return this.index;
+	}
+
     public boolean getGolpeo(){
         return this.golpeo;
     }

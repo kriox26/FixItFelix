@@ -14,22 +14,21 @@ import excepciones.UltimaSeccionException;
 /*
  * Clase que administra el desarrollo y contiene toda la logica del juego.
  * Todas las interacciones del usuario con el juego se dan a traves de esta clase.
- * @author Matias Pan
  */
 public class Main {
     private boolean jugando;
-	private boolean gameOver = false;
+	  private boolean gameOver = false;
     public Desarrollo dvp;
     public Niceland niceland;
-	private int nivel;
+	  private int nivel;
     private List<Objeto> coleccionDeObjetos = new ArrayList<Objeto>();
     private int cont = 0;
     private int tiro = 0;
-    
+
     public Main(boolean jugando, int nivel){
         this.jugando = jugando;
-		this.nivel = nivel;
-		inicializar();
+		    this.nivel = nivel;
+		    inicializar();
     }
 
     public List<Objeto> getColeccionDeObjetos(){
@@ -43,15 +42,15 @@ public class Main {
     public void setJugando(boolean jugando){
         this.jugando = jugando;
     }
-    
+
     public Desarrollo getDvp(){
         return this.dvp;
     }
-    
+
     public Niceland getNiceland(){
         return this.niceland;
     }
-    
+
     /*
      * Aca se maneja todo lo que se hace en cada turno, incluyendo personajes
      * tanto estaticos como dinamicos.
@@ -73,7 +72,7 @@ public class Main {
     	}
         this.getDvp().getRalph().mover();
         cont++;
-        
+
         actualizarObjetos(); // Actualiza la collecion de objectos lanzados
     }
 
@@ -83,7 +82,7 @@ public class Main {
     	this.getDvp().getFelix().getPosicion().setFila(0);
     	this.getDvp().getRalph().getPosicion().setSeccion(this.getDvp().getSeccionActual() + 1);
     }
-    
+
     /*
      * Se actualiza la collecion de objetos que se mantiene, esta coleccion tiene
      * los ladrillos lanzados, tartas, palomas y nicelanders. Ralph y felix se
@@ -111,7 +110,7 @@ public class Main {
 			i++;
         }
     }
-    
+
     /*
      * Se ejecuta despues de jugar el turno y actualizar los objetos. Se fija que
      * Felix aun tenga vidas, y que todavia no haya llegado al fin del edificio.

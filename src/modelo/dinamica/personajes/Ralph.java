@@ -17,19 +17,29 @@ import modelo.util.RandomAcotado;
 
 public class Ralph extends Personaje {
 	private int ladrillos;
-    private int total_ladrillos_lanzados;
+  private int total_ladrillos_lanzados;
 	private static final int cuantosTira = 3;
 	private static final int kl = 5; // Constante de ladrillos por nivel
 	private Ladrillo[] ladrillos_lanzados;
 	private boolean fijo; // Si est� en una secci�n haciendo sus maldades. O sea, no est� cambiando de secci�n
 	private boolean ganasDeAtacar;
+	private int regulador;
 
   public Ralph(String nombre, int ladrillos, Posicion posicion){
   	super(nombre, posicion);
-      this.ladrillos = ladrillos;
-      this.ladrillos_lanzados = new Ladrillo[this.ladrillos];
-      this.total_ladrillos_lanzados = 0;
+    this.ladrillos = ladrillos;
+    this.ladrillos_lanzados = new Ladrillo[this.ladrillos];
+    this.total_ladrillos_lanzados = 0;
+   	this.regulador = 1;
   }
+
+	public int getRegulador () {
+		return this.regulador;
+	}
+
+	public void setRegulador (int entero) {
+		this.regulador = entero;
+	}
 
 	public void setGanas (boolean tof) {
 		this.ganasDeAtacar = tof;
@@ -87,22 +97,25 @@ public class Ralph extends Personaje {
 			}
 		}
 	}
-    
+
     public Ladrillo tirarLadrillo(){
         if (this.hayLadrillos()) {
             this.setLadrillos(this.getLadrillos() - 1);
-            System.out.println("Posicion de ralph: " + this.getPosicion().to_string());
+            System.out.println("Posicion de Ralph: " + this.getPosicion().to_string());
             return new Ladrillo(this.getPosicion().getSeccion(), this.getPosicion().getFila(), this.getPosicion().getColumna() );
         }
         return null;
     }
 
 	private void movimientoParcialLateral (Direccion direction) {
-		while (!this.alBorde()) {
-			this.mover(direction);
-			if (this.getGanas()) {
-				this.tirarLadrillos();
+		if (!this.alBorde()) {
+			if (this.getRegulador() % 100 == 0) {
+				this.mover(direction);
+				if (this.getGanas()) {
+					this.tirarLadrillos();
+				}
 			}
+			this.setRegulador(this.getRegulador()+1);
 		}
 	}
 
@@ -114,6 +127,7 @@ public class Ralph extends Personaje {
 			else {
 				this.movimientoParcialLateral(Direccion.IZQUIERDA);
 			}
+			this.setRegulador(this.getRegulador()+1);
 		}
 	}
 
@@ -130,7 +144,7 @@ public class Ralph extends Personaje {
     public void mover(){
         RandomAcotado rnd = new RandomAcotado(0,1);
         switch (rnd.getValor()) {
-            case 0: 
+            case 0:
                 if(!this.alBordeDerecho())
                     this.setPosicion(this.getPosicion().modificar(Direccion.DERECHA));
                 break;

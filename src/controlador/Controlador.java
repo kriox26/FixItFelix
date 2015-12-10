@@ -6,6 +6,7 @@ import excepciones.InvalidMoveException;
 import excepciones.SeccionesException;
 import excepciones.UltimaSeccionException;
 import grafica.dinamica.objetos.LadrilloView;
+import grafica.dinamica.objetos.PalomaView;
 import grafica.dinamica.personajes.FelixView;
 import grafica.dinamica.personajes.RalphView;
 import grafica.menu.Configuracion;
@@ -65,7 +66,7 @@ public class Controlador extends TimerTask{
     }
 
     public Controlador(Main model, int nivel){
-    	this.rView = new RalphView(imagenes.get("u_standing_fury_2.png"), 0, 0);
+    	  this.rView = new RalphView(imagenes.get("u_standing_fury_2.png"), 0, 0);
         this.model= model;
         cargarImagenes();
         edificio = new VentanaView[(nivel * 3) * 3][5];
@@ -85,7 +86,7 @@ public class Controlador extends TimerTask{
     		}catch(UltimaSeccionException exc){
     			return;
     		}catch(SeccionesException exc){
-    			
+
     		}
         	actualizarPersonajes();
         	if (cont % 50 == 0){
@@ -112,6 +113,22 @@ public class Controlador extends TimerTask{
         	    		ladrillos.remove(i);
         	    	}
         	    }catch(IndexOutOfBoundsException exc){
+        	    }
+        	    i++;
+    		}
+    	}
+    }
+
+    private void actualizarPalomas(){
+    	int i = 0;
+    	if(!this.model.getColeccionDeObjetos().isEmpty()) {
+    		for (PalomaView paloma : palomas) {
+        	    paloma.actualizar();
+        	    try {
+        	    	if (paloma.getOffsetX() <= -10 || this.model.getColeccionDeObjetos().get(i).getGolpeo()) {
+        	    		palomas.remove(i);
+        	    	}
+        	    } catch (IndexOutOfBoundsException exc) {
         	    }
         	    i++;
     		}
@@ -285,7 +302,7 @@ public class Controlador extends TimerTask{
     public Main getModel(){
         return this.model;
     }
-   
+
      public VentanaView actualizarVentana(Ventana ven, Posicion pos){
         if (ven instanceof Simple) {
             return generarViewSimple(ven, 0, 0);
@@ -314,7 +331,7 @@ public class Controlador extends TimerTask{
 
         }
     }
-    
+
     class ManejaEventosTeclado extends KeyAdapter{
         public void keyPressed(KeyEvent e){
             int movek = e.getKeyCode();
@@ -387,10 +404,10 @@ public class Controlador extends TimerTask{
             view.addBackMenu(new VolverAMenu());
         }
     }
-    
+
     public static void main (String[] args){
         @SuppressWarnings("unused")
 		Controlador ctrl = new Controlador(new Main(false, 1), 1);
     }
-     
+
 }

@@ -1,6 +1,7 @@
 package grafica.menu;
 
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
 import java.io.File;
 
 import javax.swing.ImageIcon;
@@ -12,17 +13,22 @@ public class InputName extends Grafica {
 	private JTextField input;
 	private String backgroundImage =imgPath + "high_scores.jpg";
 	private ImageIcon goBackIcon = new ImageIcon(imgPath+"Menu.png"); 
+	private ScoresFile scores;
 
 	public InputName(){
 		setLayout(null);
+		JLabel label = new JLabel();
+		label.setBackground(Color.BLACK);
+		label.setText("Ingrese su nombre: ");
+		this.add(label);
+		//File Image = new File(backgroundImage);
 		setContentPane(new JLabel());
-		File Image = new File(backgroundImage);
-		setContentPane(new JLabel(new ImageIcon(Image.getAbsolutePath())));
 		input = new JTextField();
 		input.setBounds(0, 0, 200, 75);
-		input.setBackground(Color.BLACK);
+		input.setBackground(Color.WHITE);
 		input.setSize(200, 75);
 		input.setVisible(true);
+		input.setHorizontalAlignment(JTextField.LEFT);
 		goBack.setIcon(goBackIcon);
 		goBack.setBounds(0, 100, 216, 51);
 		add(goBack);
@@ -30,5 +36,10 @@ public class InputName extends Grafica {
 		setSize(919, 720);
 		setResizable(false);
 		setVisible(true);
+		//scores = new ScoresFile();
+		//scores.agregarTexto(input.getText());
 	}
+	public void addKeyboardEvents(KeyAdapter keyadapter){
+        this.addKeyListener(keyadapter);
+    }
 }

@@ -16,7 +16,6 @@ import java.util.TreeMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 
 import excepciones.CambiarSeccionException;
 import excepciones.InvalidMoveException;
@@ -33,6 +32,7 @@ import grafica.menu.InputName;
 import grafica.menu.Instrucciones;
 import grafica.menu.MainMenu;
 import grafica.menu.Play;
+import grafica.menu.ScoresFile;
 import grafica.menu.TopScores;
 import grafica.niceland.IrrompibleView;
 import grafica.niceland.PuertaView;
@@ -61,6 +61,7 @@ public class Controlador extends TimerTask{
     private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
     private VentanaView[][] edificio;
     private int cont = 0;
+    private ScoresFile scores;
 
     public Controlador(){
     }
@@ -386,6 +387,17 @@ public class Controlador extends TimerTask{
             view = new Configuracion();
             view.addBackMenu(new VolverAMenu());
         }
+    }
+    class ManejaInputName extends KeyAdapter{
+    	public void keyPressed (KeyEvent e){
+    		try{
+    			if (e.getKeyCode()== KeyEvent.VK_ENTER){
+    				scores = new ScoresFile();
+    			}
+    		}catch (Exception a){
+    			System.out.println("Error: "+a.getMessage() );
+    		}
+    	}
     }
     
     public static void main (String[] args){

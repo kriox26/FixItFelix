@@ -30,16 +30,16 @@ public class PanelJuego extends JPanel{
 		this.rView = rView;
 		this.desde = desde;
 		this.hasta = hasta;
-		this.setVisible(false);
+		this.setVisible(true);
 		this.setSize(800, 600);
 		this.seccionActual = imagenes.get("piso1.png");
     	this.imagenes = imagenes;
-    	//this.dibujar();
+    	//this.dibujar(getGraphics());
 	}
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		dibujar();
+		dibujar(g);
 		
 	}
 	
@@ -52,8 +52,8 @@ public class PanelJuego extends JPanel{
         }
 	}
 	*/
-	  public void cargarNiceland(VentanaView[][] building, FelixView felix, RalphView rView, int desde, int hasta){
-	        this.getGraphics().drawImage(this.seccionActual, horEdificio, verEdificio, null);
+	  public void cargarNiceland(Graphics g, VentanaView[][] building, FelixView felix, RalphView rView, int desde, int hasta){
+	        g.drawImage(this.seccionActual, horEdificio, verEdificio, null);
 //	        this.getGraphics().drawImage(imagenes.get("piso2.png"), horEdificio, verEdificio - 330, null);
 	        // Despues dibujamos ventanas sobre las secciones
 	        int alturaActual = 0;
@@ -63,12 +63,12 @@ public class PanelJuego extends JPanel{
 	            	VentanaView act = building[i][j];
 	            	int venX = 10 + horEdificio + actualX + act.getXinicial();
 	            	int venY = verEdificio + (230 - (alturaActual + act.getYinicial()));
-	                this.getGraphics().drawImage(act.getImagenActual(), venX, venY, null);
+	                g.drawImage(act.getImagenActual(), venX, venY, null);
 	                if(act.tieneObstaculo()){
-	                	this.getGraphics().drawImage(act.getObstaculoView().getImagenActual(), venX + act.getObstaculoView().getOffsetX(), venY + act.getObstaculoView().getOffsetY(), null);
+	                	g.drawImage(act.getObstaculoView().getImagenActual(), venX + act.getObstaculoView().getOffsetX(), venY + act.getObstaculoView().getOffsetY(), null);
 	                }
 	            	if(felix.getOffsetX() == j && felix.getOffsetY() == i){
-	            		this.getGraphics().drawImage(felix.getImagenActual(), venX + act.getAjusteX(), venY + act.getAjusteY(), null);
+	            		g.drawImage(felix.getImagenActual(), venX + act.getAjusteX(), venY + act.getAjusteY(), null);
 	            	}
 	                actualX += 54;
 	            }
@@ -79,7 +79,7 @@ public class PanelJuego extends JPanel{
 	            }
 	            actualX = 0;
 	        }
-	        this.getGraphics().drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + (54 * rView.getOffsetX() + 1), verEdificio + (230 - alturaActual - 20), null);
+	        g.drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + (54 * rView.getOffsetX() + 1), verEdificio + (230 - alturaActual - 20), null);
 	  }
 	  
 	  public void addKeyboardEvents(KeyAdapter keyadapter){
@@ -88,9 +88,8 @@ public class PanelJuego extends JPanel{
 	  public void setSeccionActual(BufferedImage img){
 	    	this.seccionActual = img;
 	    }
-	  public void dibujar(){
-		  Graphics gr = this.getGraphics();
-		  this.cargarNiceland(building, felix, rView, desde, hasta);
+	  public void dibujar(Graphics g){
+		  this.cargarNiceland(g, building, felix, rView, desde, hasta);
 		  //this.graficarLadrillos(ladrillos);
 	  }
 }

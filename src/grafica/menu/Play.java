@@ -43,7 +43,6 @@ public class Play extends Grafica {
     	this.imagenes = imagenes;
     	panel = new PanelJuego(building,imagenes, felix, rView, desde, hasta);
     	this.add(panel);
-    	
         setSize(800, 600);
         //this.getGraphics().drawImage(imagenes.get("grass_background.jpg"), 0,0,null);
     	Timer timer = new Timer("Turnos");
@@ -96,8 +95,7 @@ public class Play extends Grafica {
         }
         panel.getGraphics().drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + (54 * rView.getOffsetX() + 1), verEdificio + (230 - alturaActual - 20), null);
     */
-    	this.panel.paintComponent(getGraphics());
-    	//this.panel.cargarNiceland(building, felix, rView, desde, hasta);
+    	this.panel.dibujar(this.getGraphics());
     }
     
         

@@ -1,16 +1,10 @@
 package grafica.menu;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
-import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
-
-import javax.swing.JPanel;
 
 import controlador.Controlador;
 import grafica.dinamica.objetos.LadrilloView;
@@ -22,22 +16,34 @@ public class Play extends Grafica {
 	private static final long serialVersionUID = 1L;
 	private static final int horEdificio= 250;
     private static final int verEdificio= 120;
-    private JPanel panel = new PanelJuego();
+    private PanelJuego panel;
     private BufferedImage seccionActual;
     private Map<String, BufferedImage> imagenes;
+    private VentanaView[][] building;
+    private FelixView felix;
+    private RalphView rView;
+    private int desde;
+    private int hasta;
    
     
     /*
     * Se crean todas las imagenes de Niceland, ventanas con obstaculos
     * todo.
     */
-    public Play(Controlador ctrl, VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix, RalphView rView){
+    public Play(Controlador ctrl, VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView felix, RalphView rView, int desde, int hasta){
     	//panel.setVisible(true);
+    	this.building = building;
+		this.felix = felix;
+		this.rView = rView;
+		this.desde = desde;
+		this.hasta = hasta;
     	this.setResizable(false);
     	this.setVisible(true);
     	this.seccionActual = imagenes.get("piso1.png");
     	this.imagenes = imagenes;
+    	panel = new PanelJuego(building,imagenes, felix, rView, desde, hasta);
     	this.add(panel);
+    	
         setSize(800, 600);
         //this.getGraphics().drawImage(imagenes.get("grass_background.jpg"), 0,0,null);
     	Timer timer = new Timer("Turnos");
@@ -62,7 +68,7 @@ public class Play extends Grafica {
     }
 
     public void cargarNiceland(VentanaView[][] building, FelixView felix, RalphView rView, int desde, int hasta){
-        panel.getGraphics().drawImage(this.seccionActual, horEdificio, verEdificio, null);
+      /*  panel.getGraphics().drawImage(this.seccionActual, horEdificio, verEdificio, null);
 //        this.getGraphics().drawImage(imagenes.get("piso2.png"), horEdificio, verEdificio - 330, null);
         // Despues dibujamos ventanas sobre las secciones
         int alturaActual = 0;
@@ -89,10 +95,17 @@ public class Play extends Grafica {
             actualX = 0;
         }
         panel.getGraphics().drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + (54 * rView.getOffsetX() + 1), verEdificio + (230 - alturaActual - 20), null);
+    */
+    	this.panel.paintComponent(getGraphics());
+    	//this.panel.cargarNiceland(building, felix, rView, desde, hasta);
     }
+    
         
    // public void paintComponent(Graphics g){
    // 	this.paintComponent(g);
    //   }
+    public PanelJuego getPanel(){
+    	return this.panel;
+    }
     
 }

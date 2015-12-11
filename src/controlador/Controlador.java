@@ -358,7 +358,7 @@ public class Controlador extends TimerTask{
     }
 
     public void cargarView(){
-    	view = new Play(this, edificio, imagenes, fView, rView);
+    	view = new Play(this, edificio, imagenes, fView, rView, this.model.getDvp().getSeccionActual() * 3, (this.model.getDvp().getSeccionActual() * 3) + 3 );
 //    	this.ctrlLadrillos.setGameWindow(view);
     }
 

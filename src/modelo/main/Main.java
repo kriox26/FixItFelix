@@ -45,30 +45,30 @@ public class Main {
 		return this.cont;
 	}
 
-    public List<Objeto> getColeccionDeObjetos(){
-        return this.coleccionDeObjetos;
-    }
+  public List<Objeto> getColeccionDeObjetos(){
+      return this.coleccionDeObjetos;
+  }
 
-    public boolean getJugando(){
-        return this.jugando;
-    }
+  public boolean getJugando(){
+      return this.jugando;
+  }
 
-    public void setJugando(boolean jugando){
-        this.jugando = jugando;
-    }
+  public void setJugando(boolean jugando){
+      this.jugando = jugando;
+  }
 
-    public Desarrollo getDvp(){
-        return this.dvp;
-    }
+  public Desarrollo getDvp(){
+      return this.dvp;
+  }
 
-    public Niceland getNiceland(){
-        return this.niceland;
-    }
+  public Niceland getNiceland(){
+      return this.niceland;
+  }
 
-    /*
-     * Aca se maneja todo lo que se hace en cada turno, incluyendo personajes
-     * tanto estaticos como dinamicos.
-     */
+  /*
+   * Aca se maneja todo lo que se hace en cada turno, incluyendo personajes
+   * tanto estaticos como dinamicos.
+   */
     public void jugarUnTurno() throws SeccionesException {
     	if(this.getDvp().getSeccionActual() != (this.nivel * 3) - 1){
     		if(this.getNiceland().getSecciones()[this.getDvp().getSeccionActual()].todoArreglado()){
@@ -80,17 +80,15 @@ public class Main {
     		throw new UltimaSeccionException();
     	}
     	if (this.cont % 50 == 0){
-   			System.out.println("Agrega ladrillo objeto");
     		coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo(this.cont));
             tiro++;
     	}
-        this.getDvp().getRalph().mover();
+      this.getDvp().getRalph().mover();
 <<<<<<< HEAD
-        cont++;
-
+      cont++;
 =======
-        this.cont++;
-        
+      this.cont++;
+
 >>>>>>> origin/master
         actualizarObjetos(); // Actualiza la collecion de objectos lanzados
     }
@@ -130,33 +128,35 @@ public class Main {
         }
     }
 
-    /*
-     * Se ejecuta despues de jugar el turno y actualizar los objetos. Se fija que
-     * Felix aun tenga vidas, y que todavia no haya llegado al fin del edificio.
-     * @return boolean: True si el juego termino, false caso contrario
-     */
-    public boolean gameOver(){
-        System.out.println("Tiro: " + tiro);
-		if (this.getDvp().getFelix().getVida() <= 0) {
-			this.gameOver = true;
-		}else if (this.getNiceland().getSecciones()[this.getDvp().getSeccionActual()].todoArreglado()){
-			avanzar();
-		}
-		return this.gameOver;
-    }
+  /*
+   * Se ejecuta despues de jugar el turno y actualizar los objetos. Se fija que
+   * Felix aun tenga vidas, y que todavia no haya llegado al fin del edificio.
+   * @return boolean: True si el juego termino, false caso contrario
+   */
+   
+  public boolean gameOver(){
+      System.out.println("Tiro: " + tiro);
+	    if (this.getDvp().getFelix().getVida() <= 0) {
+		       this.gameOver = true;
+	    } else if (this.getNiceland().getSecciones()[this.getDvp().getSeccionActual()].todoArreglado()){
+		       avanzar();
+	    }
+	    return this.gameOver;
+  }
 
-    /*
-     * Se inicializa todo lo necesario para jugar. El constructor de
-     * Niceland crea todas las secciones, vetanas, paneles con sus estados,
-     * acorde al nivel elegido. El constructor de Desarrollo crea los personajes
-     * respectivas posiciones.
-     * @params int nivel: Indica el nivel actual del juego, las secciones dependen
-     * de el.
-     */
-    private void inicializar(){
-        this.niceland = new Niceland(this.getNivel());
-        this.dvp = new Desarrollo(0, 0);
-    }
+  /*
+   * Se inicializa todo lo necesario para jugar. El constructor de
+   * Niceland crea todas las secciones, vetanas, paneles con sus estados,
+   * acorde al nivel elegido. El constructor de Desarrollo crea los personajes
+   * respectivas posiciones.
+   * @params int nivel: Indica el nivel actual del juego, las secciones dependen
+   * de el.
+   */
+
+  private void inicializar(){
+      this.niceland = new Niceland(this.getNivel());
+      this.dvp = new Desarrollo(0, 0);
+  }
 
 	public int getNivel(){
 		return this.nivel;

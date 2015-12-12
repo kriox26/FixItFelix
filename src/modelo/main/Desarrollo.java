@@ -1,6 +1,6 @@
 package modelo.main;
-import modelo.dinamica.Posicion;
 
+import modelo.dinamica.Posicion;
 import modelo.dinamica.personajes.*;
 
 /*
@@ -10,6 +10,7 @@ import modelo.dinamica.personajes.*;
  * @author Matias Pan
  * @see modelo.main.Main
  */
+
 public class Desarrollo {
     private int nivel;
     private int puntos;
@@ -41,19 +42,20 @@ public class Desarrollo {
     public void setPuntos(int puntos){
         this.puntos = puntos;
     }
-    
+
     public Felix getFelix(){
         return this.felix;
     }
-    
+
     public Ralph getRalph(){
         return this.ralph;
     }
-    
+
     /*
-     * Crea a ralph y a felix con las posiciones por default en la seccion
+     * Crea a Ralph y a Felix con las posiciones por default en la seccion
      * inicial del juego.
      */
+
     private void setearPersonajes(){
         Posicion pos_felix = new Posicion(0, 2, 0);
         Posicion pos_ralph = new Posicion(0, 2, 1);

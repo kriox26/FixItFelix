@@ -1,4 +1,4 @@
-package controlador;
+ package controlador;
 
 
 import java.awt.event.KeyAdapter;
@@ -419,7 +419,7 @@ public class Controlador extends TimerTask{
     		}
     	}
     }
-    
+
 >>>>>>> origin/master
     public static void main (String[] args){
         @SuppressWarnings("unused")

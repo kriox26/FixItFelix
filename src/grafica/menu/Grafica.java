@@ -10,7 +10,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -51,6 +50,12 @@ public class Grafica extends JFrame {
 	}
 
 	public void setSeccionActual(BufferedImage img){
+		
+	}
+
+	public void repintar(VentanaView[][] edificio, FelixView fView,
+			RalphView rView, int act, int i, List<LadrilloView> ladrillos) {
+		// TODO Auto-generated method stub
 		
 	}
 

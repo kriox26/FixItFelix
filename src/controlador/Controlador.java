@@ -60,7 +60,6 @@ public class Controlador extends TimerTask{
     private static MainMenu MENU = new MainMenu();
     private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
     private VentanaView[][] edificio;
-    private int cont = 0;
     private ScoresFile scores;
 
     public Controlador(){
@@ -81,7 +80,6 @@ public class Controlador extends TimerTask{
     		try{
     			this.model.jugarUnTurno();
     		}catch(CambiarSeccionException exc){
-    			cont = 0;
     			this.view.setSeccionActual(imagenes.get("piso" + (this.model.getDvp().getSeccionActual() + 1) + ".png"));
     			ladrillos.clear();
     		}catch(UltimaSeccionException exc){
@@ -94,9 +92,8 @@ public class Controlador extends TimerTask{
         		ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24, this.model.getCont()));
         	}
             actualizarLadrillos();
-        	this.view.cargarNiceland(edificio, fView, rView, this.model.getDvp().getSeccionActual() * 3 , (this.model.getDvp().getSeccionActual() * 3) + 3 );
-            this.view.graficarLadrillos(ladrillos);
-            this.view.repaint();
+            int act = this.model.getDvp().getSeccionActual() * 3;
+            this.view.repintar(edificio, fView, rView, act, act + 3, ladrillos);
     	}else{
     		this.cancel();
             	view.turnOff();

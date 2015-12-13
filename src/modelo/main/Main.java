@@ -84,12 +84,7 @@ public class Main {
             tiro++;
     	}
       this.getDvp().getRalph().mover();
-<<<<<<< HEAD
-      cont++;
-=======
       this.cont++;
-
->>>>>>> origin/master
         actualizarObjetos(); // Actualiza la collecion de objectos lanzados
     }
 

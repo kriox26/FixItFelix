@@ -59,11 +59,15 @@ public class Controlador extends TimerTask{
     private static MainMenu MENU = new MainMenu();
     private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
     private VentanaView[][] edificio;
+    private int cteLadrillo = 15;
+    private int ctePaloma = 150;
+    private int offLPaloma = 1; // off L stands for offset limit
 
     public Controlador(){
     }
 
     public Controlador(Main model){
+    	this.model = model;
     }
 
     public Controlador(Main model, int nivel){
@@ -74,6 +78,14 @@ public class Controlador extends TimerTask{
         crearEdificio(this.model.getNivel());
         MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(),
         new ManejaInstrucciones(), new ManejaConfiguracion());
+    }
+
+    private int getCtePaloma () {
+      return this.ctePaloma;
+    }
+
+    private int getCteLadrillo () {
+      return this.cteLadrillo;
     }
 
     public void run(){
@@ -93,13 +105,15 @@ public class Controlador extends TimerTask{
                 return;
             }catch(SeccionesException exc){
             }
-            actualizarPersonajes();
-            if ((this.model.getCont() % (50 / this.model.getNivel())) == 0){
+            this.actualizarPersonajes();
+            if ((this.model.getCont() % (this.getCteLadrillo() * this.multiplier(this.model.getNivel()))) == 0){
                 ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24, this.model.getCont()));
             }
-            actualizarLadrillos();
+            this.actualizarLadrillos();
+            if ((this.model.getCont() % (this.getCtePaloma() * this.multiplier(this.model.getNivel()))) == 0) {
               palomas.add(new PalomaView(this.getBirdImg(), this.getBirdX(), this.getBirdY(), this.getBirdDir()));
             }
+            this.actualizarPalomas();
             int act = this.model.getDvp().getSeccionActual() * 3;
             this.view.repintar(edificio, fView, rView, act, act + 3, ladrillos);
         }else{
@@ -107,6 +121,20 @@ public class Controlador extends TimerTask{
             view.turnOff();
             view = new InputName();
         }
+    }
+
+    private int multiplier (int nivel) {
+      int nro;
+      switch (nivel) {
+        case 1: nro = 5;
+        break;
+        case 2: nro = 3;
+        break;
+        case 3: nro = 1;
+        break;
+        default: nro = 7; // Si no recibe nivel como parámetro asume nivel básico como prueba
+      }
+      return nro;
     }
 
     private BufferedImage getBirdImg () {
@@ -155,22 +183,9 @@ public class Controlador extends TimerTask{
         }
     }
 
-//    private void actualizarPalomas(){
-//        int i = 0;
-//        if(!this.model.getColeccionDeObjetos().isEmpty()) {
-//            for (PalomaView paloma : palomas) {
-//                paloma.actualizar();
-//                try {
-//                    if (paloma.getOffsetX() <= -10 || this.model.getColeccionDeObjetos().get(i).getGolpeo()) {
-//                        palomas.remove(i);
-//                    }
-//                } catch (IndexOutOfBoundsException exc) {
-//                }
-//                i++;
-//            }
-//        }
-//    }
-
+    private int getOffLPaloma() {
+      return this.offLPaloma;
+    }
 
     private void actualizarPalomas(){
         int i = 0;
@@ -178,7 +193,7 @@ public class Controlador extends TimerTask{
             for (PalomaView paloma : palomas) {
                 paloma.actualizar();
                 try {
-                    if (paloma.getOffsetY() <= -10 || this.model.getColeccionDeObjetos().get(i).getGolpeo()) {
+                    if (paloma.getOffsetX() <= this.getOffLPaloma() || this.model.getColeccionDeObjetos().get(i).getGolpeo()) {
                         palomas.remove(i);
                     }
                 } catch (IndexOutOfBoundsException exc) {
@@ -187,6 +202,7 @@ public class Controlador extends TimerTask{
             }
         }
     }
+
 
     private void actualizarPersonajes(){
         rView.setOffsetX(this.model.getDvp().getRalph().getPosicion().getColumna());

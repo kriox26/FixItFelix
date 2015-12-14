@@ -1,20 +1,6 @@
  package controlador;
 
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.TreeMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-import javax.imageio.ImageIO;
 import excepciones.CambiarSeccionException;
 import excepciones.InvalidMoveException;
 import excepciones.LadrilloInexistenteException;
@@ -39,6 +25,22 @@ import grafica.niceland.SimpleView;
 import grafica.niceland.VentanaView;
 import grafica.obstaculos.MacetaView;
 import grafica.obstaculos.MolduraView;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.TimerTask;
+import java.util.TreeMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import javax.imageio.ImageIO;
+
 import modelo.dinamica.Posicion;
 import modelo.direcciones.Direccion;
 import modelo.main.Main;

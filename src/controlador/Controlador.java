@@ -63,12 +63,12 @@ public class Controlador extends TimerTask{
     public Controlador(){
     }
     
-    public Controlador(Main model, int nivel){
+    public Controlador(Main model){
         this.rView = new RalphView(imagenes.get("u_standing_fury_2.png"), 0, 0);
         this.model= model;
         cargarImagenes();
-        edificio = new VentanaView[(nivel * 3) * 3][5];
-        crearEdificio(nivel);
+        edificio = new VentanaView[(this.model.getNivel() * 3) * 3][5];
+        crearEdificio(this.model.getNivel());
         MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(),
         new ManejaInstrucciones(), new ManejaConfiguracion());
     }
@@ -85,7 +85,7 @@ public class Controlador extends TimerTask{
             }catch(SeccionesException exc){
             }
             actualizarPersonajes();
-            if (this.model.getCont() % 50 == 0){
+            if ((this.model.getCont() % (50 / this.model.getNivel())) == 0){
                 ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24, this.model.getCont()));
             }
             actualizarLadrillos();
@@ -114,21 +114,21 @@ public class Controlador extends TimerTask{
         }
     }
     
-    private void actualizarPalomas(){
-        int i = 0;
-        if(!this.model.getColeccionDeObjetos().isEmpty()) {
-            for (PalomaView paloma : palomas) {
-                paloma.actualizar();
-                try {
-                    if (paloma.getOffsetX() <= -10 || this.model.getColeccionDeObjetos().get(i).getGolpeo()) {
-                        palomas.remove(i);
-                    }
-                } catch (IndexOutOfBoundsException exc) {
-                }
-                i++;
-            }
-        }
-    }
+//    private void actualizarPalomas(){
+//        int i = 0;
+//        if(!this.model.getColeccionDeObjetos().isEmpty()) {
+//            for (PalomaView paloma : palomas) {
+//                paloma.actualizar();
+//                try {
+//                    if (paloma.getOffsetX() <= -10 || this.model.getColeccionDeObjetos().get(i).getGolpeo()) {
+//                        palomas.remove(i);
+//                    }
+//                } catch (IndexOutOfBoundsException exc) {
+//                }
+//                i++;
+//            }
+//        }
+//    }
     
     private void actualizarPersonajes(){
         rView.setOffsetX(this.model.getDvp().getRalph().getPosicion().getColumna());
@@ -415,7 +415,7 @@ public class Controlador extends TimerTask{
     
     public static void main (String[] args){
         @SuppressWarnings("unused")
-        Controlador ctrl = new Controlador(new Main(false, 1), 1);
+        Controlador ctrl = new Controlador(new Main(false, 2));
     }
     
 }

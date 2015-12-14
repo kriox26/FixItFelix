@@ -111,7 +111,15 @@ public class Controlador extends TimerTask{
                 ladrillo.actualizar();
                 try{
                     if(ladrillo.getOffsetY() <= -10 || this.model.getLadrilloByIndex(ladrillo.getIndex()).getGolpeo()){
-                        ladrillos.remove(i);
+                    	if(this.model.getLadrilloByIndex(ladrillo.getIndex()).getGolpeo()){
+                    		this.fView.setOffsetX(2);
+                    		this.fView.setOffsetY(0);
+                    		this.fView.setImagenActual(imagenes.get("a_standing_basic.png"));
+                    	}
+                    	try{
+                    		ladrillos.remove(i);
+                    	}catch(ArrayIndexOutOfBoundsException exc){
+                    	}
                     }
                 }catch(LadrilloInexistenteException exc){
                 }

@@ -114,7 +114,8 @@ public class Main {
 					System.out.println("Posicion de felix es: " + this.getDvp().getFelix().getPosicion().to_string());
 					this.getDvp().getFelix().golpeadoPorLadrillo();
 					obj.setGolpeo(true);
-
+					this.getDvp().getFelix().getPosicion().setColumna(2);
+					this.getDvp().getFelix().getPosicion().setFila(0);
 				} else if(obj.getMovimiento() < 0){
 					obj.setGolpeo(true);
 				}

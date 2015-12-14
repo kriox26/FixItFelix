@@ -69,10 +69,6 @@ public class Controlador extends TimerTask{
     }
 
     public Controlador(Main model){
-    	this.model = model;
-    }
-
-    public Controlador(Main model, int nivel){
         this.rView = new RalphView(imagenes.get("u_standing_fury_2.png"), 0, 0);
         this.model= model;
         cargarImagenes();
@@ -90,43 +86,40 @@ public class Controlador extends TimerTask{
       return this.cteLadrillo;
     }
 
-    public void run(){
-        if(!this.model.gameOver()){
-            try{
-                this.model.jugarUnTurno();
-            }catch(CambiarSeccionException exc){
-            	if((this.model.getNivel() * 3) - 1 == this.model.getDvp().getSeccionActual()){
-            		this.view.setSeccionActual(imagenes.get("piso3.png"));
-            	}else if(this.model.getDvp().getSeccionActual() == 0){
-            		this.view.setSeccionActual(imagenes.get("piso1.png"));
-            	}else{
-            		this.view.setSeccionActual(imagenes.get("piso2.png"));
-            	}
-                ladrillos.clear();
-            }catch(UltimaSeccionException exc){
-                return;
-            }catch(SeccionesException exc){
-            }
-            this.actualizarPersonajes();
-            if ((this.model.getCont() % (this.getCteLadrillo() * this.multiplier(this.model.getNivel()))) == 0){
-                ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24, this.model.getCont()));
-            actualizarPersonajes();
-            if ((this.model.getCont() % (50 / this.model.getNivel())) == 0){
-                ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 35, this.model.getCont()));
-            }
-            this.actualizarLadrillos();
-            if ((this.model.getCont() % (this.getCtePaloma() * this.multiplier(this.model.getNivel()))) == 0) {
-              palomas.add(new PalomaView(this.getBirdImg(), this.getBirdX(), this.getBirdY(), this.getBirdDir()));
-            }
-            this.actualizarPalomas();
-            int act = this.model.getDvp().getSeccionActual() * 3;
-            this.view.repintar(edificio, fView, rView, act, act + 3, ladrillos);
-        }else{
-            this.cancel();
-            view.turnOff();
-            view = new InputName();
-        }
-    }
+	public void run(){
+		if(!this.model.gameOver()){
+			try{
+				this.model.jugarUnTurno();
+			}catch(CambiarSeccionException exc){
+				if((this.model.getNivel() * 3) - 1 == this.model.getDvp().getSeccionActual()){
+					this.view.setSeccionActual(imagenes.get("piso3.png"));
+				}else if(this.model.getDvp().getSeccionActual() == 0){
+					this.view.setSeccionActual(imagenes.get("piso1.png"));
+				}else{
+					this.view.setSeccionActual(imagenes.get("piso2.png"));
+				}
+				ladrillos.clear();
+			}catch(UltimaSeccionException exc){
+				return;
+			}catch(SeccionesException exc){
+			}
+			this.actualizarPersonajes();
+			if ((this.model.getCont() % (50 / this.model.getNivel())) == 0){
+				ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 35, this.model.getCont()));
+			}
+			this.actualizarLadrillos();
+			if ((this.model.getCont() % (this.getCtePaloma() * this.multiplier(this.model.getNivel()))) == 0) {
+				palomas.add(new PalomaView(this.getBirdImg(), this.getBirdX(), this.getBirdY(), this.getBirdDir()));
+			}
+			this.actualizarPalomas();
+			int act = this.model.getDvp().getSeccionActual() * 3;
+			this.view.repintar(edificio, fView, rView, act, act + 3, ladrillos);
+		}else{
+			this.cancel();
+			view.turnOff();
+			view = new InputName();
+		}
+	}
 
     private int multiplier (int nivel) {
       int nro;
@@ -390,13 +383,6 @@ public class Controlador extends TimerTask{
         return edificio[pos.getSeccion()+pos.getFila()][pos.getColumna()];
     }
 
-
-    public void ejecutarTimer(){
-        System.out.println("Adentro de ejecutartimer");
-        Timer timer = new Timer("Turnos");
-        timer.schedule(this, 0, 1);
-    }
-
     class ManejaPlayAdapter extends MouseAdapter{
         public void mouseClicked(MouseEvent e){
             //MENU.turnOff();
@@ -485,7 +471,7 @@ public class Controlador extends TimerTask{
         public void keyPressed (KeyEvent e){
             try{
                 if (e.getKeyCode()== KeyEvent.VK_ENTER){
-                    scores = new ScoresFile();
+//                    scores = new ScoresFile();
                 }
             }catch (Exception a){
                 System.out.println("Error: "+a.getMessage() );

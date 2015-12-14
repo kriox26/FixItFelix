@@ -65,9 +65,6 @@ public class Controlador extends TimerTask{
     }
 
     public Controlador(Main model){
-    }
-
-    public Controlador(Main model, int nivel){
         this.rView = new RalphView(imagenes.get("u_standing_fury_2.png"), 0, 0);
         this.model= model;
         cargarImagenes();
@@ -156,23 +153,6 @@ public class Controlador extends TimerTask{
             }
         }
     }
-
-//    private void actualizarPalomas(){
-//        int i = 0;
-//        if(!this.model.getColeccionDeObjetos().isEmpty()) {
-//            for (PalomaView paloma : palomas) {
-//                paloma.actualizar();
-//                try {
-//                    if (paloma.getOffsetX() <= -10 || this.model.getColeccionDeObjetos().get(i).getGolpeo()) {
-//                        palomas.remove(i);
-//                    }
-//                } catch (IndexOutOfBoundsException exc) {
-//                }
-//                i++;
-//            }
-//        }
-//    }
-
 
     private void actualizarPalomas(){
         int i = 0;

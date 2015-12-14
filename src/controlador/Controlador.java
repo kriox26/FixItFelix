@@ -61,8 +61,8 @@ public class Controlador extends TimerTask{
     private static MainMenu MENU = new MainMenu();
     private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
     private VentanaView[][] edificio;
-    private int cteLadrillo = 15;
-    private int ctePaloma = 150;
+    // private int cteLadrillo = 15; Por ahora no se utiliza
+    private int ctePaloma = 150; // ¡Ojo! Variable duplicada en Main.java
     private int offLPaloma = 1; // off L stands for offset limit
 
     public Controlador(){
@@ -82,9 +82,9 @@ public class Controlador extends TimerTask{
       return this.ctePaloma;
     }
 
-    private int getCteLadrillo () {
-      return this.cteLadrillo;
-    }
+    // private int getCteLadrillo () {
+    //    return this.cteLadrillo;
+    // }
 
 	public void run(){
 		if(!this.model.gameOver()){
@@ -121,7 +121,7 @@ public class Controlador extends TimerTask{
 		}
 	}
 
-    private int multiplier (int nivel) {
+    private int multiplier (int nivel) { // ¡Ojo! Sobreescritura de còdigo. Este metodo se duplica en Main.java
       int nro;
       switch (nivel) {
         case 1: nro = 5;
@@ -133,28 +133,6 @@ public class Controlador extends TimerTask{
         default: nro = 7; // Si no recibe nivel como parámetro asume nivel básico como prueba
       }
       return nro;
-    }
-
-    private BufferedImage getBirdImg () {
-      if (this.model.getLastBird().getDireccion() == Direccion.IZQUIERDA) {
-        return imagenes.get("alas_abajo_izquierda.png");
-      }
-      else
-        return imagenes.get("alas_abajo_derecha.png");
-    }
-
-    private Direccion getBirdDir () {
-      return this.model.getLastBird().getDireccion();
-    }
-
-    // Falta incorporar random de acomodamiento
-    private int getBirdX () {
-      return this.model.getLastBird().getPosicion().getFila();
-    }
-
-    // Falta incorporar constante de acomodamiento
-    private int getBirdY () {
-      return this.model.getLastBird().getPosicion().getColumna();
     }
 
     private void actualizarLadrillos(){
@@ -502,6 +480,28 @@ public class Controlador extends TimerTask{
     public static void main (String[] args){
         @SuppressWarnings("unused")
         Controlador ctrl = new Controlador(new Main(false, 1));
+    }
+
+    private BufferedImage getBirdImg () {
+      if (this.model.getLastBird().getDireccion() == Direccion.IZQUIERDA) {
+        return imagenes.get("alas_abajo_izquierda.png");
+      }
+      else
+        return imagenes.get("alas_abajo_derecha.png");
+    }
+
+    private Direccion getBirdDir () {
+      return this.model.getLastBird().getDireccion();
+    }
+
+    // Falta incorporar random de acomodamiento
+    private int getBirdX () {
+      return this.model.getLastBird().getPosicion().getFila();
+    }
+
+    // Falta incorporar constante de acomodamiento
+    private int getBirdY () {
+      return this.model.getLastBird().getPosicion().getColumna();
     }
 
 }

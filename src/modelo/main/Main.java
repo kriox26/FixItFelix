@@ -4,10 +4,13 @@ package modelo.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelo.dinamica.Posicion;
 import modelo.dinamica.objetos.Ladrillo;
 import modelo.dinamica.objetos.Objeto;
 import modelo.dinamica.objetos.Paloma;
+import modelo.direcciones.Direccion;
 import modelo.niceland.Niceland;
+import modelo.util.RandomAcotado;
 import excepciones.CambiarSeccionException;
 import excepciones.LadrilloInexistenteException;
 import excepciones.SeccionesException;
@@ -26,6 +29,7 @@ public class Main {
     private List<Objeto> coleccionDeObjetos = new ArrayList<Objeto>();
     private int cont = 0;
     private int tiro = 0;
+    private int ctePaloma = 150; // ¡Ojo! Variable duplicada en Controlador.java
 
     public Main(boolean jugando, int nivel){
         this.jugando = jugando;
@@ -84,9 +88,36 @@ public class Main {
     		coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo(this.cont));
             tiro++;
     	}
+      if ((this.cont % (this.getCtePaloma() * this.multiplier(this.getNivel()))) == 0) {
+        coleccionDeObjetos.add(this.parirPaloma());
+      }
       this.getDvp().getRalph().mover();
       this.cont++;
         actualizarObjetos(); // Actualiza la collecion de objectos lanzados
+    }
+
+    private Paloma parirPaloma () {
+      RandomAcotado num = new RandomAcotado(1,2); // Para randomizar la elección de la direccion
+      RandomAcotado fila = new RandomAcotado (0,2); // Para randomizar la fila en que vuela
+      Paloma bird = new Paloma();
+      Posicion pos = new Posicion ();
+      if (num.getValor() == 1) { // Es un pichoncito de Paloma que volará hacia la derecha
+         pos.setColumna(0); // Empieza desde la izquierda
+         bird.setDireccion(Direccion.DERECHA);
+      }
+      else { // Es un pichoncito de Paloma que volará hacia la izquierda
+        pos.setColumna(4); // Empieza desde la derecha
+    	  bird.setDireccion(Direccion.IZQUIERDA);
+
+      }
+      pos.setFila(fila.getValor());
+      pos.setSeccion(this.getDvp().getSeccionActual());
+      bird.setPosicion(pos);
+      return bird;
+    }
+
+    private int getCtePaloma () {
+    	return this.ctePaloma;
     }
 
     public void avanzarSeccion(){
@@ -103,7 +134,7 @@ public class Main {
      * del jugador con el juego.
      */
     private void actualizarObjetos(){
-        int i = 0;
+        int i = 0; // Seems unuseful but better not touch it yet. Then we may delete it...
         for (Objeto obj: coleccionDeObjetos) {
 			if (obj instanceof Ladrillo){
 				System.out.println("Posicion del ladrillo es: " + obj.getPosicion().to_string());
@@ -177,4 +208,19 @@ public class Main {
     }
     return this.coleccionDeObjetos.get(i);
   }
+
+  private int multiplier (int nivel) { // ¡Ojo! Sobreescritura de còdigo. Este metodo se duplica en Controlador.java
+    int nro;
+    switch (nivel) {
+      case 1: nro = 5;
+      break;
+      case 2: nro = 3;
+      break;
+      case 3: nro = 1;
+      break;
+      default: nro = 7; // Si no recibe nivel como parámetro asume nivel básico como prueba
+    }
+    return nro;
+  }
+
 }

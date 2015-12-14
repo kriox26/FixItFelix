@@ -351,12 +351,14 @@ public class Controlador extends TimerTask{
                     fView.setImagenActual(imagenes.get("a_runNoAxe_right_1.png"));
                     break;
                     case KeyEvent.VK_SPACE: //Barra espaciadora
-                    model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
-                    model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
-                    model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
-                    model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
-                    edificio[(pos.getSeccion()*3) + pos.getFila()][pos.getColumna()] = actualizarVentana(model.getNiceland().getVentana(pos), pos);
-                    fView.setImagenActual(imagenes.get("felix_martillar_izquierda.png"));
+                    if (!(model.getNiceland().getVentana(pos) instanceof Irrompible)) {
+                        model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
+                        model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
+                        model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
+                        model.getDvp().getFelix().martillar(model.getNiceland().getVentana(pos));
+                        edificio[(pos.getSeccion()*3) + pos.getFila()][pos.getColumna()] = actualizarVentana(model.getNiceland().getVentana(pos), pos);
+                        fView.setImagenActual(imagenes.get("felix_martillar_izquierda.png"));
+                    }
                     default:
                     break;
                 }

@@ -92,7 +92,7 @@ public class Controlador extends TimerTask{
             }
             actualizarPersonajes();
             if ((this.model.getCont() % (50 / this.model.getNivel())) == 0){
-                ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24, this.model.getCont()));
+                ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 35, this.model.getCont()));
             }
             actualizarLadrillos();
             int act = this.model.getDvp().getSeccionActual() * 3;
@@ -110,7 +110,7 @@ public class Controlador extends TimerTask{
             for(LadrilloView ladrillo : ladrillos){
                 ladrillo.actualizar();
                 try{
-                    if(ladrillo.getOffsetY() <= -10 || this.model.getLadrilloByIndex(ladrillo.getIndex()).getGolpeo()){
+                    if(ladrillo.getOffsetY() <= -20 || this.model.getLadrilloByIndex(ladrillo.getIndex()).getGolpeo()){
                     	if(this.model.getLadrilloByIndex(ladrillo.getIndex()).getGolpeo()){
                     		this.fView.setOffsetX(2);
                     		this.fView.setOffsetY(0);
@@ -442,7 +442,7 @@ public class Controlador extends TimerTask{
     
     public static void main (String[] args){
         @SuppressWarnings("unused")
-        Controlador ctrl = new Controlador(new Main(false, 2));
+        Controlador ctrl = new Controlador(new Main(false, 1));
     }
     
 }

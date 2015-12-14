@@ -15,9 +15,9 @@ public class Objeto extends Dinamico {
 	private static final int kv = 1;
 	private boolean existe;
 	private int movimiento;
-    private boolean golpeo = false;
+  private boolean golpeo = false;
 	private int index;
-    
+
 	public int getIndex(){
 		return this.index;
 	}
@@ -25,7 +25,7 @@ public class Objeto extends Dinamico {
     public boolean getGolpeo(){
         return this.golpeo;
     }
-    
+
     public void setGolpeo(boolean golpeo){
         this.golpeo = golpeo;
     }
@@ -42,6 +42,9 @@ public class Objeto extends Dinamico {
         return this.movimiento;
     }
 
+	public Direccion getDireccion () {
+		return Direccion.NULA;
+	}
 
 	public void unidireccionar (Direccion direccion) {
 		while (this.getExiste() == true) {

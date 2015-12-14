@@ -156,6 +156,9 @@ public class Main {
 	public int getNivel(){
 		return this.nivel;
 	}
+	public void setNivel(int nivel){
+		this.nivel = nivel;
+	}
 
 	public void avanzar(){
 		if(this.getDvp().getSeccionActual() == this.nivel * 3){

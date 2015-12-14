@@ -78,7 +78,13 @@ public class Controlador extends TimerTask{
             try{
                 this.model.jugarUnTurno();
             }catch(CambiarSeccionException exc){
-                this.view.setSeccionActual(imagenes.get("piso" + (this.model.getDvp().getSeccionActual() + 1) + ".png"));
+            	if((this.model.getNivel() * 3) - 1 == this.model.getDvp().getSeccionActual()){
+            		this.view.setSeccionActual(imagenes.get("piso3.png"));
+            	}else if(this.model.getDvp().getSeccionActual() == 0){
+            		this.view.setSeccionActual(imagenes.get("piso1.png"));
+            	}else{
+            		this.view.setSeccionActual(imagenes.get("piso2.png"));
+            	}
                 ladrillos.clear();
             }catch(UltimaSeccionException exc){
                 return;
@@ -247,7 +253,7 @@ public class Controlador extends TimerTask{
             break;
             case 12: act = new PuertaView(imagenes.get("puerta-rota-salvoDD.png"));
             break;
-            default: act = new PuertaView(imagenes.get("puerta-sana.png"));
+            default: act = new PuertaView(imagenes.get("puerta-rota-UI.png"));
             break;
         }
         return act;
@@ -280,7 +286,7 @@ public class Controlador extends TimerTask{
             break;
             case 11: act = new SemiCircularView(imagenes.get("semicir-dañada-arriba-4.png"));
             break;
-            default: act = new SemiCircularView(imagenes.get("semicir-sana.png"));
+            default: act = new SemiCircularView(imagenes.get("semicir-dañada-abajo-1.png"));
             break;
         }
         return act;
@@ -311,19 +317,12 @@ public class Controlador extends TimerTask{
         return edificio[pos.getSeccion()+pos.getFila()][pos.getColumna()];
     }
     
-    public void ejecutarTimer(){
-        System.out.println("Adentro de ejecutartimer");
-        Timer timer = new Timer("Turnos");
-        timer.schedule(this, 0, 1);
-    }
-    
     class ManejaPlayAdapter extends MouseAdapter{
         public void mouseClicked(MouseEvent e){
             //MENU.turnOff();
             fView = new FelixView(imagenes.get("a_standing_basic.png"), 2, 0);
             cargarView();
             view.addKeyboardEvents(new ManejaEventosTeclado());
-            
         }
     }
     

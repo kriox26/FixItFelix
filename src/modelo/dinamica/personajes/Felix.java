@@ -54,7 +54,7 @@ public class Felix extends Personaje{
     }
     
     public void golpeadoPorLadrillo () {
-        System.out.println("Adentro de golpeado por ladrillo aSDasdAWER	WQERSEDFSADFTAW4ERFTSAEDFASwefsdvawesrfaefasdfasdcvasdrfasdf");
+        System.out.println("Adentro de golpeado por ladrillo");
         if (this.estaInmune()) {
             this.desactivarInmunidad();
         }

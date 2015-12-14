@@ -59,7 +59,6 @@ public class Controlador extends TimerTask{
     private static MainMenu MENU = new MainMenu();
     private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
     private VentanaView[][] edificio;
-    private ScoresFile scores;
 
     public Controlador(){
     }
@@ -99,7 +98,6 @@ public class Controlador extends TimerTask{
                 ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24, this.model.getCont()));
             }
             actualizarLadrillos();
-            if (this.model.getCont() % 450 == 0) {
               palomas.add(new PalomaView(this.getBirdImg(), this.getBirdX(), this.getBirdY(), this.getBirdDir()));
             }
             int act = this.model.getDvp().getSeccionActual() * 3;

@@ -370,27 +370,13 @@ public class Controlador extends TimerTask{
         }
         return edificio[pos.getSeccion()+pos.getFila()][pos.getColumna()];
     }
-<<<<<<< Updated upstream
-    
-=======
 
-    public void ejecutarTimer(){
-        System.out.println("Adentro de ejecutartimer");
-        Timer timer = new Timer("Turnos");
-        timer.schedule(this, 0, 1);
-    }
-
->>>>>>> Stashed changes
     class ManejaPlayAdapter extends MouseAdapter{
         public void mouseClicked(MouseEvent e){
             //MENU.turnOff();
             fView = new FelixView(imagenes.get("a_standing_basic.png"), 2, 0);
             cargarView();
             view.addKeyboardEvents(new ManejaEventosTeclado());
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         }
     }
 

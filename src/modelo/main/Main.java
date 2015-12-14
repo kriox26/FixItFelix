@@ -3,7 +3,7 @@ package modelo.main;
 /* Imports de librerias java */
 import java.util.ArrayList;
 import java.util.List;
-
+import modelo.dinamica.objetos.Paloma;
 import modelo.dinamica.objetos.Ladrillo;
 import modelo.dinamica.objetos.Objeto;
 import modelo.niceland.Niceland;
@@ -129,7 +129,7 @@ public class Main {
    * Felix aun tenga vidas, y que todavia no haya llegado al fin del edificio.
    * @return boolean: True si el juego termino, false caso contrario
    */
-   
+
   public boolean gameOver(){
       System.out.println("Tiro: " + tiro);
 	    if (this.getDvp().getFelix().getVida() <= 0) {
@@ -166,4 +166,14 @@ public class Main {
 			this.gameOver = true;
 		}
 	}
+
+  public Objeto getLastBird () {
+    int i = 0;
+    for(Objeto paloma : coleccionDeObjetos){
+	  if((paloma instanceof Paloma)){
+        i = paloma.getIndex();
+      }
+    }
+    return this.coleccionDeObjetos.get(i);
+  }
 }

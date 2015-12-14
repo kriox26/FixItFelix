@@ -54,16 +54,20 @@ public class Controlador extends TimerTask{
     private FelixView fView;
     private RalphView rView;
     private List<LadrilloView> ladrillos = new CopyOnWriteArrayList<LadrilloView>();
+    private List<PalomaView> palomas = new CopyOnWriteArrayList<PalomaView>();
     private Main model;
     private static MainMenu MENU = new MainMenu();
     private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
     private VentanaView[][] edificio;
     private ScoresFile scores;
-    
+
     public Controlador(){
     }
-    
+
     public Controlador(Main model){
+    }
+
+    public Controlador(Main model, int nivel){
         this.rView = new RalphView(imagenes.get("u_standing_fury_2.png"), 0, 0);
         this.model= model;
         cargarImagenes();
@@ -72,7 +76,7 @@ public class Controlador extends TimerTask{
         MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(),
         new ManejaInstrucciones(), new ManejaConfiguracion());
     }
-    
+
     public void run(){
         if(!this.model.gameOver()){
             try{
@@ -95,6 +99,9 @@ public class Controlador extends TimerTask{
                 ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24, this.model.getCont()));
             }
             actualizarLadrillos();
+            if (this.model.getCont() % 450 == 0) {
+              palomas.add(new PalomaView(this.getBirdImg(), this.getBirdX(), this.getBirdY(), this.getBirdDir()));
+            }
             int act = this.model.getDvp().getSeccionActual() * 3;
             this.view.repintar(edificio, fView, rView, act, act + 3, ladrillos);
         }else{
@@ -103,7 +110,29 @@ public class Controlador extends TimerTask{
             view = new InputName();
         }
     }
-    
+
+    private BufferedImage getBirdImg () {
+      if (this.model.getLastBird().getDireccion() == Direccion.IZQUIERDA) {
+        return imagenes.get("alas_abajo_izquierda.png");
+      }
+      else
+        return imagenes.get("alas_abajo_derecha.png");
+    }
+
+    private Direccion getBirdDir () {
+      return this.model.getLastBird().getDireccion();
+    }
+
+    // Falta incorporar random de acomodamiento
+    private int getBirdX () {
+      return this.model.getLastBird().getPosicion().getFila();
+    }
+
+    // Falta incorporar constante de acomodamiento
+    private int getBirdY () {
+      return this.model.getLastBird().getPosicion().getColumna();
+    }
+
     private void actualizarLadrillos(){
         int i = 0;
         if(!this.model.getColeccionDeObjetos().isEmpty()){
@@ -127,7 +156,7 @@ public class Controlador extends TimerTask{
             }
         }
     }
-    
+
 //    private void actualizarPalomas(){
 //        int i = 0;
 //        if(!this.model.getColeccionDeObjetos().isEmpty()) {
@@ -143,17 +172,34 @@ public class Controlador extends TimerTask{
 //            }
 //        }
 //    }
-    
+
+
+    private void actualizarPalomas(){
+        int i = 0;
+        if(!this.model.getColeccionDeObjetos().isEmpty()) {
+            for (PalomaView paloma : palomas) {
+                paloma.actualizar();
+                try {
+                    if (paloma.getOffsetY() <= -10 || this.model.getColeccionDeObjetos().get(i).getGolpeo()) {
+                        palomas.remove(i);
+                    }
+                } catch (IndexOutOfBoundsException exc) {
+                }
+                i++;
+            }
+        }
+    }
+
     private void actualizarPersonajes(){
         rView.setOffsetX(this.model.getDvp().getRalph().getPosicion().getColumna());
     }
-    
+
     private void cargarImagenes(){
         File carpeta = new File("src/grafica/imagenes/");
         File[] lista = carpeta.listFiles();
         cargaRecursiva(lista);
     }
-    
+
     private void cargaRecursiva(File[] lista){
         for(File act : lista){
             if(act.isDirectory()){
@@ -168,7 +214,7 @@ public class Controlador extends TimerTask{
             }
         }
     }
-    
+
     private void crearEdificio(int nivel){
         Niceland building = this.model.getNiceland();
         int n = 0;
@@ -191,17 +237,17 @@ public class Controlador extends TimerTask{
             }
         }
     }
-    
+
     public IrrompibleView generarViewIrrompible(Ventana ven, int x, int y){
         switch (ven.getObstaculo().getDireccion()) {
             case DERECHA: return new IrrompibleView(imagenes.get("irrompible_derecha.png"));
-            
+
             case IZQUIERDA: return new IrrompibleView(imagenes.get("irrompible_izquierda.png"));
-            
+
             default: return new IrrompibleView(imagenes.get("irrompible_cerrada.png"));
         }
     }
-    
+
     public SimpleView generarViewSimple(Ventana ven, int x, int y){
         SimpleView act = new SimpleView();
         switch (ven.estadoTotal()) {
@@ -231,7 +277,7 @@ public class Controlador extends TimerTask{
         }
         return act;
     }
-    
+
     public PuertaView generarViewPuerta(Ventana ven, int x, int y){
         PuertaView act = new PuertaView();
         switch (ven.estadoTotal()) {
@@ -266,7 +312,7 @@ public class Controlador extends TimerTask{
         }
         return act;
     }
-    
+
     public SemiCircularView generarViewSemiCircular(Ventana ven, int x, int y){
         SemiCircularView act = new SemiCircularView();
         switch (ven.estadoTotal()) {
@@ -299,19 +345,19 @@ public class Controlador extends TimerTask{
         }
         return act;
     }
-    
+
     public Grafica getView(){
         return this.view;
     }
-    
+
     public void setView(Grafica view){
         this.view = view;
     }
-    
+
     public Main getModel(){
         return this.model;
     }
-    
+
     public VentanaView actualizarVentana(Ventana ven, Posicion pos){
         if (ven instanceof Simple) {
             return generarViewSimple(ven, 0, 0);
@@ -324,16 +370,30 @@ public class Controlador extends TimerTask{
         }
         return edificio[pos.getSeccion()+pos.getFila()][pos.getColumna()];
     }
+<<<<<<< Updated upstream
     
+=======
+
+    public void ejecutarTimer(){
+        System.out.println("Adentro de ejecutartimer");
+        Timer timer = new Timer("Turnos");
+        timer.schedule(this, 0, 1);
+    }
+
+>>>>>>> Stashed changes
     class ManejaPlayAdapter extends MouseAdapter{
         public void mouseClicked(MouseEvent e){
             //MENU.turnOff();
             fView = new FelixView(imagenes.get("a_standing_basic.png"), 2, 0);
             cargarView();
             view.addKeyboardEvents(new ManejaEventosTeclado());
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         }
     }
-    
+
     class ManejaEventosTeclado extends KeyAdapter{
         public void keyPressed(KeyEvent e){
             int movek = e.getKeyCode();
@@ -376,11 +436,11 @@ public class Controlador extends TimerTask{
             fView.setOffsetY(pos.getFila() + (pos.getSeccion() * 3));
         }
     }
-    
+
     public void cargarView(){
         view = new Play(this, edificio, imagenes, fView, rView, this.model.getDvp().getSeccionActual() * 3, (this.model.getDvp().getSeccionActual() * 3) + 3 );
     }
-    
+
     class VolverAMenu extends MouseAdapter{
         public void mouseClicked(MouseEvent e){
             view.turnOff();
@@ -408,7 +468,7 @@ public class Controlador extends TimerTask{
             view.addMouseEvents(new ManejaNivel1(), new ManejaNivel2(), new ManejaNivel3());
         }
     }
-    
+
     class ManejaInputName extends KeyAdapter{
         public void keyPressed (KeyEvent e){
             try{
@@ -420,7 +480,7 @@ public class Controlador extends TimerTask{
             }
         }
     }
-    
+
     class ManejaNivel1 extends MouseAdapter {
 		public void mouseClicked(MouseEvent e){
 			System.out.println("Seteado Nivel 1");
@@ -439,10 +499,11 @@ public class Controlador extends TimerTask{
 			System.out.println("Seteado nivel 3");
 		}
 	}
-    
+
+
     public static void main (String[] args){
         @SuppressWarnings("unused")
         Controlador ctrl = new Controlador(new Main(false, 2));
     }
-    
+
 }

@@ -1,20 +1,6 @@
  package controlador;
 
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.TreeMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-import javax.imageio.ImageIO;
 import excepciones.CambiarSeccionException;
 import excepciones.InvalidMoveException;
 import excepciones.LadrilloInexistenteException;
@@ -39,6 +25,22 @@ import grafica.niceland.SimpleView;
 import grafica.niceland.VentanaView;
 import grafica.obstaculos.MacetaView;
 import grafica.obstaculos.MolduraView;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.TimerTask;
+import java.util.TreeMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import javax.imageio.ImageIO;
+
 import modelo.dinamica.Posicion;
 import modelo.direcciones.Direccion;
 import modelo.main.Main;
@@ -108,6 +110,9 @@ public class Controlador extends TimerTask{
             this.actualizarPersonajes();
             if ((this.model.getCont() % (this.getCteLadrillo() * this.multiplier(this.model.getNivel()))) == 0){
                 ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 24, this.model.getCont()));
+            actualizarPersonajes();
+            if ((this.model.getCont() % (50 / this.model.getNivel())) == 0){
+                ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 35, this.model.getCont()));
             }
             this.actualizarLadrillos();
             if ((this.model.getCont() % (this.getCtePaloma() * this.multiplier(this.model.getNivel()))) == 0) {
@@ -165,7 +170,7 @@ public class Controlador extends TimerTask{
             for(LadrilloView ladrillo : ladrillos){
                 ladrillo.actualizar();
                 try{
-                    if(ladrillo.getOffsetY() <= -10 || this.model.getLadrilloByIndex(ladrillo.getIndex()).getGolpeo()){
+                    if(ladrillo.getOffsetY() <= -20 || this.model.getLadrilloByIndex(ladrillo.getIndex()).getGolpeo()){
                     	if(this.model.getLadrilloByIndex(ladrillo.getIndex()).getGolpeo()){
                     		this.fView.setOffsetX(2);
                     		this.fView.setOffsetY(0);
@@ -510,7 +515,7 @@ public class Controlador extends TimerTask{
 
     public static void main (String[] args){
         @SuppressWarnings("unused")
-        Controlador ctrl = new Controlador(new Main(false, 2));
+        Controlador ctrl = new Controlador(new Main(false, 1));
     }
 
 }

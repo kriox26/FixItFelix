@@ -13,7 +13,7 @@ import modelo.dinamica.Posicion;
  */
 public class Ladrillo extends Objeto {
     private int velocidad = 1;
-    private int movimiento = 30;
+    private int movimiento = 60;
     private boolean golpeo = false;
 	private int index;
 
@@ -68,14 +68,13 @@ public class Ladrillo extends Objeto {
     private void caer(){
         if (this.movimiento > 0) {
             movimiento -= velocidad;
-            if (movimiento / 10 > 0) {
-                this.getPosicion().setFila(movimiento / 10);
+            if(movimiento > 40 && movimiento <= 60){
+            	this.getPosicion().setFila(2);
+            } else if (movimiento > 20 && movimiento <= 40) {
+                this.getPosicion().setFila(1);
+            } else if(movimiento > 0 && movimiento <= 20){
+            	this.getPosicion().setFila(0);
             }
-        }else if(movimiento < 10){
-            this.getPosicion().setFila(0);
-            //this.movimiento = -20;
-        }else{
-        	this.movimiento -= velocidad;
         }
     }
 

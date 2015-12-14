@@ -3,9 +3,10 @@ package modelo.main;
 /* Imports de librerias java */
 import java.util.ArrayList;
 import java.util.List;
-import modelo.dinamica.objetos.Paloma;
+
 import modelo.dinamica.objetos.Ladrillo;
 import modelo.dinamica.objetos.Objeto;
+import modelo.dinamica.objetos.Paloma;
 import modelo.niceland.Niceland;
 import excepciones.CambiarSeccionException;
 import excepciones.LadrilloInexistenteException;
@@ -110,7 +111,7 @@ public class Main {
 				if(!obj.getGolpeo()){
 					obj.actualizar();
 				}
-				if ((obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion())) && (!obj.getGolpeo())){
+				if ((obj.getPosicion().equal_to(this.getDvp().getFelix().getPosicion())) && (!obj.getGolpeo()) && (obj.getMovimiento() > 0)){
 					System.out.println("Posicion de felix es: " + this.getDvp().getFelix().getPosicion().to_string());
 					this.getDvp().getFelix().golpeadoPorLadrillo();
 					obj.setGolpeo(true);

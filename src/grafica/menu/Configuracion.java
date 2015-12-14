@@ -2,6 +2,8 @@ package grafica.menu;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +20,7 @@ public class Configuracion extends Grafica{
 	private ImageIcon nivel1Boton = new ImageIcon(imgPath + "Nivel1.png");
 	private ImageIcon nivel2Boton = new ImageIcon(imgPath + "Nivel2.png");
 	private ImageIcon nivel3Boton = new ImageIcon(imgPath + "Nivel3.png");
+	
 	
 	public Configuracion(){
 		setLayout(new FlowLayout());
@@ -48,5 +51,11 @@ public class Configuracion extends Grafica{
 		add(nivel1);
 		add(nivel2);
 		add(nivel3);
+	}
+	public void addMouseEvents(MouseAdapter mouseAdap, MouseAdapter mouseAdap2, 
+			MouseAdapter mouseAdap3){
+		nivel1.addMouseListener(mouseAdap);
+		nivel2.addMouseListener(mouseAdap2);
+		nivel3.addMouseListener(mouseAdap3);
 	}
 }

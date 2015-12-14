@@ -398,6 +398,7 @@ public class Controlador extends TimerTask{
         public void mouseClicked(MouseEvent e){
             view = new Configuracion();
             view.addBackMenu(new VolverAMenu());
+            view.addMouseEvents(new ManejaNivel1(), new ManejaNivel2(), new ManejaNivel3());
         }
     }
     
@@ -412,6 +413,25 @@ public class Controlador extends TimerTask{
             }
         }
     }
+    
+    class ManejaNivel1 extends MouseAdapter {
+		public void mouseClicked(MouseEvent e){
+			System.out.println("Seteado Nivel 1");
+			model.setNivel(1);
+		}
+	}
+    class ManejaNivel2 extends MouseAdapter {
+		public void mouseClicked(MouseEvent e){
+			System.out.println("Seteado Nivel 2");
+			model.setNivel(2);
+		}
+	}
+    class ManejaNivel3 extends MouseAdapter {
+		public void mouseClicked(MouseEvent e){
+			model.setNivel(3);
+			System.out.println("Seteado nivel 3");
+		}
+	}
     
     public static void main (String[] args){
         @SuppressWarnings("unused")

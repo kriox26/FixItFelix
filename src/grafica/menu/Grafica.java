@@ -32,7 +32,9 @@ public class Grafica extends JFrame {
 	public void addMouseEvents(MouseAdapter e){
 		
 	}
-
+	
+	public void addMouseEvents(MouseAdapter a, MouseAdapter b, MouseAdapter c){
+	}
 	public void addKeyboardEvents(KeyAdapter e){
 		
 	}

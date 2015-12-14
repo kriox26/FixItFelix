@@ -79,7 +79,7 @@ public class Main {
     		this.gameOver = true;
     		throw new UltimaSeccionException();
     	}
-    	if (this.cont % 50 == 0){
+    	if ((this.cont % (50 / this.getNivel())) == 0){
     		coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo(this.cont));
             tiro++;
     	}

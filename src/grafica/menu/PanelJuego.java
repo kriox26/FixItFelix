@@ -4,7 +4,7 @@ import grafica.dinamica.objetos.LadrilloView;
 import grafica.dinamica.personajes.FelixView;
 import grafica.dinamica.personajes.RalphView;
 import grafica.niceland.VentanaView;
-
+import grafica.dinamica.objetos.PalomaView;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.image.BufferedImage;
@@ -21,11 +21,12 @@ public class PanelJuego extends JPanel{
     private Map<String, BufferedImage> imagenes;
     private VentanaView[][] building;
     private List<LadrilloView> ladrillos;
+	private List<PalomaView> palomas;
     private FelixView fView;
     private RalphView rView;
     private int desde;
     private int hasta;
-    
+
 	public PanelJuego(VentanaView[][] building, Map<String, BufferedImage> imagenes, FelixView fView, RalphView rView, int desde, int hasta){
 		this.building = building;
 		this.fView = fView;
@@ -38,11 +39,11 @@ public class PanelJuego extends JPanel{
     	this.imagenes = imagenes;
     	//this.dibujar(getGraphics());
 	}
-	
+
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		dibujar(g);
-		
+
 	}
 
 	public void actualizar(VentanaView[][] building, FelixView fView, RalphView rView, int desde, int hasta, BufferedImage seccionActual, List<LadrilloView> ladrillos){
@@ -54,7 +55,7 @@ public class PanelJuego extends JPanel{
 		this.seccionActual = seccionActual;
         this.ladrillos = ladrillos;
 	}
-	
+
 	public void graficarLadrillos(Graphics g){
         for(LadrilloView ladrillo : this.ladrillos){
         	if(!ladrillo.getOculto()){
@@ -63,7 +64,7 @@ public class PanelJuego extends JPanel{
         	}
         }
 	}
-	
+
 	  public void cargarNiceland(Graphics g){
 	        g.drawImage(this.seccionActual, horEdificio, verEdificio, null);
 	        int alturaActual = 0;
@@ -91,15 +92,26 @@ public class PanelJuego extends JPanel{
 	        }
 	        g.drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + (54 * this.rView.getOffsetX() + 1), verEdificio + (230 - alturaActual - 20), null);
 	  }
-	  
+
 	  public void addKeyboardEvents(KeyAdapter keyadapter){
 	        this.addKeyListener(keyadapter);
-	    }
+	  }
+	  
 	  public void setSeccionActual(BufferedImage img){
 	    	this.seccionActual = img;
-	    }
+	  }
+	  
 	  public void dibujar(Graphics g){
 		  this.cargarNiceland(g);
-          this.graficarLadrillos(g);
+      this.graficarLadrillos(g);
+			this.graficarPalomas(g);
 	  }
+
+		public void graficarPalomas(Graphics g){
+	        for(PalomaView paloma : this.palomas){
+	        	if(!paloma.getOculto()) {
+	            	g.drawImage(image, x, y, observer); // Claro que esto es lo que falta fixear de la paloma
+	        	}
+	        }
+		}
 }

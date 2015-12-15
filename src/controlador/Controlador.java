@@ -79,10 +79,6 @@ public class Controlador extends TimerTask{
       return this.ctePaloma;
     }
 
-    // private int getCteLadrillo () {
-    //    return this.cteLadrillo;
-    // }
-
 	public void run(){
 		if(!this.model.gameOver()){
 			try{

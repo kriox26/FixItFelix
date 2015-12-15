@@ -31,6 +31,7 @@ public class Play extends Grafica {
         setSize(800, 600);
     	Timer timer = new Timer("Turnos");
     	timer.schedule(ctrl, 0, 100);
+    	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public void addKeyboardEvents(KeyAdapter keyadapter){

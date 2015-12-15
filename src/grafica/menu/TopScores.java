@@ -35,7 +35,7 @@ public class TopScores extends Grafica {
 		goBack.setBounds(10, 625, 216, 51);
 		goBack.setContentAreaFilled(false);
 		add(goBack);
-		
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Top Scores");
 		setSize(919, 720);
 		setVisible(true);

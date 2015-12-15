@@ -111,6 +111,7 @@ public class Controlador extends TimerTask{
 			this.cancel();
 			view.turnOff();
 			view = new InputName();
+			view.addBackMenu(new VolverAMenu());
 		}
 	}
 

@@ -69,11 +69,8 @@ public class Controlador extends TimerTask{
     }
 
     public Controlador(Main model){
-        this.rView = new RalphView(imagenes.get("u_standing_fury_2.png"), 0, 0);
         this.model= model;
         cargarImagenes();
-        edificio = new VentanaView[(this.model.getNivel() * 3) * 3][5];
-        crearEdificio(this.model.getNivel());
         MENU.addMouseEvents(new ManejaPlayAdapter(), new ManejaTopScoresAdapter(),
         new ManejaInstrucciones(), new ManejaConfiguracion());
     }
@@ -387,8 +384,11 @@ public class Controlador extends TimerTask{
         public void mouseClicked(MouseEvent e){
             //MENU.turnOff();
             fView = new FelixView(imagenes.get("a_standing_basic.png"), 2, 0);
+            rView = new RalphView(imagenes.get("u_standing_fury_2.png"), 0, 0);
             cargarView();
             view.addKeyboardEvents(new ManejaEventosTeclado());
+            edificio = new VentanaView[(model.getNivel() * 3) * 3][5];
+            crearEdificio(model.getNivel());
         }
     }
 

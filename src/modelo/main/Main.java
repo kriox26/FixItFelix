@@ -160,6 +160,7 @@ public class Main {
 	}
 	public void setNivel(int nivel){
 		this.nivel = nivel;
+		inicializar();
 	}
 
 	public void avanzar(){

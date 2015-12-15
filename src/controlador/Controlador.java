@@ -7,7 +7,7 @@ import excepciones.LadrilloInexistenteException;
 import excepciones.SeccionesException;
 import excepciones.UltimaSeccionException;
 import grafica.dinamica.objetos.LadrilloView;
-import grafica.dinamica.objetos.PalomaView;
+// import grafica.dinamica.objetos.PalomaView;
 import grafica.dinamica.personajes.FelixView;
 import grafica.dinamica.personajes.RalphView;
 import grafica.menu.Configuracion;
@@ -16,7 +16,7 @@ import grafica.menu.InputName;
 import grafica.menu.Instrucciones;
 import grafica.menu.MainMenu;
 import grafica.menu.Play;
-import grafica.menu.ScoresFile;
+// import grafica.menu.ScoresFile;
 import grafica.menu.TopScores;
 import grafica.niceland.IrrompibleView;
 import grafica.niceland.PuertaView;
@@ -56,14 +56,14 @@ public class Controlador extends TimerTask{
     private FelixView fView;
     private RalphView rView;
     private List<LadrilloView> ladrillos = new CopyOnWriteArrayList<LadrilloView>();
-    private List<PalomaView> palomas = new CopyOnWriteArrayList<PalomaView>();
+    // private List<PalomaView> palomas = new CopyOnWriteArrayList<PalomaView>();
     private Main model;
     private static MainMenu MENU = new MainMenu();
     private Map<String, BufferedImage> imagenes = new TreeMap<String, BufferedImage>();
     private VentanaView[][] edificio;
     // private int cteLadrillo = 15; Por ahora no se utiliza
-    private int ctePaloma = 150; // ¡Ojo! Variable duplicada en Main.java
-    private int offLPaloma = 1; // off L stands for offset limit
+    // private int ctePaloma = 150; // ¡Ojo! Variable duplicada en Main.java
+    // private int offLPaloma = 1; // off L stands for offset limit
 
     public Controlador(){
     }
@@ -75,9 +75,9 @@ public class Controlador extends TimerTask{
         new ManejaInstrucciones(), new ManejaConfiguracion());
     }
 
-    private int getCtePaloma () {
-      return this.ctePaloma;
-    }
+  // private int getCtePaloma () {
+  //  return this.ctePaloma;
+  // }
 
 	public void run(){
 		if(!this.model.gameOver()){
@@ -101,10 +101,10 @@ public class Controlador extends TimerTask{
 				ladrillos.add(new LadrilloView(imagenes.get("ladrillo_der.png"), this.model.getDvp().getRalph().getPosicion().getColumna(), 35, this.model.getCont()));
 			}
 			this.actualizarLadrillos();
-			if ((this.model.getCont() % (this.getCtePaloma() * this.multiplier(this.model.getNivel()))) == 0) {
-				palomas.add(new PalomaView(this.getBirdImg(), this.getBirdX(), this.getBirdY(), this.getBirdDir()));
-			}
-			this.actualizarPalomas();
+			// if ((this.model.getCont() % (this.getCtePaloma() * this.multiplier(this.model.getNivel()))) == 0) {
+			//   palomas.add(new PalomaView(this.getBirdImg(), this.getBirdX(), this.getBirdY(), this.getBirdDir()));
+		  // }
+			// this.actualizarPalomas();
 			int act = this.model.getDvp().getSeccionActual() * 3;
 			this.view.repintar(edificio, fView, rView, act, act + 3, ladrillos);
 		}else{
@@ -115,6 +115,8 @@ public class Controlador extends TimerTask{
 		}
 	}
 
+    /*
+    // Método para obtener un multiplicador variable dependiendo del nivel
     private int multiplier (int nivel) { // ¡Ojo! Sobreescritura de còdigo. Este metodo se duplica en Main.java
       int nro;
       switch (nivel) {
@@ -128,6 +130,8 @@ public class Controlador extends TimerTask{
       }
       return nro;
     }
+    */
+
 
     private void actualizarLadrillos(){
         int i = 0;
@@ -152,27 +156,24 @@ public class Controlador extends TimerTask{
             }
         }
     }
-
-    private int getOffLPaloma() {
-      return this.offLPaloma;
-    }
-
+   
+    /*
     private void actualizarPalomas(){
-        int i = 0;
-        if(!this.model.getColeccionDeObjetos().isEmpty()) {
-            for (PalomaView paloma : palomas) {
-                paloma.actualizar();
-                try {
-                    if (paloma.getOffsetX() <= this.getOffLPaloma() || this.model.getColeccionDeObjetos().get(i).getGolpeo()) {
-                        palomas.remove(i);
+        Inicializa un contador
+        Si no esta vacia la coleccion de objetos {
+            Para cada paloma {
+                Actualiza la paloma;
+                Prueba {
+                    if (Si la paloma esta out of range O le pego a Felix) {
+                        La paloma es eliminada
                     }
-                } catch (IndexOutOfBoundsException exc) {
+                } si no, lanza una excepcion {
                 }
-                i++;
+                Incrementa contador
             }
         }
     }
-
+	*/
 
     private void actualizarPersonajes(){
         rView.setOffsetX(this.model.getDvp().getRalph().getPosicion().getColumna());
@@ -478,7 +479,9 @@ public class Controlador extends TimerTask{
         @SuppressWarnings("unused")
         Controlador ctrl = new Controlador(new Main(false, 1));
     }
-
+    
+    /*
+    // Obtiene imagen de paloma
     private BufferedImage getBirdImg () {
       if (this.model.getLastBird().getDireccion() == Direccion.IZQUIERDA) {
         return imagenes.get("alas_abajo_izquierda.png");
@@ -487,18 +490,19 @@ public class Controlador extends TimerTask{
         return imagenes.get("alas_abajo_derecha.png");
     }
 
+    // Devuelve direccion de paloma
     private Direccion getBirdDir () {
       return this.model.getLastBird().getDireccion();
     }
 
-    // Falta incorporar random de acomodamiento
     private int getBirdX () {
       return this.model.getLastBird().getPosicion().getFila();
-    }
+    }     // Falta incorporar random de acomodamiento
 
-    // Falta incorporar constante de acomodamiento
+
     private int getBirdY () {
       return this.model.getLastBird().getPosicion().getColumna();
-    }
+    }     // Falta incorporar constante de acomodamiento
+	*/
 
 }

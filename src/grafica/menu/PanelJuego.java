@@ -4,7 +4,7 @@ import grafica.dinamica.objetos.LadrilloView;
 import grafica.dinamica.personajes.FelixView;
 import grafica.dinamica.personajes.RalphView;
 import grafica.niceland.VentanaView;
-import grafica.dinamica.objetos.PalomaView;
+// import grafica.dinamica.objetos.PalomaView;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.image.BufferedImage;
@@ -21,7 +21,6 @@ public class PanelJuego extends JPanel{
     private Map<String, BufferedImage> imagenes;
     private VentanaView[][] building;
     private List<LadrilloView> ladrillos;
-	private List<PalomaView> palomas;
     private FelixView fView;
     private RalphView rView;
     private int desde;
@@ -74,14 +73,19 @@ public class PanelJuego extends JPanel{
 	            	VentanaView act = this.building[i][j];
 	            	int venX = 10 + horEdificio + actualX + act.getXinicial();
 	            	int venY = verEdificio + (230 - (alturaActual + act.getYinicial()));
-	                g.drawImage(act.getImagenActual(), venX, venY, null);
-	                if(act.tieneObstaculo()){
-	                	g.drawImage(act.getObstaculoView().getImagenActual(), venX + act.getObstaculoView().getOffsetX(), venY + act.getObstaculoView().getOffsetY(), null);
-	                }
+                g.drawImage(act.getImagenActual(), venX, venY, null);
+                if(act.tieneObstaculo()){
+                	g.drawImage(act.getObstaculoView().getImagenActual(), venX + act.getObstaculoView().getOffsetX(), venY + act.getObstaculoView().getOffsetY(), null);
+                }
+								// Si se debe dibujar una tarta  {
+									// Entonces se dibuja
+									// Se actualiza la informacioón correspondiente
+								// }
+								//}
 	            	if(this.fView.getOffsetX() == j && this.fView.getOffsetY() == i){
 	            		g.drawImage(this.fView.getImagenActual(), venX + act.getAjusteX(), venY + act.getAjusteY(), null);
 	            	}
-	                actualX += 54;
+                actualX += 54;
 	            }
 	            if (i == 2 || i == 5 || i == 8) {
 	            	alturaActual += 90;
@@ -93,25 +97,49 @@ public class PanelJuego extends JPanel{
 	        g.drawImage(imagenes.get("u_standing_fury_2.png"), horEdificio + (54 * this.rView.getOffsetX() + 1), verEdificio + (230 - alturaActual - 20), null);
 	  }
 
+
+
 	  public void addKeyboardEvents(KeyAdapter keyadapter){
 	        this.addKeyListener(keyadapter);
-	  }
-	  
+	    }
 	  public void setSeccionActual(BufferedImage img){
 	    	this.seccionActual = img;
-	  }
-	  
+	    }
 	  public void dibujar(Graphics g){
 		  this.cargarNiceland(g);
-      this.graficarLadrillos(g);
-			this.graficarPalomas(g);
+		  this.graficarLadrillos(g);
+		  // this.graficarPalomas(g);
 	  }
 
+		/*
+
+		// Método que retorna si se debe dibujar o no una tarta
+		private boolean dibujarTarta (VentanaView act) {
+			if (act instanceof SimpleView) { 													// Si es una ventana simple
+				if ((act.getTarta()) || (this.quiereTarta(act))) {			// Si tiene tarta O quiere tenerla a partir de ahora
+					return true;
+				}
+			return false;
+		}
+
+		// Método que retorna si una ventana tendrá tarta a partir de ahora
+		private boolean quiereTarta(act) {
+			NumeroRandom num = new NumeroRandom(1,3);
+			if ((!act.getTarta()) && (num % 3 == 0)) {					// Si no tenía tarta Y cumple condición estadística
+			// Se agregaría también en la línea anterior la condición "Y hay un nicelander para ponerla"
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
 		public void graficarPalomas(Graphics g){
-	        for(PalomaView paloma : this.palomas){
-	        	if(!paloma.getOculto()) {
-	            	g.drawImage(image, x, y, observer); // Claro que esto es lo que falta fixear de la paloma
-	        	}
+	        Para cada objeto de tipo PalomaView en arreglo de palomas {
+							Si no está oculto {}
+									Se redibuja;
+	        		}
 	        }
 		}
+		*/
 }

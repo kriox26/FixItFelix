@@ -4,13 +4,13 @@ package modelo.main;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelo.dinamica.Posicion;
+// import modelo.dinamica.Posicion;
 import modelo.dinamica.objetos.Ladrillo;
 import modelo.dinamica.objetos.Objeto;
-import modelo.dinamica.objetos.Paloma;
-import modelo.direcciones.Direccion;
+// import modelo.dinamica.objetos.Paloma;
+// import modelo.direcciones.Direccion;
 import modelo.niceland.Niceland;
-import modelo.util.RandomAcotado;
+// import modelo.util.RandomAcotado;
 import excepciones.CambiarSeccionException;
 import excepciones.LadrilloInexistenteException;
 import excepciones.SeccionesException;
@@ -29,7 +29,7 @@ public class Main {
     private List<Objeto> coleccionDeObjetos = new ArrayList<Objeto>();
     private int cont = 0;
     private int tiro = 0;
-    private int ctePaloma = 150; // ¡Ojo! Variable duplicada en Controlador.java
+    // private int ctePaloma = 150; // ¡Ojo! Variable duplicada en Controlador.java
 
     public Main(boolean jugando, int nivel){
         this.jugando = jugando;
@@ -88,14 +88,16 @@ public class Main {
     		coleccionDeObjetos.add(this.getDvp().getRalph().tirarLadrillo(this.cont));
             tiro++;
     	}
-      if ((this.cont % (this.getCtePaloma() * this.multiplier(this.getNivel()))) == 0) {
-        coleccionDeObjetos.add(this.parirPaloma());
-      }
+      // if ((this.cont % (this.getCtePaloma() * this.multiplier(this.getNivel()))) == 0) {
+      //  coleccionDeObjetos.add(this.parirPaloma());
+      // }
       this.getDvp().getRalph().mover();
       this.cont++;
         actualizarObjetos(); // Actualiza la collecion de objectos lanzados
     }
 
+
+    /*
     private Paloma parirPaloma () {
       RandomAcotado num = new RandomAcotado(1,2); // Para randomizar la elección de la direccion
       RandomAcotado fila = new RandomAcotado (0,2); // Para randomizar la fila en que vuela
@@ -115,10 +117,12 @@ public class Main {
       bird.setPosicion(pos);
       return bird;
     }
+    */
 
+    /*
     private int getCtePaloma () {
     	return this.ctePaloma;
-    }
+    */
 
     public void avanzarSeccion(){
     	coleccionDeObjetos.clear();
@@ -134,7 +138,7 @@ public class Main {
      * del jugador con el juego.
      */
     private void actualizarObjetos(){
-        int i = 0; // Seems unuseful but better not touch it yet. Then we may delete it...
+       // int i = 0; // Seems unuseful but better not to touch it yet. Then we may delete it...
         for (Objeto obj: coleccionDeObjetos) {
 			if (obj instanceof Ladrillo){
 				System.out.println("Posicion del ladrillo es: " + obj.getPosicion().to_string());
@@ -152,7 +156,7 @@ public class Main {
 					obj.setGolpeo(true);
 				}
 			}
-			i++;
+			//i++;
         }
     }
 
@@ -200,6 +204,7 @@ public class Main {
 		}
 	}
 
+  /*
   public Objeto getLastBird () {
     int i = 0;
     for(Objeto paloma : coleccionDeObjetos){
@@ -209,7 +214,10 @@ public class Main {
     }
     return this.coleccionDeObjetos.get(i);
   }
+  */
 
+  /*
+  // Método para obtener un multiplicador variable dependiendo del nivel
   private int multiplier (int nivel) { // ¡Ojo! Sobreescritura de còdigo. Este metodo se duplica en Controlador.java
     int nro;
     switch (nivel) {
@@ -223,5 +231,5 @@ public class Main {
     }
     return nro;
   }
-
+  */
 }
